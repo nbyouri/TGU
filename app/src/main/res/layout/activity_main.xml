@@ -9,14 +9,27 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffffff"
+    android:gravity="center"
     tools:context="muga.thegreatuniversity.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_txt"
         android:text="@string/app_name"
         android:textSize="50sp"
         android:textAlignment="center"
-        android:gravity="center"/>
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_txt"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:text="@string/app_tag"/>
 
 </RelativeLayout>
