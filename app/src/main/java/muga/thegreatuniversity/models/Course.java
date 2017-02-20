@@ -5,10 +5,10 @@ package muga.thegreatuniversity.models;
  */
 
 enum courseType {
-    MAG ("@string/courseType_magistral"),
-    LAB_SC ("@string/scienceLab"),
-    LAB_AG ("@string/agronomyLab"),
-    LAB_IT ("@string/ITLab");
+    MAG("@string/courseType_magistral"),
+    LAB_SC("@string/scienceLab"),
+    LAB_AG("@string/agronomyLab"),
+    LAB_IT("@string/ITLab");
 
     private String name = "";
 
@@ -27,6 +27,14 @@ public class Course {
     private int coursePopularity;
     private int studentCount;
     private Boolean isLab;
+
+    public Course(String courseName, String courseType, int coursePopularity, int studentCount, Boolean isLab) {
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.coursePopularity = coursePopularity;
+        this.studentCount = studentCount;
+        this.isLab = isLab;
+    }
 
     public String getCourseName() {
         return courseName;

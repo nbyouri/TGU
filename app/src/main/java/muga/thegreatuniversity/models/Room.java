@@ -27,6 +27,12 @@ public class Room {
     private int capacity;
     private roomType type;
 
+    public Room(String name, int capacity, roomType type) {
+        this.name = name;
+        this.capacity = capacity;
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }
