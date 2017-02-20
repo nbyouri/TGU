@@ -4,7 +4,7 @@ package muga.thegreatuniversity.models;
  * Created by youri on 20/02/2017.
  */
 
-enum roomType {
+enum RoomType {
     AUDIT ("@string/roomType_auditorium"),    // 100 people class
     CLASS ("@string/roomType_class"),         // 20 people generic class
     LAB_SC ("@string/courseType_scienceLab"), // needed for lab courses, 20 people max
@@ -13,7 +13,7 @@ enum roomType {
 
     private String name = "";
 
-    roomType(String name) {
+    RoomType(String name) {
         this.name = name;
     }
 
@@ -25,9 +25,9 @@ enum roomType {
 public class Room {
     private String name;
     private int capacity;
-    private roomType type;
+    private RoomType type;
 
-    public Room(String name, int capacity, roomType type) {
+    public Room(String name, int capacity, RoomType type) {
         this.name = name;
         this.capacity = capacity;
         this.type = type;
@@ -49,11 +49,11 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public roomType getType() {
+    public RoomType getType() {
         return type;
     }
 
-    public void setType(roomType type) {
+    public void setType(RoomType type) {
         this.type = type;
     }
 }

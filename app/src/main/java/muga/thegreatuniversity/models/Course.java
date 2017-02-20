@@ -4,7 +4,7 @@ package muga.thegreatuniversity.models;
  * Created by youri on 20/02/2017.
  */
 
-enum courseType {
+enum CourseType {
     MAG("@string/courseType_magistral"),
     LAB_SC("@string/scienceLab"),
     LAB_AG("@string/agronomyLab"),
@@ -12,7 +12,7 @@ enum courseType {
 
     private String name = "";
 
-    courseType(String name) {
+    CourseType(String name) {
         this.name = name;
     }
 
@@ -23,12 +23,12 @@ enum courseType {
 
 public class Course {
     private String courseName;
-    private String courseType;
+    private CourseType courseType;
     private int coursePopularity;
     private int studentCount;
     private Boolean isLab;
 
-    public Course(String courseName, String courseType, int coursePopularity, int studentCount, Boolean isLab) {
+    public Course(String courseName, CourseType courseType, int coursePopularity, int studentCount, Boolean isLab) {
         this.courseName = courseName;
         this.courseType = courseType;
         this.coursePopularity = coursePopularity;
@@ -44,11 +44,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getCourseType() {
+    public CourseType getCourseType() {
         return courseType;
     }
 
-    public void setCourseType(String courseType) {
+    public void setCourseType(CourseType courseType) {
         this.courseType = courseType;
     }
 
