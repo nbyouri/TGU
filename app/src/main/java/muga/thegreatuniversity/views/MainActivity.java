@@ -1,12 +1,8 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Layout;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +10,6 @@ import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.
@@ -24,26 +19,34 @@ import muga.thegreatuniversity.utils.Logger;
 
 public class MainActivity extends Activity {
 
+    private static final int TITLE_TIME_OUT = 2000;
+
     private void load() {
-        // 1.5s splash screen
-        int SPLASH_TIME_OUT = 2000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                TextView title = (TextView)findViewById(R.id.title_txt);
-                title.setVisibility(View.GONE);
-                View login = (View)findViewById(R.id.layout_login);
-                login.setVisibility(View.VISIBLE);
-                ImageView logo = (ImageView)findViewById(R.id.img_logo);
-                logo.setVisibility(View.GONE);
+                printLoginLayout();
             }
-        }, SPLASH_TIME_OUT);
+        }, TITLE_TIME_OUT);
 
         University.getInstance();
-        University.getInstance().setName("UCL");
-        TextView tag = (TextView)findViewById(R.id.tag_txt);
-        tag.setText(University.getInstance().getName());
-        University.getLogger().Info(University.getInstance().getName());
+    }
+
+    private void printLoginLayout(){
+        View loginLayout = findViewById(R.id.layout_login);
+        loginLayout.setVisibility(View.VISIBLE);
+
+        Button button= (Button) findViewById(R.id.button_createuniversity);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createUniv();
+            }
+        });
+    }
+
+    private void createUniv(){
+        PopUp.createUnivPopUp(this);
     }
 
     @Override

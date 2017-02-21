@@ -4,19 +4,18 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:gravity="center"
+    android:gravity="center|top"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="muga.thegreatuniversity.views.MainActivity">
+
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:gravity="top" >
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/title_txt"
@@ -26,7 +25,6 @@
             android:layout_alignParentTop="true"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="50sp"
             android:textStyle="bold"/>
 
@@ -38,7 +36,6 @@
             android:gravity="center"
             android:text="@string/app_tag"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_below="@+id/title_txt"/>
@@ -46,9 +43,11 @@
         <ImageView
             android:id="@+id/img_logo"
             android:src="@drawable/icon_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tag_txt"/>
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@+id/tag_txt"
+            android:layout_centerInParent="true"
+            android:visibility="visible"/>
 
     </RelativeLayout>
     <RelativeLayout
@@ -56,7 +55,6 @@
         android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
         android:layout_below="@+id/layout_title"
         android:gravity="bottom|center"
         android:layout_alignParentBottom="true">

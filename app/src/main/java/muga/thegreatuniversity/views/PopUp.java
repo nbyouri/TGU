@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.views;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.InputType;
@@ -15,7 +16,7 @@ import muga.thegreatuniversity.models.University;
 
 public class PopUp {
 
-    static public void createUnivPopUp(final MainActivity main) {
+    static public void createUnivPopUp(final Activity main) {
 
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
         helpBuilder.setTitle("@string/createUniv");
@@ -37,7 +38,7 @@ public class PopUp {
         helpDialog.show();
     }
 
-    static public void alertCreateUniv(MainActivity main, String name) {
+    static public void alertCreateUniv(Activity main, String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
         helpBuilder.setMessage("@string/congratulations");
         helpBuilder.setPositiveButton("@string/ok",
