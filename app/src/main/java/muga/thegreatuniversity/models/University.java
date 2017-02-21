@@ -17,12 +17,13 @@ public class University {
     private int money;
     private int moral;
     private int maxPopulation;
+    private int studentNb;
 
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
 
-    public University() {
+    private University() {
         professors = new ArrayList<Professor>();
         rooms = new ArrayList<Room>();
     }
