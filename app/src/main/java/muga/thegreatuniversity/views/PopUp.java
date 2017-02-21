@@ -18,24 +18,22 @@ public class PopUp {
 
     static public void createUnivPopUp(final Activity main) {
 
-        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
-        helpBuilder.setTitle("@string/createUniv");
-        helpBuilder.setMessage("@string/enterName");
+        AlertDialog.Builder builderDialog = new AlertDialog.Builder(main);
+        builderDialog.setTitle("@string/createUniv");
+        builderDialog.setMessage("@string/enterName");
         final EditText input = new EditText(main);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
-        helpBuilder.setView(input);
-        helpBuilder.setPositiveButton("@string/ok",
+        builderDialog.setView(input);
+        builderDialog.setPositiveButton("@string/ok",
                 new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing but close the dialog
                         alertCreateUniv(main, input.getText().toString());
                     }
                 });
 
         // Remember, create doesn't show the dialog
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
+        AlertDialog univDialog = builderDialog.create();
+        univDialog.show();
     }
 
     static public void alertCreateUniv(Activity main, String name) {

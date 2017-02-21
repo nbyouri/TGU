@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -21,6 +22,13 @@ public class MainActivity extends Activity {
 
     private static final int TITLE_TIME_OUT = 2000;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        load();
+    }
+
     private void load() {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -28,7 +36,6 @@ public class MainActivity extends Activity {
                 printLoginLayout();
             }
         }, TITLE_TIME_OUT);
-
         University.getInstance();
     }
 
@@ -47,13 +54,6 @@ public class MainActivity extends Activity {
 
     private void createUniv(){
         PopUp.createUnivPopUp(this);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        load();
     }
 
 }
