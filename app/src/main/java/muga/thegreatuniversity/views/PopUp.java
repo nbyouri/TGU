@@ -15,11 +15,11 @@ import muga.thegreatuniversity.models.University;
 
 public class PopUp {
 
-    private void createUnivPopUp(final MainActivity main) {
+    static public void createUnivPopUp(final MainActivity main) {
 
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
-        helpBuilder.setTitle("Create university");
-        helpBuilder.setMessage("Enter name of your University");
+        helpBuilder.setTitle("@string/createUniv");
+        helpBuilder.setMessage("@string/enterName");
         final EditText input = new EditText(main);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         helpBuilder.setView(input);
@@ -28,7 +28,7 @@ public class PopUp {
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-                        notifCreateUniv(main, input.getText().toString());
+                        alertCreateUniv(main, input.getText().toString());
                     }
                 });
 
@@ -37,9 +37,9 @@ public class PopUp {
         helpDialog.show();
     }
 
-    private void notifCreateUniv(MainActivity main, String name) {
+    static public void alertCreateUniv(MainActivity main, String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
-        helpBuilder.setMessage("Congrulations your university is created !");
+        helpBuilder.setMessage("@string/congratulations");
         helpBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
 

@@ -11,4 +11,8 @@
     <string name="courseType_ITLab">IT Lab</string>
     <string name="create_univ_button">Create University</string>
 
+    <string name="PopUp_createUniv">Create university</string>
+    <string name="PopUp_enterName">Enter name of your University</string>
+    <string name="PopUp_congratulations">Congratulations your university is created !</string>
+
 </resources>
