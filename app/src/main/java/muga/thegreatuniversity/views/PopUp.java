@@ -20,12 +20,12 @@ public class PopUp {
     static public void createUnivPopUp(final Activity main) {
 
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(main);
-        builderDialog.setTitle(Context.getString(R.string.create_univ_button));
-        builderDialog.setMessage(Context.getString(R.string.PopUp_enterName));
+        builderDialog.setTitle(Context.getString(R.string.popUp_createUniv));
+        builderDialog.setMessage(Context.getString(R.string.popUp_enterName));
         final EditText input = new EditText(main);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builderDialog.setView(input);
-        builderDialog.setPositiveButton(Context.getString(R.string.PopUp_ok),
+        builderDialog.setPositiveButton(Context.getString(R.string.popUp_enterName),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         alertCreateUniv(main, input.getText().toString());
@@ -39,8 +39,8 @@ public class PopUp {
 
     static public void alertCreateUniv(Activity main, String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
-        helpBuilder.setMessage(Context.getString(R.string.PopUp_congratulations));
-        helpBuilder.setPositiveButton(Context.getString(R.string.PopUp_ok),
+        helpBuilder.setMessage(Context.getString(R.string.popUp_congratulations));
+        helpBuilder.setPositiveButton(Context.getString(R.string.popUp_ok),
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
