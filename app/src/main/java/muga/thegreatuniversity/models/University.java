@@ -19,11 +19,71 @@ public class University {
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
 
-    public University(String name, int popularity, int money, int moral, int maxPopulation) {
+    public University() {
+
+    }
+
+    private static class UniversityHolder {
+        private final static University instance = new University();
+    }
+
+    public static University getInstance() {
+        return UniversityHolder.instance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
         this.popularity = popularity;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getMoral() {
+        return moral;
+    }
+
+    public void setMoral(int moral) {
         this.moral = moral;
+    }
+
+    public int getMaxPopulation() {
+        return maxPopulation;
+    }
+
+    public void setMaxPopulation(int maxPopulation) {
         this.maxPopulation = maxPopulation;
+    }
+
+    public ArrayList<Professor> getProfessors() {
+        return professors;
+    }
+
+    public void setProfessors(ArrayList<Professor> professors) {
+        this.professors = professors;
+    }
+
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
     }
 }
