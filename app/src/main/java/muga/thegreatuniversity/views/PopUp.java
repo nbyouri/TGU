@@ -23,7 +23,7 @@ public class PopUp {
         final EditText input = new EditText(main);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         helpBuilder.setView(input);
-        helpBuilder.setPositiveButton("Ok",
+        helpBuilder.setPositiveButton("@string/ok",
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
@@ -40,7 +40,7 @@ public class PopUp {
     static public void alertCreateUniv(MainActivity main, String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(main);
         helpBuilder.setMessage("@string/congratulations");
-        helpBuilder.setPositiveButton("Ok",
+        helpBuilder.setPositiveButton("@string/ok",
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {

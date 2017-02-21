@@ -14,5 +14,6 @@
     <string name="PopUp_createUniv">Create university</string>
     <string name="PopUp_enterName">Enter name of your University</string>
     <string name="PopUp_congratulations">Congratulations your university is created !</string>
+    <string name="PopUp_ok">OK</string>
 
 </resources>
