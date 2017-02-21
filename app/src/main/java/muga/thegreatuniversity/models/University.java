@@ -20,7 +20,8 @@ public class University {
     private ArrayList<Room> rooms;
 
     public University() {
-
+        professors = new ArrayList<Professor>();
+        rooms = new ArrayList<Room>();
     }
 
     private static class UniversityHolder {
