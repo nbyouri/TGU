@@ -1,25 +1,11 @@
 package muga.thegreatuniversity.models;
 
+import muga.thegreatuniversity.lists.CourseType;
+
 /**
  * Created by youri on 20/02/2017.
  */
 
-enum CourseType {
-    MAG("@string/courseType_magistral"),
-    LAB_SC("@string/scienceLab"),
-    LAB_AG("@string/agronomyLab"),
-    LAB_IT("@string/ITLab");
-
-    private String name = "";
-
-    CourseType(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
 
 public class Course {
     private String courseName;
