@@ -1,10 +1,14 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.University;
@@ -36,11 +40,17 @@ public class MainActivity extends Activity {
         University.getInstance();
     }
 
+
+
     private void printLoginLayout(){
+
+        //ImageView icon = (ImageView) findViewById(R.id.img_logo);
+        //icon.setLayoutParams(new RelativeLayout.LayoutParams(250, 250));
+
         View loginLayout = findViewById(R.id.layout_login);
         loginLayout.setVisibility(View.VISIBLE);
 
-        Button button= (Button) findViewById(R.id.button_createuniversity);
+        Button button= (Button) findViewById(R.id.btn_create_university);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

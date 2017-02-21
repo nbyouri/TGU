@@ -43,8 +43,8 @@
         <ImageView
             android:id="@+id/img_logo"
             android:src="@drawable/icon_img"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tag_txt"
             android:layout_centerInParent="true"
             android:visibility="visible"/>
@@ -60,7 +60,7 @@
         android:layout_alignParentBottom="true">
 
         <Button
-            android:id="@+id/button_createuniversity"
+            android:id="@+id/btn_create_university"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_univ_button"
