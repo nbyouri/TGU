@@ -4,7 +4,7 @@ import muga.thegreatuniversity.lists.CourseType;
 
 /**
  * Created on 20/02/2017.
- * Auteurs : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
  * Muga Copyright
  */
 
