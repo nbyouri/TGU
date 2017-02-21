@@ -1,5 +1,8 @@
 package muga.thegreatuniversity.lists;
 
+import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.utils.Context;
+
 /**
  * Created on 20/02/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -7,10 +10,10 @@ package muga.thegreatuniversity.lists;
  */
 
 public enum CourseType {
-    MAG("@string/courseType_magistral"),
-    LAB_SC("@string/scienceLab"),
-    LAB_AG("@string/agronomyLab"),
-    LAB_IT("@string/ITLab");
+    MAG(Context.getString(R.string.courseType_magistral)),
+    LAB_SC(Context.getString(R.string.courseType_scienceLab)),
+    LAB_AG(Context.getString(R.string.courseType_agronomyLab)),
+    LAB_IT(Context.getString(R.string.courseType_ITLab));
 
     private String name = "";
 

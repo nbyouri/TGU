@@ -1,16 +1,20 @@
 package muga.thegreatuniversity.lists;
 
+import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.app.App;
+import muga.thegreatuniversity.utils.Context;
+
 /**
  * Created on 20/02/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
  * Muga Copyright
  */
 public enum RoomType {
-    AUDIT ("@string/roomType_auditorium"),    // 100 people class
-    CLASS ("@string/roomType_class"),         // 20 people generic class
-    LAB_SC ("@string/courseType_scienceLab"), // needed for lab courses, 20 people max
-    LAB_AG ("@string/courseType_agronomyLab"),// needed for lab courses, 20 people max
-    LAB_IT ("@string/courseType_ITLab");      // needed for lab courses, 20 people max
+    AUDIT (Context.getString(R.string.roomType_auditorium)),    // 100 people class
+    CLASS (Context.getString(R.string.roomType_class)),         // 20 people generic class
+    LAB_SC (Context.getString(R.string.courseType_scienceLab)), // needed for lab courses, 20 people max
+    LAB_AG (Context.getString(R.string.courseType_agronomyLab)),// needed for lab courses, 20 people max
+    LAB_IT (Context.getString(R.string.courseType_ITLab));      // needed for lab courses, 20 people max
 
     private String name = "";
 
