@@ -1,6 +1,8 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -36,5 +38,23 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         load();
+    }
+
+    private void showSimplePopUp() {
+
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Pop Up");
+        helpBuilder.setMessage("This is a Simple Pop Up");
+        helpBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
     }
 }
