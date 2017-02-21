@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
@@ -23,12 +25,14 @@ public class MainActivity extends Activity {
 
     private void load() {
         // 1.5s splash screen
-        int SPLASH_TIME_OUT = 6000;
+        int SPLASH_TIME_OUT = 2000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 TextView title = (TextView)findViewById(R.id.title_txt);
                 title.setVisibility(View.GONE);
+                View login = (View)findViewById(R.id.layout_login);
+                login.setVisibility(View.VISIBLE);
             }
         }, SPLASH_TIME_OUT);
 
