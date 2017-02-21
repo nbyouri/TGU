@@ -9,6 +9,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
                 title.setVisibility(View.GONE);
                 View login = (View)findViewById(R.id.layout_login);
                 login.setVisibility(View.VISIBLE);
+                ImageView logo = (ImageView)findViewById(R.id.img_logo);
+                logo.setVisibility(View.GONE);
             }
         }, SPLASH_TIME_OUT);
 
