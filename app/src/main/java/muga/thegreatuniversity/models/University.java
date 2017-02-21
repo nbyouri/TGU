@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
- * Master object
- * Created by youri on 20/02/2017.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class University {

@@ -1,7 +1,9 @@
 package muga.thegreatuniversity.lists;
 
 /**
- * Created by Remy on 21-02-17.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public enum CourseType {

@@ -3,7 +3,9 @@ package muga.thegreatuniversity.models;
 import muga.thegreatuniversity.lists.RoomType;
 
 /**
- * Created by youri on 20/02/2017.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class Room {

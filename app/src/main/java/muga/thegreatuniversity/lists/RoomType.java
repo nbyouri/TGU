@@ -1,9 +1,10 @@
 package muga.thegreatuniversity.lists;
 
 /**
- * Created by Remy on 21-02-17.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
-
 public enum RoomType {
     AUDIT ("@string/roomType_auditorium"),    // 100 people class
     CLASS ("@string/roomType_class"),         // 20 people generic class

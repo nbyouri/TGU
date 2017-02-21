@@ -11,6 +11,12 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
 
+/**
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
+ */
+
 public class MainActivity extends Activity {
 
     private void load() {
