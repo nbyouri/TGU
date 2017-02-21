@@ -9,5 +9,6 @@
     <string name="courseType_scienceLab">Science Lab</string>
     <string name="courseType_agronomyLab">Agronomy Lab</string>
     <string name="courseType_ITLab">IT Lab</string>
+    <string name="create_univ_button">Create University</string>
 
 </resources>

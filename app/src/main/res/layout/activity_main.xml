@@ -11,29 +11,58 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="muga.thegreatuniversity.views.MainActivity">
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="400sp"
+        android:background="@color/white">
 
-    <TextView
-        android:id="@+id/title_txt"
+        <TextView
+            android:id="@+id/tag_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_txt"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:text="@string/app_tag"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:layout_below="@+id/layout_title"
         android:gravity="center"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textColor="@color/dark_grey"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true">
 
-    <TextView
-        android:id="@+id/tag_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_txt"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:gravity="center"
-        android:text="@string/app_tag"
-        android:textAlignment="center"
-        android:textColor="@color/dark_grey"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_createuniversity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_univ_button"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>
+
