@@ -50,21 +50,4 @@ public class MainActivity extends Activity {
         load();
     }
 
-    private void showSimplePopUp() {
-
-        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle("Pop Up");
-        helpBuilder.setMessage("This is a Simple Pop Up");
-        helpBuilder.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing but close the dialog
-                    }
-                });
-
-        // Remember, create doesn't show the dialog
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
-    }
 }
