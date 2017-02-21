@@ -2,6 +2,8 @@ package muga.thegreatuniversity.models;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.utils.Logger;
+
 /**
  * Master object
  * Created by youri on 20/02/2017.
@@ -26,11 +28,14 @@ public class University {
 
     private static class UniversityHolder {
         private final static University instance = new University();
+        private final static Logger logger = new Logger();
     }
 
     public static University getInstance() {
         return UniversityHolder.instance;
     }
+
+    public static Logger getLogger() { return UniversityHolder.logger; }
 
     public String getName() {
         return name;
