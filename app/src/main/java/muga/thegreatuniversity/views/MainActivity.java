@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,6 +39,9 @@ public class MainActivity extends Activity {
             }
         }, TITLE_TIME_OUT);
         University.getInstance();
+
+        //Intent intent = new Intent(this, GameActivity.class);
+        //startActivity(intent);
     }
 
 
