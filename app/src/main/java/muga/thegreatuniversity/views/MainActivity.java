@@ -40,8 +40,8 @@ public class MainActivity extends Activity {
         }, TITLE_TIME_OUT);
         University.getInstance();
 
-        //Intent intent = new Intent(this, GameActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 
 

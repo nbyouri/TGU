@@ -15,49 +15,50 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center">
 
         <TextView
             android:id="@+id/title_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_alignParentTop="true"
+            android:gravity="center"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textSize="50sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tag_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/title_txt"
             android:layout_margin="@dimen/activity_vertical_margin"
             android:gravity="center"
             android:text="@string/app_tag"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/title_txt"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/img_logo"
-            android:src="@drawable/icon_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tag_txt"
             android:layout_centerInParent="true"
-            android:visibility="visible"/>
+            android:src="@drawable/icon_img"
+            android:visibility="visible" />
 
     </RelativeLayout>
+
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/layout_title"
         android:gravity="bottom|center"
-        android:layout_alignParentBottom="true">
+        android:visibility="invisible">
 
         <Button
             android:id="@+id/btn_create_university"
@@ -66,7 +67,7 @@
             android:text="@string/create_univ_button"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
 
