@@ -26,8 +26,18 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     @Override
     public void callback(Bundle bundle) {
-        if (bundle.getString("type").equals("CreateUniv")){
-            printGame();
+        if (bundle.containsKey("Type")){
+            String type = bundle.getString("Type");
+            if (type != null && type.equals("CreateUniv")){
+                String nameUni = bundle.getString("NameUniv");
+                University.getInstance().setName(nameUni);
+                University.getInstance().setStudentNb(5);
+                University.getInstance().setMaxPopulation(10);
+                University.getInstance().setMoney(5000);
+                printGame();
+            }
+        } else {
+            // TODO LOG
         }
     }
 

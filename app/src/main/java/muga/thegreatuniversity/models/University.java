@@ -94,4 +94,13 @@ public class University {
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
+
+    public int getStudentNb() {
+        return studentNb;
+    }
+
+    public void setStudentNb(int studentNb) {
+        this.studentNb = studentNb;
+    }
+
 }

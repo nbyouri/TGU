@@ -31,6 +31,7 @@ public class PopUp {
         builderDialog.setPositiveButton(Context.getString(R.string.popUp_enterName),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+
                         alertCreateUniv(mainAct, input.getText().toString());
                     }
                 });
@@ -47,9 +48,9 @@ public class PopUp {
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        University.getInstance().setName(name);
                         Bundle mes = new Bundle();
-                        mes.putString("type", "CreateUniv");
+                        mes.putString("Type", "CreateUniv");
+                        mes.putString("NameUniv", name);
                         mainAct.callback(mes);
                     }
                 });
