@@ -3,8 +3,8 @@ package muga.thegreatuniversity.views;
 import android.os.Bundle;
 
 /**
- * Created on 24-02-17.
- * Auteurs : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
  * Muga Copyright
  */
 

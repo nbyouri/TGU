@@ -13,7 +13,9 @@ import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
 /**
- * Created by tristanmoers on 21/02/17.
+ * Created on 21/02/17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class PopUp {

@@ -11,8 +11,8 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.views.MainActivity;
 
 /**
- * Created on 23-02-17.
- * Auteurs : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
  * Muga Copyright
  */
 

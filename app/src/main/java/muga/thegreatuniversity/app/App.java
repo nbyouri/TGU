@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Created on 21-02-17.
- * Auteurs : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
  * Muga Copyright
  */
 

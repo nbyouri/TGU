@@ -4,7 +4,9 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 
 /**
- * Created by youri on 21/02/2017.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class Context {
