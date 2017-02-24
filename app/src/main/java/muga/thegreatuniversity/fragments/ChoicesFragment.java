@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.views.GameActivity;
-
-import static android.R.attr.button;
+import muga.thegreatuniversity.views.MainActivity;
 
 /**
  * Created on 23-02-17.
@@ -41,7 +39,7 @@ public class ChoicesFragment extends Fragment {
     }
 
     private void changeHire(){
-        ((GameActivity)getActivity()).hireProf();
+        ((MainActivity)getActivity()).hireProf();
     }
 
 }

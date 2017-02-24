@@ -11,15 +11,15 @@ import android.util.Log;
 public class Logger {
     private static final String TAG = "TGU";
 
-    public void Info(String s) {
+    public void info(String s) {
         Log.i(TAG, s);
     }
 
-    public void Error(String s) {
+    public void error(String s) {
         Log.e(TAG, s);
     }
 
-    public void Wtf(String s) {
+    public void wtf(String s) {
         Log.wtf(TAG, s);
     }
 }
