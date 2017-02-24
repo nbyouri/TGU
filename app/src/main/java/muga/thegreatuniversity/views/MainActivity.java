@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
+import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,7 +22,14 @@ import muga.thegreatuniversity.models.University;
  * Muga Copyright
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CallbackActivity {
+
+    @Override
+    public void callback(Bundle bundle) {
+        if (bundle.getString("type").equals("CreateUniv")){
+            printGame();
+        }
+    }
 
     private static final int TITLE_TIME_OUT = 2000;
 
@@ -94,9 +102,6 @@ public class MainActivity extends Activity {
 
     private void printLoginLayout(){
 
-        //ImageView icon = (ImageView) findViewById(R.id.img_logo);
-        //icon.setLayoutParams(new RelativeLayout.LayoutParams(250, 250));
-
         View loginLayout = findViewById(R.id.layout_login);
         loginLayout.setVisibility(View.VISIBLE);
 
@@ -104,8 +109,7 @@ public class MainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                printGame();
-                //createUniv();
+                createUniv();
             }
         });
     }
