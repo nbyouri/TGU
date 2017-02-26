@@ -108,6 +108,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
+
         }
 
     }
@@ -129,6 +130,7 @@ public class MainActivity extends Activity implements CallbackActivity {
     private void createUniv(){
         PopUp.createUnivPopUp(this);
     }
+
 
     public void hireProf(){
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

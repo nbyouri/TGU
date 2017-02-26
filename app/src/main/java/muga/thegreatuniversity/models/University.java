@@ -116,8 +116,19 @@ public class University {
         this.turn = turn;
     }
 
-    public void newTurn(){
+    public String newTurn(){
         this.addTurn(); //Increment the value of turn
         this.setMoney(this.getMoney()+this.getStudentNb()*10); //Gain 10$ per student each turn
+        return this.newEvent();
+    }
+
+    public String newEvent(){ //TODO class event + data structure to store them
+        int random = (int) Math.floor(Math.random() * 3);
+        if(random == 1){
+            this.setMoney(this.getMoney()/2);
+            return "You lost half your money";
+        }
+        else
+            return"Nothing happened";
     }
 }

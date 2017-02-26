@@ -60,4 +60,16 @@ public class PopUp {
         helpDialog.show();
     }
 
+    static public void alertNewEvent(final MainActivity mainAct, final String event) {
+        AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
+        eventBuilder.setTitle(event);
+        eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //Do nothing
+            }
+            });
+        AlertDialog eventDialog = eventBuilder.create();
+        eventDialog.show();
+    }
+
 }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.views.MainActivity;
+import muga.thegreatuniversity.views.PopUp;
 
 /**
  * Created on 20/02/2017.
@@ -42,7 +43,8 @@ public class ChoicesFragment extends Fragment {
         btn_new_turn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                University.getInstance().newTurn();
+                String event = University.getInstance().newTurn();
+                newEventAlert(event);
                 printGame();
             }
         });
@@ -54,6 +56,9 @@ public class ChoicesFragment extends Fragment {
     }
     private void printGame(){
         ((MainActivity)getActivity()).printGame();
+    }
+    private void newEventAlert(String event){
+        PopUp.alertNewEvent((MainActivity)getActivity(), event);
     }
 
 }
