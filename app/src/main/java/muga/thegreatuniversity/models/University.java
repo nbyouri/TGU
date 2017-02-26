@@ -118,7 +118,8 @@ public class University {
 
     public String newTurn(){
         this.addTurn(); //Increment the value of turn
-        this.setMoney(this.getMoney()+this.getStudentNb()*10); //Gain 10$ per student each turn
+        this.newMoney(); //Gain 10$ per student each turn
+        this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each turn
         return this.newEvent();
     }
 
@@ -130,5 +131,19 @@ public class University {
         }
         else
             return"Nothing happened";
+    }
+
+    public void newMoney(){
+        this.money = this.money + this.studentNb*10;
+    }
+
+    public void newStudentNB(){
+        if(this.studentNb < this.maxPopulation) {
+
+            int random = (int) Math.floor(Math.random() * 101);
+            if (random <= this.popularity) {
+                setStudentNb(this.studentNb +1);
+            }
+        }
     }
 }

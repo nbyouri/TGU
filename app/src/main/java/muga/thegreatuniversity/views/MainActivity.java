@@ -28,6 +28,8 @@ public class MainActivity extends Activity implements CallbackActivity {
     public void callback(Bundle bundle) {
         if (bundle.containsKey("Type")){
             String type = bundle.getString("Type");
+
+            //Create value for a new party
             if (type != null && type.equals("CreateUniv")){
                 String nameUni = bundle.getString("NameUniv");
                 University.getInstance().setName(nameUni);
@@ -35,6 +37,7 @@ public class MainActivity extends Activity implements CallbackActivity {
                 University.getInstance().setMaxPopulation(10);
                 University.getInstance().setMoney(5000);
                 University.getInstance().setTurn(1);
+                University.getInstance().setPopularity(10);
                 printGame();
             }
         } else {
