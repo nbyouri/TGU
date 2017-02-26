@@ -10,6 +10,11 @@
     <string name="courseType_agronomyLab">Agronomy Lab</string>
     <string name="courseType_ITLab">IT Lab</string>
     <string name="create_univ_button">Create University</string>
+    <string name="text_money">money: </string>
+    <string name="text_stat">Stat: </string>
+    <string name="text_moral">moral</string>
+    <string name="text_create_teacher">Create Teacher</string>
+    <string name="text_create_course">Create Course</string>
 
     <string name="popUp_createUniv">Create university</string>
     <string name="popUp_enterName">Enter name of your University</string>

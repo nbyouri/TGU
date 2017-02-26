@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements CallbackActivity {
                 University.getInstance().setStudentNb(5);
                 University.getInstance().setMaxPopulation(10);
                 University.getInstance().setMoney(5000);
+                University.getInstance().setTurn(1);
                 printGame();
             }
         } else {
@@ -75,12 +76,13 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
-    private void printGame(){
+    public void printGame(){
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
         if (findViewById(R.id.frame_stat) != null
                 && findViewById(R.id.frame_main) != null
                 && findViewById(R.id.frame_all) != null) {
+
 
             FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);
             FrameLayout fStat = (FrameLayout) findViewById(R.id.frame_stat);
@@ -94,7 +96,7 @@ public class MainActivity extends Activity implements CallbackActivity {
             StatFragment statF = new StatFragment();
 
             // Add the fragment to the 'fragment_container' FrameLayout
-            getFragmentManager().beginTransaction().add(R.id.frame_stat, statF).commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
 
             // Create a new Fragment to be placed in the activity layout
             ChoicesFragment choicesF = new ChoicesFragment();
@@ -105,7 +107,7 @@ public class MainActivity extends Activity implements CallbackActivity {
             // firstFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
-            getFragmentManager().beginTransaction().add(R.id.frame_main, choicesF).commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
         }
 
     }

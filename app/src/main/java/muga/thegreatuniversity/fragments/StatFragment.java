@@ -39,10 +39,12 @@ public class StatFragment extends Fragment {
         TextView nameUniv = (TextView) getActivity().findViewById(R.id.txt_name_university);
         TextView nbMaxStud = (TextView) getActivity().findViewById(R.id.txt_max_student);
         TextView cash = (TextView) getActivity().findViewById(R.id.txt_cash);
+        TextView turn = (TextView) getActivity().findViewById(R.id.txt_turn);
 
         nbStud.setText(String.valueOf(University.getInstance().getStudentNb()));
         nameUniv.setText(University.getInstance().getName());
         nbMaxStud.setText(String.valueOf(University.getInstance().getMaxPopulation()));
         cash.setText(String.valueOf(University.getInstance().getMoney()));
+        turn.setText(String.valueOf(University.getInstance().getTurn()));
     }
 }

@@ -18,6 +18,7 @@ public class University {
     private int moral;
     private int maxPopulation;
     private int studentNb;
+    private int turn;
 
     // main objects
     private ArrayList<Professor> professors;
@@ -103,4 +104,20 @@ public class University {
         this.studentNb = studentNb;
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
+    public void addTurn() {
+        this.turn++;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    public void newTurn(){
+        this.addTurn(); //Increment the value of turn
+        this.setMoney(this.getMoney()+this.getStudentNb()*10); //Gain 10$ per student each turn
+    }
 }
