@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.views.fragments;
+package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;

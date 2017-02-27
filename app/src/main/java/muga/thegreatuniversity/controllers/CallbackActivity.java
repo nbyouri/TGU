@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.views;
+package muga.thegreatuniversity.controllers;
 
 import android.os.Bundle;
 

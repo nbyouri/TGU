@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.views;
+package muga.thegreatuniversity.controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

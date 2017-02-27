@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.views;
+package muga.thegreatuniversity.controllers;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,10 +10,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.views.fragments.ChoicesFragment;
-import muga.thegreatuniversity.views.fragments.HireFragment;
-import muga.thegreatuniversity.views.fragments.SplashFragment;
-import muga.thegreatuniversity.views.fragments.StatFragment;
+import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
+import muga.thegreatuniversity.controllers.fragments.HireFragment;
+import muga.thegreatuniversity.controllers.fragments.SplashFragment;
+import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;

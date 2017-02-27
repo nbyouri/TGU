@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.views.adapters;
+package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
