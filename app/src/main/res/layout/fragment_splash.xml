@@ -54,8 +54,11 @@
             android:layout_height="wrap_content"
             android:text="@string/create_univ_button"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="50sp"
+            android:padding="@dimen/choice_btn_padding"
+
+            />
     </LinearLayout>
 
 </LinearLayout>

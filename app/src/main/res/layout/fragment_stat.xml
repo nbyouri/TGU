@@ -3,8 +3,10 @@
     android:id="@+id/layout_stat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     android:baselineAligned="false"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin">
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -15,8 +17,7 @@
             android:id="@+id/txt_name_university"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:textSize="20sp" />
+            android:layout_alignParentLeft="true" />
 
     </RelativeLayout>
 
@@ -29,14 +30,14 @@
         <TextView
             android:id="@+id/txt_cash"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/layout_stat_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_cash">
+
             <TextView
                 android:id="@+id/txt_nb_student"
                 android:layout_width="wrap_content"
@@ -53,19 +54,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_stat_student">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Turn :"/>
+                android:text="Week : " />
+
             <TextView
                 android:id="@+id/txt_turn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </RelativeLayout>
