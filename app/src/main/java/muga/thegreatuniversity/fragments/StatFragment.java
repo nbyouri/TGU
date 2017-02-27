@@ -1,16 +1,13 @@
 package muga.thegreatuniversity.fragments;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.models.University;
 
 /**
@@ -34,7 +31,7 @@ public class StatFragment extends Fragment {
         printStat();
     }
 
-    private void printStat(){
+    public void printStat(){
         TextView nbStud = (TextView) getActivity().findViewById(R.id.txt_nb_student);
         TextView nameUniv = (TextView) getActivity().findViewById(R.id.txt_name_university);
         TextView nbMaxStud = (TextView) getActivity().findViewById(R.id.txt_max_student);
@@ -45,6 +42,6 @@ public class StatFragment extends Fragment {
         nameUniv.setText(University.getInstance().getName());
         nbMaxStud.setText(String.valueOf(University.getInstance().getMaxPopulation()));
         cash.setText(String.valueOf(University.getInstance().getMoney()));
-        turn.setText(String.valueOf(University.getInstance().getTurn()));
+        turn.setText(String.valueOf(University.getInstance().getWeek()));
     }
 }

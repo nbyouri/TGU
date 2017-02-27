@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.views.MainActivity;
 import muga.thegreatuniversity.views.PopUp;
@@ -40,6 +41,7 @@ public class ChoicesFragment extends Fragment {
                 changeHire();
             }
         });
+
         btn_new_turn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,11 +54,13 @@ public class ChoicesFragment extends Fragment {
     }
 
     private void changeHire(){
-        ((MainActivity)getActivity()).hireProf();
+        ((MainActivity)getActivity()).changeMainFragement(FragmentType.HIRE_PROF);
     }
+
     private void printGame(){
-        ((MainActivity)getActivity()).printGame();
+        ((MainActivity)getActivity()).updateView();
     }
+
     private void newEventAlert(String event){
         PopUp.alertNewEvent((MainActivity)getActivity(), event);
     }

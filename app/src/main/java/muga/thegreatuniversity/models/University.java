@@ -18,7 +18,7 @@ public class University {
     private int moral;
     private int maxPopulation;
     private int studentNb;
-    private int turn;
+    private int week;
 
     // main objects
     private ArrayList<Professor> professors;
@@ -31,14 +31,11 @@ public class University {
 
     private static class UniversityHolder {
         private final static University instance = new University();
-        private final static Logger logger = new Logger();
     }
 
     public static University getInstance() {
         return UniversityHolder.instance;
     }
-
-    public static Logger getLogger() { return UniversityHolder.logger; }
 
     public String getName() {
         return name;
@@ -104,22 +101,22 @@ public class University {
         this.studentNb = studentNb;
     }
 
-    public int getTurn() {
-        return turn;
+    public int getWeek() {
+        return week;
     }
 
     public void addTurn() {
-        this.turn++;
+        this.week++;
     }
 
-    public void setTurn(int turn) {
-        this.turn = turn;
+    public void setWeek(int week) {
+        this.week = week;
     }
 
     public String newTurn(){
-        this.addTurn(); //Increment the value of turn
-        this.newMoney(); //Gain 10$ per student each turn
-        this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each turn
+        this.addTurn(); //Increment the value of week
+        this.newMoney(); //Gain 10$ per student each week
+        this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
         return this.newEvent();
     }
 
@@ -142,8 +139,17 @@ public class University {
 
             int random = (int) Math.floor(Math.random() * 101);
             if (random <= this.popularity) {
-                setStudentNb(this.studentNb +1);
+                setStudentNb(this.studentNb + 1);
             }
         }
+    }
+
+    public void newUniversity(String name){
+        University.getInstance().setName(name);
+        University.getInstance().setStudentNb(5);
+        University.getInstance().setMaxPopulation(10);
+        University.getInstance().setMoney(5000);
+        University.getInstance().setWeek(1);
+        University.getInstance().setPopularity(10);
     }
 }

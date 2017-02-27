@@ -1,0 +1,11 @@
+package muga.thegreatuniversity.lists;
+
+/**
+ * Created on 27-02-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
+ */
+
+public enum FragmentType {
+    HIRE_PROF
+}

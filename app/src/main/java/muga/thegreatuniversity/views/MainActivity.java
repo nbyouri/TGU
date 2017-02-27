@@ -1,10 +1,10 @@
 package muga.thegreatuniversity.views;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -14,7 +14,9 @@ import muga.thegreatuniversity.fragments.ChoicesFragment;
 import muga.thegreatuniversity.fragments.HireFragment;
 import muga.thegreatuniversity.fragments.SplashFragment;
 import muga.thegreatuniversity.fragments.StatFragment;
+import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.
@@ -24,34 +26,63 @@ import muga.thegreatuniversity.models.University;
 
 public class MainActivity extends Activity implements CallbackActivity {
 
-    @Override
-    public void callback(Bundle bundle) {
-        if (bundle.containsKey("Type")){
-            String type = bundle.getString("Type");
+    private StatFragment statF;
+    private ChoicesFragment choicesF;
 
-            //Create value for a new party
-            if (type != null && type.equals("CreateUniv")){
-                String nameUni = bundle.getString("NameUniv");
-                University.getInstance().setName(nameUni);
-                University.getInstance().setStudentNb(5);
-                University.getInstance().setMaxPopulation(10);
-                University.getInstance().setMoney(5000);
-                University.getInstance().setTurn(1);
-                University.getInstance().setPopularity(10);
-                printGame();
-            }
-        } else {
-            // TODO LOG
-        }
-    }
-
-    private static final int TITLE_TIME_OUT = 2000;
+    private static final int TITLE_TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadData();
+    }
+
+    @Override
+    public void callback(Bundle bundle) {
+        if (bundle.containsKey("Type")){
+            String type = bundle.getString("Type");
+
+            if (type != null && type.equals("CreateUniv")){
+                String nameUni = bundle.getString("NameUniv");
+                University.getInstance().newUniversity(nameUni);
+                printGame();
+            }
+
+        } else {
+            Logger.error("Invalid Callback, Bundle : " + bundle.toString());
+        }
+    }
+
+    public void updateView(){
+        if (statF.isVisible()){
+            statF.printStat();
+        }
+    }
+
+    public void changeMainFragement(FragmentType fragType){
+
+        Fragment frag = null;
+
+        // CHOOSE BY WHICH FRAGMENT
+        switch (fragType) {
+            case HIRE_PROF:
+                frag = new HireFragment();
+                break;
+        }
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        // Thanks anim : https://developer.android.com/training/animation/cardflip.html
+        transaction.setCustomAnimations(
+                R.animator.card_flip_right_in,
+                R.animator.card_flip_right_out,
+                R.animator.card_flip_left_in,
+                R.animator.card_flip_left_out);
+        transaction.replace(R.id.frame_main, frag);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
     }
 
     private void loadData() {
@@ -63,6 +94,11 @@ public class MainActivity extends Activity implements CallbackActivity {
         }, TITLE_TIME_OUT);
 
         University.getInstance();
+
+        // Create main Fragments
+        statF = new StatFragment();
+        choicesF = new ChoicesFragment();
+
         printSplashScreen();
     }
 
@@ -79,9 +115,8 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
-    public void printGame(){
-        // Check that the activity is using the layout version with
-        // the fragment_container FrameLayout
+    private void printGame(){
+        // frameLayout exist
         if (findViewById(R.id.frame_stat) != null
                 && findViewById(R.id.frame_main) != null
                 && findViewById(R.id.frame_all) != null) {
@@ -95,21 +130,8 @@ public class MainActivity extends Activity implements CallbackActivity {
             fStat.setVisibility(View.VISIBLE);
             fMain.setVisibility(View.VISIBLE);
 
-            // Create a new Fragment to be placed in the activity layout
-            StatFragment statF = new StatFragment();
-
-            // Add the fragment to the 'fragment_container' FrameLayout
+            // Add the fragment on frame layout
             getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
-
-            // Create a new Fragment to be placed in the activity layout
-            ChoicesFragment choicesF = new ChoicesFragment();
-
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
-            // For saved
-            // firstFragment.setArguments(getIntent().getExtras());
-
-            // Add the fragment to the 'fragment_container' FrameLayout
             getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
 
         }
@@ -132,29 +154,6 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private void createUniv(){
         PopUp.createUnivPopUp(this);
-    }
-
-
-    public void hireProf(){
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        // Thanks anim : https://developer.android.com/training/animation/cardflip.html
-        transaction.setCustomAnimations(
-                R.animator.card_flip_right_in,
-                R.animator.card_flip_right_out,
-                R.animator.card_flip_left_in,
-                R.animator.card_flip_left_out);
-
-
-        HireFragment newFragment = new HireFragment();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.frame_main, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
     }
 
 }
