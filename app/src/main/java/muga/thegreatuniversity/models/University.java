@@ -2,8 +2,6 @@ package muga.thegreatuniversity.models;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.utils.Logger;
-
 /**
  * Created on 20/02/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -33,7 +31,7 @@ public class University {
         private final static University instance = new University();
     }
 
-    public static University getInstance() {
+    public static University getU() {
         return UniversityHolder.instance;
     }
 
@@ -145,11 +143,11 @@ public class University {
     }
 
     public void newUniversity(String name){
-        University.getInstance().setName(name);
-        University.getInstance().setStudentNb(5);
-        University.getInstance().setMaxPopulation(10);
-        University.getInstance().setMoney(5000);
-        University.getInstance().setWeek(1);
-        University.getInstance().setPopularity(10);
+        University.getU().setName(name);
+        University.getU().setStudentNb(5);
+        University.getU().setMaxPopulation(10);
+        University.getU().setMoney(5000);
+        University.getU().setWeek(1);
+        University.getU().setPopularity(10);
     }
 }

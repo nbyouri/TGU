@@ -4,17 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     android:orientation="vertical"
-    android:gravity="bottom">
+    android:gravity="top|center">
 
-    <Button
-        android:id="@+id/btn_hire_prof"
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hire a prof"
-        />
-    <Button
-        android:id="@+id/btn_new_turn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Turn"/>
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>

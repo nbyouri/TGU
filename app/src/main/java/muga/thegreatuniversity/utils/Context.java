@@ -1,6 +1,5 @@
 package muga.thegreatuniversity.utils;
 
-import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 
 /**

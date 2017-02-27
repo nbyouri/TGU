@@ -1,15 +1,12 @@
 package muga.thegreatuniversity.views;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
 /**

@@ -10,10 +10,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.fragments.ChoicesFragment;
-import muga.thegreatuniversity.fragments.HireFragment;
-import muga.thegreatuniversity.fragments.SplashFragment;
-import muga.thegreatuniversity.fragments.StatFragment;
+import muga.thegreatuniversity.views.fragments.ChoicesFragment;
+import muga.thegreatuniversity.views.fragments.HireFragment;
+import muga.thegreatuniversity.views.fragments.SplashFragment;
+import muga.thegreatuniversity.views.fragments.StatFragment;
 import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
             if (type != null && type.equals("CreateUniv")){
                 String nameUni = bundle.getString("NameUniv");
-                University.getInstance().newUniversity(nameUni);
+                University.getU().newUniversity(nameUni);
                 printGame();
             }
 
@@ -54,13 +54,20 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
+    /**
+     * update all views (when printable value change)
+     */
     public void updateView(){
         if (statF.isVisible()){
             statF.printStat();
         }
     }
 
-    public void changeMainFragement(FragmentType fragType){
+    /**
+     * For change the fragment in the main FrameLayout
+     * @param fragType : Type of replacing fragment
+     */
+    public void changeMainFragment(FragmentType fragType){
 
         Fragment frag = null;
 
@@ -93,7 +100,7 @@ public class MainActivity extends Activity implements CallbackActivity {
             }
         }, TITLE_TIME_OUT);
 
-        University.getInstance();
+        University.getU();
 
         // Create main Fragments
         statF = new StatFragment();
