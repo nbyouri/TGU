@@ -21,10 +21,12 @@ public class University {
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
+    private ArrayList<Event> events;
 
     private University() {
         professors = new ArrayList<Professor>();
         rooms = new ArrayList<Room>();
+        events = new ArrayList<Event>();
     }
 
     private static class UniversityHolder {
@@ -107,7 +109,7 @@ public class University {
         return week;
     }
 
-    public void addTurn() {
+    public void addWeek() {
         this.week++;
     }
 
@@ -115,8 +117,20 @@ public class University {
         this.week = week;
     }
 
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void addEvent(Event event){
+        events.add(event);
+    }
+
     public String newTurn(){
-        this.addTurn(); //Increment the value of week
+        this.addWeek(); //Increment the value of week
         this.newMoney(); //Gain 10$ per student each week
         this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
         return this.newEvent();
