@@ -26,5 +26,6 @@
     <string name="label_money">Money :</string>
     <string name="label_population">Population :</string>
     <string name="label_week">Week :</string>
+    <string name="separate_student_values">/</string>
 
 </resources>
