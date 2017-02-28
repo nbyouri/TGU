@@ -63,6 +63,12 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
+    public void changeWeek(){
+        String event = University.getU().newTurn();
+        PopUp.alertNewEvent(this, event);
+        updateView();
+    }
+
     /**
      * For change the fragment in the main FrameLayout
      * @param fragType : Type of replacing fragment

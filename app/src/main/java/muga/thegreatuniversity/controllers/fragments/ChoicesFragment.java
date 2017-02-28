@@ -58,14 +58,6 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         ((MainActivity)getActivity()).changeMainFragment(FragmentType.HIRE_PROF);
     }
 
-    private void printGame(){
-        ((MainActivity)getActivity()).updateView();
-    }
-
-    private void newEventAlert(String event){
-        PopUp.alertNewEvent((MainActivity)getActivity(), event);
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
@@ -75,9 +67,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
                 hireProf();
                 break;
             case PASS_WEEK:
-                String event = University.getU().newTurn();
-                newEventAlert(event);
-                printGame();
+                ((MainActivity)getActivity()).changeWeek();
                 break;
         }
     }
