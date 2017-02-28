@@ -8,5 +8,8 @@ package muga.thegreatuniversity.lists;
 
 public enum ChoiceType {
     PASS_WEEK,
-    HIRE_PROF
+    HIRE_PROF,
+    BUILD_ROOM,
+    INVENTORY,
+    STATISTICS
 }

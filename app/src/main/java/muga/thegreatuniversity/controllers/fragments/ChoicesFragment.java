@@ -43,6 +43,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         ArrayList<Choice> choices = new ArrayList<>();
         choices.add(new Choice(ChoiceType.HIRE_PROF, "Hire a prof"));
         choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
+        choices.add(new Choice(ChoiceType.INVENTORY, "Inventory"));
 
         // Apply this choice on ListView
         ChoicesAdapter choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
@@ -58,6 +59,10 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         ((MainActivity)getActivity()).changeMainFragment(FragmentType.HIRE_PROF);
     }
 
+    private void inventory() {
+        ((MainActivity)getActivity()).changeMainFragment(FragmentType.INVENTORY);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
@@ -68,6 +73,9 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
                 break;
             case PASS_WEEK:
                 ((MainActivity)getActivity()).changeWeek();
+                break;
+            case INVENTORY:
+                inventory();
                 break;
         }
     }

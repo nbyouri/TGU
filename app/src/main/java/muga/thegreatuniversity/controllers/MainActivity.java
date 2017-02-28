@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
 import muga.thegreatuniversity.controllers.fragments.HireFragment;
+import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.lists.FragmentType;
@@ -28,6 +29,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private StatFragment statF;
     private ChoicesFragment choicesF;
+    private InventoryFragment inventoryF;
 
     private static final int TITLE_TIME_OUT = 1500;
 
@@ -81,6 +83,9 @@ public class MainActivity extends Activity implements CallbackActivity {
         switch (fragType) {
             case HIRE_PROF:
                 frag = new HireFragment();
+                break;
+            case INVENTORY:
+                frag = new InventoryFragment();
                 break;
         }
 
