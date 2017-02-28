@@ -25,7 +25,7 @@ public class PopUp {
         final EditText input = new EditText(mainAct);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builderDialog.setView(input);
-        builderDialog.setPositiveButton(Context.getString(R.string.popUp_enterName),
+        builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
