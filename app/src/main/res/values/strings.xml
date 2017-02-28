@@ -17,11 +17,11 @@
     <string name="text_create_course">Create Course</string>
 
     <string name="popUp_createUniv">Create university</string>
-    <string name="popUp_enterName">Enter name of your University (3 character min, 100 character max)</string>
+    <string name="popUp_enterName">Enter name of your University</string>
     <string name="popUp_Verify">Are you sure to use the name</string>
     <string name="popUp_ok">Validate</string>
     <string name="popUp_cancel">Cancel</string>
     <string name="popUp_error">The name is invalid</string>
-    <string name="popUp_retry">Retry</string>
+    <string name="popUp_retry">Retry (3 character min, 100 character max)</string>
 
 </resources>
