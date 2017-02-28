@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="choice_btn_padding">16dp</dimen>
     <dimen name="choice_btn_margin">16dp</dimen>
-    <dimen name="text_large">35sp</dimen>
-    <dimen name="text_medium">25sp</dimen>
+    <dimen name="text_large">35dp</dimen>
+    <dimen name="text_medium">20dp</dimen>
 </resources>
