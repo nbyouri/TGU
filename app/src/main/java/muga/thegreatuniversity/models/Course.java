@@ -1,5 +1,7 @@
 package muga.thegreatuniversity.models;
 
+import java.util.ArrayList;
+
 import muga.thegreatuniversity.lists.CourseType;
 
 /**
@@ -62,5 +64,15 @@ public class Course {
 
     public void setLab(Boolean lab) {
         isLab = lab;
+    }
+
+    public static ArrayList<Course> genCourses(/*professor*/) {
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(new Course("Programming Paradigms", CourseType.MAG, 10, 10, false));
+        courses.add(new Course("MRH", CourseType.MAG, 2, 150, false));
+        courses.add(new Course("Algorithms", CourseType.MAG, 7, 100, false));
+        courses.add(new Course("Proba", CourseType.MAG, 1, 200, false));
+        courses.add(new Course("English", CourseType.MAG, 0, 80, false));
+        return courses;
     }
 }
