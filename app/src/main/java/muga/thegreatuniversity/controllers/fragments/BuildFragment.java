@@ -51,7 +51,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
     }
 
     private void BuildRoom(Room r){
-        University.getU().addRoom(r);
+        University.get().addRoom(r);
     }
 
     private void printGame(){
