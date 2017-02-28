@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ import muga.thegreatuniversity.utils.Logger;
  */
 
 public class HireFragment extends ListFragment implements OnItemClickListener {
+    private HireAdapter hireAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +52,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         profs.add(new Professor("Pecheur", 8, null, 42));
 
         // Apply this choice on ListView
-        HireAdapter hireAdapter = new HireAdapter(getActivity().getApplicationContext(), profs);
+        hireAdapter = new HireAdapter(getActivity().getApplicationContext(), profs);
         setListAdapter(hireAdapter);
         getListView().setOnItemClickListener(this);
     }
@@ -77,5 +79,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         Professor p = ((Professor) parent.getItemAtPosition(position));
         Logger.info("Hired "+p.getName());
         hireProf(p);
+        hireAdapter.remove(p);
+        hireAdapter.notifyDataSetChanged();
     }
 }
