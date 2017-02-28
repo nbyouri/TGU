@@ -1,6 +1,5 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,17 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
-import muga.thegreatuniversity.lists.ChoiceType;
-import muga.thegreatuniversity.lists.FragmentType;
-import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -44,12 +40,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         super.onActivityCreated(savedInstanceState);
 
         // Create different choice for user
-        ArrayList<Professor> profs = new ArrayList<>();
-        profs.add(new Professor("Schauss", 1, null, 42));
-        profs.add(new Professor("Deville", 8, null, 42));
-        profs.add(new Professor("Mens", 9, null, 42));
-        profs.add(new Professor("Bonaventure", 7, null, 42));
-        profs.add(new Professor("Pecheur", 8, null, 42));
+        ArrayList<Professor> profs = Professor.genProfList();
 
         // Apply this choice on ListView
         hireAdapter = new HireAdapter(getActivity().getApplicationContext(), profs);
@@ -62,7 +53,6 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void hireProf(Professor p){
-        //((MainActivity)getActivity()).changeMainFragment(FragmentType.HIRE_PROF);
         University.getU().addProfessor(p);
     }
 

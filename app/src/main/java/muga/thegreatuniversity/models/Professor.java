@@ -1,6 +1,8 @@
 package muga.thegreatuniversity.models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created on 20/02/2017.
@@ -11,13 +13,13 @@ import java.util.ArrayList;
 public class Professor {
     private String name;
     private int popularity;     // combination of experience and friendliness
-    private ArrayList<Course> courses;   // from 1 to 5 courses he gives
+    private Course course;      // from 1 to 5 courses he gives
     private int age;            // will he die soon (?)
 
-    public Professor(String name, int popularity, Course[] courses, int age) {
+    public Professor(String name, int popularity, Course course, int age) {
         this.name = name;
         this.popularity = popularity;
-        this.courses = new ArrayList<Course>();
+        this.course = course;
         this.age = age;
     }
 
@@ -37,12 +39,12 @@ public class Professor {
         this.popularity = popularity;
     }
 
-    public ArrayList<Course> getCourses() {
-        return courses;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourses(ArrayList<Course> courses) {
-        this.courses = courses;
+    public void setCourse(Course courses) {
+        this.course = course;
     }
 
     public int getAge() {
@@ -51,5 +53,16 @@ public class Professor {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
+        ArrayList<Professor> profs = new ArrayList<>();
+        ArrayList<Course> courses = Course.genCourses();
+        profs.add(new Professor("Schauss", 1, courses.get(0), 42));
+        profs.add(new Professor("Deville", 8, courses.get(1), 42));
+        profs.add(new Professor("Mens", 9, courses.get(2), 42));
+        profs.add(new Professor("Bonaventure", 7, courses.get(3), 42));
+        profs.add(new Professor("Pecheur", 8, courses.get(4), 42));
+        return profs;
     }
 }

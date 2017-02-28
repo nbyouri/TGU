@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txt_name_prof"
+        android:id="@+id/txt_prof"
         android:background="@color/dark_grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +16,5 @@
         android:textAlignment="gravity"
         android:textSize="50sp"
         style="@style/QText"/>
-
 
 </LinearLayout>

@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.Arrays;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
@@ -38,10 +41,11 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         }
 
         // Lookup view for data population
-        TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
+        TextView hireName = (TextView) convertView.findViewById(R.id.txt_prof);
 
         // Populate the data into the template view using the data object
-        hireName.setText(prof.getName());
+        hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+String.valueOf(prof.getPopularity())
+                +"\nCourse: "+prof.getCourse().getCourseName()+"\nAge: "+prof.getAge());
 
         // Return the completed view to render on screen
         return convertView;
