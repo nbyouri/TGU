@@ -3,7 +3,6 @@
     android:id="@+id/layout_stat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
     android:baselineAligned="false"
     android:orientation="horizontal"
     android:padding="@dimen/activity_horizontal_margin">
@@ -35,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_money"/>
+                android:text="@string/label_money" />
 
             <TextView
                 android:id="@+id/txt_cash"
@@ -51,9 +50,9 @@
             android:layout_below="@+id/layout_stat_cash">
 
             <TextView
-                android:text="@string/label_population"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/label_population" />
 
             <TextView
                 android:id="@+id/txt_nb_student"
@@ -70,7 +69,7 @@
                 android:id="@+id/txt_max_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10"/>
+                android:text="10" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,8 +85,7 @@
             <TextView
                 android:id="@+id/txt_turn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </RelativeLayout>
