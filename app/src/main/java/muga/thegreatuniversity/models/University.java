@@ -93,6 +93,10 @@ public class University {
         return rooms;
     }
 
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }

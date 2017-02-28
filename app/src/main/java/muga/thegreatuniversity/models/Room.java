@@ -20,6 +20,7 @@ public class Room {
         this.name = name;
         this.capacity = capacity;
         this.type = type;
+        this.price = price;
     }
 
     public String getName() {
@@ -46,7 +47,11 @@ public class Room {
         this.type = type;
     }
 
-    public ArrayList<Room> getRooms() {
+    public int getPrice() { return price; }
+
+    public void setPrice(int price) { this.price = price;}
+
+    public static ArrayList<Room> getRooms() {
         ArrayList<Room> rooms = new ArrayList<>();
         rooms.add(new Room("Classroom",20,RoomType.CLASS,500));
         rooms.add(new Room("Audience",100,RoomType.AUDIT,2000));

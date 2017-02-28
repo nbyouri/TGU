@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.controllers.fragments.BuildFragment;
 import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
 import muga.thegreatuniversity.controllers.fragments.HireFragment;
 import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
@@ -107,6 +108,8 @@ public class MainActivity extends Activity implements CallbackActivity {
             case INVENTORY:
                 frag = new InventoryFragment();
                 break;
+            case BUILD_ROOM:
+                frag = new BuildFragment();
         }
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
