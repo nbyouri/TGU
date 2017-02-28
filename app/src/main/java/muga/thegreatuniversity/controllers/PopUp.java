@@ -29,7 +29,7 @@ public class PopUp {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        alertCreateUniv(mainAct, input.getText().toString());
+                        nameTestValidity(mainAct, input.getText().toString());
                     }
                 });
 
@@ -38,12 +38,31 @@ public class PopUp {
         univDialog.show();
     }
 
+    static public void nameTestValidity(final MainActivity mainAct, final  String name) {
+        if (name.length() < 3 || name.length() > 100) {
+
+            AlertDialog.Builder helpBuilder = new AlertDialog.Builder(mainAct);
+            helpBuilder.setMessage(Context.getString(R.string.popUp_error));
+            helpBuilder.setNegativeButton(Context.getString(R.string.popUp_retry),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            createUnivPopUp(mainAct);
+                        }
+                    });
+
+            // Remember, create doesn't show the dialog
+            AlertDialog helpDialog = helpBuilder.create();
+            helpDialog.show();
+
+        } else
+            alertCreateUniv(mainAct, name);
+    }
+
     static public void alertCreateUniv(final MainActivity mainAct, final String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(mainAct);
-        helpBuilder.setMessage(Context.getString(R.string.popUp_congratulations));
+        helpBuilder.setMessage(Context.getString(R.string.popUp_Verify)+" "+name);
         helpBuilder.setPositiveButton(Context.getString(R.string.popUp_ok),
                 new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
                         Bundle mes = new Bundle();
                         mes.putString("Type", "CreateUniv");
@@ -51,6 +70,12 @@ public class PopUp {
                         mainAct.callback(mes);
                     }
                 });
+        helpBuilder.setNegativeButton(Context.getString(R.string.popUp_cancel),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        createUnivPopUp(mainAct);
+            }
+        });
 
         // Remember, create doesn't show the dialog
         AlertDialog helpDialog = helpBuilder.create();
