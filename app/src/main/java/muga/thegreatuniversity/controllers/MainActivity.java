@@ -31,7 +31,6 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private StatFragment statF;
     private ChoicesFragment choicesF;
-    private InventoryFragment inventoryF;
 
     private static final int TITLE_TIME_OUT = 1500;
 
@@ -177,7 +176,10 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
 
         View loginLayout = findViewById(R.id.layout_login);
-        loginLayout.setVisibility(View.VISIBLE);
+
+        if (loginLayout != null) {
+            loginLayout.setVisibility(View.VISIBLE);
+        }
 
         Button button= (Button) findViewById(R.id.btn_create_university);
         button.setOnClickListener(new View.OnClickListener() {
