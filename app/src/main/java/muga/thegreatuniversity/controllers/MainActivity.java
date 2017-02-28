@@ -27,6 +27,8 @@ import muga.thegreatuniversity.utils.Logger;
 
 public class MainActivity extends Activity implements CallbackActivity {
 
+    private boolean active;
+
     private StatFragment statF;
     private ChoicesFragment choicesF;
     private InventoryFragment inventoryF;
@@ -41,13 +43,32 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        active = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                printLoginLayout();
+            }
+        }, TITLE_TIME_OUT);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
+    }
+
+    @Override
     public void callback(Bundle bundle) {
         if (bundle.containsKey("Type")){
             String type = bundle.getString("Type");
 
             if (type != null && type.equals("CreateUniv")){
                 String nameUni = bundle.getString("NameUniv");
-                University.getU().newUniversity(nameUni);
+                University.get().newUniversity(nameUni);
                 printGame();
             }
 
@@ -66,7 +87,7 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     public void changeWeek(){
-        String event = University.getU().newTurn();
+        String event = University.get().newTurn();
         PopUp.alertNewEvent(this, event);
         updateView();
     }
@@ -104,14 +125,7 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     private void loadData() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                printLoginLayout();
-            }
-        }, TITLE_TIME_OUT);
-
-        University.getU();
+        University.get();
 
         // Create main Fragments
         statF = new StatFragment();
@@ -157,6 +171,10 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     private void printLoginLayout(){
+
+        if (!this.active){
+            return;
+        }
 
         View loginLayout = findViewById(R.id.layout_login);
         loginLayout.setVisibility(View.VISIBLE);

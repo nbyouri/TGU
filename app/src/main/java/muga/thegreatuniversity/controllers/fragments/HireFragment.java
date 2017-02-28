@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
@@ -53,7 +52,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void hireProf(Professor p){
-        University.getU().addProfessor(p);
+        University.get().addProfessor(p);
     }
 
     private void printGame(){

@@ -33,7 +33,7 @@ public class University {
         private final static University instance = new University();
     }
 
-    public static University getU() {
+    public static University get() {
         return UniversityHolder.instance;
     }
 
@@ -161,11 +161,11 @@ public class University {
     }
 
     public void newUniversity(String name){
-        University.getU().setName(name);
-        University.getU().setStudentNb(5);
-        University.getU().setMaxPopulation(10);
-        University.getU().setMoney(5000);
-        University.getU().setWeek(1);
-        University.getU().setPopularity(10);
+        University.get().setName(name);
+        University.get().setStudentNb(5);
+        University.get().setMaxPopulation(10);
+        University.get().setMoney(5000);
+        University.get().setWeek(1);
+        University.get().setPopularity(10);
     }
 }

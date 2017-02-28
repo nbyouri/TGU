@@ -38,10 +38,10 @@ public class StatFragment extends Fragment {
         TextView cash = (TextView) getActivity().findViewById(R.id.txt_cash);
         TextView turn = (TextView) getActivity().findViewById(R.id.txt_turn);
 
-        nbStud.setText(String.valueOf(University.getU().getStudentNb()));
-        nameUniv.setText(University.getU().getName());
-        nbMaxStud.setText(String.valueOf(University.getU().getMaxPopulation()));
-        cash.setText(String.valueOf(University.getU().getMoney()));
-        turn.setText(String.valueOf(University.getU().getWeek()));
+        nbStud.setText(String.valueOf(University.get().getStudentNb()));
+        nameUniv.setText(University.get().getName());
+        nbMaxStud.setText(String.valueOf(University.get().getMaxPopulation()));
+        cash.setText(String.valueOf(University.get().getMoney()));
+        turn.setText(String.valueOf(University.get().getWeek()));
     }
 }
