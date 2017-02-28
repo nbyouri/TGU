@@ -83,6 +83,10 @@ public class University {
         this.professors = professors;
     }
 
+    public void addProfessor(Professor professor) {
+        professors.add(professor);
+    }
+
     public ArrayList<Room> getRooms() {
         return rooms;
     }
