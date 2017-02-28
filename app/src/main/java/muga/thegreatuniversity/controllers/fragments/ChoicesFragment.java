@@ -11,14 +11,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.ChoiceType;
 import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.Choice;
-import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.PopUp;
 
 /**
  * Created on 20/02/2017.

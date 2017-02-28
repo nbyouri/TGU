@@ -14,7 +14,7 @@
         android:gravity="left"
         android:padding="@dimen/choice_btn_padding"
         android:textAlignment="gravity"
-        android:textSize="50sp"
+        android:textSize="@dimen/text_large"
         style="@style/QText"/>
 
 </LinearLayout>
