@@ -6,7 +6,15 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:textViewStyle">@style/QText</item>
     </style>
+
+    <style name="QText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
 
     <!--
     <style name="Theme.AppCompat.DayNight.NoActionBar.FullScreen" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
@@ -18,11 +26,7 @@
         <item name="android:buttonStyle">@style/MyButton</item>
     </style>
 
-    <style name="QText" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">@dimen/text_medium</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:typeface">serif</item>
-    </style>
+
 
     <style name="MyButton" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         <item name="android:fontFamily">serif</item>
