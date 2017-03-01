@@ -98,7 +98,7 @@ public class MainActivity extends Activity implements CallbackActivity {
      */
     public void changeMainFragment(FragmentType fragType){
 
-        Fragment frag = null;
+        Fragment frag  = null;
 
         // CHOOSE BY WHICH FRAGMENT
         switch (fragType) {
@@ -110,20 +110,29 @@ public class MainActivity extends Activity implements CallbackActivity {
                 break;
             case BUILD_ROOM:
                 frag = new BuildFragment();
+                break;
         }
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        // Thanks anim : https://developer.android.com/training/animation/cardflip.html
-        transaction.setCustomAnimations(
-                R.animator.card_flip_right_in,
-                R.animator.card_flip_right_out,
-                R.animator.card_flip_left_in,
-                R.animator.card_flip_left_out);
-        transaction.replace(R.id.frame_main, frag);
-        transaction.addToBackStack(null);
+        commitFrag(frag);
 
-        transaction.commit();
+    }
 
+    private void commitFrag(Fragment frag){
+        if ((frag != null)){
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // Thanks anim : https://developer.android.com/training/animation/cardflip.html
+            transaction.setCustomAnimations(
+                    R.animator.card_flip_right_in,
+                    R.animator.card_flip_right_out,
+                    R.animator.card_flip_left_in,
+                    R.animator.card_flip_left_out);
+            transaction.replace(R.id.frame_main, frag);
+            transaction.addToBackStack(null);
+
+            transaction.commit();
+        } else {
+            Logger.error("Fragment is null");
+        }
     }
 
     private void loadData() {
