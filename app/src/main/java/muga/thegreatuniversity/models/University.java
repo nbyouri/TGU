@@ -2,6 +2,9 @@ package muga.thegreatuniversity.models;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.controllers.MainActivity;
+import muga.thegreatuniversity.lists.AnsType;
+
 /**
  * Created on 20/02/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -21,12 +24,10 @@ public class University {
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
-    private ArrayList<Event> events;
 
     private University() {
         professors = new ArrayList<Professor>();
         rooms = new ArrayList<Room>();
-        events = new ArrayList<Event>();
     }
 
     private static class UniversityHolder {
@@ -121,33 +122,10 @@ public class University {
         this.week = week;
     }
 
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
-    public ArrayList<Event> getEvents() {
-        return events;
-    }
-
-    public void addEvent(Event event){
-        events.add(event);
-    }
-
-    public String newTurn(){
+    public void newTurn(){
         this.addWeek(); //Increment the value of week
         this.newMoney(); //Gain 10$ per student each week
         this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
-        return this.newEvent();
-    }
-
-    public String newEvent(){ //TODO class event + data structure to store them
-        int random = (int) Math.floor(Math.random() * 3);
-        if(random == 1){
-            this.setMoney(this.getMoney()/2);
-            return "You lost half your money";
-        }
-        else
-            return"Nothing happened";
     }
 
     public void newMoney(){
@@ -171,5 +149,26 @@ public class University {
         University.get().setMoney(5000);
         University.get().setWeek(1);
         University.get().setPopularity(10);
+    }
+
+    public void eventAction(int id, AnsType type){
+        System.out.println(id);
+        switch (id){
+            case 1: // You lost half your money
+                this.money=this.money/2;
+                break;
+            case 2: //24h velo event
+                switch (type){
+                    case YES:
+                        this.money-=100; // Cost 100 to organize
+                        break;
+                    case NO:
+                        this.popularity--;
+                        break;
+                    case NOANS:
+                        break;
+                }
+                break;
+        }
     }
 }

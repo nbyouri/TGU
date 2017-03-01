@@ -14,6 +14,7 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
+import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -60,7 +61,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void newEventAlert(String event){
-        PopUp.alertNewEvent((MainActivity)getActivity(), event);
+        EventManager.get().newEvent((MainActivity) getActivity());
     }
 
     @Override

@@ -14,6 +14,7 @@ import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
+import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
@@ -59,7 +60,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
     }
 
     private void newEventAlert(String event){
-        PopUp.alertNewEvent((MainActivity)getActivity(), event);
+        EventManager.get().newEvent((MainActivity) getActivity());
     }
 
 

@@ -7,6 +7,10 @@ import android.text.InputType;
 import android.widget.EditText;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.AnsType;
+import muga.thegreatuniversity.models.Event;
+import muga.thegreatuniversity.models.EventManager;
+import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
 /**
@@ -82,16 +86,36 @@ public class PopUp {
         helpDialog.show();
     }
 
-    static public void alertNewEvent(final MainActivity mainAct, final String event) {
+    static public void alertNewEvent(final MainActivity mainAct, final Event event) {
         AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
-        eventBuilder.setTitle(event);
-        eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //Do nothing
-            }
+        switch (event.getType()) {
+            case DETEV:
+            eventBuilder.setTitle(event.getEvent());
+            eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    University.get().eventAction(event.getId(), AnsType.NOANS);
+                    mainAct.updateView();
+                }
             });
+                break;
+            case NODETEV:
+            //AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
+            eventBuilder.setTitle(event.getEvent());
+            eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    University.get().eventAction(event.getId(), AnsType.YES);
+                    mainAct.updateView();
+                }
+            });
+            eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    University.get().eventAction(event.getId(), AnsType.NO);
+                    mainAct.updateView();
+                }
+            });
+                break;
+        }
         AlertDialog eventDialog = eventBuilder.create();
         eventDialog.show();
     }
-
 }
