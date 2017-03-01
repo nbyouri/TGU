@@ -160,7 +160,8 @@ public class University {
             case 2: //24h velo event
                 switch (type){
                     case YES:
-                        this.money-=100; // Cost 100 to organize
+                        this.money-=100;// Cost 100 to organize
+                        this.popularity+=2;
                         break;
                     case NO:
                         this.popularity--;
