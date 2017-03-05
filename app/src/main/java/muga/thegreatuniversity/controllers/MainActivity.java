@@ -5,6 +5,13 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.AutoTransition;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionSet;
+import android.transition.Visibility;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -89,7 +96,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     public void changeWeek(){
         University.get().newTurn();
-        EventManager.get().newEvent(this);
+        EventManager.get().newEvent(this); // TODO : newEvent in newTurn
         updateView();
     }
 
@@ -121,12 +128,11 @@ public class MainActivity extends Activity implements CallbackActivity {
     private void commitFrag(Fragment frag){
         if ((frag != null)){
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            // Thanks anim : https://developer.android.com/training/animation/cardflip.html
-            transaction.setCustomAnimations(
-                    R.animator.card_flip_right_in,
-                    R.animator.card_flip_right_out,
-                    R.animator.card_flip_left_in,
-                    R.animator.card_flip_left_out);
+
+            Slide slEnter = new Slide();
+            slEnter.setSlideEdge(Gravity.END);
+            frag.setEnterTransition(slEnter);
+
             transaction.replace(R.id.frame_main, frag);
             transaction.addToBackStack(null);
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/choice_btn_margin"
-        android:gravity="left"
+        android:gravity="start"
         android:padding="@dimen/choice_btn_padding"
         android:textAlignment="gravity"
         android:textSize="@dimen/text_large" />
