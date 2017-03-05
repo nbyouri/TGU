@@ -3,36 +3,37 @@
     android:id="@+id/lin_hire"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/dark_grey">
+    android:background="@color/dark_grey"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/txt_help_hire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img_help_hire"
+            android:gravity="center"
+            android:textSize="@dimen/text_medium"
+            android:text="@string/help_hire" />
+
         <ImageView
             android:id="@+id/img_help_hire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_help"
             android:layout_alignBottom="@id/txt_help_hire"
             android:layout_alignTop="@id/txt_help_hire"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_help_hire"
-            android:gravity="center"
-            android:text="@string/help_hire"
-            android:layout_toEndOf="@id/img_help_hire"/>
+            android:src="@mipmap/ic_help" />
     </RelativeLayout>
-
 
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
