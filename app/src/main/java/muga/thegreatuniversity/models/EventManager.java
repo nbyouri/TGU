@@ -30,17 +30,9 @@ public class EventManager {
 
     // TODO Return a Event, not need Activity
     public void newEvent(MainActivity mainact) {
-        int random = (int) Math.floor(Math.random()*this.sizeEvents()*1); //1 chance out of 5 to get an event
+        int random = (int) Math.floor(Math.random()*this.sizeEvents()*5); //1 chance out of 5 to get an event
         if(random < this.sizeEvents())
-        switch (random) {
-            case 0:
-                PopUp.alertNewEvent(mainact, getEvent(random));
-                break;
-            case 1:
-                PopUp.alertNewEvent(mainact, getEvent(random));
-                break;
-        }
-        this.setType(AnsType.NOANS);
+            PopUp.alertNewEvent(mainact, getEvent(random));
     }
 
     public void setType(AnsType type) {
