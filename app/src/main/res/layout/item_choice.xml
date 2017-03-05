@@ -13,7 +13,7 @@
         android:gravity="start"
         android:textAlignment="gravity"
         android:textSize="@dimen/text_large"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 
 </LinearLayout>

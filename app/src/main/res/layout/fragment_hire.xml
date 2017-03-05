@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/img_help_hire"
             android:gravity="center"
-            android:textSize="@dimen/text_medium"
-            android:text="@string/help_hire" />
+            android:text="@string/help_hire"
+            android:textSize="@dimen/text_medium" />
 
         <ImageView
             android:id="@+id/img_help_hire"
@@ -29,7 +29,6 @@
             android:layout_alignTop="@id/txt_help_hire"
             android:src="@mipmap/ic_help" />
     </RelativeLayout>
-
 
     <ListView
         android:id="@android:id/list"

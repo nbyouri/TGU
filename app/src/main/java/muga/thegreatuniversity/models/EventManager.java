@@ -28,6 +28,7 @@ public class EventManager {
         return EventManagerHolder.instance;
     }
 
+    // TODO Return a Event, not need Activity
     public void newEvent(MainActivity mainact) {
         int random = (int) Math.floor(Math.random()*this.sizeEvents()*1); //1 chance out of 5 to get an event
         if(random < this.sizeEvents())
