@@ -3,13 +3,36 @@
     android:id="@+id/lin_hire"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/dark_grey">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/img_help_hire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_help"
+            android:layout_alignBottom="@id/txt_help_hire"
+            android:layout_alignTop="@id/txt_help_hire"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_help_hire"
+            android:gravity="center"
+            android:text="@string/help_hire"
+            android:layout_toEndOf="@id/img_help_hire"/>
+    </RelativeLayout>
+
 
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dark_grey"/>
+        />
 
 </LinearLayout>
