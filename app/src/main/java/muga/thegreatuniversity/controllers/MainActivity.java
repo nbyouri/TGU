@@ -22,6 +22,7 @@ import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.SaveManager;
 
 /**
  * Created on 20/02/2017.
@@ -71,7 +72,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
             if (type != null && type.equals("CreateUniv")){
                 String nameUni = bundle.getString("NameUniv");
-                University.get().newUniversity(nameUni);
+                University.get().createNewUniversity(nameUni);
                 printGame();
             }
 
@@ -93,6 +94,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         University.get().newTurn();
         EventManager.get().newEvent(this); // TODO : newEvent in newTurn
         updateView();
+        SaveManager.saveUniversity(this.getApplicationContext());
     }
 
     /**

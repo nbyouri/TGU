@@ -20,6 +20,7 @@ public class EventManager {
         this.events=events;
         this.type=AnsType.NOANS;
     }
+
     private static class EventManagerHolder {
         private final static EventManager instance = new EventManager(Event.genEvent());
     }

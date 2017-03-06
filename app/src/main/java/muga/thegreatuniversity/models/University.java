@@ -1,9 +1,12 @@
 package muga.thegreatuniversity.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.lists.AnsType;
+import muga.thegreatuniversity.lists.DefaultValues;
 
 /**
  * Created on 20/02/2017.
@@ -11,7 +14,7 @@ import muga.thegreatuniversity.lists.AnsType;
  * Muga Copyright
  */
 
-public class University {
+public class University implements SavableLoadableJSON {
     // basic properties
     private String name;
     private int popularity;
@@ -20,6 +23,8 @@ public class University {
     private int maxPopulation;
     private int studentNb;
     private int week;
+
+    private boolean created;
 
     // main objects
     private ArrayList<Professor> professors;
@@ -30,9 +35,27 @@ public class University {
         rooms = new ArrayList<Room>();
     }
 
+    @Override
+    public JSONObject getAsJSON() throws JSONException  {
+        JSONObject uni = new JSONObject("University");
+        // TODO : CONTINUE
+        uni.put("money", money);
+        uni.put("moral", moral);
+
+        return uni;
+    }
+
+    @Override
+    public void loadJSON(JSONObject jsonO) throws JSONException {
+        this.money = jsonO.getInt("money");
+        this.moral = jsonO.getInt("moral");
+    }
+
     private static class UniversityHolder {
         private final static University instance = new University();
     }
+
+
 
     public static University get() {
         return UniversityHolder.instance;
@@ -142,15 +165,16 @@ public class University {
         }
     }
 
-    public void newUniversity(String name){
+    public void createNewUniversity(String name){
         University.get().setName(name);
-        University.get().setStudentNb(5);
-        University.get().setMaxPopulation(10);
-        University.get().setMoney(5000);
-        University.get().setWeek(1);
-        University.get().setPopularity(10);
+        University.get().setStudentNb(DefaultValues.START_STUDENT_NB);
+        University.get().setMaxPopulation(DefaultValues.START_MAX_POPULATION);
+        University.get().setMoney(DefaultValues.START_MONEY);
+        University.get().setWeek(DefaultValues.START_WEEK);
+        University.get().setPopularity(DefaultValues.START_POPULARITY);
     }
 
+    // TODO : CHANGE IN GENERICS WAYS
     public void eventAction(int id, AnsType type){
         System.out.println(id);
         switch (id){
