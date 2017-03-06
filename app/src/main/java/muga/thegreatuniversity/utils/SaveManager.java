@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,7 +45,12 @@ public class SaveManager {
 
     }
 
-    public static void loadUniversity(Context context){
+    public static boolean isSaveExist(Context context){
+        File file = context.getFileStreamPath(SAVE_FILE);
+        return !(file == null || !file.exists());
+    }
+
+    public static boolean loadUniversity(Context context){
         try {
             InputStream inputStream = context.openFileInput(SAVE_FILE);
 
@@ -63,6 +69,7 @@ public class SaveManager {
                     String save = stringBuilder.toString();
                     University.get().loadJSON(new JSONObject(save));
                     Logger.info("Save read : "+save);
+                    return true;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -70,6 +77,7 @@ public class SaveManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 }

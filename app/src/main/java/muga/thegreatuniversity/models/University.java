@@ -37,7 +37,7 @@ public class University implements SavableLoadableJSON {
 
     @Override
     public JSONObject getAsJSON() throws JSONException  {
-        JSONObject uni = new JSONObject("University");
+        JSONObject uni = new JSONObject();
         // TODO : CONTINUE
         uni.put("money", money);
         uni.put("moral", moral);

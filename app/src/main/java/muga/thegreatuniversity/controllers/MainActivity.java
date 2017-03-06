@@ -51,10 +51,16 @@ public class MainActivity extends Activity implements CallbackActivity {
         super.onResume();
         active = true;
 
+        // TODO : CHECK IF IN SLAPH SCREEN
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                printLoginLayout();
+                if (SaveManager.isSaveExist(getApplicationContext())) {
+                    SaveManager.loadUniversity(getApplicationContext());
+                    printGame();
+                } else {
+                    printLoginLayout();
+                }
             }
         }, TITLE_TIME_OUT);
     }
@@ -94,7 +100,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         University.get().newTurn();
         EventManager.get().newEvent(this); // TODO : newEvent in newTurn
         updateView();
-        SaveManager.saveUniversity(this.getApplicationContext());
+        SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }
 
     /**
