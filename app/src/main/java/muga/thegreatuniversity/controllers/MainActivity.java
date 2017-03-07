@@ -83,6 +83,7 @@ public class MainActivity extends Activity implements CallbackActivity {
             if (type != null && type.equals("CreateUniv")){
                 String nameUni = bundle.getString("NameUniv");
                 University.get().createNewUniversity(nameUni);
+                SaveManager.saveUniversity(getApplicationContext());
                 printGame();
             }
 
