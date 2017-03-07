@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.AnsType;
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.RoomType;
 
 /**
  * Created on 20/02/2017.
@@ -108,11 +109,11 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getMaxPopulation() {
+        ArrayList<Room> l = University.get().getRooms();
+        for(int i = 0; i<l.size(); i++) {
+            maxPopulation = maxPopulation + l.get(i).getCapacity();
+        }
         return maxPopulation;
-    }
-
-    public void setMaxPopulation(int maxPopulation) {
-        this.maxPopulation = maxPopulation;
     }
 
     public ArrayList<Professor> getProfessors() {
@@ -188,10 +189,10 @@ public class University implements SavableLoadableJSON {
     public void createNewUniversity(String name){
         University.get().setName(name);
         University.get().setStudentNb(DefaultValues.START_STUDENT_NB);
-        University.get().setMaxPopulation(DefaultValues.START_MAX_POPULATION);
         University.get().setMoney(DefaultValues.START_MONEY);
         University.get().setWeek(DefaultValues.START_WEEK);
         University.get().setPopularity(DefaultValues.START_POPULARITY);
+        University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
     }
 
     // TODO : CHANGE IN GENERICS WAYS

@@ -65,7 +65,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
         Room r = ((Room) parent.getItemAtPosition(position));
         Logger.info("Build "+r.getName());
         BuildRoom(r);
-        buildAdapter.remove(r);
+        //buildAdapter.remove(r);
         buildAdapter.notifyDataSetChanged();
     }
 

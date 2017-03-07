@@ -14,6 +14,7 @@ import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.InventoryAdapter;
 import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.Professor;
+import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 
 /**
@@ -38,7 +39,6 @@ public class InventoryFragment extends ListFragment {
 
         // Create different choice for user
         ArrayList<Professor> profs = University.get().getProfessors();
-
         // Apply this choice on ListView
         inventoryAdapter = new InventoryAdapter(getActivity().getApplicationContext(), profs);
         setListAdapter(inventoryAdapter);
