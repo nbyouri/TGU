@@ -99,7 +99,6 @@ public class Course implements SavableLoadableJSON {
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.courseName = jsonO.getString("courseName");
         this.courseType = CourseType.getEnum(jsonO.getString("courseType"));
-        Logger.info(courseType.toString());
         this.coursePopularity = jsonO.getInt("coursePopularity");
         this.studentCount = jsonO.getInt("studentCount");
         this.isLab = jsonO.getBoolean("isLab");

@@ -1,5 +1,8 @@
 package muga.thegreatuniversity.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.RoomType;
@@ -10,11 +13,13 @@ import muga.thegreatuniversity.lists.RoomType;
  * Muga Copyright
  */
 
-public class Room {
+public class Room implements SavableLoadableJSON {
     private String name;
     private int capacity;
     private RoomType type;
     private int price;
+
+    public Room() {}
 
     public Room(String name, int capacity, RoomType type, int price) {
         this.name = name;
@@ -59,5 +64,25 @@ public class Room {
         rooms.add(new Room("Agronomy laboratory",20,RoomType.LAB_AG,1000));
         rooms.add(new Room("IT laboratory",20,RoomType.LAB_IT,1000));
         return rooms;
+    }
+
+    @Override
+    public JSONObject getAsJSON() throws JSONException {
+        JSONObject obj = new JSONObject();
+
+        obj.put("name", this.name);
+        obj.put("capacity", this.capacity);
+        obj.put("roomType", this.type.getName());
+        obj.put("price", this.price);
+
+        return obj;
+    }
+
+    @Override
+    public void loadJSON(JSONObject jsonO) throws JSONException {
+        this.name = jsonO.getString("name");
+        this.capacity = jsonO.getInt("capacity");
+        this.type = RoomType.getEnum(jsonO.getString("roomType"));
+        this.price = jsonO.getInt("price");
     }
 }

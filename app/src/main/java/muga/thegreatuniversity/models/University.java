@@ -33,8 +33,8 @@ public class University implements SavableLoadableJSON {
     private ArrayList<Room> rooms;
 
     private University() {
-        professors = new ArrayList<Professor>();
-        rooms = new ArrayList<Room>();
+        professors = new ArrayList<>();
+        rooms = new ArrayList<>();
     }
 
     @Override
@@ -52,7 +52,12 @@ public class University implements SavableLoadableJSON {
             profs.put(p.getAsJSON());
         }
         uni.put("profs", profs);
-        // TODO : ROOMS
+
+        JSONArray ra = new JSONArray();
+        for (Room r : rooms) {
+            ra.put(r.getAsJSON());
+        }
+        uni.put("rooms", ra);
 
         return uni;
     }
@@ -71,8 +76,13 @@ public class University implements SavableLoadableJSON {
             p.loadJSON(parr.getJSONObject(i));
             this.professors.add(p);
         }
-        // TODO : ROOMS
 
+        JSONArray rarr = jsonO.getJSONArray("rooms");
+        for (int i = 0; i < rarr.length(); i++) {
+            Room r = new Room();
+            r.loadJSON(rarr.getJSONObject(i));
+            this.rooms.add(r);
+        }
     }
 
     private static class UniversityHolder {

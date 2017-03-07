@@ -1,5 +1,9 @@
 package muga.thegreatuniversity.lists;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.utils.Context;
@@ -17,6 +21,21 @@ public enum RoomType {
     LAB_IT (Context.getString(R.string.courseType_ITLab));      // needed for lab courses, 20 people max
 
     private String name = "";
+    private static final Map<String, RoomType> lookup = new HashMap<>();
+
+    static {
+        for(RoomType r : EnumSet.allOf(RoomType.class))
+            lookup.put(r.getName(), r);
+    }
+
+    public static RoomType getEnum(String type) {
+        return lookup.get(type);
+    }
+
+
+    public String getName() {
+        return name;
+    }
 
     RoomType(String name) {
         this.name = name;
