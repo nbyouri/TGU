@@ -6,6 +6,30 @@
     android:background="@color/dark_grey"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/help_padding"
+        android:background="@color/light_black">
+
+        <TextView
+            android:id="@+id/txt_help_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img_help_room"
+            android:gravity="center"
+            android:text="@string/help_room"
+            android:textSize="@dimen/text_medium" />
+
+        <ImageView
+            android:id="@+id/img_help_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_help_room"
+            android:layout_alignTop="@id/txt_help_room"
+            android:src="@mipmap/ic_help" />
+    </RelativeLayout>
 
     <ListView
         android:id="@android:id/list"

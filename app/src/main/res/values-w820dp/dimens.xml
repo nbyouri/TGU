@@ -5,4 +5,5 @@
     <dimen name="activity_horizontal_margin">64dp</dimen>
     <dimen name="text_large">45sp</dimen>
     <dimen name="text_medium">25sp</dimen>
+    <dimen name="help_padding">6dp</dimen>
 </resources>

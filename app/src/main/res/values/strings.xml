@@ -25,6 +25,9 @@
     <string name="label_population">Population : </string>
     <string name="label_week">Week : </string>
     <string name="separate_student_values"> / </string>
+
     <string name="help_hire">Choose a prof to hire</string>
+    <string name="help_inventory">Yours Professors</string>
+    <string name="help_room">Click on room to buy it</string>
 
 </resources>

@@ -12,6 +12,7 @@
     <style name="QText" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:typeface">normal</item>
     </style>
 
 
