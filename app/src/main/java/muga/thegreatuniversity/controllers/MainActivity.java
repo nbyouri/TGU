@@ -20,7 +20,6 @@ import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.lists.FragmentType;
 import muga.thegreatuniversity.models.Event;
-import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
@@ -45,7 +44,7 @@ public class MainActivity extends Activity implements CallbackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData();
+        loadFragment();
     }
 
     @Override
@@ -60,7 +59,6 @@ public class MainActivity extends Activity implements CallbackActivity {
                 @Override
                 public void run() {
                     if (SaveManager.isSaveExist(getApplicationContext())) {
-                        SaveManager.loadUniversity(getApplicationContext());
                         printGame();
                     } else {
                         printLoginLayout();
@@ -104,7 +102,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     public void changeWeek(){
         University.get().newTurn();
-        Event event = University.get().getCurrentevent();
+        Event event = University.get().getCurrentEvent();
         if(event != null)
             PopUp.alertNewEvent(this, event);
         updateView();
@@ -153,10 +151,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
-    private void loadData() {
-        University.get();
-        EventManager.get();
-
+    private void loadFragment() {
         // Create main Fragments
         statF = new StatFragment();
         choicesF = new ChoicesFragment();

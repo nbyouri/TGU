@@ -22,10 +22,9 @@ public class University implements SavableLoadableJSON {
     private int popularity;
     private int money;
     private int moral;
-    private int maxPopulation;
     private int studentNb;
     private int week;
-    private Event currentevent;
+    private Event currentEvent;
 
     //private boolean created;
 
@@ -47,7 +46,6 @@ public class University implements SavableLoadableJSON {
         uni.put("studentNb", studentNb);
         uni.put("week", week);
         uni.put("name", name);
-        uni.put("maxPopulation", maxPopulation);
 
         JSONArray profs = new JSONArray();
         for (Professor p : professors) {
@@ -66,7 +64,6 @@ public class University implements SavableLoadableJSON {
         this.studentNb = jsonO.getInt("studentNb");
         this.week = jsonO.getInt("week");
         this.name = jsonO.getString("name");
-        this.maxPopulation = jsonO.getInt("maxPopulation");
 
         JSONArray parr = jsonO.getJSONArray("profs");
         for (int i = 0; i < parr.length(); i++) {
@@ -121,6 +118,7 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getMaxPopulation() {
+        int maxPopulation =0;
         ArrayList<Room> l = University.get().getRooms();
         for(int i = 0; i<l.size(); i++) {
             maxPopulation = maxPopulation + l.get(i).getCapacity();
@@ -172,15 +170,15 @@ public class University implements SavableLoadableJSON {
         this.week = week;
     }
 
-    public Event getCurrentevent() {
-        return currentevent;
+    public Event getCurrentEvent() {
+        return currentEvent;
     }
 
     public void newTurn(){
         this.addWeek(); //Increment the value of week
         this.newMoney(); //Gain 10$ per student each week
         this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
-        this.currentevent= EventManager.get().newEvent();
+        this.currentEvent = EventManager.get().newEvent();
 
     }
 
@@ -189,7 +187,7 @@ public class University implements SavableLoadableJSON {
     }
 
     public void newStudentNB(){
-        if(this.studentNb < this.maxPopulation) {
+        if(this.studentNb < this.getMaxPopulation()) {
 
             int random = (int) Math.floor(Math.random() * 101);
             if (random <= this.popularity) {
