@@ -32,12 +32,13 @@ import muga.thegreatuniversity.utils.SaveManager;
 
 public class MainActivity extends Activity implements CallbackActivity {
 
+    private static final int TITLE_TIME_OUT = 1500;
+
+
     private boolean active;
 
     private StatFragment statF;
     private ChoicesFragment choicesF;
-
-    private static final int TITLE_TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +53,20 @@ public class MainActivity extends Activity implements CallbackActivity {
         active = true;
 
         // TODO : CHECK IF IN SLAPH SCREEN
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (SaveManager.isSaveExist(getApplicationContext())) {
-                    SaveManager.loadUniversity(getApplicationContext());
-                    printGame();
-                } else {
-                    printLoginLayout();
+        if (!(statF != null && statF.isVisible())){
+            Logger.info("Resume splash screen");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (SaveManager.isSaveExist(getApplicationContext())) {
+                        SaveManager.loadUniversity(getApplicationContext());
+                        printGame();
+                    } else {
+                        printLoginLayout();
+                    }
                 }
-            }
-        }, TITLE_TIME_OUT);
+            }, TITLE_TIME_OUT);
+        }
     }
 
     @Override
@@ -173,7 +177,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         // frameLayout exist
         if (findViewById(R.id.frame_stat) != null
                 && findViewById(R.id.frame_main) != null
-                && findViewById(R.id.frame_all) != null) {
+                && findViewById(R.id.frame_all) != null && active) {
 
 
             FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);

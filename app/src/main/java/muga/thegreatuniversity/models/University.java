@@ -24,7 +24,7 @@ public class University implements SavableLoadableJSON {
     private int studentNb;
     private int week;
 
-    private boolean created;
+    //private boolean created;
 
     // main objects
     private ArrayList<Professor> professors;
@@ -41,6 +41,12 @@ public class University implements SavableLoadableJSON {
         // TODO : CONTINUE
         uni.put("money", money);
         uni.put("moral", moral);
+        uni.put("studentNb", studentNb);
+        uni.put("week", week);
+        uni.put("name", name);
+        uni.put("maxPopulation", maxPopulation);
+
+        // TODO : ROOMS and Profs
 
         return uni;
     }
@@ -49,6 +55,13 @@ public class University implements SavableLoadableJSON {
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.money = jsonO.getInt("money");
         this.moral = jsonO.getInt("moral");
+        this.studentNb = jsonO.getInt("studentNb");
+        this.week = jsonO.getInt("week");
+        this.name = jsonO.getString("name");
+        this.maxPopulation = jsonO.getInt("maxPopulation");
+
+        // TODO : ROOMS and Profs
+
     }
 
     private static class UniversityHolder {
