@@ -93,7 +93,8 @@ public class PopUp {
             eventBuilder.setTitle(event.getEvent());
             eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    University.get().eventAction(event.getId(), AnsType.NOANS);
+                    event.setAns(AnsType.NOANS);
+                    University.get().eventAction(event);
                     mainAct.updateView();
                 }
             });
@@ -103,13 +104,15 @@ public class PopUp {
             eventBuilder.setTitle(event.getEvent());
             eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    University.get().eventAction(event.getId(), AnsType.YES);
+                    event.setAns(AnsType.YES);
+                    University.get().eventAction(event);
                     mainAct.updateView();
                 }
             });
             eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    University.get().eventAction(event.getId(), AnsType.NO);
+                    event.setAns(AnsType.NO);
+                    University.get().eventAction(event);
                     mainAct.updateView();
                 }
             });

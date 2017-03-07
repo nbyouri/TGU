@@ -56,7 +56,4 @@ public class InventoryFragment extends ListFragment {
         ((MainActivity) getActivity()).updateView();
     }
 
-    private void newEventAlert(String event) {
-        EventManager.get().newEvent((MainActivity) getActivity());
-    }
 }

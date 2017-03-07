@@ -19,6 +19,7 @@ import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.lists.FragmentType;
+import muga.thegreatuniversity.models.Event;
 import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -103,7 +104,9 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     public void changeWeek(){
         University.get().newTurn();
-        EventManager.get().newEvent(this); // TODO : newEvent in newTurn
+        Event event = University.get().getCurrentevent();
+        if(event != null)
+            PopUp.alertNewEvent(this, event);
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }

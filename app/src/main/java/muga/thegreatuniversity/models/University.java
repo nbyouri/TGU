@@ -23,6 +23,7 @@ public class University implements SavableLoadableJSON {
     private int maxPopulation;
     private int studentNb;
     private int week;
+    private Event currentevent;
 
     //private boolean created;
 
@@ -158,10 +159,16 @@ public class University implements SavableLoadableJSON {
         this.week = week;
     }
 
+    public Event getCurrentevent() {
+        return currentevent;
+    }
+
     public void newTurn(){
         this.addWeek(); //Increment the value of week
         this.newMoney(); //Gain 10$ per student each week
         this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
+        this.currentevent= EventManager.get().newEvent();
+
     }
 
     public void newMoney(){
@@ -188,14 +195,15 @@ public class University implements SavableLoadableJSON {
     }
 
     // TODO : CHANGE IN GENERICS WAYS
-    public void eventAction(int id, AnsType type){
-        System.out.println(id);
+    public void eventAction(Event event){
+        int id = event.getId();
+        AnsType ans = event.getAns();
         switch (id){
             case 1: // You lost half your money
                 this.money=this.money/2;
                 break;
             case 2: //24h velo event
-                switch (type){
+                switch (ans){
                     case YES:
                         this.money-=100;// Cost 100 to organize
                         this.popularity+=2;

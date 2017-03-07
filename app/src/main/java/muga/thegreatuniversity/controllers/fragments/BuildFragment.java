@@ -59,10 +59,6 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
         ((MainActivity)getActivity()).updateView();
     }
 
-    private void newEventAlert(String event){
-        EventManager.get().newEvent((MainActivity) getActivity());
-    }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

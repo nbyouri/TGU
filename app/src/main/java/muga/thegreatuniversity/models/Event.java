@@ -2,6 +2,7 @@ package muga.thegreatuniversity.models;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.lists.AnsType;
 import muga.thegreatuniversity.lists.EventType;
 
 /**
@@ -15,6 +16,7 @@ public class Event {
     private String firstChoice;
     private String secondChoice;
     private EventType type;
+    private AnsType ans;
     private int id;
 
     public Event(String event, String firstChoice, String secondChoice, int id, EventType type){
@@ -55,6 +57,14 @@ public class Event {
 
     public void setType(EventType type) {
         this.type = type;
+    }
+
+    public AnsType getAns() {
+        return ans;
+    }
+
+    public void setAns(AnsType ans) {
+        this.ans = ans;
     }
 
     public static ArrayList<Event> genEvent(){

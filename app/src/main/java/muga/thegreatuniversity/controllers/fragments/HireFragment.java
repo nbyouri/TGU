@@ -60,10 +60,6 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         ((MainActivity)getActivity()).updateView();
     }
 
-    private void newEventAlert(String event){
-        EventManager.get().newEvent((MainActivity) getActivity());
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Professor p = ((Professor) parent.getItemAtPosition(position));
