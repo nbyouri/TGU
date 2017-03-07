@@ -88,6 +88,7 @@ public class PopUp {
 
     static public void alertNewEvent(final MainActivity mainAct, final Event event) {
         AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
+        eventBuilder.setCancelable(false);
         switch (event.getType()) {
             case DETEV:
             eventBuilder.setTitle(event.getEvent());
@@ -100,7 +101,6 @@ public class PopUp {
             });
                 break;
             case NODETEV:
-            //AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
             eventBuilder.setTitle(event.getEvent());
             eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
