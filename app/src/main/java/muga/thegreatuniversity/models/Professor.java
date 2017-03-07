@@ -1,12 +1,21 @@
 package muga.thegreatuniversity.models;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
+
+import muga.thegreatuniversity.app.App;
+import muga.thegreatuniversity.lists.CourseType;
 
 /**
  * Created on 20/02/2017.
@@ -63,12 +72,9 @@ public class Professor implements SavableLoadableJSON {
 
     public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
         ArrayList<Professor> profs = new ArrayList<>();
-        ArrayList<Course> courses = Course.genCourses();
-        profs.add(new Professor("Schauss", 1, courses.get(0), 42));
-        profs.add(new Professor("Deville", 8, courses.get(1), 42));
-        profs.add(new Professor("Mens", 9, courses.get(2), 42));
-        profs.add(new Professor("Bonaventure", 7, courses.get(3), 42));
-        profs.add(new Professor("Pecheur", 8, courses.get(4), 42));
+        try {
+            profs.add(generate_professor());
+        } catch(Exception e) {}
         return profs;
     }
 
@@ -92,5 +98,41 @@ public class Professor implements SavableLoadableJSON {
         JSONObject courseObj = jsonO.getJSONObject("course");
         this.course.loadJSON(courseObj);
         this.age = jsonO.getInt("age");
+    }
+
+    /**
+     * Generate a random professor based on the following university properties:
+     *  - popularity
+     *  - money
+     *  TODO: - Capitalize Name
+     *        - Optimize (HM)?
+     *        - Popularity -> legendary -> different icons/color?
+     * @return Professor
+     */
+    public static Professor generate_professor() throws IOException {
+        AssetManager assets = App.getAppContext().getAssets();
+        Scanner adjectivesFile = new Scanner(assets.open("Adjectives.txt"));
+
+        ArrayList<String> adjectives = new ArrayList<>();
+        while(adjectivesFile.hasNext()){
+            adjectives.add(adjectivesFile.next());
+        }
+
+        Scanner animalsFile = new Scanner(assets.open("Animals.txt"));
+        ArrayList<String> animals = new ArrayList<>();
+        while(animalsFile.hasNext()){
+            animals.add(animalsFile.next());
+        }
+
+        Random rng = new Random();
+        int randomAdjective = rng.nextInt(adjectives.size());
+        int randomAnimal = rng.nextInt(animals.size());
+
+        String profName = adjectives.get(randomAdjective) + " " + animals.get(randomAnimal);
+
+        Professor p = new Professor(profName, rng.nextInt(10),
+                new Course("Empty Course", CourseType.MAG,0,0,false), rng.nextInt(100));
+
+        return p;
     }
 }
