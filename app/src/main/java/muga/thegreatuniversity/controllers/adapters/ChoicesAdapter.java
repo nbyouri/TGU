@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
 
 /**
@@ -25,7 +27,6 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
     }
 
     @Override
-
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Get the data item for this position
@@ -35,13 +36,35 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_choice, parent, false);
         }
 
-        // Lookup view for data population
+        // Lookup views
+        ImageView icon = (ImageView)  convertView.findViewById(R.id.icon_choice);
         TextView choiceName = (TextView) convertView.findViewById(R.id.txt_name_choice);
 
         // Populate the data into the template view using the data object
+        icon.setImageResource(getIcon(choice.getType()));
         choiceName.setText(choice.getName());
 
         // Return the completed view to render on screen
         return convertView;
     }
+
+    private int getIcon(ChoiceType type){
+        switch (type) {
+            case PASS_WEEK:
+                return R.mipmap.ic_pass_week;
+            case HIRE_PROF:
+                return R.mipmap.ic_hire_prof;
+            case BUILD_ROOM:
+                return R.mipmap.ic_build_room;
+            case INVENTORY:
+                return R.mipmap.ic_poeple;
+            case STATISTICS:
+
+        }
+
+
+
+        return R.mipmap.ic_help;
+    }
+
 }

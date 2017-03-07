@@ -36,7 +36,7 @@ public class InventoryAdapter extends ArrayAdapter<Professor> {
         }
 
         // Lookup view for data population
-        TextView hireName = (TextView) convertView.findViewById(R.id.txt_prof);
+        TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
 
         // Populate the data into the template view using the data object
         hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+String.valueOf(prof.getPopularity())

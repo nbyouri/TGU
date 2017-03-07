@@ -41,11 +41,14 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         }
 
         // Lookup view for data population
-        TextView hireName = (TextView) convertView.findViewById(R.id.txt_prof);
+        TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
+        TextView ageProf = (TextView) convertView.findViewById(R.id.txt_age_prof);
+        TextView course = (TextView) convertView.findViewById(R.id.txt_course_prof);
 
+        ageProf.setText("Age : " + prof.getAge());
+        course.setText("Courses : "+prof.getCourse().getCourseName());
         // Populate the data into the template view using the data object
-        hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+String.valueOf(prof.getPopularity())
-                +"\nCourse: "+prof.getCourse().getCourseName()+"\nAge: "+prof.getAge());
+        hireName.setText("Name : "+prof.getName());
 
         // Return the completed view to render on screen
         return convertView;

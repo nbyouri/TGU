@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
+import muga.thegreatuniversity.controllers.adapters.HireAdapter;
 import muga.thegreatuniversity.controllers.adapters.InventoryAdapter;
 import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.Professor;
@@ -24,7 +25,7 @@ import muga.thegreatuniversity.models.University;
  */
 
 public class InventoryFragment extends ListFragment {
-    private InventoryAdapter inventoryAdapter;
+    private HireAdapter hireAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,8 +41,8 @@ public class InventoryFragment extends ListFragment {
         // Create different choice for user
         ArrayList<Professor> profs = University.get().getProfessors();
         // Apply this choice on ListView
-        inventoryAdapter = new InventoryAdapter(getActivity().getApplicationContext(), profs);
-        setListAdapter(inventoryAdapter);
+        hireAdapter = new HireAdapter(getActivity().getApplicationContext(), profs);
+        setListAdapter(hireAdapter);
     }
 
     public void onStart() {
