@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.models;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,7 +49,12 @@ public class University implements SavableLoadableJSON {
         uni.put("name", name);
         uni.put("maxPopulation", maxPopulation);
 
-        // TODO : ROOMS and Profs
+        JSONArray profs = new JSONArray();
+        for (Professor p : professors) {
+            profs.put(p.getAsJSON());
+        }
+        uni.put("profs", profs);
+        // TODO : ROOMS
 
         return uni;
     }
@@ -62,7 +68,13 @@ public class University implements SavableLoadableJSON {
         this.name = jsonO.getString("name");
         this.maxPopulation = jsonO.getInt("maxPopulation");
 
-        // TODO : ROOMS and Profs
+        JSONArray parr = jsonO.getJSONArray("profs");
+        for (int i = 0; i < parr.length(); i++) {
+            Professor p = new Professor();
+            p.loadJSON(parr.getJSONObject(i));
+            this.professors.add(p);
+        }
+        // TODO : ROOMS
 
     }
 

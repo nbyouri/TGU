@@ -1,5 +1,9 @@
 package muga.thegreatuniversity.lists;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.utils.Context;
 
@@ -16,6 +20,16 @@ public enum CourseType {
     LAB_IT(Context.getString(R.string.courseType_ITLab));
 
     private String name = "";
+    private static final Map<String, CourseType> lookup = new HashMap<>();
+
+    static {
+        for(CourseType s : EnumSet.allOf(CourseType.class))
+            lookup.put(s.getName(), s);
+    }
+
+    public static CourseType getEnum(String type) {
+        return lookup.get(type);
+    }
 
     CourseType(String name) {
         this.name = name;
@@ -24,4 +38,9 @@ public enum CourseType {
     public String getName() {
         return name;
     }
+
+    public static CourseType get(String code) {
+        return lookup.get(code);
+    }
+
 }

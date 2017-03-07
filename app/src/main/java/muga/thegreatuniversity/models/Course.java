@@ -1,8 +1,12 @@
 package muga.thegreatuniversity.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.CourseType;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.
@@ -11,12 +15,14 @@ import muga.thegreatuniversity.lists.CourseType;
  */
 
 
-public class Course {
+public class Course implements SavableLoadableJSON {
     private String courseName;
     private CourseType courseType;
     private int coursePopularity;
     private int studentCount;
     private Boolean isLab;
+
+    public Course() {}
 
     public Course(String courseName, CourseType courseType, int coursePopularity, int studentCount, Boolean isLab) {
         this.courseName = courseName;
@@ -74,5 +80,28 @@ public class Course {
         courses.add(new Course("Proba", CourseType.MAG, 1, 200, false));
         courses.add(new Course("English", CourseType.MAG, 0, 80, false));
         return courses;
+    }
+
+
+    @Override
+    public JSONObject getAsJSON() throws JSONException {
+        JSONObject uni = new JSONObject();
+        uni.put("courseName", courseName);
+        uni.put("courseType", courseType.getName());
+        uni.put("coursePopularity", coursePopularity);
+        uni.put("studentCount", studentCount);
+        uni.put("isLab", isLab);
+
+        return uni;
+    }
+
+    @Override
+    public void loadJSON(JSONObject jsonO) throws JSONException {
+        this.courseName = jsonO.getString("courseName");
+        this.courseType = CourseType.getEnum(jsonO.getString("courseType"));
+        Logger.info(courseType.toString());
+        this.coursePopularity = jsonO.getInt("coursePopularity");
+        this.studentCount = jsonO.getInt("studentCount");
+        this.isLab = jsonO.getBoolean("isLab");
     }
 }
