@@ -6,6 +6,31 @@
     android:gravity="top|center"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/help_padding"
+        android:background="@color/light_black">
+
+        <TextView
+            android:id="@+id/txt_help_inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img_help_inventory"
+            android:gravity="center"
+            android:text="@string/help_inventory"
+            android:textSize="@dimen/text_medium" />
+
+        <ImageView
+            android:id="@+id/img_help_inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_help_inventory"
+            android:layout_alignTop="@id/txt_help_hire"
+            android:src="@mipmap/ic_help" />
+    </RelativeLayout>
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

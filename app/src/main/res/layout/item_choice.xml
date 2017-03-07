@@ -12,8 +12,9 @@
         android:layout_margin="@dimen/choice_btn_margin"
         android:gravity="start"
         android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:textStyle="bold" />
+        style="@style/QText"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large"/>
 
 
 </LinearLayout>
