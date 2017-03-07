@@ -43,6 +43,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         choices.add(new Choice(ChoiceType.INVENTORY, "List of professors"));
         choices.add(new Choice(ChoiceType.BUILD_ROOM, "Build room"));
         choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
+        choices.add(new Choice(ChoiceType.STATISTICS, "Statistics"));
 
 
         // Apply this choice on ListView
@@ -67,6 +68,10 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         ((MainActivity)getActivity()).changeMainFragment(FragmentType.BUILD_ROOM);
     }
 
+    private void stats() {
+        ((MainActivity)getActivity()).changeMainFragment(FragmentType.STATISTICS);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
@@ -83,6 +88,9 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
                 break;
             case BUILD_ROOM:
                 build();
+                break;
+            case STATISTICS:
+                stats();
                 break;
         }
     }

@@ -54,7 +54,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
     private void BuildRoom(Room r){
         int n = University.get().getMoney() - r.getPrice();
         if(n < 0) {
-            PopUp.notMoney((MainActivity)getActivity());
+            PopUp.notMoney(getActivity());
         } else {
             University.get().addRoom(r);
             University.get().setMoney(n);

@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.controllers;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -124,7 +125,7 @@ public class PopUp {
         eventDialog.show();
     }
 
-    static public void notMoney(final MainActivity mainAct) {
+    static public void notMoney(final Activity mainAct) {
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
         builderDialog.setMessage(Context.getString(R.string.popUp_money));
         builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),

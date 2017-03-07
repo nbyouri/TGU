@@ -9,5 +9,6 @@ package muga.thegreatuniversity.lists;
 public enum FragmentType {
     HIRE_PROF,
     INVENTORY,
-    BUILD_ROOM
+    BUILD_ROOM,
+    STATISTICS
 }
