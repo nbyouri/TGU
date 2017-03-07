@@ -39,7 +39,7 @@ public class BuildAdapter extends ArrayAdapter<Room> {
 
         // Populate the data into the template view using the data object
         hireName.setText("Name: "+r.getName()+"\nCapacity: "+r.getCapacity()
-                +"\nCourse: "+r.getPrice());
+                +"\nPrice: "+r.getPrice());
 
         // Return the completed view to render on screen
         return convertView;

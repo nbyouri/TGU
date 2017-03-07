@@ -21,6 +21,8 @@ import muga.thegreatuniversity.utils.Context;
 
 public class PopUp {
 
+
+
     static public void createUnivPopUp(final MainActivity mainAct) {
 
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
@@ -121,4 +123,19 @@ public class PopUp {
         AlertDialog eventDialog = eventBuilder.create();
         eventDialog.show();
     }
+
+    static public void notMoney(final MainActivity mainAct) {
+        AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
+        builderDialog.setMessage(Context.getString(R.string.popUp_money));
+        builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog univDialog = builderDialog.create();
+        univDialog.show();
+    }
+
 }

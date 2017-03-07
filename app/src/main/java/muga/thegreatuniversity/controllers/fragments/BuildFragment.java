@@ -52,7 +52,14 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
     }
 
     private void BuildRoom(Room r){
-        University.get().addRoom(r);
+        int n = University.get().getMoney() - r.getPrice();
+        if(n < 0) {
+            PopUp.notMoney((MainActivity)getActivity());
+        } else {
+            University.get().addRoom(r);
+            University.get().setMoney(n);
+            ((MainActivity)getActivity()).changeWeek();
+        }
     }
 
     private void printGame(){
@@ -65,8 +72,8 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
         Room r = ((Room) parent.getItemAtPosition(position));
         Logger.info("Build "+r.getName());
         BuildRoom(r);
-        //buildAdapter.remove(r);
         buildAdapter.notifyDataSetChanged();
+
     }
 
 }

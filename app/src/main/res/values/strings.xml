@@ -21,6 +21,7 @@
     <string name="popUp_cancel">Cancel</string>
     <string name="popUp_error">The name is invalid</string>
     <string name="popUp_retry">Retry (3 character min, 100 character max)</string>
+    <string name="popUp_money">You do not have money to buy this</string>
     <string name="label_money">Money : </string>
     <string name="label_population">Population : </string>
     <string name="label_week">Week : </string>
