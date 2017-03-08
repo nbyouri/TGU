@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 
 /**
@@ -35,12 +34,15 @@ public class BuildAdapter extends ArrayAdapter<Room> {
         }
 
         // Lookup view for data population
-        TextView hireName = (TextView) convertView.findViewById(R.id.txt_room);
+        TextView roomName = (TextView) convertView.findViewById(R.id.txt_name_room);
+        TextView roomPrice = (TextView) convertView.findViewById(R.id.txt_price_room);
+        TextView roomSize = (TextView) convertView.findViewById(R.id.txt_size_room);
+
 
         // Populate the data into the template view using the data object
-        hireName.setText("Name: "+r.getName()+"\nCapacity: "+r.getCapacity()
-                +"\nPrice: "+r.getPrice());
-
+        roomName.setText(r.getName());
+        roomPrice.setText(String.valueOf(r.getPrice()));
+        roomSize.setText("Capacity: "+ r.getCapacity());
         // Return the completed view to render on screen
         return convertView;
     }

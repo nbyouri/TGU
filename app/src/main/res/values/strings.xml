@@ -30,5 +30,6 @@
     <string name="help_hire">Choose a prof to hire</string>
     <string name="help_inventory">Yours Professors</string>
     <string name="help_room">Click on room to buy it</string>
+    <string name="not_available">N/a</string>
 
 </resources>
