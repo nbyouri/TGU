@@ -107,6 +107,8 @@ public class Professor implements SavableLoadableJSON {
      *  TODO: - Capitalize Name
      *        - Optimize (HM)?
      *        - Popularity -> legendary -> different icons/color?
+     *        - normalize age
+     *        - generate course
      * @return Professor
      */
     public static Professor generate_professor() throws IOException {
@@ -128,9 +130,18 @@ public class Professor implements SavableLoadableJSON {
         int randomAdjective = rng.nextInt(adjectives.size());
         int randomAnimal = rng.nextInt(animals.size());
 
-        String profName = adjectives.get(randomAdjective) + " " + animals.get(randomAnimal);
+        String profFirstName = adjectives.get(randomAdjective);
+        String profName = animals.get(randomAnimal);
 
-        Professor p = new Professor(profName, rng.nextInt(10),
+        StringBuilder profFNSB = new StringBuilder(profFirstName.toLowerCase());
+        profFNSB.setCharAt(0, Character.toUpperCase(profFNSB.charAt(0)));
+        profFirstName = profFNSB.toString();
+
+        StringBuilder profNSB = new StringBuilder(profName.toLowerCase());
+        profNSB.setCharAt(0, Character.toUpperCase(profNSB.charAt(0)));
+        profName = profNSB.toString();
+
+        Professor p = new Professor(profFirstName + "  " + profName, rng.nextInt(10),
                 new Course("Empty Course", CourseType.MAG,0,0,false), rng.nextInt(100));
 
         return p;
