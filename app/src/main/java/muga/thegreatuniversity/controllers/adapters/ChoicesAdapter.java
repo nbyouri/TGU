@@ -59,7 +59,7 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
             case INVENTORY:
                 return R.mipmap.ic_poeple;
             case STATISTICS:
-
+                return R.mipmap.ic_information;
         }
 
 

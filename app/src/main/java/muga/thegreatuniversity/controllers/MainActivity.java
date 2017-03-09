@@ -97,7 +97,7 @@ public class MainActivity extends Activity implements CallbackActivity {
      */
     public void updateView(){
         if (statF.isVisible()){
-            statF.printStat();
+            statF.updateViews();
         }
     }
 

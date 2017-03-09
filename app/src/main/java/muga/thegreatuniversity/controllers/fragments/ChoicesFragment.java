@@ -42,9 +42,8 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         choices.add(new Choice(ChoiceType.HIRE_PROF, "Hire a professor"));
         choices.add(new Choice(ChoiceType.INVENTORY, "List of professors"));
         choices.add(new Choice(ChoiceType.BUILD_ROOM, "Build room"));
-        choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
         choices.add(new Choice(ChoiceType.STATISTICS, "Statistics"));
-
+        choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
 
         // Apply this choice on ListView
         ChoicesAdapter choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);

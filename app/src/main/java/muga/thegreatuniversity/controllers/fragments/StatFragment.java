@@ -2,6 +2,7 @@ package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.
@@ -17,6 +19,15 @@ import muga.thegreatuniversity.models.University;
  */
 
 public class StatFragment extends Fragment {
+
+    private ViewGroup statLay;
+
+    private TextView nbStud;
+    private TextView nameUniv;
+    private TextView nbMaxStud;
+    private TextView cash;
+    private TextView week;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,20 +39,30 @@ public class StatFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        printStat();
+        createViews();
     }
 
-    public void printStat(){
-        TextView nbStud = (TextView) getActivity().findViewById(R.id.txt_nb_student);
-        TextView nameUniv = (TextView) getActivity().findViewById(R.id.txt_name_university);
-        TextView nbMaxStud = (TextView) getActivity().findViewById(R.id.txt_max_student);
-        TextView cash = (TextView) getActivity().findViewById(R.id.txt_cash);
-        TextView turn = (TextView) getActivity().findViewById(R.id.txt_turn);
+    public void updateViews(){
+        if (!(this.isVisible() && nbStud != null && nameUniv != null && nbMaxStud != null
+                && cash != null && week != null && statLay != null)){
+            Logger.error("Impossible to update the Stat view");
+        }
+        TransitionManager.beginDelayedTransition(statLay);
 
         nbStud.setText(String.valueOf(University.get().getStudentNb()));
         nameUniv.setText(University.get().getName());
         nbMaxStud.setText(String.valueOf(University.get().getMaxPopulation()));
         cash.setText(String.valueOf(University.get().getMoney()));
-        turn.setText(String.valueOf(University.get().getWeek()));
+        week.setText(String.valueOf(University.get().getWeek()));
+    }
+
+    private void createViews(){
+        nbStud = (TextView) getActivity().findViewById(R.id.txt_nb_student);
+        nameUniv = (TextView) getActivity().findViewById(R.id.txt_name_university);
+        nbMaxStud = (TextView) getActivity().findViewById(R.id.txt_max_student);
+        cash = (TextView) getActivity().findViewById(R.id.txt_cash);
+        week = (TextView) getActivity().findViewById(R.id.txt_turn);
+        statLay = (ViewGroup) getActivity().findViewById(R.id.layout_stat);
+        updateViews();
     }
 }
