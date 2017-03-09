@@ -5,9 +5,14 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -173,41 +178,44 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     private void printGame(){
-        // frameLayout exist
-        if (findViewById(R.id.frame_stat) != null
-                && findViewById(R.id.frame_main) != null
-                && findViewById(R.id.frame_all) != null && active) {
 
+        ViewGroup mainLay = (ViewGroup) findViewById(R.id.layout_main);
+        FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);
+        FrameLayout fStat = (FrameLayout) findViewById(R.id.frame_stat);
+        FrameLayout fMain = (FrameLayout) findViewById(R.id.frame_main);
 
-            FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);
-            FrameLayout fStat = (FrameLayout) findViewById(R.id.frame_stat);
-            FrameLayout fMain = (FrameLayout) findViewById(R.id.frame_main);
-
-            fAll.setVisibility(View.GONE);
-            fStat.setVisibility(View.VISIBLE);
-            fMain.setVisibility(View.VISIBLE);
-
-            // Add the fragment on frame layout
-            getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
-            getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
-
+        // CHECK if all view exist and if game is active
+        if (!(fAll != null
+                && fStat != null
+                && fMain != null
+                && mainLay !=null
+                && active)){
+            return ;
         }
+
+        // Fade transition
+        TransitionManager.beginDelayedTransition(mainLay);
+
+        fAll.setVisibility(View.GONE);
+        fStat.setVisibility(View.VISIBLE);
+        fMain.setVisibility(View.VISIBLE);
+
+        // Add fragments on frame layout
+        getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
+        getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
 
     }
 
     private void printLoginLayout(){
 
-        if (!this.active){
+        Button button= (Button) findViewById(R.id.btn_create_university);
+        View loginLayout = findViewById(R.id.layout_login);
+
+        if (!(this.active && button != null && loginLayout != null)){
             return;
         }
 
-        View loginLayout = findViewById(R.id.layout_login);
-
-        if (loginLayout != null) {
-            loginLayout.setVisibility(View.VISIBLE);
-        }
-
-        Button button= (Button) findViewById(R.id.btn_create_university);
+        loginLayout.setVisibility(View.VISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
