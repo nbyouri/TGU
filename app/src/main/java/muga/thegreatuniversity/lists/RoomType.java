@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.utils.Context;
 
 /**

@@ -1,16 +1,12 @@
 package muga.thegreatuniversity.models;
 
-import android.content.Context;
 import android.content.res.AssetManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 

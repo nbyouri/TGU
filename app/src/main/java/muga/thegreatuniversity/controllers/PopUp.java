@@ -10,7 +10,6 @@ import android.widget.EditText;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.AnsType;
 import muga.thegreatuniversity.models.Event;
-import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 

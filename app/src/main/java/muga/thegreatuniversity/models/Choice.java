@@ -2,8 +2,6 @@ package muga.thegreatuniversity.models;
 
 import muga.thegreatuniversity.lists.ChoiceType;
 
-import static android.R.attr.name;
-
 /**
  * Created on 27-02-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy

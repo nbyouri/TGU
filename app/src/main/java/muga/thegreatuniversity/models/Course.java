@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.CourseType;
-import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.

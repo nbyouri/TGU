@@ -2,8 +2,6 @@ package muga.thegreatuniversity.models;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.AnsType;
 
 /**

@@ -5,10 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Explode;
-import android.transition.Fade;
 import android.transition.Slide;
-import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.View;
@@ -53,11 +50,10 @@ public class MainActivity extends Activity implements CallbackActivity {
     }
 
     @Override
-    public void onResume(){
+    protected void onResume(){
         super.onResume();
         active = true;
 
-        // TODO : CHECK IF IN SLAPH SCREEN
         if (!(statF != null && statF.isVisible())){
             Logger.info("Resume splash screen");
             new Handler().postDelayed(new Runnable() {
@@ -105,7 +101,10 @@ public class MainActivity extends Activity implements CallbackActivity {
         }
     }
 
-    public void changeWeek(){
+    /**
+     * Pass one week on the game, can create a event and print to the screen
+     */
+    public void passOneWeek(){
         University.get().newTurn();
         Event event = University.get().getCurrentEvent();
         if(event != null)
@@ -210,21 +209,24 @@ public class MainActivity extends Activity implements CallbackActivity {
 
         Button button= (Button) findViewById(R.id.btn_create_university);
         View loginLayout = findViewById(R.id.layout_login);
+        ViewGroup splashLay = (ViewGroup) findViewById(R.id.layout_splash);
 
-        if (!(this.active && button != null && loginLayout != null)){
+        if (!(this.active && button != null && loginLayout != null && splashLay != null)){
             return;
         }
 
+        // Fade transition
+        TransitionManager.beginDelayedTransition(splashLay);
         loginLayout.setVisibility(View.VISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createUniv();
+                clickToCreateUniv();
             }
         });
     }
 
-    private void createUniv(){
+    private void clickToCreateUniv(){
         PopUp.createUnivPopUp(this);
     }
 

@@ -1,7 +1,5 @@
 package muga.thegreatuniversity.lists;
 
-import muga.thegreatuniversity.models.University;
-
 /**
  * Created on 06-03-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy

@@ -7,15 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.models.Professor;
-import muga.thegreatuniversity.models.University;
 
 /**
  * Created on 28-02-17.

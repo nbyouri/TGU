@@ -81,7 +81,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
                 hireProf();
                 break;
             case PASS_WEEK:
-                ((MainActivity)getActivity()).changeWeek();
+                ((MainActivity)getActivity()).passOneWeek();
                 break;
             case INVENTORY:
                 inventory();

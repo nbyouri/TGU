@@ -12,9 +12,7 @@ import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
-import muga.thegreatuniversity.models.EventManager;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;

@@ -13,15 +13,14 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
-import muga.thegreatuniversity.controllers.adapters.HireAdapter;
-import muga.thegreatuniversity.models.EventManager;
-import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
- * Created by tristanmoers on 28/02/17.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class BuildFragment extends ListFragment implements AdapterView.OnItemClickListener {
@@ -58,7 +57,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
         } else {
             University.get().addRoom(r);
             University.get().setMoney(n);
-            ((MainActivity)getActivity()).changeWeek();
+            ((MainActivity)getActivity()).passOneWeek();
         }
     }
 
