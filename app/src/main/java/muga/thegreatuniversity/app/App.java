@@ -3,7 +3,7 @@ package muga.thegreatuniversity.app;
 import android.app.Application;
 import android.content.Context;
 
-import muga.thegreatuniversity.models.EventManager;
+import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.SaveManager;
 

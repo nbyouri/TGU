@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.lists.ChoiceType;
+import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
 
 /**

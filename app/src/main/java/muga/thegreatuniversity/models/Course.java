@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.CourseType;
+import muga.thegreatuniversity.lists.enums.CourseType;
 
 /**
  * Created on 20/02/2017.

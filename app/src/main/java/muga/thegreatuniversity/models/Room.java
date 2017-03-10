@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.RoomType;
+import muga.thegreatuniversity.lists.enums.RoomType;
 
 /**
  * Created on 20/02/2017.

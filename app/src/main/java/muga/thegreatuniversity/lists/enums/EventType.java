@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.lists;
+package muga.thegreatuniversity.lists.enums;
 
 /**
  * Created on 28/02/17 .
@@ -7,6 +7,6 @@ package muga.thegreatuniversity.lists;
  */
 
 public enum EventType {
-    DETEV, //Determinist event
-    NODETEV, //Not determinist event
+    DETERMINIST, //Determinist event
+    TWO_CHOICES, //Not determinist event
 }

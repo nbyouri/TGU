@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.lists;
+package muga.thegreatuniversity.lists.enums;
 
 import java.util.EnumSet;
 import java.util.HashMap;

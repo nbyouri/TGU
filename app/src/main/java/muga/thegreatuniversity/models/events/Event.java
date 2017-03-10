@@ -1,9 +1,9 @@
-package muga.thegreatuniversity.models;
+package muga.thegreatuniversity.models.events;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.AnsType;
-import muga.thegreatuniversity.lists.EventType;
+import muga.thegreatuniversity.lists.enums.AnsType;
+import muga.thegreatuniversity.lists.enums.EventType;
 
 /**
  * Created on 28/02/17 .
@@ -70,8 +70,8 @@ public class Event {
     public static ArrayList<Event> genEvent(){
         ArrayList<Event> events = new ArrayList<>();
 
-        events.add(new Event("You lost half your money", null, null, 1, EventType.DETEV));
-        events.add(new Event("Do you want to organize the 24hvelo", "Yes", "No", 2, EventType.NODETEV));
+        events.add(new Event("You lost half your money", null, null, 1, EventType.DETERMINIST));
+        events.add(new Event("Do you want to organize the 24hvelo", "Yes", "No", 2, EventType.TWO_CHOICES));
         return events;
     }
 

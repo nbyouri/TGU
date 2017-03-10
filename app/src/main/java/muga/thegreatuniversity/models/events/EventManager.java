@@ -1,8 +1,8 @@
-package muga.thegreatuniversity.models;
+package muga.thegreatuniversity.models.events;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.AnsType;
+import muga.thegreatuniversity.lists.enums.AnsType;
 
 /**
  * Created on 28/02/17 .
@@ -16,7 +16,7 @@ public class EventManager {
 
     public EventManager(ArrayList<Event> events){
         this.events=events;
-        this.type=AnsType.NOANS;
+        this.type=AnsType.NONE;
     }
 
     private static class EventManagerHolder {

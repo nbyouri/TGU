@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import muga.thegreatuniversity.app.App;
-import muga.thegreatuniversity.lists.CourseType;
+import muga.thegreatuniversity.lists.enums.CourseType;
 
 /**
  * Created on 20/02/2017.

@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.lists;
+package muga.thegreatuniversity.lists.enums;
 
 /**
  * Created on 27-02-17.

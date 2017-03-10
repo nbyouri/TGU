@@ -8,8 +8,8 @@ import android.text.InputType;
 import android.widget.EditText;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.lists.AnsType;
-import muga.thegreatuniversity.models.Event;
+import muga.thegreatuniversity.lists.enums.AnsType;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
@@ -80,8 +80,8 @@ public class PopUp {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         createUnivPopUp(mainAct);
-            }
-        });
+                    }
+                });
 
         // Remember, create doesn't show the dialog
         AlertDialog helpDialog = helpBuilder.create();
@@ -92,32 +92,32 @@ public class PopUp {
         AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
         eventBuilder.setCancelable(false);
         switch (event.getType()) {
-            case DETEV:
-            eventBuilder.setTitle(event.getEvent());
-            eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    event.setAns(AnsType.NOANS);
-                    University.get().eventAction(event);
-                    mainAct.updateView();
-                }
-            });
+            case DETERMINIST:
+                eventBuilder.setTitle(event.getEvent());
+                eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.NONE);
+                        University.get().eventAction(event);
+                        mainAct.updateView();
+                    }
+                });
                 break;
-            case NODETEV:
-            eventBuilder.setTitle(event.getEvent());
-            eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    event.setAns(AnsType.YES);
-                    University.get().eventAction(event);
-                    mainAct.updateView();
-                }
-            });
-            eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    event.setAns(AnsType.NO);
-                    University.get().eventAction(event);
-                    mainAct.updateView();
-                }
-            });
+            case TWO_CHOICES:
+                eventBuilder.setTitle(event.getEvent());
+                eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.YES);
+                        University.get().eventAction(event);
+                        mainAct.updateView();
+                    }
+                });
+                eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.NO);
+                        University.get().eventAction(event);
+                        mainAct.updateView();
+                    }
+                });
                 break;
         }
         AlertDialog eventDialog = eventBuilder.create();

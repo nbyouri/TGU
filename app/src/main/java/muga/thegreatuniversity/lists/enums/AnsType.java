@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.lists;
+package muga.thegreatuniversity.lists.enums;
 
 /**
  * Created on 01/03/17 .
@@ -9,5 +9,5 @@ package muga.thegreatuniversity.lists;
 public enum AnsType {
     YES,
     NO,
-    NOANS
+    NONE
 }

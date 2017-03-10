@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
-import muga.thegreatuniversity.lists.ChoiceType;
-import muga.thegreatuniversity.lists.FragmentType;
+import muga.thegreatuniversity.lists.enums.ChoiceType;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
 

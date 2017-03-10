@@ -6,9 +6,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.AnsType;
+import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.DefaultValues;
-import muga.thegreatuniversity.lists.RoomType;
+import muga.thegreatuniversity.lists.enums.RoomType;
+import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.models.events.EventManager;
 
 /**
  * Created on 20/02/2017.
@@ -232,7 +234,7 @@ public class University implements SavableLoadableJSON {
                     case NO:
                         this.popularity--;
                         break;
-                    case NOANS:
+                    case NONE:
                         break;
                 }
                 break;

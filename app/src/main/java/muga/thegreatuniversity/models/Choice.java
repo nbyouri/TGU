@@ -1,6 +1,6 @@
 package muga.thegreatuniversity.models;
 
-import muga.thegreatuniversity.lists.ChoiceType;
+import muga.thegreatuniversity.lists.enums.ChoiceType;
 
 /**
  * Created on 27-02-17.
