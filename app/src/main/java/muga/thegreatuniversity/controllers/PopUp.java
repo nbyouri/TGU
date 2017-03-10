@@ -93,7 +93,7 @@ public class PopUp {
         eventBuilder.setCancelable(false);
         switch (event.getType()) {
             case DETERMINIST:
-                eventBuilder.setTitle(event.getEvent());
+                eventBuilder.setTitle(event.getMessage());
                 eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         event.setAns(AnsType.NONE);
@@ -103,7 +103,7 @@ public class PopUp {
                 });
                 break;
             case TWO_CHOICES:
-                eventBuilder.setTitle(event.getEvent());
+                eventBuilder.setTitle(event.getMessage());
                 eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         event.setAns(AnsType.YES);
