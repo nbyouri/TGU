@@ -13,6 +13,7 @@ import java.util.Scanner;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
+import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 20/02/2017.
@@ -101,8 +102,7 @@ public class Professor implements SavableLoadableJSON {
      * Generate a random professor based on the following university properties:
      *  - popularity
      *  - money
-     *  TODO: - Capitalize Name
-     *        - Optimize (HM)?
+     *  TODO:
      *        - Popularity -> legendary -> different icons/color?
      *        - normalize age
      *        - generate course
@@ -110,21 +110,8 @@ public class Professor implements SavableLoadableJSON {
      */
     public static Professor generate_professor() throws IOException {
         Random rng = new Random();
-        int randomAdjective = rng.nextInt(Assets.get().getWordListAdjectives().size());
-        int randomAnimal = rng.nextInt(Assets.get().getWordListAnimals().size());
-
-        String profFirstName = Assets.get().getWordListAdjectives().get(randomAdjective);
-        String profName = Assets.get().getWordListAnimals().get(randomAnimal);
-
-        StringBuilder profFNSB = new StringBuilder(profFirstName.toLowerCase());
-        profFNSB.setCharAt(0, Character.toUpperCase(profFNSB.charAt(0)));
-        profFirstName = profFNSB.toString();
-
-        StringBuilder profNSB = new StringBuilder(profName.toLowerCase());
-        profNSB.setCharAt(0, Character.toUpperCase(profNSB.charAt(0)));
-        profName = profNSB.toString();
-
-        Professor p = new Professor(profFirstName + "  " + profName, rng.nextInt(10),
+        Professor p = new Professor(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
+                + Tools.Capitalize(Assets.getRandomAnimal()), rng.nextInt(10),
                 new Course("Empty Course", CourseType.MAG,0,0,false), rng.nextInt(100));
 
         return p;

@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.lists;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created on 10/03/2017.
@@ -34,11 +35,23 @@ public class Assets {
         this.wordListAdjectives = wordListAdjectives;
     }
 
+    public static String getRandomAdjective() {
+        Random rng = new Random();
+        int randomAdjective = rng.nextInt(Assets.get().getWordListAdjectives().size());
+        return get().getWordListAdjectives().get(randomAdjective);
+    }
+
     public ArrayList<String> getWordListAnimals() {
         return wordListAnimals;
     }
 
     public void setWordListAnimals(ArrayList<String> wordListAnimals) {
         this.wordListAnimals = wordListAnimals;
+    }
+
+    public static String getRandomAnimal() {
+        Random rng = new Random();
+        int randomAnimal = rng.nextInt(Assets.get().getWordListAnimals().size());
+        return get().getWordListAnimals().get(randomAnimal);
     }
 }
