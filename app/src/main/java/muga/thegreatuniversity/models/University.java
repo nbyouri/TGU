@@ -6,11 +6,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.models.events.EventAction;
 import muga.thegreatuniversity.models.events.EventManager;
+import muga.thegreatuniversity.models.events.EventResult;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 20/02/2017.
@@ -28,11 +31,17 @@ public class University implements SavableLoadableJSON {
     private int week;
     private Event currentEvent;
 
-    //private boolean created;
-
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
+
+    private static class UniversityHolder {
+        private final static University instance = new University();
+    }
+
+    public static University get() {
+        return UniversityHolder.instance;
+    }
 
     private University() {
         professors = new ArrayList<>();
@@ -85,16 +94,6 @@ public class University implements SavableLoadableJSON {
             r.loadJSON(rarr.getJSONObject(i));
             this.rooms.add(r);
         }
-    }
-
-    private static class UniversityHolder {
-        private final static University instance = new University();
-    }
-
-
-
-    public static University get() {
-        return UniversityHolder.instance;
     }
 
     public String getName() {
@@ -217,27 +216,39 @@ public class University implements SavableLoadableJSON {
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
     }
 
-    // TODO : CHANGE IN GENERICS WAYS
     public void eventAction(Event event){
-        int id = event.getId();
-        AnsType ans = event.getAns();
-        switch (id){
-            case 1: // You lost half your money
-                this.money=this.money/2;
-                break;
-            case 2: //24h velo event
-                switch (ans){
-                    case YES:
-                        this.money-=100;// Cost 100 to organize
-                        this.popularity+=2;
-                        break;
-                    case NO:
-                        this.popularity--;
-                        break;
-                    case NONE:
-                        break;
-                }
-                break;
+        EventResult result = event.getResult();
+
+        for (EventAction act : result.getActions()) {
+            switch (act.getValueType()) {
+                case MONEY:
+                    this.money = computation(act.getActionType(), this.money, act.getValue());
+                    break;
+                case POPULARITY:
+                    this.popularity = computation(act.getActionType(), this.popularity, act.getValue());
+                    break;
+                case MORAL:
+                    this.moral = computation(act.getActionType(), this.moral, act.getValue());
+                    break;
+                case STUDENT:
+                    break;
+                case PROF:
+                    break;
+            }
         }
+
+    }
+
+    private int computation(EventActionType type, int prevValue, double value){
+        switch (type) {
+            case ADD:
+                return prevValue + (int)value;
+            case MULTIPLICATION:
+                return (int)(prevValue * value);
+            case REMOVE:
+                return 0;
+        }
+        Logger.error("Error Computation Event : type = " + type + " , prevValue = " + prevValue + " , value = " + value);
+        return 0;
     }
 }

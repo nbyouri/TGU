@@ -12,11 +12,9 @@ import muga.thegreatuniversity.lists.enums.AnsType;
 
 public class EventManager {
     private ArrayList<Event> events;
-    private AnsType type;
 
-    public EventManager(ArrayList<Event> events){
+    private EventManager(ArrayList<Event> events){
         this.events=events;
-        this.type=AnsType.NONE;
     }
 
     private static class EventManagerHolder {
@@ -33,14 +31,6 @@ public class EventManager {
         if(random < this.sizeEvents())
             return getEvent(random);
         return null;
-    }
-
-    public void setType(AnsType type) {
-        this.type = type;
-    }
-
-    public AnsType getType() {
-        return type;
     }
 
     public Event getEvent(int index) {
