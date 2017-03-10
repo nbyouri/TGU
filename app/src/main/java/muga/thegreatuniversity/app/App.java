@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,12 +30,7 @@ public class App extends Application {
 
     public void onCreate() {
         super.onCreate();
-//        App.context = getApplicationContext();
-//        University.get();
-//        EventManager.get();
-//        if (SaveManager.isSaveExist(getApplicationContext())) {
-//            SaveManager.loadUniversity(getApplicationContext());
-//        }
+        App.context = getApplicationContext();
         new loadAssets().execute();
     }
 
@@ -46,7 +42,7 @@ public class App extends Application {
 
         @Override
         protected Integer doInBackground(Void... params) {
-            App.context = getApplicationContext();
+
             University.get();
             EventManager.get();
             if (SaveManager.isSaveExist(getApplicationContext())) {
@@ -55,27 +51,24 @@ public class App extends Application {
 
             try {
                 AssetManager assets = getApplicationContext().getAssets();
-                Scanner adjectivesFile = new Scanner(assets.open("Adjectives.txt"));
-
-                ArrayList<String> adjectives = new ArrayList<>();
-                while (adjectivesFile.hasNext()) {
-                    adjectives.add(adjectivesFile.next());
-                }
-
-                Scanner animalsFile = new Scanner(assets.open("Animals.txt"));
-                ArrayList<String> animals = new ArrayList<>();
-                while (animalsFile.hasNext()) {
-                    animals.add(animalsFile.next());
-                }
-
                 Assets ass = Assets.get();
-                ass.setWordListAdjectives(adjectives);
-                ass.setWordListAnimals(animals);
+                ass.setWordListAdjectives(loadTxtFile("Adjectives.txt", assets));
+                ass.setWordListAnimals(loadTxtFile("Animals.txt", assets));
             } catch (Exception e) {
                 Logger.error(e.getMessage());
             }
 
             return 1;
+        }
+
+        private ArrayList<String> loadTxtFile(String filename, AssetManager assets) throws IOException {
+            Scanner scn = new Scanner(assets.open(filename));
+            ArrayList<String> arrayString = new ArrayList<>();
+            while (scn.hasNext()) {
+                arrayString.add(scn.next());
+            }
+
+            return arrayString;
         }
 
         @Override
