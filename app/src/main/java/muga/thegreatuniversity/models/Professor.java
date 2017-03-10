@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import muga.thegreatuniversity.app.App;
+import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
 
 /**
@@ -108,26 +109,12 @@ public class Professor implements SavableLoadableJSON {
      * @return Professor
      */
     public static Professor generate_professor() throws IOException {
-        AssetManager assets = App.getAppContext().getAssets();
-        Scanner adjectivesFile = new Scanner(assets.open("Adjectives.txt"));
-
-        ArrayList<String> adjectives = new ArrayList<>();
-        while(adjectivesFile.hasNext()){
-            adjectives.add(adjectivesFile.next());
-        }
-
-        Scanner animalsFile = new Scanner(assets.open("Animals.txt"));
-        ArrayList<String> animals = new ArrayList<>();
-        while(animalsFile.hasNext()){
-            animals.add(animalsFile.next());
-        }
-
         Random rng = new Random();
-        int randomAdjective = rng.nextInt(adjectives.size());
-        int randomAnimal = rng.nextInt(animals.size());
+        int randomAdjective = rng.nextInt(Assets.get().getWordListAdjectives().size());
+        int randomAnimal = rng.nextInt(Assets.get().getWordListAnimals().size());
 
-        String profFirstName = adjectives.get(randomAdjective);
-        String profName = animals.get(randomAnimal);
+        String profFirstName = Assets.get().getWordListAdjectives().get(randomAdjective);
+        String profName = Assets.get().getWordListAnimals().get(randomAnimal);
 
         StringBuilder profFNSB = new StringBuilder(profFirstName.toLowerCase());
         profFNSB.setCharAt(0, Character.toUpperCase(profFNSB.charAt(0)));
