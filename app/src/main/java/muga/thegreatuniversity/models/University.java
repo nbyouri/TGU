@@ -73,7 +73,7 @@ public class University implements SavableLoadableJSON {
         uni.put("rooms", ra);
 
         JSONArray ah = new JSONArray();
-        for (Professor p : professors) {
+        for (Professor p : availableHires) {
             ah.put(p.getAsJSON());
         }
         uni.put("availableHires", ah);
