@@ -57,7 +57,11 @@ public class App extends Application {
             } catch (Exception e) {
                 Logger.error(e.getMessage());
             }
-
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return 1;
         }
 
@@ -73,7 +77,9 @@ public class App extends Application {
 
         @Override
         protected void onPostExecute(Integer params) {
-            MainActivity.handler.sendEmptyMessage(0);
+            if (MainActivity.handler !=null) {
+                MainActivity.handler.sendEmptyMessage(0);
+            }
         }
 
         @Override
