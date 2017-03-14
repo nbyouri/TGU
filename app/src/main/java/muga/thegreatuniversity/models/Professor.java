@@ -26,7 +26,9 @@ public class Professor implements SavableLoadableJSON {
 
     public static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
-    public Professor() {}
+    public Professor() {
+        courses = new ArrayList<Course>();
+    }
 
     public Professor(String name, int popularity, ArrayList<Course> courses, int age) {
         this.name = name;

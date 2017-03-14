@@ -208,10 +208,11 @@ public class University implements SavableLoadableJSON {
     public int getPopularity(){
         int pop = this.basicPopularity;
 
-        // TODO : Increment the popularity with different formula.
+        // basicPopulation + ForeachProf(basicPopu * prof.Popularity)
         for (Professor p : professors){
 
-            pop += p.getPopularity();
+            pop += (p.getPopularity()*this.basicPopularity/100);
+
         }
 
         return pop;

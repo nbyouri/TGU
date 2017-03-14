@@ -52,10 +52,6 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         University.get().addProfessor(p);
     }
 
-    private void printGame(){
-        ((MainActivity)getActivity()).updateView();
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Professor p = ((Professor) parent.getItemAtPosition(position));
@@ -63,5 +59,6 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         hireProf(p);
         hireAdapter.remove(p);
         hireAdapter.notifyDataSetChanged();
+        ((MainActivity) getActivity()).updateView();
     }
 }
