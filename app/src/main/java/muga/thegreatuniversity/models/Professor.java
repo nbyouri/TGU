@@ -28,7 +28,8 @@ public class Professor implements SavableLoadableJSON {
     private ProfType type;      // Type of professor
     private int popularity;     // combination of experience and friendliness
     private Course course;      // from 1 to 5 courses he gives
-    private int age;            // will he die soon (?)
+    private int age;            // will he die soon
+    private int price;          // Cost of hiring
 
     public static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
@@ -81,6 +82,14 @@ public class Professor implements SavableLoadableJSON {
         this.type = type;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
         ArrayList<Professor> profs = new ArrayList<>();
         try {
@@ -89,7 +98,6 @@ public class Professor implements SavableLoadableJSON {
         } catch(Exception e) {
             Logger.error(e.getMessage());
         }
-        Logger.info("generated " + profs.size() + " profs");
         return profs;
     }
 
@@ -101,7 +109,7 @@ public class Professor implements SavableLoadableJSON {
         obj.put("popularity", popularity);
         obj.put("course", course.getAsJSON());
         obj.put("age", age);
-
+        obj.put("price", price);
         return obj;
     }
 
@@ -115,6 +123,7 @@ public class Professor implements SavableLoadableJSON {
         JSONObject courseObj = jsonO.getJSONObject("course");
         this.course.loadJSON(courseObj);
         this.age = jsonO.getInt("age");
+        this.price = jsonO.getInt("price");
     }
 
     /**
@@ -122,8 +131,6 @@ public class Professor implements SavableLoadableJSON {
      *  - popularity
      *  - money
      *  TODO:
-     *        - Popularity -> legendary -> different icons/color?
-     *        - normalize age
      *        - generate course
      * @return Professor
      */
@@ -133,19 +140,9 @@ public class Professor implements SavableLoadableJSON {
                 + Tools.Capitalize(Assets.getRandomAnimal()));
         p.setType(ProfType.getType());
         p.setPopularity(p.getType().getPopularity());
-        p.setCourse(new Course("Empty Course", CourseType.MAG,0,0,false));
+        p.setCourse(new Course("Empty Course", CourseType.MAG));
         p.setAge(ProfType.getAge());
+        p.setPrice(p.getType().getPrice());
         return p;
-    }
-
-    @Override
-    public String toString() {
-        return "Professor{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", popularity=" + popularity +
-                ", course=" + course.toString() +
-                ", age=" + age +
-                '}';
     }
 }

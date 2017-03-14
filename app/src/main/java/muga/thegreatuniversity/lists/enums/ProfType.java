@@ -37,6 +37,17 @@ public enum ProfType {
     private static final int min_age = 30;
     private static final int max_age = 90;
 
+    // price ranges
+    private static final int common_min_price = 50;
+    private static final int common_max_price = 100;
+    private static final int uncommon_min_price = 100;
+    private static final int uncommon_max_price = 200;
+    private static final int rare_min_price = 200;
+    private static final int rare_max_price = 400;
+    private static final int very_rare_min_price = 400;
+    private static final int very_rare_max_price = 800;
+    private static final int legendary_max_price = 500;
+
     static {
         for(ProfType r : EnumSet.allOf(ProfType.class))
             lookup.put(r.getName(), r);
@@ -67,7 +78,6 @@ public enum ProfType {
         return rnd.getDistributedRandom();
     }
 
-    /* TODO: (get ranges : popularity, age, names), (probability of occurrence) */
     public int getPopularity() {
         int rnd = 0;
         switch (this) {
@@ -76,6 +86,18 @@ public enum ProfType {
             case RARE: return Tools.randInt(uncommon_max_popularity, rare_max_popularity);
             case VERY_RARE: return Tools.randInt(rare_max_popularity, very_rare_max_popularity);
             case LEGENDARY: return Tools.randInt(very_rare_max_popularity, legendary_max_popularity);
+            default: return rnd;
+        }
+    }
+
+    public int getPrice() {
+        int rnd = 0;
+        switch (this) {
+            case COMMON: return Tools.randInt(common_min_price, common_max_price);
+            case UNCOMMON: return Tools.randInt(uncommon_min_price, uncommon_max_price);
+            case RARE: return Tools.randInt(rare_min_price, rare_max_price);
+            case VERY_RARE: return Tools.randInt(very_rare_min_price, very_rare_max_price);
+            case LEGENDARY: return Tools.randInt(uncommon_min_price, legendary_max_price);
             default: return rnd;
         }
     }

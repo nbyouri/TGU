@@ -2,6 +2,12 @@ package muga.thegreatuniversity.utils;
 
 import java.util.HashMap;
 
+/**
+ * Created on 14/03/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
+ */
+
 public class DistributedRandomGenerator<K> {
 
     private HashMap<K, Double> distribution;
