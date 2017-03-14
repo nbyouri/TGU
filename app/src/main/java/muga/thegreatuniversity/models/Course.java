@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
 
 /**
@@ -56,11 +57,8 @@ public class Course implements SavableLoadableJSON {
         this.courseType = CourseType.getEnum(jsonO.getString("courseType"));
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseName='" + courseName + '\'' +
-                ", courseType=" + courseType +
-                '}';
+    public static Course genCourse() {
+        /* TODO handle labs */
+        return new Course(Assets.getRandomCourse(), CourseType.MAG);
     }
 }

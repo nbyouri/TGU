@@ -90,14 +90,10 @@ public class Professor implements SavableLoadableJSON {
         this.price = price;
     }
 
-    public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
+    public static ArrayList<Professor> genProfList() {
         ArrayList<Professor> profs = new ArrayList<>();
-        try {
-            for (int i = 0; i < NB_HIRES; i++)
-                profs.add(generate_professor());
-        } catch(Exception e) {
-            Logger.error(e.getMessage());
-        }
+        for (int i = 0; i < NB_HIRES; i++)
+            profs.add(generate_professor());
         return profs;
     }
 
@@ -134,13 +130,13 @@ public class Professor implements SavableLoadableJSON {
      *        - generate course
      * @return Professor
      */
-    public static Professor generate_professor() throws IOException {
+    public static Professor generate_professor() {
         Professor p = new Professor();
         p.setName(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
                 + Tools.Capitalize(Assets.getRandomAnimal()));
         p.setType(ProfType.getType());
         p.setPopularity(p.getType().getPopularity());
-        p.setCourse(new Course("Empty Course", CourseType.MAG));
+        p.setCourse(Course.genCourse());
         p.setAge(ProfType.getAge());
         p.setPrice(p.getType().getPrice());
         return p;

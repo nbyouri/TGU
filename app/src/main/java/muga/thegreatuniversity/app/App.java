@@ -54,6 +54,7 @@ public class App extends Application {
                 Assets ass = Assets.get();
                 ass.setWordListAdjectives(loadTxtFile("Adjectives.txt", assets));
                 ass.setWordListAnimals(loadTxtFile("Animals.txt", assets));
+                ass.setMITcourses(loadTxtFile("MITcourses.txt", assets));
             } catch (Exception e) {
                 Logger.error(e.getMessage());
             }
@@ -69,7 +70,7 @@ public class App extends Application {
             Scanner scn = new Scanner(assets.open(filename));
             ArrayList<String> arrayString = new ArrayList<>();
             while (scn.hasNext()) {
-                arrayString.add(scn.next());
+                arrayString.add(scn.nextLine());
             }
 
             return arrayString;

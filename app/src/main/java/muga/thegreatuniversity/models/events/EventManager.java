@@ -28,7 +28,7 @@ public class EventManager {
     }
 
     public Event newEvent() {
-        int random = (int) Math.floor(Math.random()*this.sizeEvents()*5); //1 chance out of 5 to get an event
+        int random = (int) Math.floor(Math.random()*this.sizeEvents()*3); //1 chance out of 5 to get an event
         if(random < this.sizeEvents())
             return getEvent(random);
         return null;
