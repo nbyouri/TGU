@@ -27,6 +27,8 @@ public class Professor implements SavableLoadableJSON {
     private Course course;      // from 1 to 5 courses he gives
     private int age;            // will he die soon (?)
 
+    public static final int NB_HIRES = 5; // amount of professors available to hire each turn
+
     public Professor() {}
 
     public Professor(String name, int popularity, Course course, int age) {
@@ -71,7 +73,8 @@ public class Professor implements SavableLoadableJSON {
     public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
         ArrayList<Professor> profs = new ArrayList<>();
         try {
-            profs.add(generate_professor());
+            for (int i = 0; i < NB_HIRES; i++)
+                profs.add(generate_professor());
         } catch(Exception e) {}
         return profs;
     }

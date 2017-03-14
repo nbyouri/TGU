@@ -34,6 +34,7 @@ public class University implements SavableLoadableJSON {
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
+    private ArrayList<Professor> availableHires;
 
     private static class UniversityHolder {
         private final static University instance = new University();
@@ -46,6 +47,7 @@ public class University implements SavableLoadableJSON {
     private University() {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
+        availableHires = new ArrayList<>();
     }
 
     @Override
@@ -70,6 +72,12 @@ public class University implements SavableLoadableJSON {
         }
         uni.put("rooms", ra);
 
+        JSONArray ah = new JSONArray();
+        for (Professor p : professors) {
+            ah.put(p.getAsJSON());
+        }
+        uni.put("availableHires", ah);
+
         return uni;
     }
 
@@ -93,6 +101,13 @@ public class University implements SavableLoadableJSON {
             Room r = new Room();
             r.loadJSON(rArr.getJSONObject(i));
             this.rooms.add(r);
+        }
+
+        JSONArray harr = jsonO.getJSONArray("availableHires");
+        for (int i = 0; i < harr.length(); i++) {
+            Professor h = new Professor();
+            h.loadJSON(harr.getJSONObject(i));
+            this.availableHires.add(h);
         }
     }
 
@@ -161,6 +176,14 @@ public class University implements SavableLoadableJSON {
         this.rooms = rooms;
     }
 
+    public ArrayList<Professor> getAvailableHires() {
+        return availableHires;
+    }
+
+    public void reloadHires() {
+        this.availableHires = Professor.genProfList();
+    }
+
     public int getStudentNb() {
         return studentNb;
     }
@@ -189,8 +212,8 @@ public class University implements SavableLoadableJSON {
         this.addWeek(); //Increment the value of week
         this.newMoney(); //Gain 10$ per student each week
         this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
+        this.reloadHires(); // Reload list of professors available for hire
         this.currentEvent = EventManager.get().newEvent();
-
     }
 
     public void newMoney(){
@@ -213,6 +236,7 @@ public class University implements SavableLoadableJSON {
         University.get().setMoney(DefaultValues.START_MONEY);
         University.get().setWeek(DefaultValues.START_WEEK);
         University.get().setPopularity(DefaultValues.START_POPULARITY);
+        University.get().reloadHires();
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
     }
 
