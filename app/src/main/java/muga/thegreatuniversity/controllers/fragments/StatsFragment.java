@@ -4,16 +4,20 @@ import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
+import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -26,16 +30,9 @@ import muga.thegreatuniversity.utils.Logger;
 
 public class StatsFragment extends Fragment {
 
-    private TextView nbClassroom;
-    private TextView nbAudience;
-    private TextView nbScienceLaboratory;
-    private TextView nbAgronomyLaboratory;
-    private TextView nbITLaboratory;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stats, container, false);
     }
 
@@ -43,14 +40,10 @@ public class StatsFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        createViews();
+        createTable();
     }
 
-    public void updateViews(){
-        if (!(this.isVisible() && nbClassroom != null && nbITLaboratory != null && nbAgronomyLaboratory != null
-                && nbAudience != null && nbScienceLaboratory != null)){
-            Logger.error("Impossible to update the Stat view");
-        }
+    public void createTable() {
 
         int nbClass = 0, nbAudi = 0, nbAgro = 0, nbSci = 0, nbIT = 0;
         ArrayList<Room> l = University.get().getRooms();
@@ -74,21 +67,38 @@ public class StatsFragment extends Fragment {
             }
         }
 
-        nbClassroom.setText("Classroom number : "+ String.valueOf(nbClass));
-        nbAudience.setText("Audience number : "+String.valueOf(nbAudi));
-        nbAgronomyLaboratory.setText("Agro labo number : "+String.valueOf(nbAgro));
-        nbScienceLaboratory.setText("Science labo number : "+String.valueOf(nbSci));
-        nbITLaboratory.setText("IT labo number : "+String.valueOf(nbIT));
-    }
+        ArrayList<Professor> p = University.get().getProfessors();
+        int nbProfs = p.size();
 
-    private void createViews(){
+        int nbIncome = University.get().getStudentNb()*10;
 
-        nbClassroom = (TextView) getActivity().findViewById(R.id.nb_classroom);
-        nbAudience = (TextView) getActivity().findViewById(R.id.nb_audience);
-        nbAgronomyLaboratory = (TextView) getActivity().findViewById(R.id.nb_agrolab);
-        nbScienceLaboratory = (TextView) getActivity().findViewById(R.id.nb_sciencelab);
-        nbITLaboratory = (TextView) getActivity().findViewById(R.id.nb_itlab);
-        updateViews();
+        final String [] col1 = {"Classroom number : ","Audience number : ","Agro labo number : ","Science labo number : ",
+                                "IT labo number : ","Professors number : ","Income/Week : "};
+        final String [] col2 = {String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
+                                String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
+
+        TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
+        TableRow row;
+        TextView tv1,tv2;
+
+        for(int i=0;i<col1.length;i++) {
+            row = new TableRow(getActivity());
+
+            tv1 = new TextView(getActivity());
+            tv1.setText(col1[i]);
+            tv1.setGravity(Gravity.LEFT);
+            tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
+
+            tv2 = new TextView(getActivity());
+            tv2.setText(col2[i]);
+            tv2.setGravity(Gravity.CENTER);
+            tv2.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
+
+            row.addView(tv1);
+            row.addView(tv2);
+
+            table.addView(row);
+        }
     }
 
 

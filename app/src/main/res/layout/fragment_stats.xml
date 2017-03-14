@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lin_hire"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,7 +47,17 @@
         android:text="@string/not_available" />
 
     <TextView
-        android:id="@+id/nb_itlab"
+    android:id="@+id/nb_itlab"
+    style="@style/QText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:textAlignment="gravity"
+    android:textSize="@dimen/text_large"
+    android:text="@string/not_available" />
+
+    <TextView
+        android:id="@+id/nb_profs"
         style="@style/QText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,4 +66,28 @@
         android:textSize="@dimen/text_large"
         android:text="@string/not_available" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/nb_income"
+        style="@style/QText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/text_large"
+        android:text="@string/not_available" />
+
+</LinearLayout>-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:stretchColumns="0"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableStats">
+    </TableLayout>
+
+</ScrollView>
