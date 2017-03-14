@@ -46,6 +46,7 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
         TextView ageProf = (TextView) convertView.findViewById(R.id.txt_age_prof);
         TextView course = (TextView) convertView.findViewById(R.id.txt_course_prof);
+
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
 
         colorRarityProf(icon, prof.getType());
@@ -63,19 +64,19 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         int color = Color.WHITE;
         switch (type) {
             case COMMON:
-                color = Color.WHITE;
+                color = ContextCompat.getColor(this.getContext(), R.color.prof_common);
                 break;
             case UNCOMMON:
-                color = Color.GREEN;
+                color = ContextCompat.getColor(this.getContext(), R.color.prof_uncommon);
                 break;
             case RARE:
-                color = Color.BLUE;
+                color = ContextCompat.getColor(this.getContext(), R.color.prof_rare);
                 break;
             case VERY_RARE:
-                color = ContextCompat.getColor(this.getContext(), R.color.purple);
+                color = ContextCompat.getColor(this.getContext(), R.color.prof_very_rare);
                 break;
             case LEGENDARY:
-                color =  ContextCompat.getColor(this.getContext(), R.color.orange);
+                color =  ContextCompat.getColor(this.getContext(), R.color.prof_legendary);
                 break;
         }
 
@@ -88,7 +89,7 @@ public class HireAdapter extends ArrayAdapter<Professor> {
             Logger.error("ColorFilter : Image equals to null");
             return;
         }
-        img.getDrawable().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        img.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 
     }
 

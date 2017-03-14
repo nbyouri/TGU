@@ -6,7 +6,11 @@
     <color name="light_black">#222222</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>
-    <color name="purple">#800080</color>
-    <color name="orange">#FFA500</color>
+
+    <color name="prof_common">#FFFFFF</color>
+    <color name="prof_uncommon">#008000</color>
+    <color name="prof_rare">#4169E1</color>
+    <color name="prof_very_rare">#800080</color>
+    <color name="prof_legendary">#FFA500</color>
 
 </resources>

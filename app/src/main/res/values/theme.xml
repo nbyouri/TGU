@@ -15,21 +15,4 @@
         <item name="android:typeface">normal</item>
     </style>
 
-
-    <!--
-    <style name="Theme.AppCompat.DayNight.NoActionBar.FullScreen" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:textViewStyle">@style/QText</item>
-        <item name="android:buttonStyle">@style/MyButton</item>
-    </style>
-
-
-
-    <style name="MyButton" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
-        <item name="android:fontFamily">serif</item>
-        <item name="android:background">@drawable/btn_border</item>
-    </style> -->
 </resources>
