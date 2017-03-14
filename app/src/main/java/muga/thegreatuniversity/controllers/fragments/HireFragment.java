@@ -37,11 +37,9 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Create different choice for user
-        ArrayList<Professor> profs = Professor.genProfList();
-
         // Apply this choice on ListView
-        hireAdapter = new HireAdapter(getActivity().getApplicationContext(), profs);
+        hireAdapter = new HireAdapter(getActivity().getApplicationContext(),
+                University.get().getAvailableHires());
         setListAdapter(hireAdapter);
         getListView().setOnItemClickListener(this);
     }
