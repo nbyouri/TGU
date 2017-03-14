@@ -13,6 +13,8 @@ import java.util.Scanner;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
+import muga.thegreatuniversity.lists.enums.ProfType;
+import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tools;
 
 /**
@@ -23,6 +25,7 @@ import muga.thegreatuniversity.utils.Tools;
 
 public class Professor implements SavableLoadableJSON {
     private String name;
+    private ProfType type;      // Type of professor
     private int popularity;     // combination of experience and friendliness
     private Course course;      // from 1 to 5 courses he gives
     private int age;            // will he die soon (?)
@@ -58,7 +61,7 @@ public class Professor implements SavableLoadableJSON {
         return course;
     }
 
-    public void setCourse(Course courses) {
+    public void setCourse(Course course) {
         this.course = course;
     }
 
@@ -70,12 +73,23 @@ public class Professor implements SavableLoadableJSON {
         this.age = age;
     }
 
+    public ProfType getType() {
+        return type;
+    }
+
+    public void setType(ProfType type) {
+        this.type = type;
+    }
+
     public static ArrayList<Professor> genProfList(/* popularity of university, level of player */) {
         ArrayList<Professor> profs = new ArrayList<>();
         try {
             for (int i = 0; i < NB_HIRES; i++)
                 profs.add(generate_professor());
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            Logger.error(e.getMessage());
+        }
+        Logger.info("generated " + profs.size() + " profs");
         return profs;
     }
 
@@ -83,6 +97,7 @@ public class Professor implements SavableLoadableJSON {
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("name", name);
+        obj.put("type", type.getName());
         obj.put("popularity", popularity);
         obj.put("course", course.getAsJSON());
         obj.put("age", age);
@@ -93,6 +108,7 @@ public class Professor implements SavableLoadableJSON {
     @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
+        this.type = ProfType.getEnum(jsonO.getString("type"));
         this.popularity = jsonO.getInt("popularity");
         // TODO : course array
         this.course = new Course();
@@ -112,11 +128,24 @@ public class Professor implements SavableLoadableJSON {
      * @return Professor
      */
     public static Professor generate_professor() throws IOException {
-        Random rng = new Random();
-        Professor p = new Professor(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
-                + Tools.Capitalize(Assets.getRandomAnimal()), rng.nextInt(10),
-                new Course("Empty Course", CourseType.MAG,0,0,false), rng.nextInt(100));
-
+        Professor p = new Professor();
+        p.setName(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
+                + Tools.Capitalize(Assets.getRandomAnimal()));
+        p.setType(ProfType.getType());
+        p.setPopularity(p.getType().getPopularity());
+        p.setCourse(new Course("Empty Course", CourseType.MAG,0,0,false));
+        p.setAge(ProfType.getAge());
         return p;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", popularity=" + popularity +
+                ", course=" + course.toString() +
+                ", age=" + age +
+                '}';
     }
 }

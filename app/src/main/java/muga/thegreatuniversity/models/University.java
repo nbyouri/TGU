@@ -103,10 +103,10 @@ public class University implements SavableLoadableJSON {
             this.rooms.add(r);
         }
 
-        JSONArray harr = jsonO.getJSONArray("availableHires");
-        for (int i = 0; i < harr.length(); i++) {
+        JSONArray hArr = jsonO.getJSONArray("availableHires");
+        for (int i = 0; i < hArr.length(); i++) {
             Professor h = new Professor();
-            h.loadJSON(harr.getJSONObject(i));
+            h.loadJSON(hArr.getJSONObject(i));
             this.availableHires.add(h);
         }
     }

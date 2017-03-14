@@ -102,4 +102,15 @@ public class Course implements SavableLoadableJSON {
         this.studentCount = jsonO.getInt("studentCount");
         this.isLab = jsonO.getBoolean("isLab");
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", courseType=" + courseType +
+                ", coursePopularity=" + coursePopularity +
+                ", studentCount=" + studentCount +
+                ", isLab=" + isLab +
+                '}';
+    }
 }
