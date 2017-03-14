@@ -3,11 +3,8 @@ package muga.thegreatuniversity.controllers;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.res.AssetManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.view.Gravity;
@@ -15,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
@@ -29,8 +23,8 @@ import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
-import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 
@@ -46,7 +40,6 @@ public class MainActivity extends Activity implements CallbackActivity {
     private static final int LOOP_TIME_OUT = 10;
 
     private boolean active;
-    public static Handler handler;
 
     private StatFragment statF;
     private ChoicesFragment choicesF;
@@ -68,19 +61,11 @@ public class MainActivity extends Activity implements CallbackActivity {
 
             final Handler handlerLoop = new Handler();
 
-            if (!App.assetsLoaded) {
-                handler = new Handler() {
-                    @Override
-                    public void handleMessage(Message msg) {
-                        App.assetsLoaded = true;
-                    }
-                };
-            }
-
             handlerLoop.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (App.assetsLoaded) {
+                        Logger.info("Asset Loaded : Can begin");
                         if (SaveManager.isSaveExist(getApplicationContext())) {
                             printGame();
                         } else {
@@ -91,7 +76,6 @@ public class MainActivity extends Activity implements CallbackActivity {
                     }
                 }
             }, TITLE_TIME_OUT);
-
         }
     }
 

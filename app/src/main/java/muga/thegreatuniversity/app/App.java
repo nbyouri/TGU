@@ -27,9 +27,9 @@ public class App extends Application {
     private static Context context;
     public static boolean assetsLoaded;
 
-
     public void onCreate() {
         super.onCreate();
+        assetsLoaded = false;
         App.context = getApplicationContext();
         new loadAssets().execute();
     }
@@ -78,9 +78,7 @@ public class App extends Application {
 
         @Override
         protected void onPostExecute(Integer params) {
-            if (MainActivity.handler != null ) {
-                MainActivity.handler.sendEmptyMessage(0);
-            }
+            assetsLoaded = true;
         }
 
         @Override
