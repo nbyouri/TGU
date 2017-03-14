@@ -30,6 +30,13 @@ public class Tools {
         return randomNum;
     }
 
+    public static void colorFilter(ImageView img, int color){
+        if (img == null){
+            Logger.error("ColorFilter : Image equals to null");
+            return;
+        }
+        img.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 
+    }
 
 }
