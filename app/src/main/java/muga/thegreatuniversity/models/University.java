@@ -255,6 +255,7 @@ public class University implements SavableLoadableJSON {
                     this.moral = computation(act.getActionType(), this.moral, act.getValue());
                     break;
                 case STUDENT:
+                    this.studentNb = computation(act.getActionType(), this.studentNb, act.getValue());
                     break;
                 case PROF:
                     break;
