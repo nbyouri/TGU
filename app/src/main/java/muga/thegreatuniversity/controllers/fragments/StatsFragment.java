@@ -80,7 +80,7 @@ public class StatsFragment extends Fragment {
         TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
         TableRow row;
         TextView tv1,tv2;
-///each row
+///each row for info
         for(int i=0;i<col1.length;i++) {
             row = new TableRow(getActivity());
 
