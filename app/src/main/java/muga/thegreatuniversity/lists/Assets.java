@@ -13,10 +13,12 @@ import java.util.Random;
 public class Assets {
     private ArrayList<String> wordListAdjectives;
     private ArrayList<String> wordListAnimals;
+    private ArrayList<String> MITcourses;
 
     public Assets() {
         this.wordListAdjectives = new ArrayList<>();
         this.wordListAnimals = new ArrayList<>();
+        this.MITcourses = new ArrayList<>();
     }
 
     private static class AssetsHolder {
@@ -53,5 +55,19 @@ public class Assets {
         Random rng = new Random();
         int randomAnimal = rng.nextInt(Assets.get().getWordListAnimals().size());
         return get().getWordListAnimals().get(randomAnimal);
+    }
+
+    public ArrayList<String> getMITcourses() {
+        return MITcourses;
+    }
+
+    public void setMITcourses(ArrayList<String> MITcourses) {
+        this.MITcourses = MITcourses;
+    }
+
+    public static String getRandomCourse() {
+        Random rng = new Random();
+        int randomCourse = rng.nextInt(Assets.get().getMITcourses().size());
+        return get().getMITcourses().get(randomCourse);
     }
 }
