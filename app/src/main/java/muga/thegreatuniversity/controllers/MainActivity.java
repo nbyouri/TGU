@@ -27,6 +27,7 @@ import muga.thegreatuniversity.controllers.fragments.HireFragment;
 import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
+import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.University;
@@ -157,6 +158,8 @@ public class MainActivity extends Activity implements CallbackActivity {
             case BUILD_ROOM:
                 frag = new BuildFragment();
                 break;
+            case STATISTICS:
+                frag = new StatsFragment();
         }
 
         commitFrag(frag);
