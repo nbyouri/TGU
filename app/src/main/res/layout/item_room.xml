@@ -73,7 +73,7 @@
             android:layout_alignBottom="@+id/txt_price_room"
             android:layout_alignTop="@+id/txt_price_room"
             android:src="@mipmap/ic_money"
-            android:contentDescription="Money Icon" />
+            android:contentDescription="@string/icon_desc_money" />
     </RelativeLayout>
 
 </RelativeLayout>

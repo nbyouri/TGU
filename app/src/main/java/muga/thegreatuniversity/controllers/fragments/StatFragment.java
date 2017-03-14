@@ -3,6 +3,7 @@ package muga.thegreatuniversity.controllers.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class StatFragment extends Fragment {
     private TextView nbMaxStud;
     private TextView cash;
     private TextView week;
+    private TextView popularity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +46,7 @@ public class StatFragment extends Fragment {
 
     public void updateViews(){
         if (!(this.isVisible() && nbStud != null && nameUniv != null && nbMaxStud != null
-                && cash != null && week != null && statLay != null)){
+                && cash != null && week != null && statLay != null && popularity != null)){
             Logger.error("Impossible to update the Stat view");
         }
         TransitionManager.beginDelayedTransition(statLay);
@@ -54,6 +56,7 @@ public class StatFragment extends Fragment {
         nbMaxStud.setText(String.valueOf(University.get().getMaxPopulation()));
         cash.setText(String.valueOf(University.get().getMoney()));
         week.setText(String.valueOf(University.get().getWeek()));
+        popularity.setText(String.valueOf(University.get().getPopularity()));
     }
 
     private void createViews(){
@@ -63,6 +66,7 @@ public class StatFragment extends Fragment {
         cash = (TextView) getActivity().findViewById(R.id.txt_cash);
         week = (TextView) getActivity().findViewById(R.id.txt_turn);
         statLay = (ViewGroup) getActivity().findViewById(R.id.layout_stat);
+        popularity = (TextView) getActivity().findViewById(R.id.txt_popularity);
         updateViews();
     }
 }

@@ -14,7 +14,7 @@
         android:layout_alignBottom="@+id/txt_name_choice"
         android:layout_alignTop="@+id/txt_name_choice"
         android:src="@mipmap/ic_help"
-        android:contentDescription="Help Icon" />
+        android:contentDescription="@string/icon_desc_choice" />
 
     <TextView
         android:id="@+id/txt_name_choice"

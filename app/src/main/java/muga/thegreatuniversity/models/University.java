@@ -51,7 +51,7 @@ public class University implements SavableLoadableJSON {
     @Override
     public JSONObject getAsJSON() throws JSONException  {
         JSONObject uni = new JSONObject();
-        // TODO : CONTINUE
+
         uni.put("money", money);
         uni.put("moral", moral);
         uni.put("studentNb", studentNb);
@@ -81,17 +81,17 @@ public class University implements SavableLoadableJSON {
         this.week = jsonO.getInt("week");
         this.name = jsonO.getString("name");
 
-        JSONArray parr = jsonO.getJSONArray("profs");
-        for (int i = 0; i < parr.length(); i++) {
+        JSONArray pArr = jsonO.getJSONArray("profs");
+        for (int i = 0; i < pArr.length(); i++) {
             Professor p = new Professor();
-            p.loadJSON(parr.getJSONObject(i));
+            p.loadJSON(pArr.getJSONObject(i));
             this.professors.add(p);
         }
 
-        JSONArray rarr = jsonO.getJSONArray("rooms");
-        for (int i = 0; i < rarr.length(); i++) {
+        JSONArray rArr = jsonO.getJSONArray("rooms");
+        for (int i = 0; i < rArr.length(); i++) {
             Room r = new Room();
-            r.loadJSON(rarr.getJSONObject(i));
+            r.loadJSON(rArr.getJSONObject(i));
             this.rooms.add(r);
         }
     }
@@ -248,7 +248,8 @@ public class University implements SavableLoadableJSON {
             case REMOVE:
                 return 0;
         }
-        Logger.error("Error Computation Event : type = " + type + " , prevValue = " + prevValue + " , value = " + value);
+        Logger.error("Error Computation Event : type = " + type + " , prevValue = "
+                + prevValue + " , value = " + value);
         return 0;
     }
 }

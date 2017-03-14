@@ -31,5 +31,9 @@
     <string name="help_inventory">Your Professors</string>
     <string name="help_room">Click on room to buy it</string>
     <string name="not_available">N/a</string>
+    <string name="icon_desc_money">Money Icon</string>
+    <string name="icon_desc_popularity">Popularity Icon</string>
+    <string name="icon_desc_professor">Professor Icon</string>
+    <string name="icon_desc_choice">Choice Icon</string>
 
 </resources>
