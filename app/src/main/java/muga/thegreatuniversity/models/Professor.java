@@ -98,9 +98,9 @@ public class Professor implements SavableLoadableJSON {
         obj.put("popularity", popularity);
         JSONArray jsonCourses = new JSONArray();
         for (Course c : courses) {
-            jsonCourses.put(c);
+            jsonCourses.put(c.getAsJSON());
         }
-        obj.put("courses", courses);
+        obj.put("courses", jsonCourses);
         obj.put("age", age);
         obj.put("price", price);
         return obj;
