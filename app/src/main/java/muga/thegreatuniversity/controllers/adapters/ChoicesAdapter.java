@@ -13,6 +13,7 @@ import java.util.List;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
+import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 27-02-17.
@@ -42,6 +43,7 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
 
         // Populate the data into the template view using the data object
         icon.setImageResource(getIcon(choice.getType()));
+
         choiceName.setText(choice.getName());
 
         // Return the completed view to render on screen

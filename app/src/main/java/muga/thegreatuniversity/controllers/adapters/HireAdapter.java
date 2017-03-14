@@ -1,16 +1,23 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Professor;
+import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 28-02-17.
@@ -39,6 +46,9 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
         TextView ageProf = (TextView) convertView.findViewById(R.id.txt_age_prof);
         TextView course = (TextView) convertView.findViewById(R.id.txt_course_prof);
+        ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
+
+        colorRarityProf(icon, prof.getType());
 
         ageProf.setText("Age : " + prof.getAge());
         course.setText("Courses : "+prof.getCourse().getCourseName());
@@ -48,4 +58,38 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         // Return the completed view to render on screen
         return convertView;
     }
+
+    private void colorRarityProf(ImageView img, ProfType type){
+        int color = Color.WHITE;
+        switch (type) {
+            case COMMON:
+                color = Color.WHITE;
+                break;
+            case UNCOMMON:
+                color = Color.GREEN;
+                break;
+            case RARE:
+                color = Color.BLUE;
+                break;
+            case VERY_RARE:
+                color = ContextCompat.getColor(this.getContext(), R.color.purple);
+                break;
+            case LEGENDARY:
+                color =  ContextCompat.getColor(this.getContext(), R.color.orange);
+                break;
+        }
+
+       colorFilter(img, color);
+
+    }
+
+    private void colorFilter(ImageView img, int color){
+        if (img == null){
+            Logger.error("ColorFilter : Image equals to null");
+            return;
+        }
+        img.getDrawable().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+
+    }
+
 }

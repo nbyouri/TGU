@@ -1,5 +1,12 @@
 package muga.thegreatuniversity.utils;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.media.Image;
+import android.widget.ImageView;
+
+import muga.thegreatuniversity.lists.enums.ProfType;
+
 import java.util.Random;
 
 /**
@@ -22,5 +29,7 @@ public class Tools {
 
         return randomNum;
     }
+
+
 
 }
