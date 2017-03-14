@@ -49,22 +49,67 @@ public class EventManager {
         EventResult yAct = new EventResult();
         EventResult nAct = new EventResult();
 
+        /*!!!!!!!!!!!!! Event 24h Velo !!!!!!!!!!!!!!!!!!!!!!!!!! */
         EventAction act = new EventAction(EventActionType.ADD, EventValueType.MONEY, -100);
         yAct.addAction(act);
         act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, 2);
         yAct.addAction(act);
 
-        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, -10);
+        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, -4);
         nAct.addAction(act);
 
         events.add(new Event(EventType.TWO_CHOICES, "Do you want to organize the 24H velo", "Yes", "No", yAct, nAct));
 
+        /* !!!!!!!!!!!!! Event you lost half your money !!!!!!!!!!!!!!*/
         yAct = new EventResult();
-        act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.MONEY, 0.5);
+        act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.MONEY, 0.9);
         yAct.addAction(act);
 
-        events.add(new Event(EventType.DETERMINIST,"You lost half your money", null, null, yAct, null));
+        events.add(new Event(EventType.DETERMINIST,"You got robbed by a student, you lost some of your money", null, null, yAct, null));
 
+        /* !!!!!!!!!!!!!!! Event finish thesis !!!!!!!!!!!!!!!!*/
+        yAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, 2);
+        yAct.addAction(act);
+        act = new EventAction(EventActionType.ADD, EventValueType.MONEY, 150);
+        yAct.addAction(act);
+
+        events.add(new Event(EventType.DETERMINIST,"One of your teacher finished his thesis, you gain money and popularity", null, null, yAct, null));
+
+        /* !!!!!!!!!!!!!! Event you loose a student*/
+        yAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, -1);
+        yAct.addAction(act);
+
+        events.add(new Event(EventType.DETERMINIST,"You lost a student because your university suck", null, null, yAct, null));
+
+        /* !!!!!!!!!!! Event Erasmus !!!!!!!!!!*/
+        yAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, +1);
+        yAct.addAction(act);
+        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, 2);
+        yAct.addAction(act);
+        act = new EventAction(EventActionType.ADD, EventValueType.MONEY, -200);
+        yAct.addAction(act);
+
+        nAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, -1);
+        nAct.addAction(act);
+
+        events.add(new Event(EventType.TWO_CHOICES, "Set a new Erasmus partnership in a new country", "Yes", "No", yAct, nAct));
+
+        /*!!!!!!!!!!! Event bourse d'étude !!!!!!!!!!!!!!!!*/
+        yAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.MONEY, -50);
+        yAct.addAction(act);
+        act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, 2);
+        yAct.addAction(act);
+
+        nAct = new EventResult();
+        act = new EventAction(EventActionType.ADD, EventValueType.MONEY, 20);
+        nAct.addAction(act);
+
+        events.add(new Event(EventType.TWO_CHOICES,"Create a new scolarship for your student","Yes", "No", yAct, nAct));
         return events;
     }
 }
