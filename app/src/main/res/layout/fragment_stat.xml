@@ -81,13 +81,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_population"
-                android:layout_marginEnd="@dimen/separate_side_margin"/>
+                android:layout_marginEnd="@dimen/separate_side_margin"
+                android:textSize="@dimen/text_medium"/>
 
             <TextView
                 android:id="@+id/txt_nb_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/not_available"/>
+                android:text="@string/not_available"
+                android:textSize="@dimen/text_medium"/>
 
             <TextView
                 android:id="@+id/txt_separate_student_values"
@@ -95,13 +97,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/separate_side_margin"
                 android:layout_marginEnd="@dimen/separate_side_margin"
-                android:text="@string/separate_student_values" />
+                android:text="@string/separate_student_values"
+                android:textSize="@dimen/text_medium"/>
 
             <TextView
                 android:id="@+id/txt_max_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/not_available"/>
+                android:text="@string/not_available"
+                android:textSize="@dimen/text_medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -114,12 +118,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_week"
-                android:layout_marginEnd="@dimen/separate_side_margin"/>
+                android:layout_marginEnd="@dimen/separate_side_margin"
+                android:textSize="@dimen/text_medium"/>
 
             <TextView
                 android:id="@+id/txt_turn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_medium"/>
         </LinearLayout>
     </RelativeLayout>
 

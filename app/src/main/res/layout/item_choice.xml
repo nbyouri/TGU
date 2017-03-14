@@ -27,7 +27,7 @@
         style="@style/QText"
         android:text="@string/not_available"
         android:textStyle="bold"
-        android:textSize="@dimen/text_large"/>
+        android:textSize="@dimen/text_medium"/>
 
 
 </RelativeLayout>
