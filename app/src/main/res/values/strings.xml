@@ -35,5 +35,6 @@
     <string name="icon_desc_popularity">Popularity Icon</string>
     <string name="icon_desc_professor">Professor Icon</string>
     <string name="icon_desc_choice">Choice Icon</string>
+    <string name="per_week_money">Per week</string>
 
 </resources>

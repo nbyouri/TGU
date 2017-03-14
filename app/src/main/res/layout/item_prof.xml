@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="start|center_vertical"
     android:orientation="horizontal"
+
     android:paddingStart="@dimen/item_list_side_padding"
     android:paddingEnd="@dimen/item_list_side_padding">
 
@@ -14,14 +15,16 @@
         android:layout_alignBottom="@+id/layout_detail"
         android:layout_alignTop="@+id/layout_detail"
         android:src="@mipmap/ic_professor"
-        android:contentDescription="@string/icon_desc_professor" />
+        android:contentDescription="@string/icon_desc_professor"
+        android:adjustViewBounds="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/layout_detail"
-        android:layout_margin="@dimen/choice_btn_margin"
+        android:padding="@dimen/choice_btn_margin"
         android:orientation="vertical"
+        android:layout_toStartOf="@+id/layout_prof_money"
         android:layout_toEndOf="@id/icon_prof">
         <TextView
             android:id="@+id/txt_name_prof"
@@ -32,6 +35,7 @@
             android:textAlignment="gravity"
             android:text="@string/not_available"
             android:textSize="@dimen/text_large"/>
+
         <TextView
             android:id="@+id/txt_age_prof"
             style="@style/QText"
@@ -49,8 +53,67 @@
             android:gravity="start"
             android:textAlignment="gravity"
             android:text="@string/not_available"
-            android:textSize="@dimen/text_medium"/>
+            android:textSize="@dimen/text_small"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/layout_detail"
+        android:layout_alignTop="@+id/layout_detail"
+        android:id="@+id/layout_prof_money"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txt_efficiency_prof"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:text="@string/not_available" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icon_efficiency_prof"
+            android:layout_toEndOf="@+id/txt_efficiency_prof"
+            android:layout_alignBottom="@+id/txt_efficiency_prof"
+            android:layout_alignTop="@+id/txt_efficiency_prof"
+            android:src="@mipmap/ic_efficiency"
+            android:contentDescription="@string/icon_desc_money" />
+
+        <TextView
+            android:id="@+id/txt_price_prof"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:layout_below="@id/txt_efficiency_prof"
+            android:text="@string/not_available" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icon_money_prof"
+            android:layout_toEndOf="@+id/txt_price_prof"
+            android:layout_alignBottom="@+id/txt_price_prof"
+            android:layout_alignTop="@+id/txt_price_prof"
+            android:src="@mipmap/ic_money"
+            android:contentDescription="@string/icon_desc_money" />
+
+        <TextView
+            android:id="@+id/txt_by_week"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:layout_below="@+id/txt_price_prof"
+            android:text="@string/per_week_money" />
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

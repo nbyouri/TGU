@@ -2,7 +2,6 @@ package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import java.util.List;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Professor;
-import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Tools;
 
 /**
@@ -46,6 +45,8 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
         TextView ageProf = (TextView) convertView.findViewById(R.id.txt_age_prof);
         TextView course = (TextView) convertView.findViewById(R.id.txt_course_prof);
+        TextView price = (TextView) convertView.findViewById(R.id.txt_price_prof);
+        TextView efficiency = (TextView) convertView.findViewById(R.id.txt_efficiency_prof);
 
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
 
@@ -54,7 +55,9 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         ageProf.setText("Age : " + prof.getAge());
         course.setText("Courses : "+prof.getCourse().getCourseName());
         // Populate the data into the template view using the data object
-        hireName.setText("Name : "+prof.getName());
+        hireName.setText(prof.getName());
+        price.setText(String.valueOf(prof.getPrice()));
+        efficiency.setText( prof.getPopularity()+ "% ");
 
         // Return the completed view to render on screen
         return convertView;
@@ -80,17 +83,10 @@ public class HireAdapter extends ArrayAdapter<Professor> {
                 break;
         }
 
-       colorFilter(img, color);
+       Tools.colorFilter(img, color);
 
     }
 
-    private void colorFilter(ImageView img, int color){
-        if (img == null){
-            Logger.error("ColorFilter : Image equals to null");
-            return;
-        }
-        img.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 
-    }
 
 }

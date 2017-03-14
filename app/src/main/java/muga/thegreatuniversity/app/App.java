@@ -77,7 +77,9 @@ public class App extends Application {
 
         @Override
         protected void onPostExecute(Integer params) {
-            MainActivity.handler.sendEmptyMessage(0);
+            if (MainActivity.handler != null ) {
+                MainActivity.handler.sendEmptyMessage(0);
+            }
         }
 
         @Override
