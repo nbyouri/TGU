@@ -236,11 +236,11 @@ public class University implements SavableLoadableJSON {
     public void newStudentNB(){
         if(this.studentNb < this.getMaxPopulation()) {
 
-            int random = (int) Math.floor(Math.random() * this.getBasicPopularity());
+            int random = (int) Math.floor(Math.random() * this.getPopularity());
             if (this.studentNb + random > this.getMaxPopulation()){
                 setStudentNb(this.getMaxPopulation());
             } else {
-                setStudentNb(this.getStudentNb() + random);
+                setStudentNb(this.studentNb + random);
             }
 
         }
