@@ -78,14 +78,14 @@ public class EventManager {
 
         /* !!!!!!!!!!!!!! Event you loose a student*/
         yAct = new EventResult();
-        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, -1);
+        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, -20);
         yAct.addAction(act);
 
-        events.add(new Event(EventType.DETERMINIST,"You lost a student because your university suck", null, null, yAct, null));
+        events.add(new Event(EventType.DETERMINIST,"You lost students because your university suck", null, null, yAct, null));
 
         /* !!!!!!!!!!! Event Erasmus !!!!!!!!!!*/
         yAct = new EventResult();
-        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, +1);
+        act = new EventAction(EventActionType.ADD, EventValueType.STUDENT, 50);
         yAct.addAction(act);
         act = new EventAction(EventActionType.ADD, EventValueType.POPULARITY, 2);
         yAct.addAction(act);
