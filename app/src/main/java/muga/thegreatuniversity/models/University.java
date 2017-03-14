@@ -24,7 +24,7 @@ import muga.thegreatuniversity.utils.Logger;
 public class University implements SavableLoadableJSON {
     // basic properties
     private String name;
-    private int popularity;
+    private int basicPopularity;
     private int money;
     private int moral;
     private int studentNb;
@@ -119,12 +119,20 @@ public class University implements SavableLoadableJSON {
         this.name = name;
     }
 
-    public int getPopularity() {
-        return popularity;
+    public int getPopularity(){
+        int pop = this.basicPopularity;
+        for (Professor p : professors){
+            pop += p.getPopularity();
+        }
+        return pop;
     }
 
-    public void setPopularity(int popularity) {
-        this.popularity = popularity;
+    public int getBasicPopularity() {
+        return basicPopularity;
+    }
+
+    public void setBasicPopularity(int basicPopularity) {
+        this.basicPopularity = basicPopularity;
     }
 
     public int getMoney() {
@@ -218,15 +226,23 @@ public class University implements SavableLoadableJSON {
 
     public void newMoney(){
         this.money = this.money + this.studentNb*10;
+
+        // Pay Prof
+        for (Professor p : professors){
+            money -= p.getPrice();
+        }
     }
 
     public void newStudentNB(){
         if(this.studentNb < this.getMaxPopulation()) {
 
-            int random = (int) Math.floor(Math.random() * 101);
-            if (random <= this.popularity) {
-                setStudentNb(this.studentNb + 1);
+            int random = (int) Math.floor(Math.random() * this.getBasicPopularity());
+            if (this.studentNb + random > this.getMaxPopulation()){
+                setStudentNb(this.getMaxPopulation());
+            } else {
+                setStudentNb(this.getStudentNb() + random);
             }
+
         }
     }
 
@@ -235,7 +251,7 @@ public class University implements SavableLoadableJSON {
         University.get().setStudentNb(DefaultValues.START_STUDENT_NB);
         University.get().setMoney(DefaultValues.START_MONEY);
         University.get().setWeek(DefaultValues.START_WEEK);
-        University.get().setPopularity(DefaultValues.START_POPULARITY);
+        University.get().setBasicPopularity(DefaultValues.START_POPULARITY);
         University.get().reloadHires();
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
     }
@@ -249,7 +265,7 @@ public class University implements SavableLoadableJSON {
                     this.money = computation(act.getActionType(), this.money, act.getValue());
                     break;
                 case POPULARITY:
-                    this.popularity = computation(act.getActionType(), this.popularity, act.getValue());
+                    this.basicPopularity = computation(act.getActionType(), this.basicPopularity, act.getValue());
                     break;
                 case MORAL:
                     this.moral = computation(act.getActionType(), this.moral, act.getValue());

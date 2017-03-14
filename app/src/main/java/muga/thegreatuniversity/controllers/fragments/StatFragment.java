@@ -3,7 +3,6 @@ package muga.thegreatuniversity.controllers.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
