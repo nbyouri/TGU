@@ -22,13 +22,15 @@ import muga.thegreatuniversity.utils.Logger;
  */
 
 public class University implements SavableLoadableJSON {
-    // basic properties
+
+    // Basic properties
     private String name;
     private int basicPopularity;
     private int money;
     private int moral;
     private int studentNb;
     private int week;
+
     private Event currentEvent;
 
     // main objects
@@ -59,6 +61,7 @@ public class University implements SavableLoadableJSON {
         uni.put("studentNb", studentNb);
         uni.put("week", week);
         uni.put("name", name);
+        uni.put("basicPopularity", basicPopularity);
 
         JSONArray profs = new JSONArray();
         for (Professor p : professors) {
@@ -88,6 +91,7 @@ public class University implements SavableLoadableJSON {
         this.studentNb = jsonO.getInt("studentNb");
         this.week = jsonO.getInt("week");
         this.name = jsonO.getString("name");
+        this.basicPopularity = jsonO.getInt("basicPopularity");
 
         JSONArray pArr = jsonO.getJSONArray("profs");
         for (int i = 0; i < pArr.length(); i++) {
@@ -119,14 +123,6 @@ public class University implements SavableLoadableJSON {
         this.name = name;
     }
 
-    public int getPopularity(){
-        int pop = this.basicPopularity;
-        for (Professor p : professors){
-            pop += p.getPopularity();
-        }
-        return pop;
-    }
-
     public int getBasicPopularity() {
         return basicPopularity;
     }
@@ -151,21 +147,8 @@ public class University implements SavableLoadableJSON {
         this.moral = moral;
     }
 
-    public int getMaxPopulation() {
-        int maxPopulation =0;
-        ArrayList<Room> l = University.get().getRooms();
-        for(int i = 0; i<l.size(); i++) {
-            maxPopulation = maxPopulation + l.get(i).getCapacity();
-        }
-        return maxPopulation;
-    }
-
     public ArrayList<Professor> getProfessors() {
         return professors;
-    }
-
-    public void setProfessors(ArrayList<Professor> professors) {
-        this.professors = professors;
     }
 
     public void addProfessor(Professor professor) {
@@ -178,10 +161,6 @@ public class University implements SavableLoadableJSON {
 
     public void addRoom(Room room) {
         rooms.add(room);
-    }
-
-    public void setRooms(ArrayList<Room> rooms) {
-        this.rooms = rooms;
     }
 
     public ArrayList<Professor> getAvailableHires() {
@@ -216,31 +195,58 @@ public class University implements SavableLoadableJSON {
         return currentEvent;
     }
 
+    public int getIncome(){
+        int income= this.studentNb * 10;
+
+        for (Professor p : professors){
+            income -= p.getPrice();
+        }
+
+        return income;
+    }
+
+    public int getPopularity(){
+        int pop = this.basicPopularity;
+
+        // TODO : Increment the popularity with different formula.
+        for (Professor p : professors){
+
+            pop += p.getPopularity();
+        }
+
+        return pop;
+    }
+
+    public int getMaxPopulation() {
+        int maxPopulation = 0;
+        ArrayList<Room> l = University.get().getRooms();
+        for(int i = 0; i<l.size(); i++) {
+            maxPopulation = maxPopulation + l.get(i).getCapacity();
+        }
+        return maxPopulation;
+    }
+
     public void newTurn(){
-        this.addWeek(); //Increment the value of week
-        this.newMoney(); //Gain 10$ per student each week
-        this.newStudentNB(); //Popularity is the chance of increasing the student by 1 each week
+        this.addWeek(); // Increment the value of week
+        this.money += this.getIncome(); // Gain 10$ per student each week
+        this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         this.reloadHires(); // Reload list of professors available for hire
         this.currentEvent = EventManager.get().newEvent();
     }
 
-    public void newMoney(){
-        this.money = this.money + this.studentNb*10;
+    private void newStudentNB(){
 
-        // Pay Prof
-        for (Professor p : professors){
-            money -= p.getPrice();
-        }
-    }
+        int maxPop = this.getMaxPopulation();
 
-    public void newStudentNB(){
-        if(this.studentNb < this.getMaxPopulation()) {
+        if(this.studentNb < maxPop) {
 
-            int random = (int) Math.floor(Math.random() * this.getPopularity());
-            if (this.studentNb + random > this.getMaxPopulation()){
-                setStudentNb(this.getMaxPopulation());
+            // TODO : Change the formula
+            int addStudents = (int) Math.floor(Math.random() * this.getPopularity());
+
+            if (this.studentNb + addStudents > maxPop){
+                setStudentNb(maxPop);
             } else {
-                setStudentNb(this.studentNb + random);
+                setStudentNb(this.studentNb + addStudents);
             }
 
         }
