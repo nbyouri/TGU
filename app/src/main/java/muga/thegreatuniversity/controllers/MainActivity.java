@@ -41,9 +41,8 @@ import muga.thegreatuniversity.utils.SaveManager;
 
 public class MainActivity extends Activity implements CallbackActivity {
 
-    private static final int TITLE_TIME_OUT = 1;
+    private static final int TITLE_TIME_OUT = 1500;
     private static final int LOOP_TIME_OUT = 10;
-
 
     private boolean active;
     public static Handler handler;
