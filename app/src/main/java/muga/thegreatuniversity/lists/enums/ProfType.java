@@ -3,7 +3,6 @@ package muga.thegreatuniversity.lists.enums;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import muga.thegreatuniversity.utils.DistributedRandomGenerator;
 import muga.thegreatuniversity.utils.Tools;
@@ -105,7 +104,4 @@ public enum ProfType {
     public static int getAge() {
         return Tools.randInt(min_age, max_age);
     }
-
-
-
 }

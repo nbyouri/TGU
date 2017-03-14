@@ -1,20 +1,13 @@
 package muga.thegreatuniversity.models;
 
-import android.content.res.AssetManager;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
-import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.lists.Assets;
-import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.ProfType;
-import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tools;
 
 /**
@@ -27,7 +20,7 @@ public class Professor implements SavableLoadableJSON {
     private String name;
     private ProfType type;      // Type of professor
     private int popularity;     // combination of experience and friendliness
-    private Course course;      // from 1 to 5 courses he gives
+    private ArrayList<Course> courses;      // from 1 to 5 courses he gives
     private int age;            // will he die soon
     private int price;          // Cost of hiring
 
@@ -35,10 +28,10 @@ public class Professor implements SavableLoadableJSON {
 
     public Professor() {}
 
-    public Professor(String name, int popularity, Course course, int age) {
+    public Professor(String name, int popularity, ArrayList<Course> courses, int age) {
         this.name = name;
         this.popularity = popularity;
-        this.course = course;
+        this.courses = courses;
         this.age = age;
     }
 
@@ -58,12 +51,12 @@ public class Professor implements SavableLoadableJSON {
         this.popularity = popularity;
     }
 
-    public Course getCourse() {
-        return course;
+    public ArrayList<Course> getCourses() {
+        return courses;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
     }
 
     public int getAge() {
@@ -103,7 +96,11 @@ public class Professor implements SavableLoadableJSON {
         obj.put("name", name);
         obj.put("type", type.getName());
         obj.put("popularity", popularity);
-        obj.put("course", course.getAsJSON());
+        JSONArray jsonCourses = new JSONArray();
+        for (Course c : courses) {
+            jsonCourses.put(c);
+        }
+        obj.put("courses", courses);
         obj.put("age", age);
         obj.put("price", price);
         return obj;
@@ -114,29 +111,23 @@ public class Professor implements SavableLoadableJSON {
         this.name = jsonO.getString("name");
         this.type = ProfType.getEnum(jsonO.getString("type"));
         this.popularity = jsonO.getInt("popularity");
-        // TODO : course array
-        this.course = new Course();
-        JSONObject courseObj = jsonO.getJSONObject("course");
-        this.course.loadJSON(courseObj);
+        JSONArray courseObj = jsonO.getJSONArray("courses");
+        for (int i = 0; i < courseObj.length(); i++) {
+            Course c = new Course();
+            c.loadJSON(courseObj.getJSONObject(i));
+            this.courses.add(c);
+        }
         this.age = jsonO.getInt("age");
         this.price = jsonO.getInt("price");
     }
 
-    /**
-     * Generate a random professor based on the following university properties:
-     *  - popularity
-     *  - money
-     *  TODO:
-     *        - generate course
-     * @return Professor
-     */
     public static Professor generate_professor() {
         Professor p = new Professor();
         p.setName(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
                 + Tools.Capitalize(Assets.getRandomAnimal()));
         p.setType(ProfType.getType());
         p.setPopularity(p.getType().getPopularity());
-        p.setCourse(Course.genCourse());
+        p.setCourses(Course.genCourseList());
         p.setAge(ProfType.getAge());
         p.setPrice(p.getType().getPrice());
         return p;

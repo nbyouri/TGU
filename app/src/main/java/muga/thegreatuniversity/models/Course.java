@@ -3,10 +3,12 @@ package muga.thegreatuniversity.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
+import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 20/02/2017.
@@ -18,6 +20,8 @@ import muga.thegreatuniversity.lists.enums.CourseType;
 public class Course implements SavableLoadableJSON {
     private String courseName;
     private CourseType courseType;
+
+    public static final int NB_COURSES = 5; // maximum courses a professor can teach;
 
     public Course() {}
 
@@ -60,5 +64,13 @@ public class Course implements SavableLoadableJSON {
     public static Course genCourse() {
         /* TODO handle labs */
         return new Course(Assets.getRandomCourse(), CourseType.MAG);
+    }
+
+    public static ArrayList<Course> genCourseList() {
+        ArrayList<Course> courses = new ArrayList<>();
+        for (int i = 0; i < Tools.randInt(1, NB_COURSES); i++) {
+            courses.add(genCourse());
+        }
+        return courses;
     }
 }

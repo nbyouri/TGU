@@ -53,7 +53,7 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         colorRarityProf(icon, prof.getType());
 
         ageProf.setText("Age : " + prof.getAge());
-        course.setText("Courses : "+prof.getCourse().getCourseName());
+        course.setText("Courses : "+prof.getCourses().size());
         // Populate the data into the template view using the data object
         hireName.setText(prof.getName());
         price.setText(String.valueOf(prof.getPrice()));

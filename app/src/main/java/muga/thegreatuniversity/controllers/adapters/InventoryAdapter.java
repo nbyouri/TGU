@@ -40,7 +40,7 @@ public class InventoryAdapter extends ArrayAdapter<Professor> {
 
         // Populate the data into the template view using the data object
         hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+String.valueOf(prof.getPopularity())
-                +"\nCourse: "+prof.getCourse().getCourseName()+"\nAge: "+prof.getAge());
+                +"\nCourse: "+prof.getCourses().size()+"\nAge: "+prof.getAge());
 
         // Return the completed view to render on screen
         return convertView;
