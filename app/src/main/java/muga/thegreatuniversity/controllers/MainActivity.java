@@ -22,6 +22,7 @@ import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
+import muga.thegreatuniversity.controllers.fragments.TutorialFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
@@ -214,6 +215,19 @@ public class MainActivity extends Activity implements CallbackActivity {
         // Add fragments on frame layout
         getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
         getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
+
+
+        //printTutorial();
+    }
+
+    private void printTutorial() {
+        FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);
+
+        fAll.setVisibility(View.VISIBLE);
+
+        TutorialFragment tuto = new TutorialFragment();
+
+        getFragmentManager().beginTransaction().replace(R.id.frame_all, tuto).commit();
 
     }
 
