@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.enums.EventType;
 import muga.thegreatuniversity.models.SavableLoadableJSON;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 28/02/17 .
@@ -113,5 +114,21 @@ public class Event {
         this.conds.loadJSON(jsonO.getJSONObject("conditions"));
 
         this.ans = AnsType.getEnum("ans_type");
+
+        Logger.info(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "message='" + message + '\'' +
+                ", firstChoice='" + firstChoice + '\'' +
+                ", secondChoice='" + secondChoice + '\'' +
+                ", type=" + type +
+                ", yesAction=" + yesAction.toString() +
+                ", noAction=" + noAction.toString() +
+                ", conds=" + conds.toString() +
+                ", ans=" + ans +
+                '}';
     }
 }

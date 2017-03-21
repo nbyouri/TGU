@@ -44,4 +44,13 @@ public class EventAction {
         this.actionType = EventActionType.getEnum(jsonO.getString("action_type"));
         this.valueType = EventValueType.getEnum(jsonO.getString("value_type"));
     }
+
+    @Override
+    public String toString() {
+        return "EventAction{" +
+                "value=" + value +
+                ", actionType=" + actionType +
+                ", valueType=" + valueType +
+                '}';
+    }
 }

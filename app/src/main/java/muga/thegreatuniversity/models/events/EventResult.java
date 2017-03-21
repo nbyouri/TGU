@@ -35,4 +35,11 @@ public class EventResult {
             actions.add(ea);
         }
     }
+
+    @Override
+    public String toString() {
+        return "EventResult{" +
+                "actions=" + actions +
+                '}';
+    }
 }

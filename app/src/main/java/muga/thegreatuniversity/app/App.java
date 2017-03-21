@@ -52,7 +52,6 @@ public class App extends Application {
         protected Integer doInBackground(Void... params) {
 
             University.get();
-            EventManager.get();
             if (SaveManager.isSaveExist(getApplicationContext())) {
                 SaveManager.loadUniversity(getApplicationContext());
             }

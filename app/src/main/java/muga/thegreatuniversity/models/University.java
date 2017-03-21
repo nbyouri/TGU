@@ -31,6 +31,7 @@ public class University implements SavableLoadableJSON {
     private int studentNb;
     private int week;
 
+    // TODO arraylist
     private Event currentEvent;
 
     // main objects
@@ -193,16 +194,16 @@ public class University implements SavableLoadableJSON {
         this.week = week;
     }
 
-    public Event getCurrentEvent() {
-        return currentEvent;
-    }
-
     public ArrayList<Event> getEvents() {
         return events;
     }
 
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
+    }
+
+    public Event getCurrentEvent() {
+        return currentEvent;
     }
 
     public int getIncome(){
@@ -246,7 +247,7 @@ public class University implements SavableLoadableJSON {
         this.money += this.getIncome(); // Gain 10$ per student each week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         this.reloadHires(); // Reload list of professors available for hire
-        this.currentEvent = EventManager.get().newEvent();
+        this.currentEvent = EventManager.newEvent();
     }
 
     private void newStudentNB(){
@@ -299,7 +300,6 @@ public class University implements SavableLoadableJSON {
                     break;
             }
         }
-
     }
 
     private int computation(EventActionType type, int prevValue, double value){

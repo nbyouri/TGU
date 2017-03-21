@@ -3,6 +3,8 @@ package muga.thegreatuniversity.models.events;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.models.University;
 
@@ -88,5 +90,14 @@ public class EventConditions {
         for (int i = 0; i < values.length(); i++) {
             this.values[i] = values.getInt(i);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "EventConditions{" +
+                "vars=" + Arrays.toString(vars) +
+                ", ops=" + Arrays.toString(ops) +
+                ", values=" + Arrays.toString(values) +
+                '}';
     }
 }
