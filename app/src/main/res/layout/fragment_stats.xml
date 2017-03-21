@@ -1,82 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lin_hire"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/dark_grey"
-    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/nb_classroom"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-    <TextView
-        android:id="@+id/nb_audience"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-    <TextView
-        android:id="@+id/nb_sciencelab"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-    <TextView
-        android:id="@+id/nb_agrolab"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-    <TextView
-    android:id="@+id/nb_itlab"
-    style="@style/QText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="start"
-    android:textAlignment="gravity"
-    android:textSize="@dimen/text_large"
-    android:text="@string/not_available" />
-
-    <TextView
-        android:id="@+id/nb_profs"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-    <TextView
-        android:id="@+id/nb_income"
-        style="@style/QText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/text_large"
-        android:text="@string/not_available" />
-
-</LinearLayout>-->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
@@ -87,7 +10,12 @@
         android:layout_width="fill_parent"
         android:stretchColumns="0"
         android:layout_height="wrap_content"
-        android:id="@+id/tableStats">
+        android:id="@+id/tableStats"
+        android:divider="?android:listDivider"
+        android:dividerPadding="16dp"
+        android:showDividers="middle">
     </TableLayout>
+
+
 
 </ScrollView>
