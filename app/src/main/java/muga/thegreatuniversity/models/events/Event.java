@@ -112,10 +112,6 @@ public class Event {
 
         this.conds = new EventConditions();
         this.conds.loadJSON(jsonO.getJSONObject("conditions"));
-
-        this.ans = AnsType.getEnum("ans_type");
-
-        Logger.info(this.toString());
     }
 
     @Override

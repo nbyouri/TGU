@@ -93,7 +93,6 @@ public class App extends Application {
             is.close();
             String bufferString = new String(buffer);
             JSONArray jsonArray = new JSONArray(bufferString);
-            Logger.info("Loaded " + jsonArray.length() + " events...");
             for (int i = 0; i < jsonArray.length(); i++) {
                 Event ev = new Event();
                 ev.loadJSON(jsonArray.getJSONObject(i));
