@@ -138,4 +138,31 @@ public class PopUp {
         univDialog.show();
     }
 
+
+    static public void resetUnivPopUp(final MainActivity mainAct) {
+
+        AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
+        builderDialog.setMessage(Context.getString(R.string.popUp_Reset));
+
+        builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        createUnivPopUp(mainAct);
+                        mainAct.updateView();
+                    }
+                });
+
+        builderDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog univDialog = builderDialog.create();
+        univDialog.show();
+    }
+
 }

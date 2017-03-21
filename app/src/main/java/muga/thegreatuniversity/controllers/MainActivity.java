@@ -20,6 +20,7 @@ import muga.thegreatuniversity.controllers.fragments.BuildFragment;
 import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
 import muga.thegreatuniversity.controllers.fragments.HireFragment;
 import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
+import muga.thegreatuniversity.controllers.fragments.OptionsFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
@@ -152,6 +153,8 @@ public class MainActivity extends Activity implements CallbackActivity {
                 break;
             case STATISTICS:
                 frag = new StatsFragment();
+            case OPTIONS:
+                frag = new OptionsFragment();
         }
 
         commitFrag(frag);

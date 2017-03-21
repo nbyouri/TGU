@@ -10,5 +10,6 @@ public enum FragmentType {
     HIRE_PROF,
     INVENTORY,
     BUILD_ROOM,
-    STATISTICS
+    STATISTICS,
+    OPTIONS
 }

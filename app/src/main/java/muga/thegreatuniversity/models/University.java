@@ -228,7 +228,7 @@ public class University implements SavableLoadableJSON {
 
         pop += getMoral() * this.basicPopularity/100;
 
-        pop = pop * getStudentNb();
+        pop = pop * getStudentNb()/100;
 
         return pop;
     }
@@ -275,6 +275,8 @@ public class University implements SavableLoadableJSON {
         University.get().setWeek(DefaultValues.START_WEEK);
         University.get().setBasicPopularity(DefaultValues.START_POPULARITY);
         University.get().reloadHires();
+        this.rooms = new ArrayList<Room>();
+        this.professors = new ArrayList<Professor>();
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         University.get().setMoral(50);
     }

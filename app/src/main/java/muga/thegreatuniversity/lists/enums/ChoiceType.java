@@ -11,5 +11,7 @@ public enum ChoiceType {
     HIRE_PROF,
     BUILD_ROOM,
     INVENTORY,
-    STATISTICS
+    STATISTICS,
+    OPTIONS,
+    RESET
 }

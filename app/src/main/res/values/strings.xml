@@ -37,4 +37,6 @@
     <string name="icon_desc_choice">Choice Icon</string>
     <string name="per_week_money">Per week</string>
 
+    <string name="popUp_Reset">Are you sur to delete your university ? All your data will be lost</string>
+
 </resources>
