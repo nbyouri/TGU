@@ -13,6 +13,7 @@ import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
 import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
+import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 
@@ -32,14 +33,13 @@ public class University implements SavableLoadableJSON {
     private int studentNb;
     private int week;
 
-    // TODO arraylist
-    private Event currentEvent;
+    private ArrayList<Event> currentEvents;
 
     // main objects
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
-    private ArrayList<Event> events;
+    private Events events;
 
     private static class UniversityHolder {
         private final static University instance = new University();
@@ -53,7 +53,6 @@ public class University implements SavableLoadableJSON {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
-        events = new ArrayList<>();
     }
 
     @Override
@@ -195,16 +194,16 @@ public class University implements SavableLoadableJSON {
         this.week = week;
     }
 
-    public ArrayList<Event> getEvents() {
+    public Events getEvents() {
         return events;
     }
 
-    public void setEvents(ArrayList<Event> events) {
+    public void setEvents(Events events) {
         this.events = events;
     }
 
-    public Event getCurrentEvent() {
-        return currentEvent;
+    public ArrayList<Event> getCurrentEvents() {
+        return currentEvents;
     }
 
     public int getIncome(){
@@ -246,7 +245,7 @@ public class University implements SavableLoadableJSON {
         this.money += this.getIncome(); // Gain 10$ per student each week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         this.reloadHires(); // Reload list of professors available for hire
-        this.currentEvent = EventManager.newEvent();
+        this.currentEvents = EventManager.getEvents();
     }
 
     private void newStudentNB(){

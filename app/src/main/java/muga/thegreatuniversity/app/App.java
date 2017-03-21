@@ -21,6 +21,7 @@ import muga.thegreatuniversity.models.Course;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 
@@ -84,8 +85,9 @@ public class App extends Application {
             return arrayString;
         }
 
-        private ArrayList<Event> loadJSON(String filename, AssetManager assets) throws Exception {
-            ArrayList<Event> events = new ArrayList<>();
+        private Events loadJSON(String filename, AssetManager assets) throws Exception {
+            ArrayList<Event> causal = new ArrayList<>();
+            ArrayList<Event> others = new ArrayList<>();
             InputStream is = assets.open(filename);
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -96,9 +98,13 @@ public class App extends Application {
             for (int i = 0; i < jsonArray.length(); i++) {
                 Event ev = new Event();
                 ev.loadJSON(jsonArray.getJSONObject(i));
-                events.add(ev);
+                if (ev.isCausal()) {
+                    causal.add(ev);
+                } else {
+                    others.add(ev);
+                }
             }
-            return events;
+            return new Events(causal, others);
         }
 
         @Override

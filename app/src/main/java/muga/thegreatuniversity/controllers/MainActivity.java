@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.fragments.BuildFragment;
@@ -125,9 +127,11 @@ public class MainActivity extends Activity implements CallbackActivity {
      */
     public void passOneWeek(){
         University.get().newTurn();
-        Event event = University.get().getCurrentEvent();
-        if(event != null)
-            PopUp.alertNewEvent(this, event);
+        ArrayList<Event> events = University.get().getCurrentEvents();
+        for (Event ev : events) {
+            if (ev != null)
+                PopUp.alertNewEvent(this, ev);
+        }
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }

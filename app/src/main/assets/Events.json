@@ -28,6 +28,39 @@
      "values":[
        3000
      ]
-   }
+   },
+    "causal" : "false"
+  },
+  {
+    "message":"Causal event!!!!",
+    "type":"determinist",
+    "first_choice":null,
+    "second_choice":null,
+    "yes_action":[
+      {
+        "value":1.2,
+        "action_type":"mul",
+        "value_type":"popularity"
+      },
+      {
+        "value":1.3,
+        "action_type":"mul",
+        "value_type":"money"
+      }
+    ],
+    "no_action":[],
+    "conditions":
+    {
+      "vars":[
+        "money"
+      ],
+      "ops":[
+        "<="
+      ],
+      "values":[
+        -105000
+      ]
+    },
+    "causal" : "true"
   }
 ]

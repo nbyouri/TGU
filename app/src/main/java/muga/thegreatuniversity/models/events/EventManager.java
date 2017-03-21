@@ -17,15 +17,20 @@ import static muga.thegreatuniversity.lists.enums.EventValueType.MONEY;
  */
 
 public class EventManager {
-    public static Event newEvent() {
-        // 1 chance out of 5 to get an event
+    public static ArrayList<Event> getEvents() {
+        ArrayList<Event> ev = new ArrayList<>();
+        // 1 chance out of 3 to get an event
         int random = (int) Math.floor(Math.random() * University.get().getEvents().size() * 3);
         if (random < University.get().getEvents().size()) {
-            Event ev = University.get().getEvents().get(random);
-            if (ev.getConds().check())
-                return ev;
+            Event e = University.get().getEvents().getEvent(random);
+            if (e.getConds().check())
+                ev.add(e);
         }
-        return null;
+
+        // add causal events
+        ev.addAll(University.get().getEvents().getCausalEvents());
+
+        return ev;
     }
 
     /*

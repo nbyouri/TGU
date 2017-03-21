@@ -27,18 +27,9 @@ public class Event {
     private EventConditions conds;
     private AnsType ans;
 
-    public Event() {}
+    private boolean causal;
 
-    public Event(EventType type, String message, String firstChoice, String secondChoice,EventResult yesAction,
-                 EventResult noAction, EventConditions conds){
-        this.message = message;
-        this.firstChoice=firstChoice;
-        this.secondChoice=secondChoice;
-        this.yesAction =yesAction;
-        this.noAction = noAction;
-        this.conds = conds;
-        this.type=type;
-    }
+    public Event() {}
 
     public String getMessage() {
         return message;
@@ -112,19 +103,11 @@ public class Event {
 
         this.conds = new EventConditions();
         this.conds.loadJSON(jsonO.getJSONObject("conditions"));
+
+        this.causal = jsonO.getBoolean("causal");
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "message='" + message + '\'' +
-                ", firstChoice='" + firstChoice + '\'' +
-                ", secondChoice='" + secondChoice + '\'' +
-                ", type=" + type +
-                ", yesAction=" + yesAction.toString() +
-                ", noAction=" + noAction.toString() +
-                ", conds=" + conds.toString() +
-                ", ans=" + ans +
-                '}';
+    public boolean isCausal() {
+        return causal;
     }
 }
