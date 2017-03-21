@@ -2,13 +2,16 @@ package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.Layout;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
 
@@ -41,6 +44,12 @@ public class StatFragment extends Fragment {
     public void onStart(){
         super.onStart();
         createViews();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateViews();
     }
 
     public void updateViews(){

@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <muga.thegreatuniversity.controllers.TutorialLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/layout_game">
 
         <FrameLayout
             android:id="@+id/frame_stat"
@@ -24,7 +25,7 @@
             android:visibility="gone">
 
         </FrameLayout>
-    </LinearLayout>
+    </muga.thegreatuniversity.controllers.TutorialLayout>
 
     <FrameLayout
         android:id="@+id/frame_all"

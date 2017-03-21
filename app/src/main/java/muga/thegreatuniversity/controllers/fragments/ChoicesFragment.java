@@ -9,14 +9,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.Tools;
+import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
  * Created on 20/02/2017.
@@ -25,6 +30,8 @@ import muga.thegreatuniversity.utils.Logger;
  */
 
 public class ChoicesFragment extends ListFragment implements OnItemClickListener {
+
+    private ChoicesAdapter choicesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,13 +53,40 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
 
         // Apply this choice on ListView
-        ChoicesAdapter choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
+        choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
         setListAdapter(choicesAdapter);
         getListView().setOnItemClickListener(this);
+
     }
 
+    @Override
     public void onStart(){
         super.onStart();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+
+        getListView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                final android.os.Handler handlerLoop = new android.os.Handler();
+                handlerLoop.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //tuto();
+                    }
+                },10);
+            }
+        });
+
+    }
+
+    public void tuto(){
+        View toClick = Tools.getViewByPosition(0,getListView());
+        TutorialManager.get().printCurrentTourGuide(getActivity(), toClick);
     }
 
     private void hireProf(){
@@ -75,6 +109,9 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
         Logger.info("Click on choice type = " + choiceType);
+
+        TutorialManager.get().removeTour();
+
         switch (choiceType){
             case HIRE_PROF:
                 hireProf();

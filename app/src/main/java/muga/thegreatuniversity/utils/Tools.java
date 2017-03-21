@@ -3,7 +3,9 @@ package muga.thegreatuniversity.utils;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.media.Image;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import muga.thegreatuniversity.lists.enums.ProfType;
 
@@ -37,6 +39,18 @@ public class Tools {
         }
         img.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 
+    }
+
+    public static View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
     }
 
 }

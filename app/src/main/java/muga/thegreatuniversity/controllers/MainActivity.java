@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
@@ -22,12 +23,16 @@ import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
-import muga.thegreatuniversity.controllers.fragments.TutorialFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.Tools;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 /**
  * Created on 20/02/2017.
@@ -39,6 +44,8 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private static final int TITLE_TIME_OUT = 1500;
     private static final int LOOP_TIME_OUT = 10;
+
+    private TourGuide mTourGuideHandler;
 
     private boolean active;
 
@@ -215,20 +222,13 @@ public class MainActivity extends Activity implements CallbackActivity {
         // Add fragments on frame layout
         getFragmentManager().beginTransaction().replace(R.id.frame_stat, statF).commit();
         getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
-
-
-        //printTutorial();
     }
 
-    private void printTutorial() {
-        FrameLayout fAll = (FrameLayout) findViewById(R.id.frame_all);
+    public void printTutorial(View l) {
+        TutorialLayout tuto = (TutorialLayout) findViewById(R.id.layout_game);
 
-        fAll.setVisibility(View.VISIBLE);
-
-        TutorialFragment tuto = new TutorialFragment();
-
-        getFragmentManager().beginTransaction().replace(R.id.frame_all, tuto).commit();
-
+        tuto.refreshLayout(l);
+        tuto.invalidate();
     }
 
     private void printLoginLayout(){
@@ -254,6 +254,15 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private void clickToCreateUniv(){
         PopUp.createUnivPopUp(this);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus) {
+           updateView();
+        }
     }
 
 }
