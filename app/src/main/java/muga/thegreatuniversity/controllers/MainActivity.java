@@ -153,8 +153,10 @@ public class MainActivity extends Activity implements CallbackActivity {
                 break;
             case STATISTICS:
                 frag = new StatsFragment();
+                break;
             case OPTIONS:
                 frag = new OptionsFragment();
+                break;
         }
 
         commitFrag(frag);

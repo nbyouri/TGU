@@ -14,6 +14,7 @@ import muga.thegreatuniversity.models.events.EventAction;
 import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.SaveManager;
 
 /**
  * Created on 20/02/2017.
@@ -227,8 +228,6 @@ public class University implements SavableLoadableJSON {
         }
 
         pop += getMoral() * this.basicPopularity/100;
-
-        pop = pop * getStudentNb()/100;
 
         return pop;
     }
