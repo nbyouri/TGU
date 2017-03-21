@@ -2,6 +2,7 @@ package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.Gravity;
@@ -78,6 +79,8 @@ public class StatsFragment extends Fragment {
                                 String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
 
         TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
+       
+
         TableRow row;
         TextView tv1,tv2;
 ///each row for info
@@ -89,10 +92,12 @@ public class StatsFragment extends Fragment {
             tv1.setGravity(Gravity.LEFT);
             tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
+
             tv2 = new TextView(getActivity());
             tv2.setText(col2[i]);
             tv2.setGravity(Gravity.CENTER);
             tv2.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
+
 
             row.addView(tv1);
             row.addView(tv2);
