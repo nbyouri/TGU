@@ -62,6 +62,8 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
                 return R.mipmap.ic_poeple;
             case STATISTICS:
                 return R.mipmap.ic_information;
+            case SETTINGS:
+                return R.mipmap.ic_settings;
         }
 
 

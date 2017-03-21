@@ -12,6 +12,6 @@ public enum ChoiceType {
     BUILD_ROOM,
     INVENTORY,
     STATISTICS,
-    OPTIONS,
+    SETTINGS,
     RESET
 }

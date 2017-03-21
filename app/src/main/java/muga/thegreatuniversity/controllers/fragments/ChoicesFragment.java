@@ -9,17 +9,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.SaveManager;
 import muga.thegreatuniversity.utils.Tools;
 import muga.thegreatuniversity.utils.TutorialManager;
 
@@ -51,7 +48,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
         choices.add(new Choice(ChoiceType.BUILD_ROOM, "Build room"));
         choices.add(new Choice(ChoiceType.STATISTICS, "Statistics"));
         choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
-        choices.add(new Choice(ChoiceType.OPTIONS, "Options"));
+        choices.add(new Choice(ChoiceType.SETTINGS, "Settings"));
 
         // Apply this choice on ListView
         choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
@@ -133,7 +130,7 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
             case STATISTICS:
                 stats();
                 break;
-            case OPTIONS:
+            case SETTINGS:
                 options();
                 break;
         }
