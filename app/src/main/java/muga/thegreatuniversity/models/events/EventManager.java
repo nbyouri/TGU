@@ -89,7 +89,7 @@ public class EventManager {
 
         events.add(new Event(EventType.DETERMINIST,"One of your teacher finished his thesis, you gain money and popularity", null, null, yAct, null, null));
 
-        /* !!!!!!!!!!!!!! Event you loose a student*/
+        /* !!!!!!!!!!!!!! Event you loose a student !!!!!!!!!!!!!*/
         yAct = new EventResult();
         act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.STUDENT, 0.8);
         yAct.addAction(act);
