@@ -1,5 +1,9 @@
 package muga.thegreatuniversity.models.events;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +17,7 @@ public class EventResult {
     private ArrayList<EventAction> actions;
 
     EventResult(){
-        actions = new ArrayList<EventAction>();
+        actions = new ArrayList<>();
     }
 
     public void addAction(EventAction act){
@@ -24,4 +28,11 @@ public class EventResult {
         return actions;
     }
 
+    public void loadJSON(JSONArray json) throws JSONException {
+        for (int i = 0; i < json.length(); i++) {
+            EventAction ea = new EventAction();
+            ea.loadJSON(json.getJSONObject(i));
+            actions.add(ea);
+        }
+    }
 }
