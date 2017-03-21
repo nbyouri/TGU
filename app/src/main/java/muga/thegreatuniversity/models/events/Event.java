@@ -18,15 +18,17 @@ public class Event {
     private EventResult yesAction;
     private EventResult noAction;
 
+    private EventConditions conds;
     private AnsType ans;
 
     public Event(EventType type, String message, String firstChoice, String secondChoice,EventResult yesAction,
-                 EventResult noAction){
+                 EventConditions conds, EventResult noAction){
         this.message = message;
         this.firstChoice=firstChoice;
         this.secondChoice=secondChoice;
         this.yesAction =yesAction;
         this.noAction = noAction;
+        this.conds = conds;
         this.type=type;
     }
 
@@ -81,5 +83,11 @@ public class Event {
         this.ans = ans;
     }
 
+    public void setConds(EventConditions conds) {
+        this.conds = conds;
+    }
 
+    public EventConditions getConds() {
+        return conds;
+    }
 }

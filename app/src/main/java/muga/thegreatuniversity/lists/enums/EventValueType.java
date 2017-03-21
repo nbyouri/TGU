@@ -1,5 +1,9 @@
 package muga.thegreatuniversity.lists.enums;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created on 10-03-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -7,11 +11,29 @@ package muga.thegreatuniversity.lists.enums;
  */
 
 public enum EventValueType {
+    STUDENT("student"),
+    MONEY("money"),
+    POPULARITY("popularity"),
+    MORAL("moral"),
+    PROF("prof");
 
-    STUDENT,
-    MONEY,
-    POPULARITY,
-    MORAL,
-    PROF
+    private String name = "";
+    public String getName() {
+        return name;
+    }
 
+    private static final Map<String, EventValueType> lookup = new HashMap<>();
+
+    static {
+        for (EventValueType r : EnumSet.allOf(EventValueType.class))
+            lookup.put(r.getName(), r);
+    }
+
+    EventValueType(String name) {
+        this.name = name;
+    }
+
+    public static EventValueType getEnum(String type) {
+        return lookup.get(type);
+    }
 }
