@@ -3,6 +3,8 @@ package muga.thegreatuniversity.lists;
 import java.util.ArrayList;
 import java.util.Random;
 
+import muga.thegreatuniversity.models.events.Event;
+
 /**
  * Created on 10/03/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -14,6 +16,7 @@ public class Assets {
     private ArrayList<String> wordListAdjectives;
     private ArrayList<String> wordListAnimals;
     private ArrayList<String> MITcourses;
+    private ArrayList<Event>  Events;
 
     public Assets() {
         this.wordListAdjectives = new ArrayList<>();

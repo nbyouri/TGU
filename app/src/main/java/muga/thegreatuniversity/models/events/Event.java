@@ -1,7 +1,12 @@
 package muga.thegreatuniversity.models.events;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.enums.EventType;
+import muga.thegreatuniversity.models.SavableLoadableJSON;
 
 /**
  * Created on 28/02/17 .
@@ -21,8 +26,10 @@ public class Event {
     private EventConditions conds;
     private AnsType ans;
 
+    public Event() {}
+
     public Event(EventType type, String message, String firstChoice, String secondChoice,EventResult yesAction,
-                 EventConditions conds, EventResult noAction){
+                 EventResult noAction, EventConditions conds){
         this.message = message;
         this.firstChoice=firstChoice;
         this.secondChoice=secondChoice;
@@ -89,5 +96,22 @@ public class Event {
 
     public EventConditions getConds() {
         return conds;
+    }
+
+    public void loadJSON(JSONObject jsonO) throws Exception {
+        this.message = jsonO.getString("message");
+        this.type = EventType.getEnum(jsonO.getString("type"));
+        this.firstChoice = jsonO.getString("first_choice");
+        this.secondChoice = jsonO.getString("second_choice");
+
+        this.yesAction = new EventResult();
+        this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));
+        this.noAction = new EventResult();
+        this.noAction.loadJSON(jsonO.getJSONArray("no_action"));
+
+        this.conds = new EventConditions();
+        this.conds.loadJSON(jsonO.getJSONObject("conditions"));
+
+        this.ans = AnsType.getEnum("ans_type");
     }
 }

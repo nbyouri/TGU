@@ -5,12 +5,20 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.lists.Assets;
+import muga.thegreatuniversity.lists.enums.ProfType;
+import muga.thegreatuniversity.models.Course;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -55,6 +63,7 @@ public class App extends Application {
                 ass.setWordListAdjectives(loadTxtFile("Adjectives.txt", assets));
                 ass.setWordListAnimals(loadTxtFile("Animals.txt", assets));
                 ass.setMITcourses(loadTxtFile("MITcourses.txt", assets));
+                University.get().setEvents(loadJSON("Events.json", assets));
             } catch (Exception e) {
                 Logger.error(e.getMessage());
             }
@@ -74,6 +83,24 @@ public class App extends Application {
             }
 
             return arrayString;
+        }
+
+        private ArrayList<Event> loadJSON(String filename, AssetManager assets) throws Exception {
+            ArrayList<Event> events = new ArrayList<>();
+            InputStream is = assets.open(filename);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String bufferString = new String(buffer);
+            JSONArray jsonArray = new JSONArray(bufferString);
+            Logger.info("Loaded " + jsonArray.length() + " events...");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                Event ev = new Event();
+                ev.loadJSON(jsonArray.getJSONObject(i));
+                events.add(ev);
+            }
+            return events;
         }
 
         @Override

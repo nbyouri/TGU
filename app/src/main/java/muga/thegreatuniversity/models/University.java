@@ -37,6 +37,7 @@ public class University implements SavableLoadableJSON {
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
+    private ArrayList<Event> events;
 
     private static class UniversityHolder {
         private final static University instance = new University();
@@ -50,6 +51,7 @@ public class University implements SavableLoadableJSON {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
+        events = new ArrayList<>();
     }
 
     @Override
@@ -193,6 +195,14 @@ public class University implements SavableLoadableJSON {
 
     public Event getCurrentEvent() {
         return currentEvent;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
     }
 
     public int getIncome(){

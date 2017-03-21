@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.models.events;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.models.University;
@@ -15,6 +16,8 @@ public class EventConditions {
     private EventValueType[] vars;
     private String[] ops;
     private int[] values;
+
+    public EventConditions() {}
 
     public EventConditions(String[] vars, String[] ops, int[] values) throws Exception {
         if (vars.length != values.length) {
@@ -65,5 +68,25 @@ public class EventConditions {
         }
 
         return ok;
+    }
+
+    public void loadJSON(JSONObject json) throws Exception {
+        JSONArray vars = json.getJSONArray("vars");
+        this.vars = new EventValueType[vars.length()];
+        for (int i = 0; i < vars.length(); i++) {
+            this.vars[i] = EventValueType.getEnum(vars.getString(i));
+        }
+
+        JSONArray ops = json.getJSONArray("ops");
+        this.ops = new String[ops.length()];
+        for (int i = 0; i < ops.length(); i++) {
+            this.ops[i] = ops.getString(i);
+        }
+
+        JSONArray values = json.getJSONArray("values");
+        this.values = new int[values.length()];
+        for (int i = 0; i < values.length(); i++) {
+            this.values[i] = values.getInt(i);
+        }
     }
 }

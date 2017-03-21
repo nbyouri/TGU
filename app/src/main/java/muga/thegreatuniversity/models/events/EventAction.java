@@ -1,7 +1,11 @@
 package muga.thegreatuniversity.models.events;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
+import muga.thegreatuniversity.models.SavableLoadableJSON;
 
 /**
  * Created on 10-03-17.
@@ -14,6 +18,8 @@ public class EventAction {
     private double value;
     private EventActionType actionType;
     private EventValueType valueType;
+
+    public EventAction() {}
 
     public EventAction(EventActionType actionType, EventValueType valueType, double value) {
         this.value = value;
@@ -31,5 +37,11 @@ public class EventAction {
 
     public EventValueType getValueType() {
         return valueType;
+    }
+
+    public void loadJSON(JSONObject jsonO) throws JSONException {
+        this.value = jsonO.getDouble("value");
+        this.actionType = EventActionType.getEnum(jsonO.getString("action_type"));
+        this.valueType = EventValueType.getEnum(jsonO.getString("value_type"));
     }
 }

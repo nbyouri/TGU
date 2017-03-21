@@ -31,6 +31,7 @@ public class EventManager {
     }
 
     public Event newEvent() {
+        // TODO random from events
         //int random = (int) Math.floor(Math.random()*this.sizeEvents()*3); //1 chance out of 5 to get an event
         //if (random < this.sizeEvents())
         Event firstevent = getEvent(0);
@@ -71,7 +72,7 @@ public class EventManager {
         act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.POPULARITY, -0.6);
         nAct.addAction(act);
 
-        events.add(new Event(EventType.TWO_CHOICES, "Do you want to organize the 24H velo", "Yes", "No", yAct, conds, nAct));
+        events.add(new Event(EventType.TWO_CHOICES, "Do you want to organize the 24H velo", "Yes", "No", yAct, nAct, conds));
 
         /* !!!!!!!!!!!!! Event you lost half your money !!!!!!!!!!!!!!*/
         yAct = new EventResult();
@@ -109,7 +110,7 @@ public class EventManager {
         act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.POPULARITY, 0.8);
         nAct.addAction(act);
 
-        events.add(new Event(EventType.TWO_CHOICES, "Set a new Erasmus partnership in a new country", "Yes", "No", yAct, null, nAct));
+        events.add(new Event(EventType.TWO_CHOICES, "Set a new Erasmus partnership in a new country", "Yes", "No", yAct, nAct, null));
 
         /*!!!!!!!!!!! Event bourse d'étude !!!!!!!!!!!!!!!!*/
         yAct = new EventResult();
@@ -122,15 +123,7 @@ public class EventManager {
         act = new EventAction(EventActionType.MULTIPLICATION, MONEY, 1.1);
         nAct.addAction(act);
 
-        events.add(new Event(EventType.TWO_CHOICES,"Create a new scolarship for your student","Yes", "No", yAct, null, nAct));
-        return events;
-    }
-
-    private static ArrayList<Event> genEventJson(){
-        ArrayList<Event> events = new ArrayList<>();
-
-
-
+        events.add(new Event(EventType.TWO_CHOICES,"Create a new scolarship for your student","Yes", "No", yAct, nAct, null));
         return events;
     }
 }
