@@ -14,7 +14,7 @@ public enum EventActionType {
 
     ADD("add"),
     MULTIPLICATION("mul"),
-    REMOVE("rem");
+    FIRE("fire");
 
     private String name = "";
     private static final Map<String, EventActionType> lookup = new HashMap<>();

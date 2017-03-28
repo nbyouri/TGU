@@ -5,6 +5,7 @@ Template for objet event in json:
     "type":null,
     "first_choice":null,
     "second_choice":null,
+    "duration": 1,
     "yes_action":[
       {
         "value":null,
@@ -31,7 +32,7 @@ Template for objet event in json:
         null
       ]
     },
-    "ans_type":null
+    "causal":null
   }
   {
     "message":"Do you want to organize the 24h velo",

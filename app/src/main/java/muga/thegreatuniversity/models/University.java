@@ -146,7 +146,12 @@ public class University implements SavableLoadableJSON {
     }
 
     public void setMoney(int money) {
-        this.money = money;
+        if(money < 0) {
+            this.money = 0;
+        }
+        else {
+            this.money = money;
+        }
     }
 
     public int getMoral() {
@@ -251,7 +256,7 @@ public class University implements SavableLoadableJSON {
         this.updateCurrentEvents();
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
-        this.money += this.getIncome();
+        this.setMoney(this.money + this.getIncome());
         this.reloadHires(); // Reload list of professors available for hire
         this.currentEvents.addAll(EventManager.getEvents());
         this.sortProfessors();
@@ -351,18 +356,19 @@ public class University implements SavableLoadableJSON {
         for (EventAction act : result.getActions()) {
             switch (act.getValueType()) {
                 case MONEY:
-                    this.money = computation(act.getActionType(), this.money, act.getValue());
+                    this.setMoney(computation(act.getActionType(), this.money, act.getValue()));
                     break;
                 case POPULARITY:
-                    this.basicPopularity = computation(act.getActionType(), this.basicPopularity, act.getValue());
+                    this.setBasicPopularity(computation(act.getActionType(), this.basicPopularity, act.getValue()));
                     break;
                 case MORAL:
-                    this.moral = computation(act.getActionType(), this.moral, act.getValue());
+                    this.setMoral(computation(act.getActionType(), this.moral, act.getValue()));
                     break;
                 case STUDENT:
-                    this.studentNb = computation(act.getActionType(), this.studentNb, act.getValue());
+                    this.setStudentNb(computation(act.getActionType(), this.studentNb, act.getValue()));
                     break;
                 case PROF:
+                    computation(act.getActionType(), 0, act.getValue());
                     break;
             }
         }
@@ -374,7 +380,10 @@ public class University implements SavableLoadableJSON {
                 return prevValue + (int)value;
             case MULTIPLICATION:
                 return (int)(prevValue * value);
-            case REMOVE:
+            case FIRE:
+                for(int i = 0; i < value; i++) {
+                    professors.remove(i);
+                }
                 return 0;
         }
         Logger.error("Error Computation Event : type = " + type + " , prevValue = "

@@ -236,5 +236,32 @@
       "values":[]
     },
     "causal":"false"
+  },
+  {
+    "message":"You have no money left, your best teacher left your university",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":1,
+        "action_type":"fire",
+        "value_type":"prof"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "money"
+      ],
+      "ops":[
+        "="
+      ],
+      "values":[
+        "0"
+      ]
+    },
+    "causal":"true"
   }
 ]
