@@ -77,12 +77,12 @@ public abstract class TutorialListFragment extends ListFragment {
         if (step !=null ){
             View v = getActivity().findViewById(step.getIdView());
             if (v !=null && tuto !=null){
-                tuto.refreshLayout(v);
+                tuto.refreshLayout(step);
                 tuto.invalidate();
             }
         } else {
             Logger.info("Finish tuto for "+ getFragmentType() + " Fragment");
-            tuto.cleanCanva();
+            tuto.cleanCanvas();
             tuto.invalidate();
         }
     }

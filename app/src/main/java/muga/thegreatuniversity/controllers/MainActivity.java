@@ -236,13 +236,6 @@ public class MainActivity extends Activity implements CallbackActivity {
         getFragmentManager().beginTransaction().replace(R.id.frame_main, choicesF).commit();
     }
 
-    public void printTutorial(View l) {
-        TutorialLayout tuto = (TutorialLayout) findViewById(R.id.layout_game);
-
-        tuto.refreshLayout(l);
-        tuto.invalidate();
-    }
-
     private void printLoginLayout(){
 
         Button button= (Button) findViewById(R.id.btn_create_university);

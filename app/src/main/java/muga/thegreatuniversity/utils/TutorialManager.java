@@ -35,7 +35,7 @@ public class TutorialManager {
         stats.add(new TutorialStep("You can see you money and popularity here",R.id.layout_stat_cash));
         stats.add(new TutorialStep("You stat here",R.id.layout_stat));
         //
-        // tutorials.put(FragmentType.STAT, stats);
+        tutorials.put(FragmentType.STAT, stats);
 
         return tutorials;
     }

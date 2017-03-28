@@ -11,10 +11,13 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.models.TutorialStep;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
@@ -24,18 +27,28 @@ import muga.thegreatuniversity.utils.Logger;
  */
 
 public class TutorialLayout extends LinearLayout {
+
+    private int widthScreen;
+
     private Bitmap windowFrame;
 
     public TutorialLayout(Context context) {
         super(context);
+        widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
     }
 
     public TutorialLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
     }
 
     public TutorialLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
+    }
+
+    public boolean onInterceptTouchEvent (MotionEvent ev){
+        return windowFrame != null;
     }
 
     @Override
@@ -51,7 +64,9 @@ public class TutorialLayout extends LinearLayout {
 
     }
 
-    public void refreshLayout(View focus){
+    public void refreshLayout(TutorialStep step){
+
+        View focus = this.findViewById(step.getIdView());
 
         if (focus == null){
             Logger.error("TUTORIAL LAYOUT : view equals to null");
@@ -60,8 +75,8 @@ public class TutorialLayout extends LinearLayout {
 
         windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(windowFrame);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         // TRANSPARENT BLACK
         RectF outerRectangle = new RectF(0, 0, getWidth(), getHeight());
@@ -86,12 +101,38 @@ public class TutorialLayout extends LinearLayout {
         Paint myPaint = new Paint();
         Rect rectStroke = new Rect(pos[0]-10, pos[1]-10, pos[0]+focus.getWidth()+10, pos[1]+focus.getHeight()+10);
         myPaint.setColor(Color.GREEN);
-        myPaint.setStrokeWidth(10);
+        myPaint.setStrokeWidth(5);
         myPaint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(rectStroke, myPaint);
+
+        displayText(canvas, step, focus);
     }
 
-    public void cleanCanva(){
+    private void displayFuzzy(View focus){
+
+    }
+
+    private void displayReverse(View focus){
+
+    }
+
+    private void displayStrokeRect(View focus){
+
+    }
+
+    private void displayText(Canvas canvas, TutorialStep step, View focus){
+        Paint paint = new Paint();
+        int sizeText = widthScreen/DefaultValues.MARGIN_REVERSE;
+
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(sizeText);
+
+        //int posX = v.getScrollX();
+        //int posY = v.getScrollY();
+        canvas.drawText(step.getMessage(), 10, 25, paint);
+    }
+
+    public void cleanCanvas(){
         windowFrame = null;
     }
 
