@@ -12,5 +12,6 @@ public class DefaultValues {
     public static int START_MONEY = 2000;
     public static int START_WEEK = 1;
     public static int START_POPULARITY = 10;
+    public static int START_MORAL = 50;
 
 }

@@ -211,7 +211,7 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getIncome(){
-        int income= this.studentNb * 5;
+        int income= this.studentNb * 10;
 
         for (Professor p : professors){
             income -= p.getPrice();
@@ -334,7 +334,7 @@ public class University implements SavableLoadableJSON {
         this.rooms = new ArrayList<Room>();
         this.professors = new ArrayList<Professor>();
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
-        University.get().setMoral(50);
+        University.get().setMoral(DefaultValues.START_MORAL);
     }
 
     public void eventAction(Event event){
