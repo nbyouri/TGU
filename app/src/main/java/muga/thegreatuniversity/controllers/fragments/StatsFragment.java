@@ -80,7 +80,7 @@ public class StatsFragment extends Fragment {
         final String [] col2 = {String.valueOf(moral),String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
                                 String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
 
-        TableLayout table = (TableLayout) getActivity().findViewById(R.id.table_prof);
+        TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
        
 
         TableRow row;

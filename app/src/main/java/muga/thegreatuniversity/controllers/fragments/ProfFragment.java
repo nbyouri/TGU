@@ -39,6 +39,7 @@ public class ProfFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_prof, container, false);
 
         String json =  getArguments().getString("prof");
+        final Boolean hire = getArguments().getBoolean("hire");
         p = new Professor();
         try {
             p.loadJSON(new JSONObject(json));
@@ -46,16 +47,24 @@ public class ProfFragment extends Fragment {
             Logger.error("Failed to loadjson professor" + e.getMessage());
         }
 
-        Button button = (Button) view.findViewById(R.id.prof_button);
+        final Button button = (Button) view.findViewById(R.id.prof_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                hireProf(p);
-                int idx = University.get().getAvailableHires().indexOf(p);
-                University.get().getAvailableHires().remove(idx);
+                if (hire) {
+                    hireProf(p);
+                    int idx = University.get().getAvailableHires().indexOf(p);
+                    University.get().getAvailableHires().remove(idx);
+                } else {
+                    button.setText("Fire");
+                    University.get().getProfessors().indexOf(p);
+                    University.get().getProfessors().remove(p);
+                }
                 getFragmentManager().popBackStack();
+
             }
         });
 
+        Logger.info("ProfFragment!!!");
 
         return view;
     }

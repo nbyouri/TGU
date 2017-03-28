@@ -76,6 +76,7 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
         Bundle bundle = new Bundle();
         try {
             bundle.putString("prof", p.getAsJSON().toString());
+            bundle.putBoolean("hire", true);
         } catch (Exception e) {
             Logger.error(e.getMessage());
         }
