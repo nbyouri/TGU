@@ -246,6 +246,7 @@ public class University implements SavableLoadableJSON {
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         this.money += this.getIncome(); // Gain 10$ per student each week
         this.reloadHires(); // Reload list of professors available for hire
+        this.currentEvents = EventManager.getEvents();
 
     }
 
