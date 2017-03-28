@@ -11,6 +11,7 @@ import java.util.Random;
 
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -120,6 +121,8 @@ public class University implements SavableLoadableJSON {
             h.loadJSON(hArr.getJSONObject(i));
             this.availableHires.add(h);
         }
+
+        this.sortProfessors();
     }
 
     public String getName() {
@@ -251,7 +254,12 @@ public class University implements SavableLoadableJSON {
         this.money += this.getIncome();
         this.reloadHires(); // Reload list of professors available for hire
         this.currentEvents.addAll(EventManager.getEvents());
+        this.sortProfessors();
+    }
 
+    public void sortProfessors() {
+        Professor.sort(this.professors);
+        Professor.sort(this.availableHires);
     }
 
     public void updateCurrentEvents(){
@@ -331,8 +339,8 @@ public class University implements SavableLoadableJSON {
         University.get().setWeek(DefaultValues.START_WEEK);
         University.get().setBasicPopularity(DefaultValues.START_POPULARITY);
         University.get().reloadHires();
-        this.rooms = new ArrayList<Room>();
-        this.professors = new ArrayList<Professor>();
+        this.rooms = new ArrayList<>();
+        this.professors = new ArrayList<>();
         University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         University.get().setMoral(DefaultValues.START_MORAL);
     }

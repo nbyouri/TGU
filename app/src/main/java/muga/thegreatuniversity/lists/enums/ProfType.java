@@ -1,5 +1,8 @@
 package muga.thegreatuniversity.lists.enums;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,10 +70,6 @@ public enum ProfType {
 
     ProfType(String name) {
         this.name = name;
-    }
-
-    public String toString() {
-        return name;
     }
 
     public static ProfType getType() {

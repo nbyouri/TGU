@@ -5,6 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.ProfType;
@@ -137,6 +139,16 @@ public class Professor implements SavableLoadableJSON {
                 ", age=" + age +
                 ", price=" + price +
                 '}';
+    }
+
+    /* Sort based on rarity */
+    public static void sort(ArrayList<Professor> list) {
+        Collections.sort(list, new Comparator<Professor>() {
+            @Override
+            public int compare(Professor o1, Professor o2) {
+                return o2.getType().toString().compareTo(o1.getType().toString());
+            }
+        });
     }
 
     @Override
