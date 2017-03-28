@@ -5,6 +5,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.utils.Logger;
+
 /**
  * Created on 10-03-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -33,6 +35,7 @@ public class EventResult {
             ea.loadJSON(json.getJSONObject(i));
             actions.add(ea);
         }
+        Logger.info(this.toString());
     }
 
     @Override

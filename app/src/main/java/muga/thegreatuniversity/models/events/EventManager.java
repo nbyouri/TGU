@@ -1,5 +1,7 @@
 package muga.thegreatuniversity.models.events;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.enums.EventActionType;
@@ -27,9 +29,8 @@ public class EventManager {
                 ev.add(e);
         }
 
-        // add causal events
+        // add causal
         ev.addAll(University.get().getEvents().getCausalEvents());
-
         return ev;
     }
 
@@ -90,7 +91,7 @@ public class EventManager {
 //        act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.POPULARITY, 1.1);
 //        yAct.addAction(act);
 //        act = new EventAction(EventActionType.MULTIPLICATION, MONEY, 0.7);
-//        yAct.addAction(act);
+//        yAct.addAction(act);0.7
 //
 //        nAct = new EventResult();
 //        act = new EventAction(EventActionType.MULTIPLICATION, EventValueType.POPULARITY, 0.8);

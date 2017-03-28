@@ -50,7 +50,7 @@ public class EventConditions {
     }
 
     public boolean check() {
-        boolean ok = false;
+        boolean ok = true;
         for (int i = 0; i < vars.length; i++) {
 
             switch (vars[i]) {

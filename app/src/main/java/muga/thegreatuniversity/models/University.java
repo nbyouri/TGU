@@ -1,5 +1,7 @@
 package muga.thegreatuniversity.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +56,7 @@ public class University implements SavableLoadableJSON {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
+        currentEvents = new ArrayList<>();
     }
 
     @Override
@@ -242,12 +245,25 @@ public class University implements SavableLoadableJSON {
     }
 
     public void newTurn(){
+        this.updateCurrentEvents();
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         this.money += this.getIncome(); // Gain 10$ per student each week
         this.reloadHires(); // Reload list of professors available for hire
-        this.currentEvents = EventManager.getEvents();
+        this.currentEvents.addAll(EventManager.getEvents());
 
+    }
+
+    public void updateCurrentEvents(){
+        for (Event ev: this.currentEvents) {
+            if(ev.getCount()<ev.getDuration()){
+                ev.incrementCount();
+            }
+            else{
+                ev.setCount0();
+                this.currentEvents.remove(ev);
+            }
+        }
     }
 
     private void newStudentNB(){

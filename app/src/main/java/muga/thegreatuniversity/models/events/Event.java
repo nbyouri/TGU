@@ -20,6 +20,8 @@ public class Event {
     private String firstChoice;
     private String secondChoice;
     private EventType type;
+    private int duration;
+    private int count;
 
     private EventResult yesAction;
     private EventResult noAction;
@@ -29,7 +31,10 @@ public class Event {
 
     private boolean causal;
 
-    public Event() {}
+    public Event() {
+        this.count=0;
+        this.duration=1;
+    }
 
     public String getMessage() {
         return message;
@@ -63,6 +68,26 @@ public class Event {
         this.type = type;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setCount0(){
+        this.count=0;
+    }
+
+    public void incrementCount(){
+        this.count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     public EventResult getResult(){
         switch (ans) {
             case YES:
@@ -93,18 +118,31 @@ public class Event {
     public void loadJSON(JSONObject jsonO) throws Exception {
         this.message = jsonO.getString("message");
         this.type = EventType.getEnum(jsonO.getString("type"));
+        this.duration = jsonO.getInt("duration");
         this.firstChoice = jsonO.getString("first_choice");
         this.secondChoice = jsonO.getString("second_choice");
 
         this.yesAction = new EventResult();
         this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));
-        this.noAction = new EventResult();
-        this.noAction.loadJSON(jsonO.getJSONArray("no_action"));
+        if(jsonO.has("no_action")) {
+            this.noAction = new EventResult();
+            this.noAction.loadJSON(jsonO.getJSONArray("no_action"));
+        }
 
-        this.conds = new EventConditions();
-        this.conds.loadJSON(jsonO.getJSONObject("conditions"));
+        if(jsonO.has("conditions")) {
+            this.conds = new EventConditions();
+            this.conds.loadJSON(jsonO.getJSONObject("conditions"));
+        }
 
         this.causal = jsonO.getBoolean("causal");
+
+        Logger.info(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Event"+
+                this.message;
     }
 
     public boolean isCausal() {
