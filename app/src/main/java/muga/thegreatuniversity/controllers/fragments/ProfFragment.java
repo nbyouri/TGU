@@ -48,6 +48,7 @@ public class ProfFragment extends Fragment {
         }
 
         final Button button = (Button) view.findViewById(R.id.prof_button);
+        if (!hire) button.setText("Fire");
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (hire) {
@@ -55,7 +56,7 @@ public class ProfFragment extends Fragment {
                     int idx = University.get().getAvailableHires().indexOf(p);
                     University.get().getAvailableHires().remove(idx);
                 } else {
-                    button.setText("Fire");
+
                     University.get().getProfessors().indexOf(p);
                     University.get().getProfessors().remove(p);
                 }
