@@ -65,26 +65,6 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
     @Override
     public void onResume(){
         super.onResume();
-
-
-        getListView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                final android.os.Handler handlerLoop = new android.os.Handler();
-                handlerLoop.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //tuto();
-                    }
-                },10);
-            }
-        });
-
-    }
-
-    public void tuto(){
-        View toClick = Tools.getViewByPosition(0,getListView());
-        TutorialManager.get().printCurrentTourGuide(getActivity(), toClick);
     }
 
     private void hireProf(){
@@ -111,8 +91,6 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
         Logger.info("Click on choice type = " + choiceType);
-
-        TutorialManager.get().removeTour();
 
         switch (choiceType){
             case HIRE_PROF:

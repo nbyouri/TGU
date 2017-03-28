@@ -8,10 +8,21 @@ package muga.thegreatuniversity.models;
 
 public class TutorialStep {
 
+    public TutorialStep(String message, int idView) {
+        this.message = message;
+        this.idView = idView;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getIdView() {
+        return idView;
+    }
+
     private String message;
-    private String btnMessage;
     private int idView;
-    private boolean blocked;
 
 
 }

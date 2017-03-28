@@ -1,18 +1,20 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
+import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -23,7 +25,7 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class BuildFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class BuildFragment extends TutorialListFragment implements AdapterView.OnItemClickListener {
     private BuildAdapter buildAdapter;
 
     @Override
@@ -46,6 +48,7 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
         getListView().setOnItemClickListener(this);
     }
 
+    @Override
     public void onStart(){
         super.onStart();
     }
@@ -75,4 +78,13 @@ public class BuildFragment extends ListFragment implements AdapterView.OnItemCli
 
     }
 
+    @Override
+    public ImageView getButtonHelp() {
+        return ((ImageView) getActivity().findViewById(R.id.img_help_room));
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.BUILD_ROOM;
+    }
 }

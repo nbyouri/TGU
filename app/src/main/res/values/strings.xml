@@ -32,11 +32,15 @@
     <string name="help_room">Click on room to buy it</string>
     <string name="help_choice">Each action pass a week</string>
 
+    <string name="help_hire_more">Choose a prof to hire</string>
+    <string name="help_inventory_more">Your Professors</string>
+    <string name="help_room_more">You can buy building for increase the number of people on your university</string>
+    <string name="help_choice_more">Each action pass a week</string>
+
     <string name="tutorial_first_launch">The Great University is a management game, the goal is become famous and rich. Each action pass a week and each week is possibly to encounter a event. Let begin the tutorial.</string>
     <string name="tutorial_choice_hire">Go buy your first professor</string>
     <string name="tutorial_list_hire">Click on this professor</string>
     <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
-
 
 
     <string name="not_available">N/a</string>

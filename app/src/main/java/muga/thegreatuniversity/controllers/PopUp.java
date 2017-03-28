@@ -21,7 +21,17 @@ import muga.thegreatuniversity.utils.Context;
 
 public class PopUp {
 
+    public static void helpPopUp(Activity act, String helpMessage){
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(act);
+        helpBuilder.setTitle(helpMessage);
+        helpBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
+            }
+        });
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
 
     static public void createUnivPopUp(final MainActivity mainAct) {
 

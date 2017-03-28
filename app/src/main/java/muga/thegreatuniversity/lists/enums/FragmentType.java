@@ -11,5 +11,7 @@ public enum FragmentType {
     INVENTORY,
     BUILD_ROOM,
     STATISTICS,
-    OPTIONS
+    OPTIONS,
+    STAT,
+
 }

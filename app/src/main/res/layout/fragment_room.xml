@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/txt_help_room"
             android:layout_alignTop="@id/txt_help_room"
-            android:src="@mipmap/ic_help" />
+            android:src="@mipmap/ic_help"
+            android:clickable="true"/>
     </RelativeLayout>
 
     <ListView

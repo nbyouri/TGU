@@ -1,17 +1,24 @@
 package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.text.Layout;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
+import muga.thegreatuniversity.controllers.TutorialLayout;
+import muga.thegreatuniversity.controllers.abstracts.TutorialFragment;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
 
@@ -21,7 +28,7 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class StatFragment extends Fragment {
+public class StatFragment extends TutorialFragment {
 
     private ViewGroup statLay;
 
@@ -37,13 +44,14 @@ public class StatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stat, container, false);
-
     }
 
     @Override
     public void onStart(){
         super.onStart();
         createViews();
+
+
     }
 
     @Override
@@ -76,5 +84,16 @@ public class StatFragment extends Fragment {
         statLay = (ViewGroup) getActivity().findViewById(R.id.layout_stat);
         popularity = (TextView) getActivity().findViewById(R.id.txt_popularity);
         updateViews();
+    }
+
+
+    @Override
+    public ImageView getButtonHelp() {
+        return null;
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.STAT;
     }
 }
