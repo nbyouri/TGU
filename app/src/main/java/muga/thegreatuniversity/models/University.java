@@ -255,14 +255,19 @@ public class University implements SavableLoadableJSON {
     }
 
     public void updateCurrentEvents(){
+        ArrayList<Event> toRemove = new ArrayList<Event>();
         for (Event ev: this.currentEvents) {
             if(ev.getCount()<ev.getDuration()){
                 ev.incrementCount();
             }
             else{
                 ev.setCount0();
-                this.currentEvents.remove(ev);
+                toRemove.add(ev);
             }
+        }
+        for (Event ev: toRemove)
+        {
+            this.currentEvents.remove(ev);
         }
     }
 
