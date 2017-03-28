@@ -71,7 +71,7 @@ public class StatsFragment extends Fragment {
         ArrayList<Professor> p = University.get().getProfessors();
         int nbProfs = p.size();
 
-        int nbIncome = University.get().getStudentNb()*10;
+        int nbIncome = University.get().getIncome();
 
         final String [] col1 = {"Classroom number : ","Audience number : ","Agro labo number : ","Science labo number : ",
                                 "IT labo number : ","Professors number : ","Income/Week : "};

@@ -207,7 +207,7 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getIncome(){
-        int income= this.studentNb * 10;
+        int income= this.studentNb * 5;
 
         for (Professor p : professors){
             income -= p.getPrice();
