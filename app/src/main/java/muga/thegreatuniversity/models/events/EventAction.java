@@ -1,11 +1,14 @@
 package muga.thegreatuniversity.models.events;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.models.SavableLoadableJSON;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 10-03-17.
@@ -43,6 +46,8 @@ public class EventAction {
         this.value = jsonO.getDouble("value");
         this.actionType = EventActionType.getEnum(jsonO.getString("action_type"));
         this.valueType = EventValueType.getEnum(jsonO.getString("value_type"));
+
+        Logger.info(this.toString());
     }
 
     @Override
