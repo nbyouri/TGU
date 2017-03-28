@@ -73,9 +73,11 @@ public class StatsFragment extends Fragment {
 
         int nbIncome = University.get().getIncome();
 
-        final String [] col1 = {"Classroom number : ","Audience number : ","Agro labo number : ","Science labo number : ",
+        int moral = University.get().getMoral();
+
+        final String [] col1 = {"Students moral : ","Classroom number : ","Audience number : ","Agro labo number : ","Science labo number : ",
                                 "IT labo number : ","Professors number : ","Income/Week : "};
-        final String [] col2 = {String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
+        final String [] col2 = {String.valueOf(moral),String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
                                 String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
 
         TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
