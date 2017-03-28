@@ -82,7 +82,7 @@ public abstract class TutorialListFragment extends ListFragment {
             }
         } else {
             Logger.info("Finish tuto for "+ getFragmentType() + " Fragment");
-            tuto.refreshLayout( getActivity().findViewById(R.id.layout_main));
+            tuto.cleanCanva();
             tuto.invalidate();
         }
     }

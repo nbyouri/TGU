@@ -22,9 +22,19 @@ import muga.thegreatuniversity.utils.TutorialManager;
 
 public abstract class TutorialFragment extends Fragment {
 
+    boolean active;
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        active =false;
+    }
+
     @Override
     public void onStart(){
         super.onStart();
+
+        active = true;
 
         ImageView help = this.getButtonHelp();
         if (help !=null){
@@ -42,7 +52,7 @@ public abstract class TutorialFragment extends Fragment {
         vto.addOnGlobalLayoutListener (new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                tutorialDraw();
+                if (active) tutorialDraw();
             }
         });
     }
@@ -72,7 +82,7 @@ public abstract class TutorialFragment extends Fragment {
             }
         } else {
             Logger.info("Finish tuto for "+ getFragmentType() + " Fragment");
-            tuto.refreshLayout( getActivity().findViewById(R.id.layout_main));
+            tuto.cleanCanva();
             tuto.invalidate();
         }
     }

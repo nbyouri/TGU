@@ -91,6 +91,10 @@ public class TutorialLayout extends LinearLayout {
         canvas.drawRect(rectStroke, myPaint);
     }
 
+    public void cleanCanva(){
+        windowFrame = null;
+    }
+
     @Override
     public boolean isInEditMode() {
         return true;
