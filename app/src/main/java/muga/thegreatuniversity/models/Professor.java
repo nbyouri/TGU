@@ -27,14 +27,7 @@ public class Professor implements SavableLoadableJSON {
     public static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
     public Professor() {
-        courses = new ArrayList<Course>();
-    }
-
-    public Professor(String name, int popularity, ArrayList<Course> courses, int age) {
-        this.name = name;
-        this.popularity = popularity;
-        this.courses = courses;
-        this.age = age;
+        courses = new ArrayList<>();
     }
 
     public String getName() {
@@ -133,5 +126,43 @@ public class Professor implements SavableLoadableJSON {
         p.setAge(ProfType.getAge());
         p.setPrice(p.getType().getPrice());
         return p;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", popularity=" + popularity +
+                ", age=" + age +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Professor professor = (Professor) o;
+
+        if (popularity != professor.popularity) return false;
+        if (age != professor.age) return false;
+        if (price != professor.price) return false;
+        if (name != null ? !name.equals(professor.name) : professor.name != null) return false;
+        if (type != professor.type) return false;
+        return courses != null ? courses.equals(professor.courses) : professor.courses == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + popularity;
+        result = 31 * result + (courses != null ? courses.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + price;
+        return result;
     }
 }

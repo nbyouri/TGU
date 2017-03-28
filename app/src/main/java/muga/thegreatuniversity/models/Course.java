@@ -73,4 +73,24 @@ public class Course implements SavableLoadableJSON {
         }
         return courses;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        if (courseName != null ? !courseName.equals(course.courseName) : course.courseName != null)
+            return false;
+        return courseType == course.courseType;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = courseName != null ? courseName.hashCode() : 0;
+        result = 31 * result + (courseType != null ? courseType.hashCode() : 0);
+        return result;
+    }
 }

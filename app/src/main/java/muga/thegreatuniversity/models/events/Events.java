@@ -2,8 +2,6 @@ package muga.thegreatuniversity.models.events;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.utils.Logger;
-
 /**
  * Created on 20/02/2017.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy

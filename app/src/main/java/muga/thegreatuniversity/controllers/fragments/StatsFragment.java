@@ -80,12 +80,11 @@ public class StatsFragment extends Fragment {
         final String [] col2 = {String.valueOf(moral),String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
                                 String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
 
-        TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
+        TableLayout table = (TableLayout) getActivity().findViewById(R.id.table_prof);
        
 
         TableRow row;
         TextView tv1,tv2;
-///each row for info
         for(int i=0;i<col1.length;i++) {
             row = new TableRow(getActivity());
 

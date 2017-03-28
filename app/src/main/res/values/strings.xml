@@ -52,4 +52,11 @@
 
     <string name="popUp_Reset">Are you sur to delete your university ? All your data will be lost</string>
 
+    <string name="prof_name">Name</string>
+    <string name="prof_type">Rarity</string>
+    <string name="prof_popularity">Popularity</string>
+    <string name="prof_age">Age</string>
+    <string name="prof_price">Price</string>
+
+    <string name="button_hire">Hire</string>
 </resources>

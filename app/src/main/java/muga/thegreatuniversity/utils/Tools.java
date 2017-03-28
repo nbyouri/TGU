@@ -3,12 +3,17 @@ package muga.thegreatuniversity.utils;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.media.Image;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import muga.thegreatuniversity.lists.enums.ProfType;
 
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -52,5 +57,4 @@ public class Tools {
             return listView.getChildAt(childIndex);
         }
     }
-
 }
