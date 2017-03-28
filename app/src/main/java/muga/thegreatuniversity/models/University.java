@@ -248,7 +248,7 @@ public class University implements SavableLoadableJSON {
         this.updateCurrentEvents();
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
-        this.money += this.getIncome(); // Gain 10$ per student each week
+        this.money += this.getIncome();
         this.reloadHires(); // Reload list of professors available for hire
         this.currentEvents.addAll(EventManager.getEvents());
 
@@ -312,12 +312,14 @@ public class University implements SavableLoadableJSON {
             if(getMoral() >=0 && getMoral() <= 10)
                 addnumber = - randomGenerator.nextInt(10);
 
-            if (this.studentNb + addnumber > maxPop){
+            int addStudents = (int) Math.floor((addnumber * this.getPopularity())/10);
+
+            if (this.studentNb + addStudents > maxPop){
                 setStudentNb(maxPop);
-            } else if(this.studentNb + addnumber < 5) {
+            } else if(this.studentNb + addStudents < 5) {
                 setStudentNb(5);
             } else {
-                setStudentNb(this.studentNb + addnumber);
+                setStudentNb(this.studentNb + addStudents);
             }
         }
     }
