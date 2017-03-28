@@ -70,10 +70,15 @@ public class PopUp {
             AlertDialog helpDialog = helpBuilder.create();
             helpDialog.show();
 
-        } else
-            alertCreateUniv(mainAct, name);
+        } else {
+            Bundle mes = new Bundle();
+            mes.putString("Type", "CreateUniv");
+            mes.putString("NameUniv", name);
+            mainAct.callback(mes);
+        }
     }
 
+    /*
     static public void alertCreateUniv(final MainActivity mainAct, final String name) {
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(mainAct);
         helpBuilder.setMessage(Context.getString(R.string.popUp_Verify)+" "+name);
@@ -96,7 +101,7 @@ public class PopUp {
         // Remember, create doesn't show the dialog
         AlertDialog helpDialog = helpBuilder.create();
         helpDialog.show();
-    }
+    } */
 
     static public void alertNewEvent(final MainActivity mainAct, final Event event) {
         AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);

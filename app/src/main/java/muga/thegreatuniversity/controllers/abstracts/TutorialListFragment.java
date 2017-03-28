@@ -21,9 +21,20 @@ import muga.thegreatuniversity.utils.TutorialManager;
  */
 
 public abstract class TutorialListFragment extends ListFragment {
+
+    boolean active;
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        active =false;
+    }
+
     @Override
     public void onStart(){
         super.onStart();
+
+        active = true;
 
         ImageView help = this.getButtonHelp();
         if (help !=null){
@@ -41,7 +52,7 @@ public abstract class TutorialListFragment extends ListFragment {
         vto.addOnGlobalLayoutListener (new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                tutorialDraw();
+                if (active) tutorialDraw();
             }
         });
     }
