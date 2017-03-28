@@ -9,7 +9,7 @@ package muga.thegreatuniversity.lists;
 public class DefaultValues {
 
     public static int START_STUDENT_NB = 5;
-    public static int START_MONEY = 5000;
+    public static int START_MONEY = 500;
     public static int START_WEEK = 1;
     public static int START_POPULARITY = 10;
 
