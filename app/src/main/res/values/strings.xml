@@ -41,7 +41,7 @@
     <string name="tutorial_choice_hire">Go buy your first professor</string>
     <string name="tutorial_list_hire">Click on this professor</string>
     <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
-
+    <string name="tutorial_click_continue">Click to continue</string>
 
     <string name="not_available">N/a</string>
     <string name="icon_desc_money">Money Icon</string>

@@ -8,16 +8,19 @@ package muga.thegreatuniversity.lists;
 
 public class DefaultValues {
 
-    // UNIVERSITY VALUES
+    // UNIVERSITY VALUES -------------------------
     public final static int START_STUDENT_NB = 5;
     public final static int START_MONEY = 500;
     public final static int START_WEEK = 1;
     public final static int START_MORAL = 50;
     public final static int START_POPULARITY = 10;
 
-    // TUTORIAL SETTING
-    public final static int STROKE_WEIGTH = 5;
+    // TUTORIAL SETTING --------------------------
+    public final static int STROKE_WIDTH = 5;
     public final static int TEXT_SIZE_RAPPORT = 20;
     public final static int MARGIN_REVERSE = 15;
+    // Percentage of screen margin (top) between two text
+    public final static int MARGIN_TEXT_TOP_PR = 2;
+
 
 }
