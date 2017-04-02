@@ -10,9 +10,6 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.TutorialLayout;
 import muga.thegreatuniversity.lists.enums.FragmentType;
-import muga.thegreatuniversity.models.TutorialStep;
-import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
  * Created on 28-03-17.
@@ -23,18 +20,22 @@ import muga.thegreatuniversity.utils.TutorialManager;
 public abstract class TutorialFragment extends Fragment {
 
     boolean active;
+    TutorialLayout tutorialLayout;
 
     @Override
     public void onPause(){
         super.onPause();
-        active =false;
+        active = false;
+        tutorialLayout.removeCurrentFragment(getFragmentType());
     }
 
     @Override
     public void onStart(){
         super.onStart();
-
         active = true;
+
+        tutorialLayout = (TutorialLayout) getActivity().findViewById(R.id.layout_game);
+        tutorialLayout.addCurrentFragment(getFragmentType());
 
         ImageView help = this.getButtonHelp();
         if (help !=null){
@@ -52,39 +53,9 @@ public abstract class TutorialFragment extends Fragment {
         vto.addOnGlobalLayoutListener (new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (active) tutorialDraw();
+                if (active) tutorialLayout.refreshTutorial();
             }
         });
-    }
-
-    private void tutorialDraw(){
-        final TutorialLayout tuto = (TutorialLayout) getActivity().findViewById(R.id.layout_game);
-        nextTutorialStep(tuto);
-        tuto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logger.info("tutorialDraw : Next Tuto Plz");
-                TutorialManager.get().changeStep(getFragmentType());
-                nextTutorialStep(tuto);
-            }
-        });
-    }
-
-    private void nextTutorialStep(TutorialLayout tuto){
-
-        TutorialStep step = TutorialManager.get().currentStep(getFragmentType());
-
-        if (step !=null ){
-            View v = getActivity().findViewById(step.getIdView());
-            if (v !=null && tuto !=null){
-                tuto.refreshLayout(step);
-                tuto.invalidate();
-            }
-        } else {
-            Logger.info("Finish tuto for "+ getFragmentType() + " Fragment");
-            tuto.cleanCanvas();
-            tuto.invalidate();
-        }
     }
 
     public abstract ImageView getButtonHelp();

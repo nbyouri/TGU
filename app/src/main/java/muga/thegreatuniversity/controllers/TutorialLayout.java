@@ -16,10 +16,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.HashSet;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.TutorialStep;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
  * Created on 21-03-17.
@@ -35,31 +39,102 @@ public class TutorialLayout extends LinearLayout {
 
     private Bitmap windowFrame;
 
+    // FUNCTION MANDATORY
     public TutorialLayout(Context context) {
         super(context);
-        calculateConst();
+        constructorCall();
     }
 
     public TutorialLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        calculateConst();
+        constructorCall();
     }
 
     public TutorialLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        calculateConst();
+        constructorCall();
     }
 
-    private void calculateConst(){
-        widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
-        heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
-        topTextMargin = (DefaultValues.MARGIN_TEXT_TOP_PR * heightScreen/100);
+    @Override
+    public boolean isInEditMode() {
+        return true;
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
+
+    // DISABLE clickListener of children when tutorial is printing
     public boolean onInterceptTouchEvent (MotionEvent ev){
         return windowFrame != null;
     }
 
+    // Calculate one time some constant about screen
+    private void constructorCall(){
+        widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
+        heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
+        topTextMargin = (DefaultValues.MARGIN_TEXT_TOP_PR * heightScreen/100);
+        activeFragment = new HashSet<FragmentType>();
+    }
+
+    // MANAGE WHICH TUTORIAL TO DRAW
+    private HashSet<FragmentType> activeFragment;
+    private FragmentType currentFragmentTutorial;
+
+    public void addCurrentFragment(FragmentType fragmentType){
+        activeFragment.add(fragmentType);
+        if (currentFragmentTutorial == null){
+            currentFragmentTutorial = this.choiceOneTutorialFrag();
+        }
+    }
+
+    public void removeCurrentFragment(FragmentType fragmentType){
+        activeFragment.remove(fragmentType);
+        if (currentFragmentTutorial == fragmentType){
+            currentFragmentTutorial = this.choiceOneTutorialFrag();
+        }
+    }
+
+    public void refreshTutorial(){
+        final FragmentType fragmentType = currentFragmentTutorial;
+        this.nextTutorialStep(fragmentType);
+
+        this.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.info("refreshTutorial : Next Tuto Plz");
+                TutorialManager.get().changeStep(fragmentType);
+                nextTutorialStep(fragmentType);
+            }
+        });
+    }
+
+    private void nextTutorialStep(FragmentType fragmentType){
+        TutorialStep step = TutorialManager.get().currentStep(fragmentType);
+        if (step !=null ){
+            this.refreshLayout(step);
+            this.invalidate();
+        } else {
+            Logger.info("Finish tuto for "+ fragmentType + " Fragment");
+            this.cleanCanvas();
+            this.invalidate();
+            currentFragmentTutorial = this.choiceOneTutorialFrag();
+            if (currentFragmentTutorial !=null) refreshTutorial();
+        }
+    }
+
+    private FragmentType choiceOneTutorialFrag(){
+        FragmentType fragmentType = null;
+        for (FragmentType frag : activeFragment){
+            if (TutorialManager.get().currentStep(frag) != null){
+                fragmentType = frag;
+            }
+        }
+        return fragmentType;
+    }
+
+    // FUNCTION TO DRAW THE TUTORIAL
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -75,15 +150,21 @@ public class TutorialLayout extends LinearLayout {
 
     public void refreshLayout(TutorialStep step){
 
-        View focus = this.findViewById(step.getIdView());
+        if (!step.hasView()) {
+            windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(windowFrame);
+            displayNoViewStep(canvas, step);
+            return;
+        }
 
+        View focus = this.findViewById(step.getIdView());
         if (focus == null){
             Logger.error("TUTORIAL LAYOUT : view equals to null");
             return;
         }
 
         if (focus.getHeight() == 0 || focus.getWidth() == 0) return;
-        // TODO Check if previuous is the same position. If yes, do nothing
+        // TODO Check if previous is the same position. If yes, do nothing
 
         windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(windowFrame);
@@ -162,21 +243,28 @@ public class TutorialLayout extends LinearLayout {
         canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt + (-bounds.top*1.5f), paint);
     }
 
+    private void displayNoViewStep(Canvas canvas, TutorialStep step){
+        displayFuzzy(canvas);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        int sizeText = widthScreen/DefaultValues.TEXT_SIZE_RAPPORT;
+        paint.setColor(Color.CYAN);
+        paint.setTextSize(sizeText);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTextAlign(Paint.Align.CENTER);
+
+        Rect bounds = new Rect();
+        paint.getTextBounds(step.getMessage(), 0, step.getMessage().length(), bounds);
+
+        canvas.drawText(step.getMessage(), getWidth()/2, getHeight()/2, paint);
+        paint.setTextSize(sizeText/2);
+        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, getHeight()/2 + (-bounds.top*1.5f), paint);
+    }
+
     private boolean morePlaceTop(int[] posFocus){
         return ((posFocus[1]) > (getHeight()-(posFocus[1]+posFocus[3])));
     }
 
     public void cleanCanvas(){
         windowFrame = null;
-    }
-
-    @Override
-    public boolean isInEditMode() {
-        return true;
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
     }
 }

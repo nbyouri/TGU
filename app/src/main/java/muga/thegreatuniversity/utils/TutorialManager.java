@@ -1,9 +1,5 @@
 package muga.thegreatuniversity.utils;
 
-import android.app.Activity;
-import android.view.View;
-
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -11,11 +7,6 @@ import java.util.Map;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.TutorialStep;
-import muga.thegreatuniversity.models.University;
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
-import tourguide.tourguide.ToolTip;
-import tourguide.tourguide.TourGuide;
 
 /**
  * Created on 21-03-17.
@@ -27,15 +18,25 @@ public class TutorialManager {
 
     Map<FragmentType, LinkedList<TutorialStep>> tutorials;
 
-    private static Map<FragmentType, LinkedList<TutorialStep>>  createTuto() {
+    private static Map<FragmentType, LinkedList<TutorialStep>> createTutorial() {
         Map<FragmentType, LinkedList<TutorialStep>> tutorials = new EnumMap<FragmentType, LinkedList<TutorialStep>>(FragmentType.class);
 
         LinkedList<TutorialStep> stats = new LinkedList<TutorialStep>();
+        LinkedList<TutorialStep> hire = new LinkedList<TutorialStep>();
+        LinkedList<TutorialStep> choices = new LinkedList<TutorialStep>();
 
-        stats.add(new TutorialStep("You can see you money and popularity here",R.id.layout_stat_cash));
         stats.add(new TutorialStep("You stat here",R.id.layout_stat));
+        stats.add(new TutorialStep("You can see you money and popularity here",R.id.layout_stat_cash));
+
+        hire.add(new TutorialStep("Professor are generate randomly each week ", false));
+        hire.add(new TutorialStep("You can preview each professor", R.id.layout_prof_item));
+
+        choices.add(new TutorialStep("You can choose different action",R.id.layout_choice_item));
+
         //
+        tutorials.put(FragmentType.HIRE_PROF, hire);
         tutorials.put(FragmentType.STAT, stats);
+        tutorials.put(FragmentType.CHOICES, choices);
 
         return tutorials;
     }
@@ -60,7 +61,7 @@ public class TutorialManager {
     }
 
     private TutorialManager(){
-        tutorials = createTuto();
+        tutorials = createTutorial();
     }
 
     private static class TutorialManagerHolder {
@@ -70,24 +71,5 @@ public class TutorialManager {
     public static TutorialManager get() {
         return TutorialManager.TutorialManagerHolder.instance;
     }
-
-    /*
-    private TourGuide currentTourGuide;
-
-    public void printCurrentTourGuide(Activity activity, View view){
-        currentTourGuide = TourGuide.init(activity).with(TourGuide.Technique.Click)
-                .setPointer(new Pointer())
-                .setToolTip(new ToolTip().setTitle("Welcome!").setDescription("Click on Get Started to begin..."))
-                .setOverlay(new Overlay());
-
-        currentTourGuide.playOn(view);
-    }
-
-    public void removeTour(){
-        if (currentTourGuide != null ){
-            currentTourGuide.cleanUp();
-            currentTourGuide = null;
-        }
-    } */
 
 }

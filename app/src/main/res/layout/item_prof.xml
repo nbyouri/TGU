@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="start|center_vertical"
     android:orientation="horizontal"
+    android:id="@+id/layout_prof_item"
 
     android:paddingStart="@dimen/item_list_side_padding"
     android:paddingEnd="@dimen/item_list_side_padding">

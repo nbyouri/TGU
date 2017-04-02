@@ -8,9 +8,19 @@ package muga.thegreatuniversity.models;
 
 public class TutorialStep {
 
+    private String message;
+    private int idView;
+    private boolean hasView;
+
     public TutorialStep(String message, int idView) {
         this.message = message;
         this.idView = idView;
+        this.hasView = true;
+    }
+
+    public TutorialStep(String message, boolean hasView){
+        this.message = message;
+        this.hasView = hasView;
     }
 
     public String getMessage() {
@@ -21,8 +31,8 @@ public class TutorialStep {
         return idView;
     }
 
-    private String message;
-    private int idView;
-
+    public boolean hasView(){
+        return hasView;
+    }
 
 }

@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
+import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
@@ -31,7 +33,7 @@ import muga.thegreatuniversity.utils.Tools;
  * Muga Copyright
  */
 
-public class HireFragment extends ListFragment implements OnItemClickListener {
+public class HireFragment extends TutorialListFragment implements OnItemClickListener {
     private HireAdapter hireAdapter;
 
     @Override
@@ -54,6 +56,16 @@ public class HireFragment extends ListFragment implements OnItemClickListener {
 
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public ImageView getButtonHelp() {
+        return null;
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.HIRE_PROF;
     }
 
     @Override

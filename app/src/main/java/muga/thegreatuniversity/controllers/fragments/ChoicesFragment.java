@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
+import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.lists.enums.FragmentType;
@@ -26,7 +28,7 @@ import muga.thegreatuniversity.utils.TutorialManager;
  * Muga Copyright
  */
 
-public class ChoicesFragment extends ListFragment implements OnItemClickListener {
+public class ChoicesFragment extends TutorialListFragment implements OnItemClickListener {
 
     private ChoicesAdapter choicesAdapter;
 
@@ -60,6 +62,16 @@ public class ChoicesFragment extends ListFragment implements OnItemClickListener
     @Override
     public void onStart(){
         super.onStart();
+    }
+
+    @Override
+    public ImageView getButtonHelp() {
+        return null;
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.CHOICES;
     }
 
     @Override
