@@ -21,6 +21,7 @@ public class DefaultValues {
     public final static int MARGIN_REVERSE = 15;
     // Percentage of screen margin (top) between two text
     public final static int MARGIN_TEXT_TOP_PR = 2;
+    public final static int MARGIN_TEXT_SIDE_PR = 2;
 
 
 }

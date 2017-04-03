@@ -51,13 +51,21 @@
                 android:src="@mipmap/ic_money"
                 android:contentDescription="@string/icon_desc_money" />
 
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_stat_popularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/layout_stat_cash">
             <TextView
                 android:id="@+id/txt_popularity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/not_available"
-                android:layout_below="@id/icon_money_stat"
-                android:layout_alignEnd="@+id/txt_cash"/>
+                android:text="@string/not_available" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -68,7 +76,6 @@
                 android:layout_alignTop="@+id/txt_popularity"
                 android:src="@mipmap/ic_popularity"
                 android:contentDescription="@string/icon_desc_popularity" />
-
         </RelativeLayout>
 
         <LinearLayout

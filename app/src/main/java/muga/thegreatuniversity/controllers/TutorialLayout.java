@@ -16,7 +16,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.DefaultValues;
@@ -36,6 +38,7 @@ public class TutorialLayout extends LinearLayout {
     private int widthScreen;
     private int heightScreen;
     private int topTextMargin;
+    private int sideTextMargin;
 
     private Bitmap windowFrame;
 
@@ -75,6 +78,7 @@ public class TutorialLayout extends LinearLayout {
         widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
         heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
         topTextMargin = (DefaultValues.MARGIN_TEXT_TOP_PR * heightScreen/100);
+        sideTextMargin = (DefaultValues.MARGIN_TEXT_SIDE_PR * widthScreen/100);
         activeFragment = new HashSet<FragmentType>();
     }
 
@@ -238,9 +242,13 @@ public class TutorialLayout extends LinearLayout {
             yTxt =  -bounds.top*1.5f + topTextMargin;
         }
 
-        canvas.drawText(step.getMessage(), getWidth()/2, yTxt, paint);
+        for (String line : slipPrintableText(step.getMessage(), paint)){
+            canvas.drawText(line, getWidth()/2, yTxt, paint);
+            yTxt = yTxt + (-bounds.top*1.5f);
+        }
+
         paint.setTextSize(sizeText/2);
-        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt + (-bounds.top*1.5f), paint);
+        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt, paint);
     }
 
     private void displayNoViewStep(Canvas canvas, TutorialStep step){
@@ -255,9 +263,34 @@ public class TutorialLayout extends LinearLayout {
         Rect bounds = new Rect();
         paint.getTextBounds(step.getMessage(), 0, step.getMessage().length(), bounds);
 
-        canvas.drawText(step.getMessage(), getWidth()/2, getHeight()/2, paint);
+        float yTxt = getHeight()/2;
+
+        for (String line : slipPrintableText(step.getMessage(), paint)){
+            canvas.drawText(line, getWidth()/2, yTxt, paint);
+            yTxt = yTxt + (-bounds.top*1.5f);
+        }
         paint.setTextSize(sizeText/2);
-        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, getHeight()/2 + (-bounds.top*1.5f), paint);
+        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt, paint);
+    }
+
+    private List<String> slipPrintableText(String message, Paint paint){
+        StringBuilder mesBuilder = new StringBuilder(message);
+
+        ArrayList<String> slipStrings = new ArrayList<String>();
+        while (mesBuilder.length() > 0){
+            StringBuilder temp = new StringBuilder(mesBuilder);
+
+            float sizeT = paint.measureText(temp.toString());
+            while (sizeT > widthScreen - sideTextMargin * 2){
+                if (temp.lastIndexOf(" ") == -1) break;
+                temp.delete(temp.lastIndexOf(" "), temp.length());
+                sizeT = paint.measureText(temp.toString());
+            }
+
+            mesBuilder.delete(0,temp.length());
+            slipStrings.add(temp.toString());
+        }
+        return slipStrings;
     }
 
     private boolean morePlaceTop(int[] posFocus){

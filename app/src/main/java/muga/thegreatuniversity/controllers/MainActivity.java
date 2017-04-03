@@ -33,10 +33,6 @@ import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 import muga.thegreatuniversity.utils.Tools;
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
-import tourguide.tourguide.ToolTip;
-import tourguide.tourguide.TourGuide;
 
 /**
  * Created on 20/02/2017.
@@ -48,8 +44,6 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     private static final int TITLE_TIME_OUT = 1500;
     private static final int LOOP_TIME_OUT = 10;
-
-    private TourGuide mTourGuideHandler;
 
     private boolean active;
 

@@ -26,12 +26,13 @@ public class TutorialManager {
         LinkedList<TutorialStep> choices = new LinkedList<TutorialStep>();
 
         stats.add(new TutorialStep("You stat here",R.id.layout_stat));
-        stats.add(new TutorialStep("You can see you money and popularity here",R.id.layout_stat_cash));
+        stats.add(new TutorialStep("You can see you money here, you earn 5 UCash per student",R.id.layout_stat_cash));
+        stats.add(new TutorialStep("The popularity improve the number of student who show up each week",R.id.layout_stat_popularity));
 
         hire.add(new TutorialStep("Professor are generate randomly each week ", false));
         hire.add(new TutorialStep("You can preview each professor", R.id.layout_prof_item));
 
-        choices.add(new TutorialStep("You can choose different action",R.id.layout_choice_item));
+        choices.add(new TutorialStep("You can choose different action",R.id.layout_choices));
 
         //
         tutorials.put(FragmentType.HIRE_PROF, hire);
