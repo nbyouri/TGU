@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.controllers;
+package muga.thegreatuniversity.controllers.tutorial;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -101,7 +101,7 @@ public class TutorialLayout extends LinearLayout {
             @Override
             public void onClick(View v) {
                 Logger.info("refreshTutorial : Next Tuto Plz");
-                TutorialManager.get().changeStep(fragmentType);
+                TutorialManager.get().changeStep(fragmentType, getContext());
                 nextTutorialStep(fragmentType);
             }
         });

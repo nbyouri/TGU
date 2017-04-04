@@ -1,6 +1,5 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +12,12 @@ import java.util.ArrayList;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
+import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.Tools;
-import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
  * Created on 20/02/2017.

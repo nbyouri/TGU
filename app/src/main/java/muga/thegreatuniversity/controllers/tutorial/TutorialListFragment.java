@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.controllers.abstracts;
+package muga.thegreatuniversity.controllers.tutorial;
 
 import android.app.ListFragment;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.ImageView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;
-import muga.thegreatuniversity.controllers.TutorialLayout;
 import muga.thegreatuniversity.lists.enums.FragmentType;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 28-03-17.
@@ -47,6 +47,10 @@ public abstract class TutorialListFragment extends ListFragment {
             });
         }
 
+        if (getView() == null) {
+            Logger.error("OnStart TutorialFragment : No View");
+            return;
+        }
         ViewGroup layout = (ViewGroup) getView().getRootView();
         ViewTreeObserver vto = layout.getViewTreeObserver();
 

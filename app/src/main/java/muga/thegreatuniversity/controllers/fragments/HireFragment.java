@@ -2,8 +2,6 @@ package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.view.Gravity;
@@ -14,18 +12,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
+import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 28/02/2017.

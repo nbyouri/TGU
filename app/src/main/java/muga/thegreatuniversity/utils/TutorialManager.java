@@ -4,8 +4,14 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import android.content.Context;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.FragmentType;
+import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.models.TutorialStep;
 
 /**
@@ -14,9 +20,9 @@ import muga.thegreatuniversity.models.TutorialStep;
  * Muga Copyright
  */
 
-public class TutorialManager {
+public class TutorialManager implements SavableLoadableJSON {
 
-    Map<FragmentType, LinkedList<TutorialStep>> tutorials;
+    private Map<FragmentType, LinkedList<TutorialStep>> tutorials;
 
     private static Map<FragmentType, LinkedList<TutorialStep>> createTutorial() {
         Map<FragmentType, LinkedList<TutorialStep>> tutorials = new EnumMap<FragmentType, LinkedList<TutorialStep>>(FragmentType.class);
@@ -52,17 +58,28 @@ public class TutorialManager {
         return tutorialStep;
     }
 
-    public void changeStep(FragmentType type){
+    public void changeStep(FragmentType type, Context context){
         TutorialStep tutorialStep = null;
         LinkedList<TutorialStep> steps = tutorials.get(type);
         if (steps != null && !steps.isEmpty()){
             tutorialStep = steps.pop();
             Logger.info("Remove tuto STEP : " + tutorialStep.getMessage());
+            if (steps.isEmpty()) SaveManager.saveSetting(context);
         }
     }
 
     private TutorialManager(){
         tutorials = createTutorial();
+    }
+
+    @Override
+    public JSONObject getAsJSON() throws JSONException {
+        return new JSONObject();
+    }
+
+    @Override
+    public void loadJSON(JSONObject jsonO) throws JSONException {
+
     }
 
     private static class TutorialManagerHolder {

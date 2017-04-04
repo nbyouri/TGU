@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.controllers;
+package muga.thegreatuniversity.controllers.tutorial;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

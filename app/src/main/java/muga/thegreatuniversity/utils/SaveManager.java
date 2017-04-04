@@ -22,7 +22,8 @@ import muga.thegreatuniversity.models.University;
 
 public class SaveManager {
 
-    public static String SAVE_FILE = "Save.json";
+    private static String UNIVERSITY_FILE = "Save.json";
+    private static String SETTINGS_FILE = "Settings.json";
 
     public static void saveUniversity(Context context){
         String toWrite = "Impossible To save";
@@ -34,11 +35,11 @@ public class SaveManager {
         }
 
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(SAVE_FILE, Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(UNIVERSITY_FILE, Context.MODE_PRIVATE));
             outputStreamWriter.write(toWrite);
             outputStreamWriter.close();
 
-            Logger.info("Save write : " + toWrite);
+            Logger.info("Save write University : " + toWrite);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,13 +47,13 @@ public class SaveManager {
     }
 
     public static boolean isSaveExist(Context context){
-        File file = context.getFileStreamPath(SAVE_FILE);
+        File file = context.getFileStreamPath(UNIVERSITY_FILE);
         return !(file == null || !file.exists());
     }
 
     public static boolean loadUniversity(Context context){
         try {
-            InputStream inputStream = context.openFileInput(SAVE_FILE);
+            InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -69,6 +70,56 @@ public class SaveManager {
                     String save = stringBuilder.toString();
                     University.get().loadJSON(new JSONObject(save));
                     Logger.info("Save read : "+save);
+                    return true;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void saveSetting(Context context){
+        String toWrite = "";
+        try {
+            JSONObject uni = TutorialManager.get().getAsJSON();
+            toWrite = uni.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(SETTINGS_FILE, Context.MODE_PRIVATE));
+            outputStreamWriter.write(toWrite);
+            outputStreamWriter.close();
+
+            Logger.info("Save write Setting : " + toWrite);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean loadSettings(Context context){
+        try {
+            InputStream inputStream = context.openFileInput(SETTINGS_FILE);
+
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                try {
+                    String save = stringBuilder.toString();
+                    TutorialManager.get().loadJSON(new JSONObject(save));
+                    Logger.info("Save read Settings : " + save);
                     return true;
                 } catch (JSONException e) {
                     e.printStackTrace();

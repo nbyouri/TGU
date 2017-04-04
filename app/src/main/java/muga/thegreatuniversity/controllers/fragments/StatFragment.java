@@ -1,23 +1,15 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.Fragment;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.text.Layout;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.TutorialLayout;
-import muga.thegreatuniversity.controllers.abstracts.TutorialFragment;
+import muga.thegreatuniversity.controllers.tutorial.TutorialFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;

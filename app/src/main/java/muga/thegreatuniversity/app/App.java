@@ -24,6 +24,7 @@ import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
  * Created on 20/02/2017.
@@ -56,6 +57,8 @@ public class App extends Application {
             if (SaveManager.isSaveExist(getApplicationContext())) {
                 SaveManager.loadUniversity(getApplicationContext());
             }
+
+            SaveManager.loadSettings(getApplicationContext());
 
             try {
                 AssetManager assets = getApplicationContext().getAssets();

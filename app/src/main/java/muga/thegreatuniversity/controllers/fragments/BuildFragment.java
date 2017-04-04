@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
-import muga.thegreatuniversity.controllers.abstracts.TutorialListFragment;
+import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Room;
