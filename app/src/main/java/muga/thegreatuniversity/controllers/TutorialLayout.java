@@ -3,22 +3,14 @@ package muga.thegreatuniversity.controllers;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.DefaultValues;
@@ -36,9 +28,9 @@ import muga.thegreatuniversity.utils.TutorialManager;
 public class TutorialLayout extends LinearLayout {
 
     private int widthScreen;
-    private int heightScreen;
     private int topTextMargin;
     private int sideTextMargin;
+    private int textSize;
 
     private Bitmap windowFrame;
 
@@ -76,10 +68,11 @@ public class TutorialLayout extends LinearLayout {
     // Calculate one time some constant about screen
     private void constructorCall(){
         widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
-        heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
+        int heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
         topTextMargin = (DefaultValues.MARGIN_TEXT_TOP_PR * heightScreen/100);
         sideTextMargin = (DefaultValues.MARGIN_TEXT_SIDE_PR * widthScreen/100);
-        activeFragment = new HashSet<FragmentType>();
+        textSize = (widthScreen/DefaultValues.TEXT_SIZE_RAPPORT);
+        activeFragment = new HashSet<>();
     }
 
     // MANAGE WHICH TUTORIAL TO DRAW
@@ -138,7 +131,7 @@ public class TutorialLayout extends LinearLayout {
         return fragmentType;
     }
 
-    // FUNCTION TO DRAW THE TUTORIAL
+    // Called to draw inside
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -153,35 +146,52 @@ public class TutorialLayout extends LinearLayout {
     }
 
     public void refreshLayout(TutorialStep step){
-
-        if (!step.hasView()) {
-            windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(windowFrame);
-            displayNoViewStep(canvas, step);
-            return;
+        if (step.hasView()){
+            focusTutorial(step);
+        } else {
+            noFocusTutorial(step);
         }
+    }
+
+    private void noFocusTutorial(TutorialStep step){
+        windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        TutorialCanvas canvas = new TutorialCanvas(windowFrame, widthScreen, sideTextMargin, topTextMargin);
+        String msgContinue = getResources().getString(R.string.tutorial_click_continue);
+        String msg = step.getMessage();
+        canvas.displayFuzzy(ContextCompat.getColor(this.getContext(), R.color.tutorial_background));
+        canvas.displayText(msg, msgContinue,textSize);
+    }
+
+    private int[] oldPosFocus;
+
+    private void focusTutorial(TutorialStep step){
 
         View focus = this.findViewById(step.getIdView());
-        if (focus == null){
+        if (focus==null){
             Logger.error("TUTORIAL LAYOUT : view equals to null");
             return;
         }
 
+        // OPTIMIZATION ------------------------------
         if (focus.getHeight() == 0 || focus.getWidth() == 0) return;
-        // TODO Check if previous is the same position. If yes, do nothing
 
-        windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(windowFrame);
-
-        int[] pos = new int[2];
-        focus.getLocationOnScreen(pos);
+        int[] posXY = new int[2];
+        focus.getLocationOnScreen(posXY);
 
         int[] posFocus = new int[4];
 
-        posFocus[0] = pos[0];
-        posFocus[1] = pos[1];
+        posFocus[0] = posXY[0];
+        posFocus[1] = posXY[1];
         posFocus[2] = focus.getWidth();
         posFocus[3] = focus.getHeight();
+
+        if (Arrays.equals(oldPosFocus, posFocus)) return;
+        // --------------------------------------------
+
+        windowFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        TutorialCanvas canvas = new TutorialCanvas(windowFrame, widthScreen, sideTextMargin, topTextMargin);
+        String msgContinue = getResources().getString(R.string.tutorial_click_continue);
+        String msg = step.getMessage();
 
         int[] posRect = new int[4];
 
@@ -190,111 +200,12 @@ public class TutorialLayout extends LinearLayout {
         posRect[2] = posFocus[0] + posFocus[2] + DefaultValues.MARGIN_REVERSE;
         posRect[3] = posFocus[1] + posFocus[3] + DefaultValues.MARGIN_REVERSE;
 
-        displayFuzzy(canvas);
-        displayReverse(canvas, posRect);
-        displayStrokeRect(canvas, posRect);
-        displayText(canvas, step, posFocus);
-    }
+        canvas.displayFuzzy(ContextCompat.getColor(this.getContext(), R.color.tutorial_background));
+        canvas.displayReverse(posRect);
+        canvas.displayStrokeRect(posRect);
+        canvas.displayText(msg,msgContinue,posFocus,textSize);
 
-    private void displayFuzzy(Canvas canvas){
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        RectF outerRectangle = new RectF(0, 0, getWidth(), getHeight());
-        paint.setColor(ContextCompat.getColor(this.getContext(), R.color.tutorial_background)); // This is the color of your activity background
-        canvas.drawRect(outerRectangle, paint);
-    }
-
-    private void displayReverse(Canvas canvas, int[] posRect){
-        // REVERSE BLACK TRANSPARENT
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.TRANSPARENT);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
-
-        RectF inRectangle = new RectF(posRect[0],posRect[1],posRect[2],posRect[3]);
-        Logger.info(inRectangle.toString());
-
-        canvas.drawRect(inRectangle, paint);
-    }
-
-    private void displayStrokeRect(Canvas canvas, int[] posRect){
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        Rect rectStroke = new Rect(posRect[0],posRect[1],posRect[2],posRect[3]);
-        paint.setColor(Color.GREEN);
-        paint.setStrokeWidth(DefaultValues.STROKE_WIDTH);
-        paint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(rectStroke, paint);
-    }
-
-    private void displayText(Canvas canvas, TutorialStep step, int[] posFocus){
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        int sizeText = widthScreen/DefaultValues.TEXT_SIZE_RAPPORT;
-        paint.setColor(Color.CYAN);
-        paint.setTextSize(sizeText);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        paint.setTextAlign(Paint.Align.CENTER);
-
-        Rect bounds = new Rect();
-        paint.getTextBounds(step.getMessage(), 0, step.getMessage().length(), bounds);
-
-        float yTxt;
-        if (!morePlaceTop(posFocus)) {
-            yTxt = posFocus[1] + posFocus[3] - bounds.top*1.5f + topTextMargin ;
-        } else {
-            yTxt =  -bounds.top*1.5f + topTextMargin;
-        }
-
-        for (String line : slipPrintableText(step.getMessage(), paint)){
-            canvas.drawText(line, getWidth()/2, yTxt, paint);
-            yTxt = yTxt + (-bounds.top*1.5f);
-        }
-
-        paint.setTextSize(sizeText/2);
-        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt, paint);
-    }
-
-    private void displayNoViewStep(Canvas canvas, TutorialStep step){
-        displayFuzzy(canvas);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        int sizeText = widthScreen/DefaultValues.TEXT_SIZE_RAPPORT;
-        paint.setColor(Color.CYAN);
-        paint.setTextSize(sizeText);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        paint.setTextAlign(Paint.Align.CENTER);
-
-        Rect bounds = new Rect();
-        paint.getTextBounds(step.getMessage(), 0, step.getMessage().length(), bounds);
-
-        float yTxt = getHeight()/2;
-
-        for (String line : slipPrintableText(step.getMessage(), paint)){
-            canvas.drawText(line, getWidth()/2, yTxt, paint);
-            yTxt = yTxt + (-bounds.top*1.5f);
-        }
-        paint.setTextSize(sizeText/2);
-        canvas.drawText(getResources().getString(R.string.tutorial_click_continue), getWidth()/2, yTxt, paint);
-    }
-
-    private List<String> slipPrintableText(String message, Paint paint){
-        StringBuilder mesBuilder = new StringBuilder(message);
-
-        ArrayList<String> slipStrings = new ArrayList<String>();
-        while (mesBuilder.length() > 0){
-            StringBuilder temp = new StringBuilder(mesBuilder);
-
-            float sizeT = paint.measureText(temp.toString());
-            while (sizeT > widthScreen - sideTextMargin * 2){
-                if (temp.lastIndexOf(" ") == -1) break;
-                temp.delete(temp.lastIndexOf(" "), temp.length());
-                sizeT = paint.measureText(temp.toString());
-            }
-
-            mesBuilder.delete(0,temp.length());
-            slipStrings.add(temp.toString());
-        }
-        return slipStrings;
-    }
-
-    private boolean morePlaceTop(int[] posFocus){
-        return ((posFocus[1]) > (getHeight()-(posFocus[1]+posFocus[3])));
+        oldPosFocus = posFocus;
     }
 
     public void cleanCanvas(){
