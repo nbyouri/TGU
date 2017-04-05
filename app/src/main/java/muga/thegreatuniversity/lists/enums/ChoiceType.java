@@ -13,5 +13,6 @@ public enum ChoiceType {
     INVENTORY,
     STATISTICS,
     SETTINGS,
-    RESET
+    RESET_UNIVERSITY,
+    RESET_TUTORIAL
 }

@@ -34,7 +34,7 @@ public class TutorialLayout extends LinearLayout {
 
     private Bitmap windowFrame;
 
-    // FUNCTION MANDATORY
+    // ---------- FUNCTION MANDATORY ----------------
     public TutorialLayout(Context context) {
         super(context);
         constructorCall();
@@ -60,12 +60,16 @@ public class TutorialLayout extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
     }
 
-    // DISABLE clickListener of children when tutorial is printing
+    /**
+     * DISABLE clickListener of children when tutorial is printing
+     */
     public boolean onInterceptTouchEvent (MotionEvent ev){
         return windowFrame != null;
     }
 
-    // Calculate one time some constant about screen
+    /**
+     * Calculate one time some constant about screen (optimization)
+     */
     private void constructorCall(){
         widthScreen =  getContext().getResources().getDisplayMetrics().widthPixels;
         int heightScreen =  getContext().getResources().getDisplayMetrics().heightPixels;
@@ -75,7 +79,8 @@ public class TutorialLayout extends LinearLayout {
         activeFragment = new HashSet<>();
     }
 
-    // MANAGE WHICH TUTORIAL TO DRAW
+    // ------- MANAGE WHICH TUTORIAL TO DRAW -------------
+
     private HashSet<FragmentType> activeFragment;
     private FragmentType currentFragmentTutorial;
 
@@ -100,7 +105,6 @@ public class TutorialLayout extends LinearLayout {
         this.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logger.info("refreshTutorial : Next Tuto Plz");
                 TutorialManager.get().changeStep(fragmentType, getContext());
                 nextTutorialStep(fragmentType);
             }
@@ -113,7 +117,6 @@ public class TutorialLayout extends LinearLayout {
             this.refreshLayout(step);
             this.invalidate();
         } else {
-            Logger.info("Finish tuto for "+ fragmentType + " Fragment");
             this.cleanCanvas();
             this.invalidate();
             currentFragmentTutorial = this.choiceOneTutorialFrag();
@@ -135,12 +138,8 @@ public class TutorialLayout extends LinearLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-
         if (windowFrame != null) {
-            Logger.info(" TUTORIAL LAYOUT : Draw Tutorial");
             canvas.drawBitmap(windowFrame, 0, 0, null);
-        } else {
-            Logger.info(" TUTORIAL LAYOUT : winFrame null");
         }
 
     }
@@ -208,6 +207,9 @@ public class TutorialLayout extends LinearLayout {
         oldPosFocus = posFocus;
     }
 
+    /**
+     * Clean the tutorial canvas
+     */
     public void cleanCanvas(){
         windowFrame = null;
     }

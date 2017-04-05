@@ -1,6 +1,5 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,21 +14,24 @@ import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.controllers.adapters.ChoicesAdapter;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
-import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
- * Created by tristanmoers on 21/03/17.
+ * Created on 20/02/2017.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
-public class OptionsFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class SettingsFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_options, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
 
     }
 
@@ -38,7 +40,8 @@ public class OptionsFragment extends ListFragment implements AdapterView.OnItemC
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<Choice> choices = new ArrayList<>();
-        choices.add(new Choice(ChoiceType.RESET, "Destroy your university"));
+        choices.add(new Choice(ChoiceType.RESET_UNIVERSITY, "Destroy your university"));
+        choices.add(new Choice(ChoiceType.RESET_TUTORIAL, "Reset the tutorial"));
 
         ChoicesAdapter choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
         setListAdapter(choicesAdapter);
@@ -49,8 +52,14 @@ public class OptionsFragment extends ListFragment implements AdapterView.OnItemC
         super.onStart();
     }
 
-    private void reset(){
+    private void resetUniversity(){
         PopUp.resetUnivPopUp((MainActivity) getActivity());
+    }
+
+    private void resetTutorial(){
+        TutorialManager.get().createAllTutorial();
+        SaveManager.saveSetting(getActivity().getApplicationContext());
+        getFragmentManager().popBackStackImmediate();
     }
 
     @Override
@@ -58,8 +67,11 @@ public class OptionsFragment extends ListFragment implements AdapterView.OnItemC
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
         Logger.info("Click on choice type = " + choiceType);
         switch (choiceType) {
-            case RESET:
-                reset();
+            case RESET_UNIVERSITY:
+                resetUniversity();
+                break;
+            case RESET_TUTORIAL:
+                resetTutorial();
                 break;
         }
     }

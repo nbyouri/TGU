@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,7 @@ import muga.thegreatuniversity.controllers.fragments.BuildFragment;
 import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
 import muga.thegreatuniversity.controllers.fragments.HireFragment;
 import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
-import muga.thegreatuniversity.controllers.fragments.OptionsFragment;
+import muga.thegreatuniversity.controllers.fragments.SettingsFragment;
 import muga.thegreatuniversity.controllers.fragments.ProfFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
@@ -32,7 +31,6 @@ import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
-import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 20/02/2017.
@@ -72,7 +70,7 @@ public class MainActivity extends Activity implements CallbackActivity {
                 public void run() {
                     if (App.assetsLoaded) {
                         Logger.info("Asset Loaded : Can begin");
-                        if (SaveManager.isSaveExist(getApplicationContext())) {
+                        if (SaveManager.isFileExist(getApplicationContext(), SaveManager.UNIVERSITY_FILE)) {
                             printGame();
                         } else {
                             printLoginLayout();
@@ -154,7 +152,7 @@ public class MainActivity extends Activity implements CallbackActivity {
                 frag = new StatsFragment();
                 break;
             case OPTIONS:
-                frag = new OptionsFragment();
+                frag = new SettingsFragment();
                 break;
             case PROF_DETAIL:
                 frag = new ProfFragment();

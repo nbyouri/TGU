@@ -54,11 +54,16 @@ public class App extends Application {
         protected Integer doInBackground(Void... params) {
 
             University.get();
-            if (SaveManager.isSaveExist(getApplicationContext())) {
+            if (SaveManager.isFileExist(getApplicationContext(),SaveManager.UNIVERSITY_FILE)) {
                 SaveManager.loadUniversity(getApplicationContext());
             }
 
-            SaveManager.loadSettings(getApplicationContext());
+            if (SaveManager.isFileExist(getApplicationContext(),SaveManager.SETTINGS_FILE)){
+                SaveManager.loadSettings(getApplicationContext());
+            } else {
+                TutorialManager.get().createAllTutorial();
+                SaveManager.saveSetting(getApplicationContext());
+            }
 
             try {
                 AssetManager assets = getApplicationContext().getAssets();

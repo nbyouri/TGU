@@ -22,8 +22,8 @@ import muga.thegreatuniversity.models.University;
 
 public class SaveManager {
 
-    private static String UNIVERSITY_FILE = "Save.json";
-    private static String SETTINGS_FILE = "Settings.json";
+    public static String UNIVERSITY_FILE = "Save.json";
+    public static String SETTINGS_FILE = "Settings.json";
 
     public static void saveUniversity(Context context){
         String toWrite = "Impossible To save";
@@ -46,8 +46,8 @@ public class SaveManager {
 
     }
 
-    public static boolean isSaveExist(Context context){
-        File file = context.getFileStreamPath(UNIVERSITY_FILE);
+    public static boolean isFileExist(Context context, String fileName){
+        File file = context.getFileStreamPath(fileName);
         return !(file == null || !file.exists());
     }
 
