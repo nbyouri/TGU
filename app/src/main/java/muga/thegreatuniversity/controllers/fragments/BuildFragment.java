@@ -64,11 +64,6 @@ public class BuildFragment extends TutorialListFragment implements AdapterView.O
         }
     }
 
-    private void printGame(){
-        ((MainActivity)getActivity()).updateView();
-    }
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Room r = ((Room) parent.getItemAtPosition(position));

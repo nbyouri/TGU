@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/layout_detail"
         android:padding="@dimen/choice_btn_margin"
+        android:layout_toStartOf="@+id/layout_prof_characteristic"
         android:orientation="vertical"
-        android:layout_toStartOf="@+id/layout_prof_money"
         android:layout_toEndOf="@id/icon_prof">
         <TextView
             android:id="@+id/txt_name_prof"
@@ -61,50 +61,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:id="@+id/layout_prof_characteristic"
         android:layout_alignBottom="@+id/layout_detail"
         android:layout_alignTop="@+id/layout_detail"
-        android:id="@+id/layout_prof_money"
-        android:gravity="center">
+        android:gravity="end|center_vertical">
 
-        <TextView
-            android:id="@+id/txt_efficiency_prof"
-            style="@style/QText"
+        <RelativeLayout
+            android:id="@+id/layout_prof_efficient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txt_efficiency_prof"
+                style="@style/QText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textAlignment="gravity"
+                android:text="@string/not_available" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icon_efficiency_prof"
+                android:layout_toEndOf="@+id/txt_efficiency_prof"
+                android:layout_alignBottom="@+id/txt_efficiency_prof"
+                android:layout_alignTop="@+id/txt_efficiency_prof"
+                android:src="@mipmap/ic_efficiency"
+                android:contentDescription="@string/icon_desc_money" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_prof_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:textAlignment="gravity"
-            android:text="@string/not_available" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/icon_efficiency_prof"
-            android:layout_toEndOf="@+id/txt_efficiency_prof"
-            android:layout_alignBottom="@+id/txt_efficiency_prof"
-            android:layout_alignTop="@+id/txt_efficiency_prof"
-            android:src="@mipmap/ic_efficiency"
-            android:contentDescription="@string/icon_desc_money" />
-
-        <TextView
-            android:id="@+id/txt_price_prof"
-            style="@style/QText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:textAlignment="gravity"
-            android:layout_below="@id/txt_efficiency_prof"
-            android:text="@string/not_available" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/icon_money_prof"
-            android:layout_toEndOf="@+id/txt_price_prof"
-            android:layout_alignBottom="@+id/txt_price_prof"
-            android:layout_alignTop="@+id/txt_price_prof"
-            android:src="@mipmap/ic_money"
-            android:contentDescription="@string/icon_desc_money" />
-
-        <TextView
+            android:layout_below="@id/layout_prof_efficient">
+            <TextView
+                android:id="@+id/txt_price_prof"
+                style="@style/QText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textAlignment="gravity"
+                android:text="@string/not_available" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icon_money_prof"
+                android:layout_toEndOf="@+id/txt_price_prof"
+                android:layout_alignBottom="@+id/txt_price_prof"
+                android:layout_alignTop="@+id/txt_price_prof"
+                android:src="@mipmap/ic_money"
+                android:contentDescription="@string/icon_desc_money" />
+        </RelativeLayout>
+        <!-- <TextView
             android:id="@+id/txt_by_week"
             style="@style/QText"
             android:layout_width="wrap_content"
@@ -112,9 +121,7 @@
             android:gravity="start"
             android:textAlignment="gravity"
             android:layout_below="@+id/txt_price_prof"
-            android:text="@string/per_week_money" />
+            android:text="@string/per_week_money" /> -->
     </RelativeLayout>
-
-
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.Arrays;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
+import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
@@ -29,7 +32,7 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class InventoryFragment extends ListFragment implements OnItemClickListener {
+public class InventoryFragment extends TutorialListFragment implements OnItemClickListener {
     private HireAdapter hireAdapter;
 
     @Override
@@ -53,6 +56,16 @@ public class InventoryFragment extends ListFragment implements OnItemClickListen
 
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public ImageView getButtonHelp() {
+        return null;
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.INVENTORY;
     }
 
     @Override
