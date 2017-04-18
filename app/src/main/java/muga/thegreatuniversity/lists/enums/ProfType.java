@@ -31,7 +31,7 @@ public enum ProfType {
 
     private String name = "";
     private int id = 0;
-    private static final Map<String, ProfType> lookup = new LinkedHashMap<>();
+    private static final Map<String, ProfType> lookup = new HashMap<>();
     // probablity per type
     private static DistributedRandomGenerator<ProfType> rnd = new DistributedRandomGenerator<>();
 
@@ -138,5 +138,9 @@ public enum ProfType {
 
     public int ranking() {
         return this.getId();
+    }
+
+    public static Map<String, ProfType> getLookup() {
+        return lookup;
     }
 }

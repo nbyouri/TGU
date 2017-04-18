@@ -129,7 +129,6 @@ public class TutorialManager implements SavableLoadableJSON {
                 tutorials.put(fType,tutorialSteps(fType));
             }
         }
-
     }
 
     private static class TutorialManagerHolder {

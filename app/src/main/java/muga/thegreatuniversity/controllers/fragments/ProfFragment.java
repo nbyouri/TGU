@@ -16,11 +16,15 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.utils.Context;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tools;
 
@@ -117,6 +121,30 @@ public class ProfFragment extends Fragment {
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
             row.addView(tv2);
+            table.addView(row);
+        }
+
+        // Legend
+        row = new TableRow(getActivity());
+        tv1 = new TextView(getActivity());
+        tv1.setText(Context.getString(R.string.color_legend));
+        tv1.setGravity(Gravity.CENTER);
+        tv1.setLayoutParams(
+                new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+        row.addView(tv1);
+        table.addView(row);
+
+        for (String key : ProfType.getLookup().keySet()) {
+            row = new TableRow(getActivity());
+            tv1 = new TextView(getActivity());
+            tv1.setText(key);
+            tv1.setTextColor(ProfType.getEnum(key).getColor());
+            tv1.setGravity(Gravity.CENTER);
+            tv1.setLayoutParams(
+                    new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+            row.addView(tv1);
             table.addView(row);
         }
     }
