@@ -30,10 +30,20 @@ public class Event {
     private AnsType ans;
 
     private boolean causal;
+    private boolean displayable;
 
     public Event() {
-        this.count=0;
-        this.duration=1;
+        this.count = 0;
+        this.duration = 1;
+        this.displayable = true;
+    }
+
+    public boolean isDisplayable() {
+        return displayable;
+    }
+
+    public void setDisplayable(boolean displayable) {
+        this.displayable = displayable;
     }
 
     public String getMessage() {

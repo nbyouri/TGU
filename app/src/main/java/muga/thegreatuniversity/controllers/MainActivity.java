@@ -122,8 +122,9 @@ public class MainActivity extends Activity implements CallbackActivity {
         University.get().newTurn();
         ArrayList<Event> events = University.get().getCurrentEvents();
         for (Event ev : events) {
-            if (ev != null)
+            if (ev != null && ev.isDisplayable())
                 PopUp.alertNewEvent(this, ev);
+                ev.setDisplayable(false);
         }
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER

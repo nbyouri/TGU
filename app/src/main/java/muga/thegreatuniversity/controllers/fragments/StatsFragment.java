@@ -15,12 +15,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
@@ -43,6 +45,47 @@ public class StatsFragment extends Fragment {
         super.onStart();
         createTable();
     }
+
+    /*
+    public void createEventTable() {
+        ArrayList<Event> ListEvent = University.get().getCurrentEvents();
+        if (!ListEvent.isEmpty()) {
+        TableLayout EventTable = (TableLayout) getActivity().findViewById(R.id.tableEvents);
+
+        TableRow row;
+        TextView tv1, tv2;
+
+        Event ev = ListEvent.get(0);
+        String column[] = {"Message",
+                            "Duration"};
+
+        String fields[] = {ev.getMessage(),
+                String.valueOf(ev.getDuration()),};
+
+        for (int i = 0; i < column.length; i++) {
+            row = new TableRow(getActivity());
+
+            tv1 = new TextView(getActivity());
+            tv1.setText(column[i]);
+            tv1.setGravity(Gravity.LEFT);
+            tv1.setLayoutParams(
+                    new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+            row.addView(tv1);
+
+            tv2 = new TextView(getActivity());
+            tv2.setText(fields[i]);
+            tv2.setGravity(Gravity.LEFT);
+            tv2.setLayoutParams(
+                    new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+            row.addView(tv2);
+            EventTable.addView(row);
+        }
+        }
+
+    }
+    */
 
     public void createTable() {
 

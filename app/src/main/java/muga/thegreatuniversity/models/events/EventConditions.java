@@ -66,6 +66,9 @@ public class EventConditions {
                 case STUDENT:
                     ok = EventOperation.op(ops[i], University.get().getStudentNb(), values[i]);
                     break;
+                case WEEK:
+                    ok = EventOperation.op(ops[i], University.get().getWeek(), values[i]);
+                    break;
             }
         }
 

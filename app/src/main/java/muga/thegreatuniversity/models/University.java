@@ -280,6 +280,7 @@ public class University implements SavableLoadableJSON {
         }
         for (Event ev: toRemove)
         {
+            ev.setDisplayable(true);
             this.currentEvents.remove(ev);
         }
     }

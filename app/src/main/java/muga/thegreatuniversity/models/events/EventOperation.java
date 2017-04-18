@@ -35,6 +35,10 @@ public class EventOperation {
         return val1 != val2;
     }
 
+    public static boolean modulo(int val1, int val2) {
+        return val1%val2 == 0;
+    }
+
     public static boolean op(String op, int val1, int val2) {
         java.lang.reflect.Method method;
         boolean ok = false;
@@ -46,6 +50,7 @@ public class EventOperation {
             case ">=" : ops = "greater_or_equal"; break;
             case "=" : ops = "equal"; break;
             case "!=" : ops = "not_equal"; break;
+            case "%" : ops = "modulo"; break;
         }
         try {
             method = EventOperation.class.getMethod(ops, int.class, int.class);

@@ -15,6 +15,7 @@ public enum EventValueType {
     MONEY("money"),
     POPULARITY("popularity"),
     MORAL("moral"),
+    WEEK("week"),
     PROF("prof");
 
     private String name = "";

@@ -2,7 +2,7 @@
   {
     "message":"One of your teacher finished his thesis, you gain money and popularity",
     "type":"determinist",
-    "duration":1,
+    "duration":0,
     "first_choice":"",
     "second_choice":"",
     "yes_action":[
@@ -37,7 +37,7 @@
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value":1.2,
@@ -76,7 +76,7 @@
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value":0.6,
@@ -98,18 +98,24 @@
     ],
     "conditions":
     {
-      "vars":[],
-      "ops":[],
-      "values":[]
+      "vars":[
+        "week"
+      ],
+      "ops":[
+        "%"
+      ],
+      "values":[
+        "20"
+      ]
     },
-    "causal":"false"
+    "causal":"true"
   },
   {
     "message":"You got robbed by a student, you lost some of your money",
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value":0.7,
@@ -137,7 +143,7 @@
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value":0.9,
@@ -171,7 +177,7 @@
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value": 1.3,
@@ -209,7 +215,7 @@
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
-    "duration":1,
+    "duration":0,
     "yes_action":[
       {
         "value":0.7,
@@ -260,6 +266,40 @@
       ],
       "values":[
         "0"
+      ]
+    },
+    "causal":"true"
+  },
+  {
+    "message":"The exam sessions has started",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 4,
+    "yes_action":[
+      {
+        "value":-1,
+        "action_type":"add",
+        "value_type":"moral"
+      }
+    ],
+    "no_action":[
+      {
+        "value":0,
+        "action_type":"",
+        "value_type":""
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week"
+      ],
+      "ops":[
+        "%"
+      ],
+      "values":[
+        12
       ]
     },
     "causal":"true"
