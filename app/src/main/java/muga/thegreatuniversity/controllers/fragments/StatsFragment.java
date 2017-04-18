@@ -1,31 +1,27 @@
 package muga.thegreatuniversity.controllers.fragments;
 
-import android.app.Fragment;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.EventAdapter;
+import muga.thegreatuniversity.controllers.tutorial.TutorialFragment;
+import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -34,7 +30,7 @@ import muga.thegreatuniversity.utils.Tuple;
  * Muga Copyright
  */
 
-public class StatsFragment extends ListFragment{
+public class StatsFragment extends TutorialFragment {
     private EventAdapter eventadapter;
 
     @Override
@@ -51,13 +47,22 @@ public class StatsFragment extends ListFragment{
         eventList();
     }
 
+    @Override
+    public ImageView getButtonHelp() {
+        return null;
+    }
+
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.STATISTICS;
+    }
 
     public void eventList() {
-        //ListView events = (ListView) getActivity().findViewById(R.id.event_list);
+        ListView events = (ListView) getActivity().findViewById(R.id.event_list);
         eventadapter = new EventAdapter(getActivity().getApplicationContext(),
                 University.get().getCurrentEvents());
-        //events.setAdapter(eventadapter);
-        //eventadapter.notifyDataSetChanged();
+        events.setAdapter(eventadapter);
+        eventadapter.notifyDataSetChanged();
     }
 
     public void createTable() {
