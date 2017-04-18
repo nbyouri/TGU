@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingStart="@dimen/item_list_side_padding"
+    android:paddingEnd="@dimen/item_list_side_padding">
     <ScrollView
         android:id="@+id/scroll_statics"
         android:layout_width="match_parent"
@@ -21,8 +23,20 @@
             android:showDividers="middle">
         </TableLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/layout_stats_events"
+            android:textSize="@dimen/text_large"
+            android:background="@color/black"
+            android:gravity="center"/>
+    </LinearLayout>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="top"
         android:id="@+id/event_list"/>
 </LinearLayout>

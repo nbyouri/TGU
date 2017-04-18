@@ -28,6 +28,7 @@ public class Event {
 
     private EventConditions conds;
     private AnsType ans;
+    private String description;
 
     private boolean causal;
     private boolean displayable;
@@ -131,6 +132,7 @@ public class Event {
         this.duration = jsonO.getInt("duration");
         this.firstChoice = jsonO.getString("first_choice");
         this.secondChoice = jsonO.getString("second_choice");
+        //this.description = jsonO.getString("description");
 
         this.yesAction = new EventResult();
         this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));

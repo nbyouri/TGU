@@ -82,4 +82,6 @@
     <string name="tutorial_roomprice">Overall cost of building the room</string>
     <string name="tutorial_help">If you see this icon, click on it to get more information!</string>
     <string name="layout_stat_moral">The student\'s morale impacts the population greatly!</string>
+    <string name="layout_event_info">Info</string>
+    <string name="layout_stats_events">Current Events</string>
 </resources>

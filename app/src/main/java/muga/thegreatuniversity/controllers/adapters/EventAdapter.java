@@ -20,6 +20,7 @@ import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 18/04/17 .
@@ -33,8 +34,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Event ev = getItem(position);
@@ -48,9 +50,10 @@ public class EventAdapter extends ArrayAdapter<Event> {
         TextView duration = (TextView) convertView.findViewById(R.id.event_duration);
 
         // Populate the data into the template view using the data object
-        description.setText(ev.getMessage());
-        duration.setText(ev.getDuration());
-
+        if (ev != null) {
+            description.setText(ev.getMessage());
+            duration.setText("Duration: "+String.valueOf(ev.getDuration()));
+        }
         // Return the completed view to render on screen
         return convertView;
     }
