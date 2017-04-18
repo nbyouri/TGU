@@ -29,6 +29,9 @@ import muga.thegreatuniversity.utils.SaveManager;
 
 public class University implements SavableLoadableJSON {
 
+    // Help Object
+    private FormulaUniversity formule;
+
     // Basic properties
     private String name;
     private int basicPopularity;
@@ -58,6 +61,7 @@ public class University implements SavableLoadableJSON {
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
         currentEvents = new ArrayList<>();
+        formule = new FormulaUniversity(this);
     }
 
     @Override
@@ -190,6 +194,10 @@ public class University implements SavableLoadableJSON {
         return studentNb;
     }
 
+    public FormulaUniversity getFormule() {
+        return formule;
+    }
+
     public void setStudentNb(int studentNb) {
         this.studentNb = studentNb;
     }
@@ -289,53 +297,16 @@ public class University implements SavableLoadableJSON {
 
         int maxPop = this.getMaxPopulation();
 
-        if(this.studentNb < maxPop) {
+        long newStudentNb = formule.newStudent();
 
-            // TODO : Change the formula
-           /* int addStudents = (int) Math.floor(Math.random() * this.getPopularity());
-
-            if (this.studentNb + addStudents > maxPop){
-                setStudentNb(maxPop);
-            } else {
-                setStudentNb(this.studentNb + addStudents);
-            }*/
-            Random randomGenerator = new Random();
-            int addnumber = 0;
-
-            //Positive
-            if(getMoral() >=50 && getMoral() <60)
-                addnumber = randomGenerator.nextInt(2);
-            if(getMoral() >=60 && getMoral() <70)
-                addnumber = randomGenerator.nextInt(4);
-            if(getMoral() >=70 && getMoral() <80)
-                addnumber = randomGenerator.nextInt(6);
-            if(getMoral() >=80 && getMoral() <90)
-                addnumber = randomGenerator.nextInt(8);
-            if(getMoral() >=90 && getMoral() <= 100)
-                addnumber = randomGenerator.nextInt(10);
-
-            //Negative
-            if(getMoral() >=40 && getMoral() <50)
-                addnumber = - randomGenerator.nextInt(2);
-            if(getMoral() >=30 && getMoral() <40)
-                addnumber = - randomGenerator.nextInt(4);
-            if(getMoral() >=20 && getMoral() <30)
-                addnumber = - randomGenerator.nextInt(6);
-            if(getMoral() >=10 && getMoral() <20)
-                addnumber = - randomGenerator.nextInt(8);
-            if(getMoral() >=0 && getMoral() <= 10)
-                addnumber = - randomGenerator.nextInt(10);
-
-            int addStudents = (int) Math.floor((addnumber * this.getPopularity())/10);
-
-            if (this.studentNb + addStudents > maxPop){
-                setStudentNb(maxPop);
-            } else if(this.studentNb + addStudents < 5) {
-                setStudentNb(5);
-            } else {
-                setStudentNb(this.studentNb + addStudents);
-            }
+        if(this.studentNb + newStudentNb > maxPop) {
+            studentNb = maxPop;
+        } else if (this.studentNb + newStudentNb < 1) {
+            studentNb = 0;
+        } else {
+            studentNb += newStudentNb;
         }
+
     }
 
     public void createNewUniversity(String name){

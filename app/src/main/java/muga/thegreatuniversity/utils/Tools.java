@@ -32,9 +32,12 @@ public class Tools {
     public static int randInt(int min, int max) {
         Random rand = new Random();
 
-        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return rand.nextInt((max - min) + 1) + min;
+    }
 
-        return randomNum;
+    public static double randDouble (double min, double max){
+        Random r = new Random();
+        return min + (max - min) * r.nextDouble();
     }
 
     public static void colorFilter(ImageView img, int color){

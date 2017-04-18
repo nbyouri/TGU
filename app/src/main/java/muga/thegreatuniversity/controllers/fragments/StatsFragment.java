@@ -15,6 +15,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
@@ -24,6 +26,7 @@ import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.Tuple;
 
 /**
  * Created on 20/02/2017.
@@ -45,47 +48,6 @@ public class StatsFragment extends Fragment {
         super.onStart();
         createTable();
     }
-
-    /*
-    public void createEventTable() {
-        ArrayList<Event> ListEvent = University.get().getCurrentEvents();
-        if (!ListEvent.isEmpty()) {
-        TableLayout EventTable = (TableLayout) getActivity().findViewById(R.id.tableEvents);
-
-        TableRow row;
-        TextView tv1, tv2;
-
-        Event ev = ListEvent.get(0);
-        String column[] = {"Message",
-                            "Duration"};
-
-        String fields[] = {ev.getMessage(),
-                String.valueOf(ev.getDuration()),};
-
-        for (int i = 0; i < column.length; i++) {
-            row = new TableRow(getActivity());
-
-            tv1 = new TextView(getActivity());
-            tv1.setText(column[i]);
-            tv1.setGravity(Gravity.LEFT);
-            tv1.setLayoutParams(
-                    new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-
-            row.addView(tv1);
-
-            tv2 = new TextView(getActivity());
-            tv2.setText(fields[i]);
-            tv2.setGravity(Gravity.LEFT);
-            tv2.setLayoutParams(
-                    new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-
-            row.addView(tv2);
-            EventTable.addView(row);
-        }
-        }
-
-    }
-    */
 
     public void createTable() {
 
@@ -113,32 +75,38 @@ public class StatsFragment extends Fragment {
 
         ArrayList<Professor> p = University.get().getProfessors();
         int nbProfs = p.size();
-
         int nbIncome = University.get().getIncome();
-
         int moral = University.get().getMoral();
+        int[] rangeNewStudent = University.get().getFormule().rangeNewStudent();
 
-        final String [] col1 = {"Students moral : ","Classroom number : ","Audience number : ","Agro labo number : ","Science labo number : ",
-                                "IT labo number : ","Professors number : ","Income/Week : "};
-        final String [] col2 = {String.valueOf(moral),String.valueOf(nbClass),String.valueOf(nbAudi),String.valueOf(nbAgro),
-                                String.valueOf(nbSci),String.valueOf(nbIT),String.valueOf(nbProfs),String.valueOf(nbIncome)};
+        Queue<Tuple<String, String>> rowItems = new LinkedList<>();
+        rowItems.add(new Tuple<>("Students moral : ", String.valueOf(moral)));
+        rowItems.add(new Tuple<>("Classroom number : ", String.valueOf(nbClass)));
+        rowItems.add(new Tuple<>("Audience number : ", String.valueOf(nbAudi)));
+        rowItems.add(new Tuple<>("Agro labo number : ", String.valueOf(nbAgro)));
+        rowItems.add(new Tuple<>("IT labo number : ", String.valueOf(nbIT)));
+        rowItems.add(new Tuple<>("Science labo number : ", String.valueOf(nbSci)));
+        rowItems.add(new Tuple<>("Professors number : ", String.valueOf(nbProfs)));
+        rowItems.add(new Tuple<>("Income/Week : ", String.valueOf(nbIncome)));
+        rowItems.add(new Tuple<>("New Student : ", rangeNewStudent[0] + " to " + rangeNewStudent[1]));
+
 
         TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
        
 
         TableRow row;
         TextView tv1,tv2;
-        for(int i=0;i<col1.length;i++) {
+        for(Tuple<String, String> rowItem : rowItems) {
             row = new TableRow(getActivity());
 
             tv1 = new TextView(getActivity());
-            tv1.setText(col1[i]);
+            tv1.setText(rowItem.item1);
             tv1.setGravity(Gravity.LEFT);
             tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
 
             tv2 = new TextView(getActivity());
-            tv2.setText(col2[i]);
+            tv2.setText(rowItem.item2);
             tv2.setGravity(Gravity.CENTER);
             tv2.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
