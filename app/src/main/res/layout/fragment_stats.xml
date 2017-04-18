@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@color/dark_grey">
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:stretchColumns="0"
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:stretchColumns="0"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableStats"
+            android:divider="?android:listDivider"
+            android:dividerPadding="16dp"
+            android:showDividers="middle">
+        </TableLayout>
+
+    </ScrollView>
+    <!--<ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tableStats"
-        android:divider="?android:listDivider"
-        android:dividerPadding="16dp"
-        android:showDividers="middle">
-    </TableLayout>
-</ScrollView>
+        android:id="@+id/event_list"
+        android:layout_below="@id/scrollView1">
+    </ListView> -->
+</LinearLayout>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="start|center_vertical"
+    android:orientation="horizontal"
+    android:id="@+id/layout_event_item"
+
+    android:paddingStart="@dimen/item_list_side_padding"
+    android:paddingEnd="@dimen/item_list_side_padding">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_detail"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_vertical_margin">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_description"
+            android:text="@string/not_available"
+            android:textSize="@dimen/text_small"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_duration"
+            android:text="n/a"
+            android:textSize="@dimen/text_small"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/layout_prof_characteristic"
+        android:layout_alignBottom="@+id/event_detail"
+        android:layout_alignTop="@+id/event_detail"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:gravity="end|center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_info"
+                android:text="More \n info"
+                android:textSize="@dimen/text_medium"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
