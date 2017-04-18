@@ -26,15 +26,16 @@
     <string name="label_week">Week : </string>
     <string name="separate_student_values"> / </string>
 
-    <string name="help_hire">Choose a prof to hire</string>
-    <string name="help_inventory">Your Professors</string>
-    <string name="help_room">Click on room to buy it</string>
-    <string name="help_choice">Each action pass a week</string>
+    <!-- Help dialog -->
+    <string name="help_hire">Help dialog</string>
+    <string name="help_inventory">Help dialog</string>
+    <string name="help_room">Help dialog</string>
 
-    <string name="help_hire_more">Choose a prof to hire</string>
-    <string name="help_inventory_more">Your Professors</string>
-    <string name="help_room_more">You can buy building for increase the number of people on your university</string>
-    <string name="help_choice_more">Each action pass a week</string>
+    <string name="help_hire_more">Hire a professor, the colors show the rarity! Find out how rare they are
+    and more by clicking !</string>
+    <string name="help_inventory_more">Click on a professor to get more information!</string>
+    <string name="help_room_more">Buy buildings to increase population in your university!</string>
+
 
     <string name="not_available">N/a</string>
     <string name="icon_desc_money">Money Icon</string>
@@ -62,7 +63,7 @@
     <string name="tutorial_list_hire">Click on this professor</string>
     <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
     <string name="tutorial_click_continue">Click to continue</string>
-
+    <string name="tutorial_newturn">Click on Pass a week to get to the next week</string>
     <string name="tutorial_first_steps">We are going to review the different things you can do, are you ready?</string>
     <string name="tutorial_money">First, you can see how much money you have. You will earn 5 UCash for each student</string>
     <string name="tutorial_popularity">The popularity of the university will attract more students</string>
@@ -78,4 +79,6 @@
     <string name="tutorial_room">Increase the university population by adding more rooms, they take one week to be built!</string>
     <string name="tutorial_roomsize">The capacity is the amount of students it can contain</string>
     <string name="tutorial_roomprice">Overall cost of building the room</string>
+    <string name="tutorial_help">If you see this icon, click on it to get more information!</string>
+    <string name="layout_stat_moral">The student\'s morale impacts the population greatly!</string>
 </resources>

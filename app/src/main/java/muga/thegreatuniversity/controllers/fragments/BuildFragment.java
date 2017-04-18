@@ -101,15 +101,14 @@ public class BuildFragment extends TutorialListFragment implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Room r = ((Room) parent.getItemAtPosition(position));
-        Logger.info("Build "+r.getName());
         BuildRoom(r);
         buildAdapter.notifyDataSetChanged();
 
     }
 
     @Override
-    public ImageView getButtonHelp() {
-        return ((ImageView) getActivity().findViewById(R.id.img_help_room));
+    public View getButtonHelp() {
+        return (getActivity().findViewById(R.id.room_help));
     }
 
     @Override

@@ -111,6 +111,8 @@ public class ProfFragment extends Fragment {
             tv2 = new TextView(getActivity());
             tv2.setText(fields[i]);
             tv2.setGravity(Gravity.LEFT);
+            if (column[i] == R.string.prof_type)
+                tv2.setTextColor(p.getType().getColor());
             tv2.setLayoutParams(
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 

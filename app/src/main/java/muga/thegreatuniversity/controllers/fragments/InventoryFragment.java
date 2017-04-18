@@ -59,8 +59,8 @@ public class InventoryFragment extends TutorialListFragment implements OnItemCli
     }
 
     @Override
-    public ImageView getButtonHelp() {
-        return null;
+    public View getButtonHelp() {
+        return (getActivity().findViewById(R.id.inventory_help));
     }
 
     @Override

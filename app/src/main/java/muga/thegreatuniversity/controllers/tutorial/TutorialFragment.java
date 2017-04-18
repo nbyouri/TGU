@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.enums.FragmentType;
+import muga.thegreatuniversity.utils.Context;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
@@ -70,7 +71,13 @@ public abstract class TutorialFragment extends Fragment {
     private void printHelp(){
         switch (getFragmentType()) {
             case BUILD_ROOM:
-                PopUp.helpPopUp(getActivity(), getActivity().getString(R.string.help_room_more));
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_room_more));
+                break;
+            case HIRE_PROF:
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_hire_more));
+                break;
+            case INVENTORY:
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_inventory_more));
                 break;
         }
     }

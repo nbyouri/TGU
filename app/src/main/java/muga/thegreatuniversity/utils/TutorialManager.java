@@ -55,8 +55,10 @@ public class TutorialManager implements SavableLoadableJSON {
             case STAT:
                 steps.add(new TutorialStep(R.string.tutorial_welcome, false));
                 steps.add(new TutorialStep(R.string.tutorial_first_steps, false));
+                steps.add(new TutorialStep(R.string.tutorial_newturn, false));
                 steps.add(new TutorialStep(R.string.tutorial_money, R.id.layout_stat_cash));
                 steps.add(new TutorialStep(R.string.tutorial_popularity, R.id.layout_stat_popularity));
+                steps.add(new TutorialStep(R.string.layout_stat_moral, R.id.layout_stat_moral));
                 steps.add(new TutorialStep(R.string.tutorial_population, R.id.layout_stat_student));
                 steps.add(new TutorialStep(R.string.tutorial_turn, R.id.layout_stat_turn));
                 break;
@@ -66,7 +68,7 @@ public class TutorialManager implements SavableLoadableJSON {
                 steps.add(new TutorialStep(R.string.tutorial_profpopularity, R.id.layout_prof_efficient));
                 steps.add(new TutorialStep(R.string.tutorial_profprice, R.id.layout_prof_price));
                 steps.add(new TutorialStep(R.string.tutorial_profrarity, R.id.icon_prof));
-
+                steps.add(new TutorialStep(R.string.tutorial_help, R.id.img_help_hire));
                 break;
             case PROF_DETAIL:
 

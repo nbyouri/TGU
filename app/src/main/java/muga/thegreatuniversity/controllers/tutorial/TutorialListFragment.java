@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.enums.FragmentType;
+import muga.thegreatuniversity.utils.Context;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
@@ -37,7 +38,7 @@ public abstract class TutorialListFragment extends ListFragment {
         tutorialLayout = (TutorialLayout) getActivity().findViewById(R.id.layout_game);
         tutorialLayout.addCurrentFragment(getFragmentType());
 
-        ImageView help = this.getButtonHelp();
+        View help = this.getButtonHelp();
         if (help !=null){
             help.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -62,16 +63,21 @@ public abstract class TutorialListFragment extends ListFragment {
         });
     }
 
-    public abstract ImageView getButtonHelp();
+    public abstract View getButtonHelp();
 
     public abstract FragmentType getFragmentType();
 
     private void printHelp(){
         switch (getFragmentType()) {
             case BUILD_ROOM:
-                PopUp.helpPopUp(getActivity(), getActivity().getString(R.string.help_room_more));
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_room_more));
+                break;
+            case HIRE_PROF:
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_hire_more));
+                break;
+            case INVENTORY:
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_inventory_more));
                 break;
         }
     }
-
 }

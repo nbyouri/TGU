@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.Arrays;
 
@@ -55,8 +56,8 @@ public class HireFragment extends TutorialListFragment implements OnItemClickLis
     }
 
     @Override
-    public ImageView getButtonHelp() {
-        return null;
+    public View getButtonHelp() {
+        return (getActivity().findViewById(R.id.hire_help_dialog));
     }
 
     @Override
