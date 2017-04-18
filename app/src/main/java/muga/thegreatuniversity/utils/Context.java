@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.utils;
 
+
 import muga.thegreatuniversity.app.App;
 
 /**
@@ -11,5 +12,9 @@ import muga.thegreatuniversity.app.App;
 public class Context {
     public static String getString(int id) {
         return App.getAppContext().getString(id);
+    }
+
+    public static android.content.Context getContext() {
+        return App.getAppContext();
     }
 }

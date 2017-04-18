@@ -5,27 +5,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import muga.thegreatuniversity.lists.enums.KotType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 
+
 /**
- * Created on 20/02/2017.
- * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
- * Muga Copyright
+ * Created by tristanmoers on 18/04/17.
  */
 
-public class Room implements SavableLoadableJSON {
+public class Kot implements SavableLoadableJSON {
     private String name;
     private int capacity;
-    private RoomType type;
+    private int income;
     private int price;
+    private KotType type;
 
-    public Room() {}
-
-    public Room(String name, int capacity, RoomType type, int price) {
+    public Kot(String name, int capacity, int income, int price, KotType type) {
         this.name = name;
         this.capacity = capacity;
-        this.type = type;
         this.price = price;
+        this.income = income;
+        this.type = type;
     }
 
     public String getName() {
@@ -44,27 +44,29 @@ public class Room implements SavableLoadableJSON {
         this.capacity = capacity;
     }
 
-    public RoomType getType() {
-        return type;
-    }
-
-    public void setType(RoomType type) {
-        this.type = type;
-    }
-
     public int getPrice() { return price; }
 
     public void setPrice(int price) { this.price = price;}
 
-    public static ArrayList<Room> getRooms() {
-        ArrayList<Room> rooms = new ArrayList<>();
-        rooms.add(new Room("Classroom",20,RoomType.CLASS,500));
-        rooms.add(new Room("Audience",100,RoomType.AUDIT,2000));
-        //rooms.add(new Room("Science laboratory",20,RoomType.LAB_SC,1000));
-        //rooms.add(new Room("Agronomy laboratory",20,RoomType.LAB_AG,1000));
-        //rooms.add(new Room("IT laboratory",20,RoomType.LAB_IT,1000));
-        return rooms;
+    public int getIncome() { return income; }
+
+    public void setIncome(int income) { this.income = income;}
+
+    public KotType getType() {
+        return type;
     }
+
+    public void setType(KotType type) {
+        this.type = type;
+    }
+
+    public static ArrayList<Kot> getKot() {
+        ArrayList<Kot> kots = new ArrayList<>();
+        kots.add(new Kot("basic", 10, 10, 10000, KotType.BASIC));
+        kots.add(new Kot("building",50, 50, 50000, KotType.BUILDING));
+        return kots;
+    }
+
 
     @Override
     public JSONObject getAsJSON() throws JSONException {
@@ -72,8 +74,9 @@ public class Room implements SavableLoadableJSON {
 
         obj.put("name", this.name);
         obj.put("capacity", this.capacity);
-        obj.put("roomType", this.type.getName());
+        obj.put("kotType", this.type.getName());
         obj.put("price", this.price);
+        obj.put("income", this.income);
 
         return obj;
     }
@@ -82,7 +85,8 @@ public class Room implements SavableLoadableJSON {
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.capacity = jsonO.getInt("capacity");
-        this.type = RoomType.getEnum(jsonO.getString("roomType"));
+        this.type = KotType.getEnum(jsonO.getString("kotType"));
         this.price = jsonO.getInt("price");
+        this.income = jsonO.getInt("income");
     }
 }
