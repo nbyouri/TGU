@@ -36,12 +36,6 @@
     <string name="help_room_more">You can buy building for increase the number of people on your university</string>
     <string name="help_choice_more">Each action pass a week</string>
 
-    <string name="tutorial_first_launch">The Great University is a management game, the goal is become famous and rich. Each action pass a week and each week is possibly to encounter a event. Let begin the tutorial.</string>
-    <string name="tutorial_choice_hire">Go buy your first professor</string>
-    <string name="tutorial_list_hire">Click on this professor</string>
-    <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
-    <string name="tutorial_click_continue">Click to continue</string>
-
     <string name="not_available">N/a</string>
     <string name="icon_desc_money">Money Icon</string>
     <string name="icon_desc_popularity">Popularity Icon</string>
@@ -59,4 +53,29 @@
     <string name="prof_price">Price</string>
 
     <string name="button_hire">Hire</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_welcome">Welcome to The Great University, a game where the goal is
+    to become the greatest university!</string>
+    <string name="tutorial_first_launch">The Great University is a management game, the goal is become famous and rich. Each action pass a week and each week is possibly to encounter a event. Let begin the tutorial.</string>
+    <string name="tutorial_choice_hire">Go buy your first professor</string>
+    <string name="tutorial_list_hire">Click on this professor</string>
+    <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
+    <string name="tutorial_click_continue">Click to continue</string>
+
+    <string name="tutorial_first_steps">We are going to review the different things you can do, are you ready?</string>
+    <string name="tutorial_money">First, you can see how much money you have. You will earn 5 UCash for each student</string>
+    <string name="tutorial_popularity">The popularity of the university will attract more students</string>
+    <string name="tutorial_population">The amount of students increase when buying rooms</string>
+    <string name="tutorial_turn">Each turn a week passes and things might happen!</string>
+    <string name="tutorial_proflist">New professors are available for hire each turn</string>
+    <string name="tutorial_profdetail">Get more info on a professor by clicking on it</string>
+    <string name="tutorial_profpopularity">Each professor has a popularity. Attract more students with a popular prof!</string>
+    <string name="tutorial_profprice">Each professor has to be paid weekly, make sure you can afford them!</string>
+    <string name="tutorial_profrarity">Some professor are less commmon than others, click on the professor to find out what color means he is rare !</string>
+    <string name="tutorial_inventory">Here are listed the professors working for you. Remember that you can fire one should you not be able to afford him.</string>
+
+    <string name="tutorial_room">Increase the university population by adding more rooms, they take one week to be built!</string>
+    <string name="tutorial_roomsize">The capacity is the amount of students it can contain</string>
+    <string name="tutorial_roomprice">Overall cost of building the room</string>
 </resources>

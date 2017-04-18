@@ -1,5 +1,7 @@
 package muga.thegreatuniversity.models;
 
+import muga.thegreatuniversity.utils.Context;
+
 /**
  * Created on 21-03-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -12,14 +14,14 @@ public class TutorialStep {
     private int idView;
     private boolean hasView;
 
-    public TutorialStep(String message, int idView) {
-        this.message = message;
+    public TutorialStep(int message, int idView) {
+        this.message = Context.getString(message);
         this.idView = idView;
         this.hasView = true;
     }
 
-    public TutorialStep(String message, boolean hasView){
-        this.message = message;
+    public TutorialStep(int message, boolean hasView){
+        this.message = Context.getString(message);
         this.hasView = hasView;
     }
 
