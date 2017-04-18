@@ -146,7 +146,7 @@ public class Professor implements SavableLoadableJSON {
         Collections.sort(list, new Comparator<Professor>() {
             @Override
             public int compare(Professor o1, Professor o2) {
-                return o2.getType().toString().compareTo(o1.getType().toString());
+                return o2.getType().ranking() - o1.getType().ranking();
             }
         });
     }

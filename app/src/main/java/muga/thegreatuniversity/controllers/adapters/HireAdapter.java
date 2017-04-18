@@ -1,8 +1,6 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Professor;
-import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Tools;
 
 /**
@@ -49,7 +45,7 @@ public class HireAdapter extends ArrayAdapter<Professor> {
 
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
 
-        colorRarityProf(icon, prof.getType());
+        Tools.colorFilter(icon, prof.getType().getColor());
 
         ageProf.setText("Age : " + prof.getAge());
         course.setText("Courses : "+prof.getCourses().size());
@@ -61,31 +57,4 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         // Return the completed view to render on screen
         return convertView;
     }
-
-    private void colorRarityProf(ImageView img, ProfType type){
-        int color = Color.WHITE;
-        switch (type) {
-            case COMMON:
-                color = ContextCompat.getColor(this.getContext(), R.color.prof_common);
-                break;
-            case UNCOMMON:
-                color = ContextCompat.getColor(this.getContext(), R.color.prof_uncommon);
-                break;
-            case RARE:
-                color = ContextCompat.getColor(this.getContext(), R.color.prof_rare);
-                break;
-            case VERY_RARE:
-                color = ContextCompat.getColor(this.getContext(), R.color.prof_very_rare);
-                break;
-            case LEGENDARY:
-                color =  ContextCompat.getColor(this.getContext(), R.color.prof_legendary);
-                break;
-        }
-
-       Tools.colorFilter(img, color);
-
-    }
-
-
-
 }

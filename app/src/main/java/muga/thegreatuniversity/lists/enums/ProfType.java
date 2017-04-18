@@ -1,12 +1,18 @@
 package muga.thegreatuniversity.lists.enums;
 
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.utils.Context;
 import muga.thegreatuniversity.utils.DistributedRandomGenerator;
 import muga.thegreatuniversity.utils.Tools;
 
@@ -17,14 +23,15 @@ import muga.thegreatuniversity.utils.Tools;
  */
 
 public enum ProfType {
-    COMMON("Common"),
-    UNCOMMON("Uncommon"),
-    RARE("Rare"),
-    VERY_RARE("Very rare"),
-    LEGENDARY("Legendary");
+    COMMON("Common", 1),
+    UNCOMMON("Uncommon", 2),
+    RARE("Rare", 3),
+    VERY_RARE("Very rare", 4),
+    LEGENDARY("Legendary", 5);
 
     private String name = "";
-    private static final Map<String, ProfType> lookup = new HashMap<>();
+    private int id = 0;
+    private static final Map<String, ProfType> lookup = new LinkedHashMap<>();
     // probablity per type
     private static DistributedRandomGenerator<ProfType> rnd = new DistributedRandomGenerator<>();
 
@@ -68,8 +75,11 @@ public enum ProfType {
         return name;
     }
 
-    ProfType(String name) {
+    public int getId() { return id; }
+
+    ProfType(String name, int id) {
         this.name = name;
+        this.id = id;
     }
 
     public static ProfType getType() {
@@ -102,5 +112,31 @@ public enum ProfType {
 
     public static int getAge() {
         return Tools.randInt(min_age, max_age);
+    }
+
+    public int getColor() {
+        int color = Color.WHITE;
+        switch (this) {
+            case COMMON:
+                color = ContextCompat.getColor(Context.getContext(), R.color.prof_common);
+                break;
+            case UNCOMMON:
+                color = ContextCompat.getColor(Context.getContext(), R.color.prof_uncommon);
+                break;
+            case RARE:
+                color = ContextCompat.getColor(Context.getContext(), R.color.prof_rare);
+                break;
+            case VERY_RARE:
+                color = ContextCompat.getColor(Context.getContext(), R.color.prof_very_rare);
+                break;
+            case LEGENDARY:
+                color =  ContextCompat.getColor(Context.getContext(), R.color.prof_legendary);
+                break;
+        }
+        return color;
+    }
+
+    public int ranking() {
+        return this.getId();
     }
 }
