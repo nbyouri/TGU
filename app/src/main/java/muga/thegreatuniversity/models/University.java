@@ -28,16 +28,13 @@ public class University implements SavableLoadableJSON {
     private FormulaUniversity formula;
 
     // Basic properties
+    private UniversityBasicData basicData;
+
     private String name;
-    private int basicPopularity;
-    private int money;
-    private int moral;
-    private int studentNb;
     private int week;
 
-    private ArrayList<Event> currentEvents;
-
     // main objects
+    private ArrayList<Event> currentEvents;
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
@@ -57,18 +54,19 @@ public class University implements SavableLoadableJSON {
         availableHires = new ArrayList<>();
         currentEvents = new ArrayList<>();
         formula = new FormulaUniversity(this);
+        basicData = new UniversityBasicData();
     }
 
     @Override
     public JSONObject getAsJSON() throws JSONException  {
         JSONObject uni = new JSONObject();
 
-        uni.put("money", money);
-        uni.put("moral", moral);
-        uni.put("studentNb", studentNb);
+        uni.put("money", basicData.getMoney());
+        uni.put("moral", basicData.getMoral());
+        uni.put("studentNb", basicData.getStudentNb());
         uni.put("week", week);
         uni.put("name", name);
-        uni.put("basicPopularity", basicPopularity);
+        uni.put("basicPopularity", basicData.getBasicPopularity());
 
         JSONArray profs = new JSONArray();
         for (Professor p : professors) {
@@ -93,13 +91,6 @@ public class University implements SavableLoadableJSON {
 
     @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
-        this.money = jsonO.getInt("money");
-        this.moral = jsonO.getInt("moral");
-        this.studentNb = jsonO.getInt("studentNb");
-        this.week = jsonO.getInt("week");
-        this.name = jsonO.getString("name");
-        this.basicPopularity = jsonO.getInt("basicPopularity");
-
         JSONArray pArr = jsonO.getJSONArray("profs");
         for (int i = 0; i < pArr.length(); i++) {
             Professor p = new Professor();
@@ -122,6 +113,13 @@ public class University implements SavableLoadableJSON {
         }
 
         this.sortProfessors();
+
+        this.basicData.setMoney(jsonO.getInt("money"));
+        this.basicData.setMoral(jsonO.getInt("moral"));
+        this.basicData.setStudentNb(jsonO.getInt("studentNb"),getMaxPopulation());
+        this.week = jsonO.getInt("week");
+        this.name = jsonO.getString("name");
+        this.basicData.setBasicPopularity( jsonO.getInt("basicPopularity"));
     }
 
     public String getName() {
@@ -133,32 +131,19 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getBasicPopularity() {
-        return basicPopularity;
-    }
-
-    public void setBasicPopularity(int basicPopularity) {
-        this.basicPopularity = basicPopularity;
+        return basicData.getBasicPopularity();
     }
 
     public int getMoney() {
-        return money;
+        return basicData.getMoney();
     }
 
-    public void setMoney(int money) {
-        if(money < 0) {
-            this.money = 0;
-        }
-        else {
-            this.money = money;
-        }
+    public void setMoney(int money){
+        basicData.setMoney(money);
     }
 
     public int getMoral() {
-        return moral;
-    }
-
-    public void setMoral(int moral) {
-        this.moral = moral;
+        return basicData.getMoral();
     }
 
     public ArrayList<Professor> getProfessors() {
@@ -186,15 +171,11 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getStudentNb() {
-        return studentNb;
+        return basicData.getStudentNb();
     }
 
     public FormulaUniversity getFormula() {
         return formula;
-    }
-
-    public void setStudentNb(int studentNb) {
-        this.studentNb = studentNb;
     }
 
     public int getWeek() {
@@ -222,7 +203,7 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getIncome(){
-        int income= this.studentNb * 10;
+        int income = basicData.getStudentNb() * DefaultValues.MONEY_BY_STUDENT;
 
         for (Professor p : professors){
             income -= p.getPrice();
@@ -232,17 +213,14 @@ public class University implements SavableLoadableJSON {
     }
 
     public int getPopularity(){
-        int pop = this.basicPopularity;
-
+        int pop = basicData.getBasicPopularity();
         // basicPopulation + ForeachProf(basicPopu * prof.Popularity)
         for (Professor p : professors){
 
-            pop += (p.getPopularity()*this.basicPopularity/100);
+            pop += (p.getPopularity()* basicData.getBasicPopularity()/100);
 
         }
-
-        pop += getMoral() * this.basicPopularity/100;
-
+        pop += getMoral() *  basicData.getBasicPopularity()/100;
         return pop;
     }
 
@@ -259,7 +237,7 @@ public class University implements SavableLoadableJSON {
         this.updateCurrentEvents();
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
-        this.setMoney(this.money + this.getIncome());
+        basicData.setMoney(basicData.getMoney() + this.getIncome());
         this.reloadHires(); // Reload list of professors available for hire
         this.currentEvents.addAll(EventManager.getEvents());
         this.sortProfessors();
@@ -292,29 +270,22 @@ public class University implements SavableLoadableJSON {
 
         int maxPop = this.getMaxPopulation();
 
-        long newStudentNb = formula.newStudent();
+        int newStudentNb =  formula.newStudent();
 
-        if(this.studentNb + newStudentNb > maxPop) {
-            studentNb = maxPop;
-        } else if (this.studentNb + newStudentNb < 1) {
-            studentNb = 0;
-        } else {
-            studentNb += newStudentNb;
-        }
-
+        basicData.setStudentNb(basicData.getStudentNb()+newStudentNb, maxPop);
     }
 
     public void createNewUniversity(String name){
-        University.get().setName(name);
-        University.get().setStudentNb(DefaultValues.START_STUDENT_NB);
-        University.get().setMoney(DefaultValues.START_MONEY);
-        University.get().setWeek(DefaultValues.START_WEEK);
-        University.get().setBasicPopularity(DefaultValues.START_POPULARITY);
-        University.get().reloadHires();
+        this.name = name;
+        this.week = (DefaultValues.START_WEEK);
+        reloadHires();
         this.rooms = new ArrayList<>();
         this.professors = new ArrayList<>();
-        University.get().addRoom(new Room("Classroom",20, RoomType.CLASS,500));
-        University.get().setMoral(DefaultValues.START_MORAL);
+        this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
+        basicData.setMoney(DefaultValues.START_MONEY);
+        basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
+        basicData.setMoral(DefaultValues.START_MORAL);
+        basicData.setBasicPopularity(DefaultValues.START_POPULARITY);
     }
 
     public void eventAction(Event event){
@@ -323,16 +294,16 @@ public class University implements SavableLoadableJSON {
         for (EventAction act : result.getActions()) {
             switch (act.getValueType()) {
                 case MONEY:
-                    this.setMoney(computation(act.getActionType(), this.money, act.getValue()));
+                    basicData.setMoney(computation(act.getActionType(), this.getMoney(), act.getValue()));
                     break;
                 case POPULARITY:
-                    this.setBasicPopularity(computation(act.getActionType(), this.basicPopularity, act.getValue()));
+                    basicData.setBasicPopularity(computation(act.getActionType(), this.getBasicPopularity(), act.getValue()));
                     break;
                 case MORAL:
-                    this.setMoral(computation(act.getActionType(), this.moral, act.getValue()));
+                    basicData.setMoral(computation(act.getActionType(), basicData.getMoral(), act.getValue()));
                     break;
                 case STUDENT:
-                    this.setStudentNb(computation(act.getActionType(), this.studentNb, act.getValue()));
+                    basicData.setStudentNb(computation(act.getActionType(), basicData.getStudentNb(), act.getValue()),getMaxPopulation());
                     break;
                 case PROF:
                     computation(act.getActionType(), 0, act.getValue());

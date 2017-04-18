@@ -14,6 +14,7 @@ public class DefaultValues {
     public final static int START_WEEK = 1;
     public final static int START_MORAL = 50;
     public final static int START_POPULARITY = 10;
+    public final static int MONEY_BY_STUDENT = 5;
 
     // TUTORIAL SETTING --------------------------
     public final static int STROKE_WIDTH = 5;
