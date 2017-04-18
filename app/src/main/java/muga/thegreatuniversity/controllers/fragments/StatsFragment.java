@@ -1,15 +1,11 @@
 package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
-import android.app.ListFragment;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,15 +13,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.controllers.adapters.BuildAdapter;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -77,7 +69,7 @@ public class StatsFragment extends Fragment {
         int nbProfs = p.size();
         int nbIncome = University.get().getIncome();
         int moral = University.get().getMoral();
-        int[] rangeNewStudent = University.get().getFormule().rangeNewStudent();
+        int[] rangeNewStudent = University.get().getFormula().rangeNewStudent();
 
         Queue<Tuple<String, String>> rowItems = new LinkedList<>();
         rowItems.add(new Tuple<>("Students moral : ", String.valueOf(moral)));

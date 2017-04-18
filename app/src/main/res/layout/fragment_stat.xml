@@ -128,13 +128,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_stat_student">
 
-            <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_week"
-                android:layout_marginEnd="@dimen/separate_side_margin"
-                android:textSize="@dimen/text_medium"/> -->
-
             <TextView
                 android:id="@+id/txt_turn"
                 android:layout_width="wrap_content"
@@ -151,6 +144,32 @@
                 android:src="@mipmap/ic_week"
                 android:layout_marginEnd="@dimen/separate_side_margin"
                 android:contentDescription="@string/icon_desc_population" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_stat_moral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_stat_turn">
+
+            <TextView
+                android:id="@+id/txt_stat_moral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_medium"
+                android:text="@string/not_available"/>
+
+            <ImageView
+                android:layout_alignBottom="@id/txt_stat_moral"
+                android:layout_alignTop="@id/txt_stat_moral"
+                android:layout_toEndOf="@id/txt_stat_moral"
+                android:id="@+id/icon_stat_moral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_moral_positive"
+                android:layout_marginEnd="@dimen/separate_side_margin"
+                android:contentDescription="@string/icon_desc_population" />
+
         </RelativeLayout>
     </RelativeLayout>
 

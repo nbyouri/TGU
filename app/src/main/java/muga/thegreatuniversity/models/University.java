@@ -1,17 +1,13 @@
 package muga.thegreatuniversity.models;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.EventActionType;
-import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -19,7 +15,6 @@ import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.SaveManager;
 
 /**
  * Created on 20/02/2017.
@@ -30,7 +25,7 @@ import muga.thegreatuniversity.utils.SaveManager;
 public class University implements SavableLoadableJSON {
 
     // Help Object
-    private FormulaUniversity formule;
+    private FormulaUniversity formula;
 
     // Basic properties
     private String name;
@@ -61,7 +56,7 @@ public class University implements SavableLoadableJSON {
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
         currentEvents = new ArrayList<>();
-        formule = new FormulaUniversity(this);
+        formula = new FormulaUniversity(this);
     }
 
     @Override
@@ -194,8 +189,8 @@ public class University implements SavableLoadableJSON {
         return studentNb;
     }
 
-    public FormulaUniversity getFormule() {
-        return formule;
+    public FormulaUniversity getFormula() {
+        return formula;
     }
 
     public void setStudentNb(int studentNb) {
@@ -297,7 +292,7 @@ public class University implements SavableLoadableJSON {
 
         int maxPop = this.getMaxPopulation();
 
-        long newStudentNb = formule.newStudent();
+        long newStudentNb = formula.newStudent();
 
         if(this.studentNb + newStudentNb > maxPop) {
             studentNb = maxPop;

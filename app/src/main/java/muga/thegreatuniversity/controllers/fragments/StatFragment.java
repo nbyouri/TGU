@@ -30,6 +30,9 @@ public class StatFragment extends TutorialFragment {
     private TextView cash;
     private TextView week;
     private TextView popularity;
+    private TextView moral;
+
+    private ImageView iconMoral;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +68,13 @@ public class StatFragment extends TutorialFragment {
         cash.setText(String.valueOf(University.get().getMoney()));
         week.setText(String.valueOf(University.get().getWeek()));
         popularity.setText(String.valueOf(University.get().getPopularity()));
+        moral.setText(String.valueOf(University.get().getMoral()) + " % ");
+        if (University.get().getMoral() >= 50){
+            iconMoral.setImageResource(R.mipmap.ic_moral_positive);
+        } else {
+            iconMoral.setImageResource(R.mipmap.ic_moral_negative);
+        }
+
     }
 
     private void createViews(){
@@ -75,6 +85,8 @@ public class StatFragment extends TutorialFragment {
         week = (TextView) getActivity().findViewById(R.id.txt_turn);
         statLay = (ViewGroup) getActivity().findViewById(R.id.layout_stat);
         popularity = (TextView) getActivity().findViewById(R.id.txt_popularity);
+        moral = (TextView) getActivity().findViewById(R.id.txt_stat_moral);
+        iconMoral = (ImageView) getActivity().findViewById(R.id.icon_stat_moral);
         updateViews();
     }
 
