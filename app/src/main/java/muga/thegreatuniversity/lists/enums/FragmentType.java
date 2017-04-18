@@ -14,6 +14,7 @@ public enum FragmentType {
     STATISTICS,
     OPTIONS,
     STAT,
-    CHOICES
+    CHOICES,
+    ENTERTAINMENT
 
 }

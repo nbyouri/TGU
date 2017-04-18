@@ -45,6 +45,7 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
         choices.add(new Choice(ChoiceType.HIRE_PROF, "Hire a professor"));
         choices.add(new Choice(ChoiceType.INVENTORY, "List of professors"));
         choices.add(new Choice(ChoiceType.BUILD_ROOM, "Build room"));
+        choices.add(new Choice(ChoiceType.ENTERTAINMENT, "Entertainment"));
         choices.add(new Choice(ChoiceType.STATISTICS, "Statistics"));
         choices.add(new Choice(ChoiceType.PASS_WEEK, "Pass a week"));
         choices.add(new Choice(ChoiceType.SETTINGS, "Settings"));
@@ -96,6 +97,10 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
         ((MainActivity)getActivity()).changeMainFragment(FragmentType.OPTIONS);
     }
 
+    private void entertainment() {
+        ((MainActivity)getActivity()).changeMainFragment(FragmentType.ENTERTAINMENT);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChoiceType choiceType = ((Choice) parent.getItemAtPosition(position)).getType();
@@ -119,6 +124,9 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
                 break;
             case SETTINGS:
                 options();
+                break;
+            case ENTERTAINMENT:
+                entertainment();
                 break;
         }
     }

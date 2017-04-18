@@ -14,5 +14,6 @@ public enum ChoiceType {
     STATISTICS,
     SETTINGS,
     RESET_UNIVERSITY,
-    RESET_TUTORIAL
+    RESET_TUTORIAL,
+    ENTERTAINMENT
 }
