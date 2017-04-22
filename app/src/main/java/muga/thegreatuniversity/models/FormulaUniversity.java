@@ -59,6 +59,21 @@ public class FormulaUniversity {
         return base;
     }
 
+    public int newMoral() {
+
+        int moraldecrease = 0;
+        int nbStudent = university.getStudentNb();
+        int nbProf = university.getProfessors().size();
+        int nbCourse = 0;
+
+        for(int i = 0;i<nbProf; i++) {
+            nbCourse += university.getProfessors().get(i).getCourses().size();
+        }
+
+
+        return moraldecrease;
+    }
+
 
 
 }

@@ -39,6 +39,8 @@
     and more by clicking !</string>
     <string name="help_inventory_more">Click on a professor to get more information!</string>
     <string name="help_room_more">Buy buildings to increase population in your university!</string>
+    <string name="help_entertainment">Click on an entertainement to build/organize it</string>
+
 
 
     <string name="not_available">N/a</string>
