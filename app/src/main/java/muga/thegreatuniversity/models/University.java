@@ -7,7 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -260,14 +262,32 @@ public class University implements SavableLoadableJSON {
         return maxPopulation;
     }
 
-    public void newTurn(){
-        this.updateCurrentEvents();
+    public int newTurn() {
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         basicData.setMoney(basicData.getMoney() + this.getIncome());
-        this.reloadHires(); // Reload list of professors available for hire
+        this.updateCurrentEvents();
         this.currentEvents.addAll(EventManager.getEvents());
+        this.reloadHires(); // Reload list of professors available for hire
         this.sortProfessors();
+
+        if (basicData.getMoney() < 0){
+            return removeBestProfessor();
+        }
+        return 0;
+    }
+
+    private int removeBestProfessor() { // YOU LOSS IF YOU DON'T HAVE MONEY AND PROFESSOR
+        if (professors.size() == 1){
+            return 2; // MEAN LOSS
+        } else {
+            if (professors.get(0).getName().equals(DefaultValues.NAME_FIRST_PROF)){
+                professors.remove(1);
+            } else {
+                professors.remove(0);
+            }
+            return 1;
+        }
     }
 
     public void sortProfessors() {
@@ -294,11 +314,8 @@ public class University implements SavableLoadableJSON {
     }
 
     private void newStudentNB(){
-
         int maxPop = this.getMaxPopulation();
-
         int newStudentNb =  formula.newStudent();
-
         basicData.setStudentNb(basicData.getStudentNb()+newStudentNb, maxPop);
     }
 
@@ -310,6 +327,9 @@ public class University implements SavableLoadableJSON {
         this.kots = new ArrayList<>();
         this.professors = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
+        this.professors.add(new Professor (DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);

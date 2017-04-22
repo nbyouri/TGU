@@ -28,6 +28,15 @@ public class Professor implements SavableLoadableJSON {
 
     public static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
+    public Professor(String name, ProfType type, int popularity, ArrayList<Course> courses, int age, int price) {
+        this.name = name;
+        this.type = type;
+        this.popularity = popularity;
+        this.courses = courses;
+        this.age = age;
+        this.price = price;
+    }
+
     public Professor() {
         courses = new ArrayList<>();
     }

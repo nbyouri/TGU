@@ -51,6 +51,16 @@ public class SaveManager {
         return !(file == null || !file.exists());
     }
 
+    public static void deleteFile(Context context, String fileName){
+        if (isFileExist(context, fileName)) {
+            File dir = context.getFilesDir();
+            File file = new File(dir, "my_filename");
+            if (!file.delete()){
+                Logger.error("Impossible to Delete de save File");
+            }
+        }
+    }
+
     public static boolean loadUniversity(Context context){
         try {
             InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);

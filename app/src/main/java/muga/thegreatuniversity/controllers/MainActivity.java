@@ -120,12 +120,20 @@ public class MainActivity extends Activity implements CallbackActivity {
      * Pass one week on the game, can create a event and print to the screen
      */
     public void passOneWeek(){
-        University.get().newTurn();
+        int returnTurn = University.get().newTurn();
+        if (returnTurn == 1 ){ // Lose the best prof
+
+        } else if (returnTurn == 2 ){ // Lose the game
+            SaveManager.deleteFile(getApplicationContext(), SaveManager.UNIVERSITY_FILE);
+            PopUp.createUnivPopUp(this);
+            return;
+        }
         ArrayList<Event> events = University.get().getCurrentEvents();
         for (Event ev : events) {
-            if (ev != null && ev.isDisplayable())
+            if (ev != null && ev.isDisplayable()) {
                 PopUp.alertNewEvent(this, ev);
                 ev.setDisplayable(false);
+            }
         }
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER

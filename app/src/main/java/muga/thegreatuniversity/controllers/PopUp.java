@@ -38,6 +38,7 @@ public class PopUp {
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
         builderDialog.setTitle(Context.getString(R.string.popUp_createUniv));
         builderDialog.setMessage(Context.getString(R.string.popUp_enterName));
+        builderDialog.setCancelable(false);
         final EditText input = new EditText(mainAct);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builderDialog.setView(input);

@@ -30,12 +30,7 @@ public class UniversityBasicData {
     }
 
     public void setMoney(int money) {
-        if (money < 0) {
-            this.money = 0;
-        }
-        else {
-            this.money = money;
-        }
+        this.money = money;
     }
 
     public int getMoral() {
@@ -44,7 +39,7 @@ public class UniversityBasicData {
 
     public void setMoral(int moral) {
         if (moral > 100) {
-            moral = 100;
+            this.moral = 100;
         } else if (moral < 0) {
             this.moral = 0;
         } else {
