@@ -74,6 +74,7 @@
   },
   {
     "message":"Do you want to organize the 24h velo",
+    "description": "24 velo happen every 20 week, you can either organize it to gain moral or cancel it. Student will not like it tho",
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
@@ -113,6 +114,7 @@
   },
   {
     "message":"You got robbed by a student, you lost some of your money",
+    "description":"As said in the message on of your student needed some money",
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
@@ -142,6 +144,7 @@
   {
     "message":"You loose some student because your university suck",
     "type":"determinist",
+    "description":"Your popularity is too low, if you dont increase it student will keep leaving",
     "first_choice":"",
     "second_choice":"",
     "duration":0,
@@ -175,6 +178,7 @@
   },
   {
     "message":"Set a new Erasmus partnership in a new country",
+    "description":"If you accept the new Erasmus partnership you will earn popularity and some new student from a foreign country, if you dont you will loose some popularity",
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
@@ -213,6 +217,7 @@
   },
   {
     "message":"Create a new scolarship for your student",
+    "description":"Creating a new scolarship will increase your popularity but it will cost you some money, if you dont you'll gain some money",
     "type":"two_choices",
     "first_choice":"Yes",
     "second_choice":"No",
@@ -273,6 +278,7 @@
   },
   {
     "message":"The exam sessions has started",
+    "duration":"The exam session last 4 turn, during this period your student are stressed and you'll loose moral every turn",
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
