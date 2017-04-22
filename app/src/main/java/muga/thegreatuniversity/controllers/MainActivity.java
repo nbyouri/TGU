@@ -122,10 +122,11 @@ public class MainActivity extends Activity implements CallbackActivity {
     public void passOneWeek(){
         int returnTurn = University.get().newTurn();
         if (returnTurn == 1 ){ // Lose the best prof
-
+            PopUp.simplePopUp(this, "You lose your best prof", false);
         } else if (returnTurn == 2 ){ // Lose the game
             SaveManager.deleteFile(getApplicationContext(), SaveManager.UNIVERSITY_FILE);
             PopUp.createUnivPopUp(this);
+            PopUp.simplePopUp(this, "YOU UNIVERSITY ARE BANKRUPT", false);
             return;
         }
         ArrayList<Event> events = University.get().getCurrentEvents();
