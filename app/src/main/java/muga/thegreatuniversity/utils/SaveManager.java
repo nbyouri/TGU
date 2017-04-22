@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.models.University;
 
 /**
@@ -51,32 +52,23 @@ public class SaveManager {
         return !(file == null || !file.exists());
     }
 
-    public static boolean loadUniversity(Context context){
-        try {
-            InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
+    public static boolean loadUniversity(Context context) throws Exception {
+        InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String receiveString = "";
+            StringBuilder stringBuilder = new StringBuilder();
 
-                while ((receiveString = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                try {
-                    String save = stringBuilder.toString();
-                    University.get().loadJSON(new JSONObject(save));
-                    Logger.info("Save read : "+save);
-                    return true;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            while ((receiveString = bufferedReader.readLine()) != null) {
+                stringBuilder.append(receiveString);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            inputStream.close();
+            String save = stringBuilder.toString();
+            University.get().loadJSON(new JSONObject(save));
+            return true;
         }
         return false;
     }

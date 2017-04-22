@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import muga.thegreatuniversity.controllers.MainActivity;
+import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Course;
@@ -55,7 +56,11 @@ public class App extends Application {
 
             University.get();
             if (SaveManager.isFileExist(getApplicationContext(),SaveManager.UNIVERSITY_FILE)) {
-                SaveManager.loadUniversity(getApplicationContext());
+                try {
+                    SaveManager.loadUniversity(getApplicationContext());
+                } catch (Exception e) {
+                    Logger.error("Failed to read save : " + e.getCause() + "\n" + e.getMessage());
+                }
             }
 
             if (SaveManager.isFileExist(getApplicationContext(),SaveManager.SETTINGS_FILE)){

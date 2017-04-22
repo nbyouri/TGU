@@ -3,6 +3,7 @@ package muga.thegreatuniversity.controllers.fragments;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +101,7 @@ public class ProfFragment extends Fragment {
 
             tv2 = new TextView(getActivity());
             tv2.setText(fields[i]);
-            tv2.setTextSize(getResources().getDimension(R.dimen.text_very_small));
+            tv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_very_small));
             tv2.setGravity(Gravity.LEFT);
             if (column[i] == R.string.prof_type)
                 tv2.setTextColor(p.getType().getColor());
@@ -125,7 +126,7 @@ public class ProfFragment extends Fragment {
         for (Course course : p.getCourses()) {
             row = new TableRow(getActivity());
             tv1 = new TextView(getActivity());
-            tv1.setTextSize(getResources().getDimension(R.dimen.text_very_small));
+            tv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_very_small));
             tv1.setText(course.toString());
             tv1.setGravity(Gravity.LEFT);
             tv1.setLayoutParams(
@@ -149,7 +150,7 @@ public class ProfFragment extends Fragment {
         for (String key : ProfType.getLookup().keySet()) {
             row = new TableRow(getActivity());
             tv1 = new TextView(getActivity());
-            tv1.setTextSize(getResources().getDimension(R.dimen.text_very_small));
+            tv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_very_small));
             tv1.setText(key);
             tv1.setTextColor(ProfType.getEnum(key).getColor());
             tv1.setGravity(Gravity.CENTER);
