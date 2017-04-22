@@ -124,7 +124,7 @@ public class Professor implements SavableLoadableJSON {
                 + Tools.Capitalize(Assets.getRandomAnimal()));
         p.setType(ProfType.getType());
         p.setPopularity(p.getType().getPopularity());
-        p.setCourses(Course.genCourseList());
+        p.setCourses(Course.genCourseList(p.getType().ranking()));
         p.setAge(ProfType.getAge());
         p.setPrice(p.getType().getPrice());
         return p;

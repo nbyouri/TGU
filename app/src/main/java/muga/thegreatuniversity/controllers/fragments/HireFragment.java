@@ -73,8 +73,6 @@ public class HireFragment extends TutorialListFragment implements OnItemClickLis
         setListAdapter(hireAdapter);
         hireAdapter.notifyDataSetChanged();
         ((MainActivity) getActivity()).updateView();
-        Logger.info("onResume hire fragment");
-        Logger.info(Arrays.toString(University.get().getAvailableHires().toArray()));
     }
 
     @Override

@@ -22,6 +22,7 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.controllers.adapters.HireAdapter;
 import muga.thegreatuniversity.lists.enums.ProfType;
+import muga.thegreatuniversity.models.Course;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
@@ -69,20 +70,16 @@ public class ProfFragment extends Fragment {
             }
         });
 
-        Logger.info("ProfFragment!!!");
-
         final TableLayout tl = (TableLayout) view.findViewById(R.id.table_prof);
         int column[] = {R.string.prof_name,
                 R.string.prof_type,
                 R.string.prof_popularity,
-                /* courses */
                 R.string.prof_age,
                 R.string.prof_price};
 
         String fields[] = {p.getName(),
                 p.getType().getName(),
                 String.valueOf(p.getPopularity()),
-                /* courses */
                 String.valueOf(p.getAge()),
                 String.valueOf(p.getPrice())};
 
@@ -103,6 +100,7 @@ public class ProfFragment extends Fragment {
 
             tv2 = new TextView(getActivity());
             tv2.setText(fields[i]);
+            tv2.setTextSize(getResources().getDimension(R.dimen.text_very_small));
             tv2.setGravity(Gravity.LEFT);
             if (column[i] == R.string.prof_type)
                 tv2.setTextColor(p.getType().getColor());
@@ -110,6 +108,30 @@ public class ProfFragment extends Fragment {
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
             row.addView(tv2);
+            tl.addView(row);
+        }
+
+        // courses
+        row = new TableRow(getActivity());
+        tv1 = new TextView(getActivity());
+        tv1.setText(getActivity().getString(R.string.prof_courses));
+        tv1.setGravity(Gravity.CENTER);
+        tv1.setLayoutParams(
+                new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+        row.addView(tv1);
+        tl.addView(row);
+
+        for (Course course : p.getCourses()) {
+            row = new TableRow(getActivity());
+            tv1 = new TextView(getActivity());
+            tv1.setTextSize(getResources().getDimension(R.dimen.text_very_small));
+            tv1.setText(course.toString());
+            tv1.setGravity(Gravity.LEFT);
+            tv1.setLayoutParams(
+                    new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
+            row.addView(tv1);
             tl.addView(row);
         }
 
@@ -127,6 +149,7 @@ public class ProfFragment extends Fragment {
         for (String key : ProfType.getLookup().keySet()) {
             row = new TableRow(getActivity());
             tv1 = new TextView(getActivity());
+            tv1.setTextSize(getResources().getDimension(R.dimen.text_very_small));
             tv1.setText(key);
             tv1.setTextColor(ProfType.getEnum(key).getColor());
             tv1.setGravity(Gravity.CENTER);

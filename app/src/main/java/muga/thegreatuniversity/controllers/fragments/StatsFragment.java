@@ -134,6 +134,4 @@ public class StatsFragment extends TutorialFragment {
             table.addView(row);
         }
     }
-
-
 }

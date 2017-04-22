@@ -52,6 +52,7 @@
     <string name="prof_popularity">Popularity</string>
     <string name="prof_age">Age</string>
     <string name="prof_price">Price</string>
+    <string name="prof_courses">Courses</string>
     <string name="color_legend">Rarity colors</string>
 
     <string name="button_hire">Hire</string>

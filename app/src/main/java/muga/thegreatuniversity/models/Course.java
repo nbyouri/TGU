@@ -30,23 +30,6 @@ public class Course implements SavableLoadableJSON {
         this.courseType = courseType;
     }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public CourseType getCourseType() {
-        return courseType;
-    }
-
-    public void setCourseType(CourseType courseType) {
-        this.courseType = courseType;
-    }
-
-
     @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject uni = new JSONObject();
@@ -66,9 +49,9 @@ public class Course implements SavableLoadableJSON {
         return new Course(Assets.getRandomCourse(), CourseType.MAG);
     }
 
-    public static ArrayList<Course> genCourseList() {
+    public static ArrayList<Course> genCourseList(int nb) {
         ArrayList<Course> courses = new ArrayList<>();
-        for (int i = 0; i < Tools.randInt(1, NB_COURSES); i++) {
+        for (int i = 0; i < nb; i++) {
             courses.add(genCourse());
         }
         return courses;
@@ -92,5 +75,10 @@ public class Course implements SavableLoadableJSON {
         int result = courseName != null ? courseName.hashCode() : 0;
         result = 31 * result + (courseType != null ? courseType.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return courseName + " (" + courseType.getName() + ")";
     }
 }
