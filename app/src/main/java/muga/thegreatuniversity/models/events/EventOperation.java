@@ -73,4 +73,39 @@ class EventOperation {
 
         return ok;
     }
+
+    public static boolean op(String op, double val1, double val2) {
+        java.lang.reflect.Method method;
+        boolean ok = false;
+        String ops = "";
+        switch(op) {
+            case "<" : ops = "smaller"; break;
+            case "<=" : ops = "smaller_or_equal"; break;
+            case ">" : ops = "greater"; break;
+            case ">=" : ops = "greater_or_equal"; break;
+            case "=" : ops = "equal"; break;
+            case "!=" : ops = "not_equal"; break;
+            case "%" : ops = "modulo"; break;
+        }
+        try {
+            method = EventOperation.class.getMethod(ops, int.class, int.class);
+            ok = (boolean)method.invoke(EventOperation.class, val1, val2);
+        } catch (SecurityException e) {
+            Logger.error(e.getMessage());
+        }
+        catch (NoSuchMethodException e) {
+            Logger.error("No such method " + ops);
+        }
+        catch (IllegalArgumentException e) {
+            Logger.error("Illegal argument error");
+        }
+        catch (IllegalAccessException e) {
+            Logger.error(e.getCause() + e.getMessage());
+        }
+        catch (InvocationTargetException e) {
+            Logger.error("Method error for " + ops + " " + e.getCause() + " : " + e.getMessage());
+        }
+
+        return ok;
+    }
 }

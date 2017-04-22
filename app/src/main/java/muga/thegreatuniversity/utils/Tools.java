@@ -21,6 +21,7 @@ import static android.content.Context.ACTIVITY_SERVICE;
 
 public class Tools {
     public static String Capitalize(String s) {
+
         StringBuilder sb = new StringBuilder(s.toLowerCase());
         sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
         return sb.toString();

@@ -92,7 +92,7 @@ public class StatsFragment extends TutorialFragment implements OnItemClickListen
         ArrayList<Professor> p = University.get().getProfessors();
         int nbProfs = p.size();
         int nbIncome = University.get().getIncome();
-        int moral = University.get().getMoral();
+        double moral = University.get().getMoral();
         int[] rangeNewStudent = University.get().getFormula().rangeNewStudent();
 
         Queue<Tuple<String, String>> rowItems = new LinkedList<>();

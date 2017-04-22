@@ -18,7 +18,12 @@ public class FormulaUniversity {
 
     public int newStudent(){
         int[] range = rangeNewStudent();
-        return Math.round(Tools.randInt(range[0], range[1]));
+        int nbNew = Math.round(Tools.randInt(range[0], range[1]));
+        int maxPop = University.get().getMaxPopulation();
+        if (nbNew + University.get().getStudentNb() >  maxPop) {
+            nbNew =  maxPop - University.get().getStudentNb();
+        }
+        return nbNew;
     }
 
     public int[] rangeNewStudent(){

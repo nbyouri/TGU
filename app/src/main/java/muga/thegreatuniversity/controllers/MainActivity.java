@@ -28,6 +28,7 @@ import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
+import muga.thegreatuniversity.models.Turn;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
@@ -120,15 +121,20 @@ public class MainActivity extends Activity implements CallbackActivity {
      * Pass one week on the game, can create a event and print to the screen
      */
     public void passOneWeek(){
-        int returnTurn = University.get().newTurn();
-        if (returnTurn == 1 ){ // Lose the best prof
-            PopUp.simplePopUp(this, "You lose your best prof", false);
-        } else if (returnTurn == 2 ){ // Lose the game
+
+
+
+        Turn newTurn = University.get().newTurn();
+        PopUp.turnSummmaryPopUp(this, newTurn);
+        if (newTurn.resultTurn == 1 ){ // Lose the best prof
+            PopUp.simplePopUp(this, "You lose your best professor", false);
+        } else if (newTurn.resultTurn == 2 ){ // Lose the game
             SaveManager.deleteFile(getApplicationContext(), SaveManager.UNIVERSITY_FILE);
             PopUp.createUnivPopUp(this);
             PopUp.simplePopUp(this, "YOU UNIVERSITY ARE BANKRUPT", false);
             return;
         }
+
         ArrayList<Event> events = University.get().getCurrentEvents();
         for (Event ev : events) {
             if (ev != null && ev.isDisplayable()) {
@@ -136,6 +142,7 @@ public class MainActivity extends Activity implements CallbackActivity {
                 ev.setDisplayable(false);
             }
         }
+        University.get().applyTurn(newTurn);
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }

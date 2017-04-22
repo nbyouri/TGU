@@ -4,14 +4,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.AnsType;
+import muga.thegreatuniversity.models.Turn;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * Created on 21/02/17.
@@ -20,6 +28,35 @@ import muga.thegreatuniversity.utils.Context;
  */
 
 public class PopUp {
+
+    static public void turnSummmaryPopUp(Activity act, Turn turn){
+        LayoutInflater inflater = (LayoutInflater) act.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View dialogLayout = inflater.inflate(R.layout.layout_popup_summary, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
+
+        Button validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
+        TextView textNewCash = (TextView) dialogLayout.findViewById(R.id.popup_txt_cash);
+        TextView textNewStudent = (TextView) dialogLayout.findViewById(R.id.popup_txt_nb_student);
+        TextView textNewTurn = (TextView) dialogLayout.findViewById(R.id.popup_txt_turn);
+        TextView textNewMorale = (TextView) dialogLayout.findViewById(R.id.popup_txt_moral);
+
+        textNewCash.setText(String.valueOf(turn.newCash));
+        textNewStudent.setText(String.valueOf(turn.newStudent));
+        textNewTurn.setText(String.valueOf(turn.week));
+        textNewMorale.setText(String.valueOf(turn.newMoral));
+
+        final AlertDialog dialog = builder.create();
+
+        dialog.setView(dialogLayout);
+        dialog.show();
+
+        validate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
 
     public static void helpPopUp(Activity act, String helpMessage){
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(act);
@@ -116,6 +153,7 @@ public class PopUp {
     }
 
     static public void notMoney(final Activity mainAct) {
+
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
         builderDialog.setMessage(Context.getString(R.string.popUp_money));
         builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),

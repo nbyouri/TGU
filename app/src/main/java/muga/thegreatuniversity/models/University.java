@@ -187,7 +187,7 @@ public class University implements SavableLoadableJSON {
         basicData.setMoney(money);
     }
 
-    public int getMoral() {
+    public double getMoral() {
         return basicData.getMoral();
     }
 
@@ -298,19 +298,31 @@ public class University implements SavableLoadableJSON {
         return maxPopulation;
     }
 
-    public int newTurn() {
-        this.addWeek(); // Increment the value of week
-        this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
-        basicData.setMoney(basicData.getMoney() + this.getIncome());
+    public Turn newTurn() {
+        // Increment the value of week
+        int newStudentNb =  formula.newStudent();
+
+        Turn turn = new Turn(this.getWeek()+1);
+        turn.newStudent = newStudentNb;
+        turn.newCash = this.getIncome();
+        turn.newMoral = 0;
+
         this.updateCurrentEvents();
         this.currentEvents.addAll(EventManager.getEvents());
         this.reloadHires(); // Reload list of professors available for hire
         this.sortProfessors();
 
         if (basicData.getMoney() < 0){
-            return removeBestProfessor();
+            turn.resultTurn = removeBestProfessor();
         }
-        return 0;
+        return turn;
+    }
+
+    public void applyTurn(Turn turn){
+        basicData.setMoney(basicData.getMoney() + turn.newCash);
+        basicData.setStudentNb(basicData.getStudentNb() + turn.newStudent, getMaxPopulation());
+        basicData.setMoral(basicData.getMoral() + turn.newMoral);
+        week = turn.week;
     }
 
     private int removeBestProfessor() { // YOU LOSS IF YOU DON'T HAVE MONEY AND PROFESSOR
@@ -350,14 +362,8 @@ public class University implements SavableLoadableJSON {
     }
 
     public void addMoral(int m) {
-        int moral = basicData.getMoral() + m;
+        double moral = basicData.getMoral() + m;
         basicData.setMoral(moral);
-    }
-
-    private void newStudentNB(){
-        int maxPop = this.getMaxPopulation();
-        int newStudentNb =  formula.newStudent();
-        basicData.setStudentNb(basicData.getStudentNb()+newStudentNb, maxPop);
     }
 
     public void createNewUniversity(String name){
@@ -408,6 +414,23 @@ public class University implements SavableLoadableJSON {
                 return prevValue + (int)value;
             case MULTIPLICATION:
                 return (int)(prevValue * value);
+            case FIRE:
+                for(int i = 0; i < value; i++) {
+                    professors.remove(i);
+                }
+                return 0;
+        }
+        Logger.error("Error Computation Event : type = " + type + " , prevValue = "
+                + prevValue + " , value = " + value);
+        return 0;
+    }
+
+    private double computation(EventActionType type, double prevValue, double value){
+        switch (type) {
+            case ADD:
+                return prevValue + value;
+            case MULTIPLICATION:
+                return (prevValue * value);
             case FIRE:
                 for(int i = 0; i < value; i++) {
                     professors.remove(i);

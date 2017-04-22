@@ -10,7 +10,7 @@ class UniversityBasicData {
 
     private int basicPopularity;
     private int money;
-    private int moral;
+    private double moral;
     private int studentNb;
 
     public int getBasicPopularity() {
@@ -33,11 +33,11 @@ class UniversityBasicData {
         this.money = money;
     }
 
-    public int getMoral() {
+    public double getMoral() {
         return moral;
     }
 
-    public void setMoral(int moral) {
+    public void setMoral(double moral) {
         if (moral > 100) {
             this.moral = 100;
         } else if (moral < 0) {
