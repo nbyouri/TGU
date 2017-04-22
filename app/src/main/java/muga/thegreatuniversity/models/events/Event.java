@@ -128,15 +128,18 @@ public class Event {
 
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
-        obj.put("messsgae", message);
+        obj.put("message", message);
         obj.put("type", type.getName());
         obj.put("duration", duration);
-        obj.put("firstChoice", firstChoice);
-        obj.put("secondChoice", secondChoice);
+        obj.put("first_choice", firstChoice);
+        obj.put("second_choice", secondChoice);
         obj.put("description", description);
-        obj.put("yes_action", yesAction.getAsJson());
-        obj.put("no_action", noAction.getAsJson());
-        obj.put("conditions", conds.getAsJSON());
+        if (yesAction != null)
+            obj.put("yes_action", yesAction.getAsJson());
+        if (noAction != null)
+            obj.put("no_action", noAction.getAsJson());
+        if (conds != null)
+            obj.put("conditions", conds.getAsJSON());
         obj.put("causal", causal);
 
         return obj;
@@ -148,20 +151,22 @@ public class Event {
         this.duration = jsonO.getInt("duration");
         this.firstChoice = jsonO.getString("first_choice");
         this.secondChoice = jsonO.getString("second_choice");
-        if(jsonO.has("description")) {
+        if (jsonO.has("description")) {
             this.description = jsonO.getString("description");
         }
         else {
             Logger.info(this.message+ "no description");
         }
-        this.yesAction = new EventResult();
-        this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));
-        if(jsonO.has("no_action")) {
+        if (jsonO.has("yes_action")) {
+            this.yesAction = new EventResult();
+            this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));
+        }
+        if (jsonO.has("no_action")) {
             this.noAction = new EventResult();
             this.noAction.loadJSON(jsonO.getJSONArray("no_action"));
         }
 
-        if(jsonO.has("conditions")) {
+        if (jsonO.has("conditions")) {
             this.conds = new EventConditions();
             this.conds.loadJSON(jsonO.getJSONObject("conditions"));
         }

@@ -34,7 +34,8 @@ public class EventResult {
         JSONArray jsonAction = new JSONArray();
 
         for(EventAction ac: actions) {
-            jsonAction.put(ac.getAsJSON());
+            if (ac != null)
+                jsonAction.put(ac.getAsJSON());
         }
         return jsonAction;
     }

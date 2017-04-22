@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.models.TutorialStep;
@@ -94,7 +95,13 @@ public class TutorialManager implements SavableLoadableJSON {
         if (steps != null && !steps.isEmpty()){
             tutorialStep = steps.pop();
             Logger.info("Remove tutorial Step : " + tutorialStep.getMessage());
-            if (steps.isEmpty()) SaveManager.saveSetting(context);
+            if (steps.isEmpty()) {
+                try {
+                    SaveManager.saveSetting(context);
+                } catch (Exception e) {
+                    Tools.deleteAndRestart(context, "Failed to save settings : ", e);
+                }
+            }
         }
     }
 

@@ -17,6 +17,7 @@ import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.Tools;
 import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
@@ -58,7 +59,11 @@ public class SettingsFragment extends ListFragment implements AdapterView.OnItem
 
     private void resetTutorial(){
         TutorialManager.get().createAllTutorial();
-        SaveManager.saveSetting(getActivity().getApplicationContext());
+        try {
+            SaveManager.saveSetting(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            Tools.deleteAndRestart(getActivity().getApplicationContext(), "Failed to save settings : ", e);
+        }
         getFragmentManager().popBackStackImmediate();
     }
 

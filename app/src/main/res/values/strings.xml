@@ -47,6 +47,7 @@
 
     <string name="popUp_Reset">Are you sur to delete your university ? All your data will be lost</string>
 
+    <string name="prof_detail">Prof detail</string>
     <string name="prof_name">Name</string>
     <string name="prof_type">Rarity</string>
     <string name="prof_popularity">Popularity</string>
@@ -56,6 +57,7 @@
     <string name="color_legend">Rarity colors</string>
 
     <string name="button_hire">Hire</string>
+    <string name="button_fire">Fire</string>
 
     <!-- Tutorial -->
     <string name="tutorial_welcome">Welcome to The Great University, a game where the goal is

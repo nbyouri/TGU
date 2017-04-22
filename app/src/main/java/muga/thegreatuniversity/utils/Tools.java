@@ -1,20 +1,19 @@
 package muga.thegreatuniversity.utils;
 
-import android.graphics.Color;
+import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.media.Image;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import muga.thegreatuniversity.lists.enums.ProfType;
-
-import java.util.Iterator;
 import java.util.Random;
+
+import muga.thegreatuniversity.controllers.MainActivity;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created on 10/03/2017.
@@ -59,5 +58,18 @@ public class Tools {
             final int childIndex = pos - firstListItemPosition;
             return listView.getChildAt(childIndex);
         }
+    }
+
+    /* utility to avoid corrupted saves */
+    public static void deleteAndRestart(android.content.Context ctx, String msg, Exception e) {
+        Logger.error("Failed to read save : " + e.getCause() + "\n" + e.getMessage());
+        ((ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE))
+                .clearApplicationUserData();
+        Intent mStartActivity = new Intent(ctx, MainActivity.class);
+        int mPendingIntentId = 123456;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(ctx, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)ctx.getSystemService(android.content.Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+        System.exit(0);
     }
 }

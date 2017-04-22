@@ -45,8 +45,10 @@ public class EventAction {
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("value", value);
-        obj.put("action_type", actionType.getName());
-        obj.put("value_type", valueType.getName());
+        if (actionType != null)
+            obj.put("action_type", actionType.getName());
+        if (valueType != null)
+            obj.put("value_type", valueType.getName());
         return obj;
     }
 

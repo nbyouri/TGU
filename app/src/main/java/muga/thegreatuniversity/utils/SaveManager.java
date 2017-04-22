@@ -25,7 +25,7 @@ public class SaveManager {
     public static String UNIVERSITY_FILE = "Save.json";
     public static String SETTINGS_FILE = "Settings.json";
 
-    public static void saveUniversity(Context context){
+    public static void saveUniversity(Context context) {
         String toWrite = "Impossible To save";
         try {
             JSONObject uni = University.get().getAsJSON();
@@ -46,23 +46,23 @@ public class SaveManager {
 
     }
 
-    public static boolean isFileExist(Context context, String fileName){
+    public static boolean isFileExist(Context context, String fileName) {
         File file = context.getFileStreamPath(fileName);
         return !(file == null || !file.exists());
     }
 
-    public static void deleteFile(Context context, String fileName){
+    public static void deleteFile(Context context, String fileName) {
         if (isFileExist(context, fileName)) {
             File dir = context.getFilesDir();
             File file = new File(dir, "my_filename");
-            if (!file.delete()){
-                Logger.error("Impossible to Delete de save File");
+            if (!file.delete()) {
+                Logger.error("Impossible to Delete the save File");
             }
         }
     }
 
     public static boolean loadUniversity(Context context) throws Exception {
-            InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
+        InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -82,52 +82,40 @@ public class SaveManager {
         return false;
     }
 
-    public static void saveSetting(Context context){
+    public static void saveSetting(Context context) throws Exception {
         String toWrite = "";
-        try {
-            JSONObject uni = TutorialManager.get().getAsJSON();
-            toWrite = uni.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JSONObject uni = TutorialManager.get().getAsJSON();
+        toWrite = uni.toString();
 
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(SETTINGS_FILE, Context.MODE_PRIVATE));
-            outputStreamWriter.write(toWrite);
-            outputStreamWriter.close();
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(SETTINGS_FILE, Context.MODE_PRIVATE));
+        outputStreamWriter.write(toWrite);
+        outputStreamWriter.close();
 
-            Logger.info("Save write Setting : " + toWrite);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Logger.info("Save write Setting : " + toWrite);
     }
 
-    public static boolean loadSettings(Context context){
-        try {
-            InputStream inputStream = context.openFileInput(SETTINGS_FILE);
+    public static boolean loadSettings(Context context) throws Exception {
+        InputStream inputStream = context.openFileInput(SETTINGS_FILE);
 
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String receiveString = "";
+            StringBuilder stringBuilder = new StringBuilder();
 
-                while ((receiveString = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                try {
-                    String save = stringBuilder.toString();
-                    TutorialManager.get().loadJSON(new JSONObject(save));
-                    Logger.info("Save read Settings : " + save);
-                    return true;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            while ((receiveString = bufferedReader.readLine()) != null) {
+                stringBuilder.append(receiveString);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            inputStream.close();
+            try {
+                String save = stringBuilder.toString();
+                TutorialManager.get().loadJSON(new JSONObject(save));
+                Logger.info("Save read Settings : " + save);
+                return true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

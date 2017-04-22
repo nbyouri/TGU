@@ -1,30 +1,25 @@
 package muga.thegreatuniversity.app;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.Assets;
-import muga.thegreatuniversity.lists.enums.ProfType;
-import muga.thegreatuniversity.models.Course;
 import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
+import muga.thegreatuniversity.utils.Tools;
 import muga.thegreatuniversity.utils.TutorialManager;
 
 /**
@@ -59,15 +54,23 @@ public class App extends Application {
                 try {
                     SaveManager.loadUniversity(getApplicationContext());
                 } catch (Exception e) {
-                    Logger.error("Failed to read save : " + e.getCause() + "\n" + e.getMessage());
+                    Tools.deleteAndRestart(context, "Failed to read save : ", e);
                 }
             }
 
-            if (SaveManager.isFileExist(getApplicationContext(),SaveManager.SETTINGS_FILE)){
-                SaveManager.loadSettings(getApplicationContext());
+            if (SaveManager.isFileExist(getApplicationContext(),SaveManager.SETTINGS_FILE)) {
+                try {
+                    SaveManager.loadSettings(getApplicationContext());
+                } catch (Exception e) {
+                    Tools.deleteAndRestart(context, "Failed to read settings : ", e);
+                }
             } else {
                 TutorialManager.get().createAllTutorial();
-                SaveManager.saveSetting(getApplicationContext());
+                try {
+                    SaveManager.saveSetting(getApplicationContext());
+                } catch (Exception e) {
+                    Tools.deleteAndRestart(context, "Failed to save settings : ", e);
+                }
             }
 
             try {
