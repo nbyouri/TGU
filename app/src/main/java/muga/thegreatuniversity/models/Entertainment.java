@@ -52,9 +52,10 @@ public class Entertainment implements SavableLoadableJSON {
 
     public static ArrayList<Entertainment> getEntertainments() {
         ArrayList<Entertainment> entertainments = new ArrayList<>();
-        entertainments.add(new Entertainment("Sports facilities", 150000, 1, EntertainmentType.SPORTS_FACILITIES));
-        entertainments.add(new Entertainment("Library", 50000, 1, EntertainmentType.LIBRARY));
-        entertainments.add(new Entertainment("Student club", 100000, 1, EntertainmentType.STUDENT_CLUB));
+        entertainments.add(new Entertainment("Sports facilities", 1500, 15, EntertainmentType.SPORTS_FACILITIES));
+        entertainments.add(new Entertainment("Library", 1000, 10, EntertainmentType.LIBRARY));
+        entertainments.add(new Entertainment("Student club", 2500, 25, EntertainmentType.STUDENT_CLUB));
+        entertainments.add(new Entertainment("Student party", 500, 5, EntertainmentType.STUDENT_PARTY));
         return entertainments;
     }
 

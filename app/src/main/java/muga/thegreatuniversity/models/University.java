@@ -336,6 +336,11 @@ public class University implements SavableLoadableJSON {
         }
     }
 
+    public void addMoral(int m) {
+        int moral = basicData.getMoral() + m;
+        basicData.setMoral(moral);
+    }
+
     private void newStudentNB(){
         int maxPop = this.getMaxPopulation();
         int newStudentNb =  formula.newStudent();
