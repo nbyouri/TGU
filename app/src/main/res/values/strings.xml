@@ -99,4 +99,10 @@
     <string name="layout_event_info">Info</string>
     <string name="layout_stats_events">Current Events</string>
     <string name="event_description">Event Description: </string>
+    <string name="event_action_does">This action does: \n</string>
+    <string name="event_a">\s a \s</string>
+    <string name="event_on">\s on \s</string>
+    <string name="event_of">\s of \s</string>
+    <string name="event_newline">\n</string>
+    <string name="action">action</string>
 </resources>

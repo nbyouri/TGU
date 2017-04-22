@@ -37,6 +37,26 @@ public class Event {
         this.displayable = true;
     }
 
+    public EventResult getYesAction() {
+        return yesAction;
+    }
+
+    public void setYesAction(EventResult yesAction) {
+        this.yesAction = yesAction;
+    }
+
+    public EventResult getNoAction() {
+        return noAction;
+    }
+
+    public void setNoAction(EventResult noAction) {
+        this.noAction = noAction;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }

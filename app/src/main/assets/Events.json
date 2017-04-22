@@ -278,7 +278,7 @@
   },
   {
     "message":"The exam sessions has started",
-    "duration":"The exam session last 4 turn, during this period your student are stressed and you'll loose moral every turn",
+    "description":"The exam session last 4 turn, during this period your student are stressed and you'll loose moral every turn",
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",

@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             style="@style/QText"
             android:textSize="@dimen/text_large"
-            android:text="@string/not_available"/>
+            android:text="@string/action"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,7 +58,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/not_available"
             android:textSize="@dimen/text_large"
             android:id="@+id/layout_event_description_noactionDescription"/>
     </LinearLayout>
@@ -69,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/layout_event_description_noactiontext"
-            android:text="@string/not_available"
             android:textSize="@dimen/text_small"/>
     </LinearLayout>
 
