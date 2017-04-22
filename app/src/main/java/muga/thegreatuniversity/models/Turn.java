@@ -1,5 +1,9 @@
 package muga.thegreatuniversity.models;
 
+import java.util.ArrayList;
+
+import muga.thegreatuniversity.models.events.Event;
+
 /**
  * Created on 22-04-17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -13,6 +17,7 @@ public class Turn {
     public double newMoral;
     public int newCash;
     public int resultTurn;
+    public ArrayList<Event> events;
 
     public Turn(int week) {
         this.week = week;

@@ -21,6 +21,13 @@ import muga.thegreatuniversity.models.events.Event;
 
 public class EventAdapter extends ArrayAdapter<Event> {
 
+    private boolean detail;
+
+    public EventAdapter(Context context, List<Event> objects, boolean detail) {
+        super(context, 0, objects);
+        this.detail = true;
+    }
+
     public EventAdapter(Context context, List<Event> objects) {
         super(context, 0, objects);
     }

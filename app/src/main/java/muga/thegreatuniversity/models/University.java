@@ -9,14 +9,17 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
+import muga.thegreatuniversity.models.events.EventComputation;
 import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.Tuple;
 
 /**
  * Created on 20/02/2017.
@@ -302,16 +305,18 @@ public class University implements SavableLoadableJSON {
         // Increment the value of week
         int newStudentNb =  formula.newStudent();
 
-        Turn turn = new Turn(this.getWeek()+1);
-        turn.newStudent = newStudentNb;
-        turn.newCash = this.getIncome();
-        turn.newMoral = 0;
-
         this.updateCurrentEvents();
         this.currentEvents.addAll(EventManager.getEvents());
         this.reloadHires(); // Reload list of professors available for hire
         this.sortProfessors();
 
+        Turn turn = new Turn(this.getWeek()+1);
+        turn.newStudent = newStudentNb;
+        turn.newCash = this.getIncome();
+        turn.newMoral = 0;
+        turn.events = University.get().getCurrentEvents();
+
+        // TODO WHEN APPLY
         if (basicData.getMoney() < 0){
             turn.resultTurn = removeBestProfessor();
         }
@@ -384,37 +389,42 @@ public class University implements SavableLoadableJSON {
         basicData.setBasicPopularity(DefaultValues.START_POPULARITY);
     }
 
-    public void eventAction(Event event){
+    public EventComputation eventAction(Event event){
         EventResult result = event.getResult();
-
+        EventComputation computations = new EventComputation();
         for (EventAction act : result.getActions()) {
+            Object value;
             switch (act.getValueType()) {
                 case MONEY:
-                    basicData.setMoney(computation(act.getActionType(), this.getMoney(), act.getValue()));
+                    value = computation(act.getActionType(), this.getMoney(), act.getValue());
                     break;
                 case POPULARITY:
-                    basicData.setBasicPopularity(computation(act.getActionType(), this.getBasicPopularity(), act.getValue()));
+                    value = computation(act.getActionType(), this.getBasicPopularity(), act.getValue());
                     break;
                 case MORAL:
-                    basicData.setMoral(computation(act.getActionType(), basicData.getMoral(), act.getValue()));
+                    value = computation(act.getActionType(), basicData.getMoral(), act.getValue());
                     break;
                 case STUDENT:
-                    basicData.setStudentNb(computation(act.getActionType(), basicData.getStudentNb(), act.getValue()),getMaxPopulation());
+                    value = computation(act.getActionType(), basicData.getStudentNb(), act.getValue());
                     break;
-                case PROF:
-                    computation(act.getActionType(), 0, act.getValue());
+                case PROF: // TODO Review
+                    value = computation(act.getActionType(), 0, act.getValue());
                     break;
+                default:
+                    value = "N/A";
             }
+            computations.add(act.getValueType(), value);
         }
+        return computations;
     }
 
-    private int computation(EventActionType type, int prevValue, double value){
+    private Integer computation(EventActionType type, int prevValue, double value){
         switch (type) {
             case ADD:
-                return prevValue + (int)value;
+                return (int) value;
             case MULTIPLICATION:
-                return (int)(prevValue * value);
-            case FIRE:
+                return (int)((prevValue * value)-value);
+            case FIRE: // TODO Review
                 for(int i = 0; i < value; i++) {
                     professors.remove(i);
                 }
@@ -425,20 +435,20 @@ public class University implements SavableLoadableJSON {
         return 0;
     }
 
-    private double computation(EventActionType type, double prevValue, double value){
+    private Double computation(EventActionType type, double prevValue, double value){
         switch (type) {
             case ADD:
-                return prevValue + value;
+                return value;
             case MULTIPLICATION:
-                return (prevValue * value);
-            case FIRE:
+                return (prevValue * value)-value;
+            case FIRE: // TODO Review
                 for(int i = 0; i < value; i++) {
                     professors.remove(i);
                 }
-                return 0;
+                return 0.0;
         }
         Logger.error("Error Computation Event : type = " + type + " , prevValue = "
                 + prevValue + " , value = " + value);
-        return 0;
+        return 0.0;
     }
 }

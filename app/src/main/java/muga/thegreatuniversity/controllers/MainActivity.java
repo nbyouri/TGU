@@ -122,10 +122,10 @@ public class MainActivity extends Activity implements CallbackActivity {
      */
     public void passOneWeek(){
 
-
-
         Turn newTurn = University.get().newTurn();
-        PopUp.turnSummmaryPopUp(this, newTurn);
+        TurnSummary summary = new TurnSummary(newTurn, this);
+
+
         if (newTurn.resultTurn == 1 ){ // Lose the best prof
             PopUp.simplePopUp(this, "You lose your best professor", false);
         } else if (newTurn.resultTurn == 2 ){ // Lose the game
@@ -135,13 +135,18 @@ public class MainActivity extends Activity implements CallbackActivity {
             return;
         }
 
-        ArrayList<Event> events = University.get().getCurrentEvents();
+        /*
         for (Event ev : events) {
             if (ev != null && ev.isDisplayable()) {
                 PopUp.alertNewEvent(this, ev);
                 ev.setDisplayable(false);
             }
-        }
+        } */
+
+
+        summary.update(newTurn);
+        summary.display();
+
         University.get().applyTurn(newTurn);
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
