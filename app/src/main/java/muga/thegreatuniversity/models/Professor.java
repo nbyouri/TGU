@@ -1,5 +1,7 @@
 package muga.thegreatuniversity.models;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,8 +21,8 @@ import muga.thegreatuniversity.utils.Tools;
  * Muga Copyright
  */
 
-public class Professor implements SavableLoadableJSON {
-    private String name;
+public class Professor {
+    private String name = "";
     private ProfType type;      // Type of professor
     private int popularity;     // combination of experience and friendliness
     private ArrayList<Course> courses;      // from 1 to 5 courses he gives
@@ -29,7 +31,7 @@ public class Professor implements SavableLoadableJSON {
 
     private static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
-    public static Professor genSnoop(ArrayList<Course> courses) {
+    static Professor genSnoop(ArrayList<Course> courses) {
         Professor snoop = new Professor();
         snoop.name = DefaultValues.NAME_FIRST_PROF;
         snoop.type = ProfType.LEGENDARY;
@@ -44,6 +46,7 @@ public class Professor implements SavableLoadableJSON {
         courses = new ArrayList<>();
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
@@ -99,7 +102,6 @@ public class Professor implements SavableLoadableJSON {
         return profs;
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("name", name);
@@ -115,7 +117,6 @@ public class Professor implements SavableLoadableJSON {
         return obj;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.type = ProfType.getEnum(jsonO.getString("type"));

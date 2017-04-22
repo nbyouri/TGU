@@ -42,9 +42,10 @@ public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {
 
 
         // Populate the data into the template view using the data object
-        if (e.getName() != null)
-            entertainmentName.setText(e.getName());
-        entertainnmentPrice.setText(String.valueOf(e.getPrice()));
+        String name = e != null ? e.getName() : null;
+        if (name != null)
+            entertainmentName.setText(name);
+        entertainnmentPrice.setText(String.valueOf(e != null ? e.getPrice() : 0));
         // Return the completed view to render on screen
         return convertView;
     }

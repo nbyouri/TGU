@@ -40,7 +40,7 @@ import muga.thegreatuniversity.utils.SaveManager;
  * Muga Copyright
  */
 
-public class MainActivity extends Activity implements CallbackActivity {
+public class MainActivity extends Activity {
 
     private static final int TITLE_TIME_OUT = 1500;
     private static final int LOOP_TIME_OUT = 10;
@@ -91,7 +91,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         active = false;
     }
 
-    @Override
+//    @Override
     public void callback(Bundle bundle) {
         if (bundle.containsKey("Type")){
             String type = bundle.getString("Type");
@@ -127,11 +127,11 @@ public class MainActivity extends Activity implements CallbackActivity {
         Turn newTurn = University.get().newTurn();
         PopUp.turnSummmaryPopUp(this, newTurn);
         if (newTurn.resultTurn == 1 ){ // Lose the best prof
-            PopUp.simplePopUp(this, "You lose your best professor", false);
+            PopUp.simplePopUp(this, "You lose your best professor");
         } else if (newTurn.resultTurn == 2 ){ // Lose the game
-            SaveManager.deleteFile(getApplicationContext(), SaveManager.UNIVERSITY_FILE);
+            SaveManager.deleteFile(getApplicationContext());
             PopUp.createUnivPopUp(this);
-            PopUp.simplePopUp(this, "YOU UNIVERSITY IS BANKRUPT, game over", false);
+            PopUp.simplePopUp(this, "YOU UNIVERSITY IS BANKRUPT, game over");
             return;
         }
 

@@ -28,7 +28,7 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class PopUp {
 
-    static public void turnSummmaryPopUp(Activity act, Turn turn){
+    static void turnSummmaryPopUp(Activity act, Turn turn){
         LayoutInflater inflater = (LayoutInflater) act.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         View dialogLayout = inflater.inflate(R.layout.layout_popup_summary, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(act);
@@ -69,7 +69,7 @@ public class PopUp {
         helpDialog.show();
     }
 
-    static public void createUnivPopUp(final MainActivity mainAct) {
+    static void createUnivPopUp(final MainActivity mainAct) {
 
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
         builderDialog.setTitle(Context.getString(R.string.popUp_createUniv));
@@ -115,7 +115,7 @@ public class PopUp {
         }
     }
 
-    static public void alertNewEvent(final MainActivity mainAct, final Event event) {
+    static void alertNewEvent(final MainActivity mainAct, final Event event) {
         AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
         eventBuilder.setCancelable(false);
         switch (event.getType()) {
@@ -166,10 +166,10 @@ public class PopUp {
         univDialog.show();
     }
 
-    static public void simplePopUp(final Activity mainAct, String message,  final boolean canDismiss){
+    static void simplePopUp(final Activity mainAct, String message){
         AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
         builderDialog.setMessage(message);
-        builderDialog.setCancelable(canDismiss);
+        builderDialog.setCancelable(false);
         builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

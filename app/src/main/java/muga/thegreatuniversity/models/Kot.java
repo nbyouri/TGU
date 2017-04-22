@@ -14,7 +14,7 @@ import muga.thegreatuniversity.lists.enums.KotType;
  * Muga Copyright
  */
 
-public class Kot implements SavableLoadableJSON {
+public class Kot {
     private String name;
     private int capacity;
     private int income;
@@ -48,8 +48,6 @@ public class Kot implements SavableLoadableJSON {
         return kots;
     }
 
-
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
@@ -62,7 +60,6 @@ public class Kot implements SavableLoadableJSON {
         return obj;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.capacity = jsonO.getInt("capacity");

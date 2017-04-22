@@ -50,8 +50,8 @@ public class SaveManager {
         return !(file == null || !file.exists());
     }
 
-    public static void deleteFile(Context context, String fileName) {
-        if (isFileExist(context, fileName)) {
+    public static void deleteFile(Context context) {
+        if (isFileExist(context, SaveManager.SETTINGS_FILE)) {
             File dir = context.getFilesDir();
             File file = new File(dir, "my_filename");
             if (!file.delete()) {

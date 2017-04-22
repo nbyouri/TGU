@@ -13,15 +13,15 @@ import muga.thegreatuniversity.lists.enums.RoomType;
  * Muga Copyright
  */
 
-public class Room implements SavableLoadableJSON {
+public class Room  {
     private String name;
     private int capacity;
     private RoomType type;
     private int price;
 
-    public Room() {}
+    Room() {}
 
-    public Room(String name, int capacity, RoomType type, int price) {
+    Room(String name, int capacity, RoomType type, int price) {
         this.name = name;
         this.capacity = capacity;
         this.type = type;
@@ -49,7 +49,6 @@ public class Room implements SavableLoadableJSON {
         return rooms;
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
@@ -61,7 +60,6 @@ public class Room implements SavableLoadableJSON {
         return obj;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.capacity = jsonO.getInt("capacity");

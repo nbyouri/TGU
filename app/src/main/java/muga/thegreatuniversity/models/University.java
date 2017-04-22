@@ -23,7 +23,7 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class University implements SavableLoadableJSON {
+public class University {
 
     // Help Object
     private final FormulaUniversity formula;
@@ -62,7 +62,6 @@ public class University implements SavableLoadableJSON {
         kots = new ArrayList<>();
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException  {
         JSONObject uni = new JSONObject();
 
@@ -112,7 +111,6 @@ public class University implements SavableLoadableJSON {
         return uni;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         JSONArray pArr = jsonO.getJSONArray("profs");
         for (int i = 0; i < pArr.length(); i++) {
@@ -232,10 +230,6 @@ public class University implements SavableLoadableJSON {
 
     public int getWeek() {
         return week;
-    }
-
-    private void addWeek() {
-        this.week++;
     }
 
     public Events getEvents() {
@@ -363,7 +357,7 @@ public class University implements SavableLoadableJSON {
         this.entertainments = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         ArrayList<Course> courses = new ArrayList<>();
-        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
+        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE));
         this.professors.add(Professor.genSnoop(courses));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());

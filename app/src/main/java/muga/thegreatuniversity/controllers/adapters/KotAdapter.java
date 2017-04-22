@@ -43,10 +43,11 @@ public class KotAdapter extends ArrayAdapter<Kot> {
 
 
         // Populate the data into the template view using the data object
-        if (k.getName() != null)
-            kotName.setText(k.getName());
-        kotPrice.setText(String.valueOf(k.getPrice()));
-        kotSize.setText(getContext().getString(R.string.kot_capacity, k.getCapacity()));
+        String name = k != null ? k.getName() : null;
+        if (name != null)
+            kotName.setText(name);
+        kotPrice.setText(String.valueOf(k != null ? k.getPrice() : 0));
+        kotSize.setText(getContext().getString(R.string.kot_capacity, k != null ? k.getCapacity() : 0));
         // Return the completed view to render on screen
         return convertView;
     }

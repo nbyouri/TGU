@@ -9,7 +9,6 @@ import java.util.Map;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.FragmentType;
-import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.models.TutorialStep;
 
 /**
@@ -18,7 +17,7 @@ import muga.thegreatuniversity.models.TutorialStep;
  * Muga Copyright
  */
 
-public class TutorialManager implements SavableLoadableJSON {
+public class TutorialManager {
 
     private Map<FragmentType, LinkedList<TutorialStep>> tutorials;
 
@@ -108,7 +107,6 @@ public class TutorialManager implements SavableLoadableJSON {
         tutorials = new EnumMap<>(FragmentType.class);
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject tutorial = new JSONObject();
 
@@ -120,8 +118,7 @@ public class TutorialManager implements SavableLoadableJSON {
         return tutorial;
     }
 
-    @Override
-    public void loadJSON(JSONObject jsonO) throws JSONException {
+    public void loadJSON(JSONObject jsonO) {
 
         for (FragmentType fType : FragmentType.values()){
             boolean rep = false;

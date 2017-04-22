@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.utils.Tools;
 
@@ -47,15 +48,16 @@ public class HireAdapter extends ArrayAdapter<Professor> {
 
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
 
-        if (prof.getType() != null)
-            Tools.colorFilter(icon, prof.getType().getColor());
+        ProfType type = prof != null ? prof.getType() : null;
+        if (type != null)
+            Tools.colorFilter(icon, type.getColor());
 
-        ageProf.setText(getContext().getString(R.string.prof_age_value, prof.getAge()));
-        course.setText(getContext().getString(R.string.prof_cours, prof.getCourses().size()));
+        ageProf.setText(getContext().getString(R.string.prof_age_value, prof != null ? prof.getAge() : 0));
+        course.setText(getContext().getString(R.string.prof_cours, prof != null ? prof.getCourses().size() : 0));
         // Populate the data into the template view using the data object
-        hireName.setText(prof.getName());
-        price.setText(String.valueOf(prof.getPrice()));
-        efficiency.setText(getContext().getString(R.string.prof_popularity_value, prof.getPopularity()));
+        hireName.setText(prof != null ? prof.getName() : null);
+        price.setText(String.valueOf(prof != null ? prof.getPrice() : 0));
+        efficiency.setText(getContext().getString(R.string.prof_popularity_value, prof != null ? prof.getPopularity() : 0));
 
         // Return the completed view to render on screen
         return convertView;
