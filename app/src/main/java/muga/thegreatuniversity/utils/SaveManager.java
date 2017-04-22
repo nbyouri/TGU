@@ -62,8 +62,8 @@ public class SaveManager {
     }
 
     public static boolean loadUniversity(Context context) throws Exception {
-        InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
-            if (inputStream != null) {
+            InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
+
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -78,6 +78,7 @@ public class SaveManager {
             String save = stringBuilder.toString();
             University.get().loadJSON(new JSONObject(save));
             return true;
+        }
         return false;
     }
 
