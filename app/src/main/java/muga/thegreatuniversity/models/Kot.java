@@ -20,6 +20,8 @@ public class Kot implements SavableLoadableJSON {
     private int price;
     private KotType type;
 
+    public Kot() {}
+
     public Kot(String name, int capacity, int income, int price, KotType type) {
         this.name = name;
         this.capacity = capacity;
@@ -62,7 +64,7 @@ public class Kot implements SavableLoadableJSON {
 
     public static ArrayList<Kot> getKot() {
         ArrayList<Kot> kots = new ArrayList<>();
-        kots.add(new Kot("basic", 10, 10, 10000, KotType.BASIC));
+        kots.add(new Kot("basic", 10, 10, 100, KotType.BASIC));
         kots.add(new Kot("building",50, 50, 50000, KotType.BUILDING));
         return kots;
     }

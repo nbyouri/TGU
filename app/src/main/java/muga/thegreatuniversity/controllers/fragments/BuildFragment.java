@@ -76,7 +76,7 @@ public class BuildFragment extends TutorialListFragment implements AdapterView.O
         if(n < 0) {
             PopUp.notMoney(getActivity());
         } else {
-           // University.get().addRoom(r);
+            University.get().addKot(k);
             University.get().setMoney(n);
             ((MainActivity)getActivity()).passOneWeek();
         }

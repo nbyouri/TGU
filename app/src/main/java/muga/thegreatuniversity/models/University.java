@@ -38,6 +38,7 @@ public class University implements SavableLoadableJSON {
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
+    private ArrayList<Kot> kots;
     private Events events;
 
     private static class UniversityHolder {
@@ -55,6 +56,7 @@ public class University implements SavableLoadableJSON {
         currentEvents = new ArrayList<>();
         formula = new FormulaUniversity(this);
         basicData = new UniversityBasicData();
+        kots = new ArrayList<>();
     }
 
     @Override
@@ -86,6 +88,12 @@ public class University implements SavableLoadableJSON {
         }
         uni.put("availableHires", ah);
 
+        JSONArray ko = new JSONArray();
+        for (Kot k : kots) {
+            ko.put(k.getAsJSON());
+        }
+        uni.put("kots", ko);
+
         return uni;
     }
 
@@ -110,6 +118,13 @@ public class University implements SavableLoadableJSON {
             Professor h = new Professor();
             h.loadJSON(hArr.getJSONObject(i));
             this.availableHires.add(h);
+        }
+
+        JSONArray kArr = jsonO.getJSONArray("kots");
+        for (int i = 0; i < kArr.length(); i++) {
+            Kot k = new Kot();
+            k.loadJSON(kArr.getJSONObject(i));
+            this.kots.add(k);
         }
 
         this.sortProfessors();
@@ -160,6 +175,14 @@ public class University implements SavableLoadableJSON {
 
     public void addRoom(Room room) {
         rooms.add(room);
+    }
+
+    public ArrayList<Kot> getKots() {
+        return kots;
+    }
+
+    public void addKot(Kot kot) {
+        kots.add(kot);
     }
 
     public ArrayList<Professor> getAvailableHires() {
@@ -230,6 +253,10 @@ public class University implements SavableLoadableJSON {
         for(int i = 0; i<l.size(); i++) {
             maxPopulation = maxPopulation + l.get(i).getCapacity();
         }
+        ArrayList<Kot> k = University.get().getKots();
+        for(int j = 0; j<k.size(); j++) {
+            maxPopulation = maxPopulation + k.get(j).getCapacity();
+        }
         return maxPopulation;
     }
 
@@ -280,6 +307,7 @@ public class University implements SavableLoadableJSON {
         this.week = (DefaultValues.START_WEEK);
         reloadHires();
         this.rooms = new ArrayList<>();
+        this.kots = new ArrayList<>();
         this.professors = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         basicData.setMoney(DefaultValues.START_MONEY);
