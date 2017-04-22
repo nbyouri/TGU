@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.models.events;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -75,7 +76,28 @@ public class EventConditions {
         return ok;
     }
 
-    public void loadJSON(JSONObject json) throws Exception {
+    public JSONObject getAsJSON() throws JSONException {
+        JSONObject obj = new JSONObject();
+        JSONArray jsonVars = new JSONArray();
+
+        for(EventValueType var: vars) {
+            jsonVars.put(var.getName());
+        }
+        obj.put("vars", jsonVars);
+        JSONArray jsonOps = new JSONArray();
+        for(String op: ops) {
+            jsonOps.put(op);
+        }
+        obj.put("ops", jsonOps);
+        JSONArray jsonValues = new JSONArray();
+        for(int value: values) {
+            jsonValues.put(value);
+        }
+        obj.put("values", jsonValues);
+        return obj;
+    }
+
+    public void loadJSON(JSONObject json) throws JSONException {
         JSONArray vars = json.getJSONArray("vars");
         this.vars = new EventValueType[vars.length()];
         for (int i = 0; i < vars.length(); i++) {
