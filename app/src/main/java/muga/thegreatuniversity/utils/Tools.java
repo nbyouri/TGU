@@ -62,12 +62,13 @@ public class Tools {
 
     /* utility to avoid corrupted saves */
     public static void deleteAndRestart(android.content.Context ctx, String msg, Exception e) {
-        Logger.error("Failed to read save : " + e.getCause() + "\n" + e.getMessage());
+        Logger.error(msg + e.getCause() + "\n" + e.getMessage());
         ((ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE))
                 .clearApplicationUserData();
-        Intent mStartActivity = new Intent(ctx, MainActivity.class);
+        Intent mStartActivity = new Intent(ctx, ctx.getClass());
         int mPendingIntentId = 123456;
-        PendingIntent mPendingIntent = PendingIntent.getActivity(ctx, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(ctx, mPendingIntentId,
+                mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager)ctx.getSystemService(android.content.Context.ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
         System.exit(0);
