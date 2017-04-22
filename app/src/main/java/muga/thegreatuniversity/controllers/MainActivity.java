@@ -141,6 +141,9 @@ public class MainActivity extends Activity implements CallbackActivity {
                 PopUp.alertNewEvent(this, ev);
                 ev.setDisplayable(false);
             }
+            else {
+                University.get().eventAction(ev);
+            }
         }
         University.get().applyTurn(newTurn);
         updateView();

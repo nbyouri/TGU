@@ -56,28 +56,25 @@ public class EventFragment extends Fragment {
             textView_yes_action.append(getString(R.string.event_newline));
         }
 
-        TextView textView_secondchoice = (TextView) view.findViewById(R.id.layout_event_description_noactionDescription);
-        textView_secondchoice.setText(ev.getSecondChoice());
+        if(ev.getNoAction() != null) {
+            TextView textView_secondchoice = (TextView) view.findViewById(R.id.layout_event_description_noactionDescription);
+            textView_secondchoice.setText(ev.getSecondChoice());
 
-        TextView textView_no_action = (TextView) view.findViewById(R.id.layout_event_description_noactiontext);
-        textView_no_action.setText(R.string.event_action_does);
-        for(EventAction event: ev.getNoAction().getActions()) {
-            textView_no_action.append(getString(R.string.event_a));
-            textView_no_action.append(event.getActionType().getName());
-            textView_no_action.append(getString(R.string.event_on));
-            textView_no_action.append(event.getValueType().getName());
-            textView_no_action.append(getString(R.string.event_of));
-            textView_no_action.append(String.valueOf(event.getValue()));
-            textView_no_action.append(getString(R.string.event_newline));
+            TextView textView_no_action = (TextView) view.findViewById(R.id.layout_event_description_noactiontext);
+            textView_no_action.setText(R.string.event_action_does);
+            for (EventAction event : ev.getNoAction().getActions()) {
+                textView_no_action.append(getString(R.string.event_a));
+                textView_no_action.append(event.getActionType().getName());
+                textView_no_action.append(getString(R.string.event_on));
+                textView_no_action.append(event.getValueType().getName());
+                textView_no_action.append(getString(R.string.event_of));
+                textView_no_action.append(String.valueOf(event.getValue()));
+                textView_no_action.append(getString(R.string.event_newline));
+            }
         }
 
 
         return view;
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
     }
 
 }
