@@ -14,7 +14,7 @@
         android:layout_alignBottom="@+id/layout_detail"
         android:layout_alignTop="@+id/layout_detail"
         android:src="@mipmap/ic_build_room"
-        android:contentDescription="Build Icon" />
+        android:contentDescription="@string/build_icon" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,9 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/icon_money_room"
-            android:layout_toEndOf="@+id/txt_price_room"
-            android:layout_alignBottom="@+id/txt_price_room"
-            android:layout_alignTop="@+id/txt_price_room"
             android:src="@mipmap/ic_money"
             android:contentDescription="@string/icon_desc_money" />
     </RelativeLayout>

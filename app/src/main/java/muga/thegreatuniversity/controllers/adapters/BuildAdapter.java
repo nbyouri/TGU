@@ -13,7 +13,9 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.Room;
 
 /**
- * Created by tristanmoers on 28/02/17.
+ * Created on 06-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class BuildAdapter extends ArrayAdapter<Room> {
@@ -42,7 +44,7 @@ public class BuildAdapter extends ArrayAdapter<Room> {
         // Populate the data into the template view using the data object
         roomName.setText(r.getName());
         roomPrice.setText(String.valueOf(r.getPrice()));
-        roomSize.setText("Capacity: "+ r.getCapacity());
+        roomSize.setText(getContext().getString(R.string.rooms_cap, r.getCapacity()));
         // Return the completed view to render on screen
         return convertView;
     }

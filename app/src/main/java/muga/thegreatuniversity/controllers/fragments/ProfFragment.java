@@ -91,7 +91,7 @@ public class ProfFragment extends Fragment {
         row = new TableRow(getActivity());
         tv1 = new TextView(getActivity());
         tv1.setText(getActivity().getString(R.string.prof_detail));
-        tv1.setGravity(Gravity.LEFT);
+        tv1.setGravity(Gravity.START);
         tv1.setLayoutParams(
                 new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         row.addView(tv1);
@@ -102,7 +102,7 @@ public class ProfFragment extends Fragment {
 
             tv1 = new TextView(getActivity());
             tv1.setText(getActivity().getString(column[i]));
-            tv1.setGravity(Gravity.LEFT);
+            tv1.setGravity(Gravity.START);
             tv1.setLayoutParams(
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
@@ -111,7 +111,7 @@ public class ProfFragment extends Fragment {
             tv2 = new TextView(getActivity());
             tv2.setText(fields[i]);
             tv2.setTextSize(getResources().getDimension(R.dimen.text_very_small));
-            tv2.setGravity(Gravity.LEFT);
+            tv2.setGravity(Gravity.START);
             if (column[i] == R.string.prof_type)
                 tv2.setTextColor(p.getType().getColor());
             tv2.setLayoutParams(
@@ -125,7 +125,7 @@ public class ProfFragment extends Fragment {
         row = new TableRow(getActivity());
         tv1 = new TextView(getActivity());
         tv1.setText(getActivity().getString(R.string.prof_courses));
-        tv1.setGravity(Gravity.LEFT);
+        tv1.setGravity(Gravity.START);
         tv1.setLayoutParams(
                 new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
@@ -137,7 +137,7 @@ public class ProfFragment extends Fragment {
             tv1 = new TextView(getActivity());
             tv1.setTextSize(getResources().getDimension(R.dimen.text_very_small));
             tv1.setText(course.toString());
-            tv1.setGravity(Gravity.LEFT);
+            tv1.setGravity(Gravity.START);
             tv1.setLayoutParams(
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 

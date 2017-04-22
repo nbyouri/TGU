@@ -14,7 +14,7 @@
         android:layout_alignBottom="@+id/layout_detail"
         android:layout_alignTop="@+id/layout_detail"
         android:src="@mipmap/ic_build_room"
-        android:contentDescription="Build Icon" />
+        android:contentDescription="@string/build_icon" />
 
     <LinearLayout
         android:layout_width="wrap_content"

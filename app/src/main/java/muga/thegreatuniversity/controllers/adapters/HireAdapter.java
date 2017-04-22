@@ -47,12 +47,12 @@ public class HireAdapter extends ArrayAdapter<Professor> {
 
         Tools.colorFilter(icon, prof.getType().getColor());
 
-        ageProf.setText("Age : " + prof.getAge());
-        course.setText("Courses : "+prof.getCourses().size());
+        ageProf.setText(getContext().getString(R.string.prof_age_value, prof.getAge()));
+        course.setText(getContext().getString(R.string.prof_cours, prof.getCourses().size()));
         // Populate the data into the template view using the data object
         hireName.setText(prof.getName());
         price.setText(String.valueOf(prof.getPrice()));
-        efficiency.setText(prof.getPopularity()+ "% ");
+        efficiency.setText(getContext().getString(R.string.prof_popularity_value));
 
         // Return the completed view to render on screen
         return convertView;

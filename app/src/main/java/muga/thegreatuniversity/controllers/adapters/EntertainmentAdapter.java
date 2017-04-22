@@ -14,7 +14,9 @@ import muga.thegreatuniversity.models.Entertainment;
 import muga.thegreatuniversity.models.Room;
 
 /**
- * Created by tristanmoers on 22/04/17.
+ * Created on 06-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {

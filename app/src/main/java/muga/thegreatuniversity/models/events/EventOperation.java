@@ -55,13 +55,21 @@ public class EventOperation {
         try {
             method = EventOperation.class.getMethod(ops, int.class, int.class);
             ok = (boolean)method.invoke(EventOperation.class, val1, val2);
-        } catch (SecurityException e) {}
+        } catch (SecurityException e) {
+            Logger.error(e.getMessage());
+        }
         catch (NoSuchMethodException e) {
             Logger.error(e.getMessage());
         }
-        catch (IllegalArgumentException e) {}
-        catch (IllegalAccessException e) {}
-        catch (InvocationTargetException e) {}
+        catch (IllegalArgumentException e) {
+            Logger.error(e.getMessage());
+        }
+        catch (IllegalAccessException e) {
+            Logger.error(e.getCause() + e.getMessage());
+        }
+        catch (InvocationTargetException e) {
+            Logger.error("Method error for " + ops + " " + e.getCause() + " : " + e.getMessage());
+        }
 
         return ok;
     }

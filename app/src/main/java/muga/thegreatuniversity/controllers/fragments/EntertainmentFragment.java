@@ -19,7 +19,9 @@ import muga.thegreatuniversity.models.Kot;
 import muga.thegreatuniversity.models.University;
 
 /**
- * Created by tristanmoers on 22/04/17.
+ * Created on 06-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class EntertainmentFragment extends TutorialListFragment implements AdapterView.OnItemClickListener{

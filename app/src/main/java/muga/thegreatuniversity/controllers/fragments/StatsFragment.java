@@ -36,7 +36,6 @@ import muga.thegreatuniversity.utils.Tuple;
  */
 
 public class StatsFragment extends TutorialFragment implements AdapterView.OnItemClickListener{
-    private EventAdapter eventadapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +64,7 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
 
     public void eventList(View view) {
         ListView events = (ListView) view.findViewById(R.id.event_list);
-        eventadapter = new EventAdapter(getActivity().getApplicationContext(),
+        EventAdapter eventadapter = new EventAdapter(getActivity().getApplicationContext(),
                 University.get().getCurrentEvents());
         events.setAdapter(eventadapter);
         eventadapter.notifyDataSetChanged();
@@ -123,7 +122,7 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
 
             tv1 = new TextView(getActivity());
             tv1.setText(rowItem.item1);
-            tv1.setGravity(Gravity.LEFT);
+            tv1.setGravity(Gravity.START);
             tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
 
@@ -144,7 +143,6 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Event ev = ((Event) parent.getItemAtPosition(position));
-        Fragment frag = new EventFragment();
 
         Bundle bundle = new Bundle();
 

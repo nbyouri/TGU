@@ -68,7 +68,7 @@ public class StatFragment extends TutorialFragment {
         cash.setText(String.valueOf(University.get().getMoney()));
         week.setText(String.valueOf(University.get().getWeek()));
         popularity.setText(String.valueOf(University.get().getPopularity()));
-        moral.setText(String.valueOf(University.get().getMoral()) + " % ");
+        moral.setText(getActivity().getString(R.string.uni_morale, University.get().getMoral()));
         if (University.get().getMoral() >= 50){
             iconMoral.setImageResource(R.mipmap.ic_moral_positive);
         } else {

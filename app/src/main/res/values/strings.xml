@@ -30,6 +30,17 @@
     <string name="help_hire">Help dialog</string>
     <string name="help_inventory">Help dialog</string>
     <string name="help_room">Help dialog</string>
+    <string name="help_desc">Help button</string>
+    <string name="build_icon">Build icon</string>
+    <string name="rooms">Rooms</string>
+    <string name="kots">Kots</string>
+    <string name="rooms_cap">Capacity: %d</string>
+    <string name="event_duration">Duration: %d</string>
+    <string name="prof_age_value">Age: %d</string>
+    <string name="prof_cours">Courses: %d</string>
+    <string name="prof_popularity_value">%d%%</string>
+    <string name="kot_capacity">Capacity: %d</string>
+    <string name="uni_morale">%d%%</string>
 
     <string name="help_hire_more">Hire a professor, the colors show the rarity! Find out how rare they are
     and more by clicking !</string>

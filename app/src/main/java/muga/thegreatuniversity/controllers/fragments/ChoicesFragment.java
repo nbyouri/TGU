@@ -27,8 +27,6 @@ import muga.thegreatuniversity.utils.Logger;
 
 public class ChoicesFragment extends TutorialListFragment implements OnItemClickListener {
 
-    private ChoicesAdapter choicesAdapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
         choices.add(new Choice(ChoiceType.SETTINGS, "Settings"));
 
         // Apply this choice on ListView
-        choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
+        ChoicesAdapter choicesAdapter = new ChoicesAdapter(getActivity().getApplicationContext(), choices);
         setListAdapter(choicesAdapter);
         getListView().setOnItemClickListener(this);
 

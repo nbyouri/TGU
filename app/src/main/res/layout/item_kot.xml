@@ -14,7 +14,7 @@
         android:layout_alignBottom="@+id/layout_detail"
         android:layout_alignTop="@+id/layout_detail"
         android:src="@mipmap/ic_build_room"
-        android:contentDescription="Build Icon" />
+        android:contentDescription="@string/build_icon" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,8 +22,7 @@
         android:id="@+id/layout_detail"
         android:layout_margin="@dimen/choice_btn_margin"
         android:orientation="vertical"
-        android:layout_toEndOf="@id/icon_build_room"
-        android:layout_toStartOf="@+id/layout_money_room">
+        android:layout_toEndOf="@id/icon_build_room">
 
         <TextView
             android:id="@+id/txt_name_kot"

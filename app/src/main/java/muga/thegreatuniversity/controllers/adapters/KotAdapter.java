@@ -13,7 +13,9 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.Kot;
 
 /**
- * Created by tristanmoers on 18/04/17.
+ * Created on 06-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class KotAdapter extends ArrayAdapter<Kot> {
@@ -42,7 +44,7 @@ public class KotAdapter extends ArrayAdapter<Kot> {
         // Populate the data into the template view using the data object
         kotName.setText(k.getName());
         kotPrice.setText(String.valueOf(k.getPrice()));
-        kotSize.setText("Capacity: "+ k.getCapacity());
+        kotSize.setText(getContext().getString(R.string.kot_capacity, k.getCapacity()));
         // Return the completed view to render on screen
         return convertView;
     }

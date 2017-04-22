@@ -10,8 +10,6 @@ import muga.thegreatuniversity.utils.Tools;
 
 public class FormulaUniversity {
 
-    private static double RAND_RANGE_STUDENT = 1;
-
     private University university;
 
     public FormulaUniversity(University university){
@@ -24,7 +22,7 @@ public class FormulaUniversity {
     }
 
     public int[] rangeNewStudent(){
-
+        double RAND_RANGE_STUDENT = 1;
         int popularity = university.getPopularity();
 
         double basicStudentNb = (university.getMoral() - 50) / 10; // between -5 -> 5

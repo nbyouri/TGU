@@ -10,7 +10,9 @@ import muga.thegreatuniversity.lists.enums.RoomType;
 
 
 /**
- * Created by tristanmoers on 18/04/17.
+ * Created on 06-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
 
 public class Kot implements SavableLoadableJSON {

@@ -5,13 +5,11 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.view.View;
+//import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
+//import android.widget.ListView;
 
 import java.util.Random;
-
-import muga.thegreatuniversity.controllers.MainActivity;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
@@ -34,10 +32,10 @@ public class Tools {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    public static double randDouble (double min, double max){
-        Random r = new Random();
-        return min + (max - min) * r.nextDouble();
-    }
+//    public static double randDouble (double min, double max){
+//        Random r = new Random();
+//        return min + (max - min) * r.nextDouble();
+//    }
 
     public static void colorFilter(ImageView img, int color){
         if (img == null){
@@ -48,17 +46,17 @@ public class Tools {
 
     }
 
-    public static View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
-    }
+//    public static View getViewByPosition(int pos, ListView listView) {
+//        final int firstListItemPosition = listView.getFirstVisiblePosition();
+//        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+//
+//        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+//            return listView.getAdapter().getView(pos, null, listView);
+//        } else {
+//            final int childIndex = pos - firstListItemPosition;
+//            return listView.getChildAt(childIndex);
+//        }
+//    }
 
     /* utility to avoid corrupted saves */
     public static void deleteAndRestart(android.content.Context ctx, String msg, Exception e) {

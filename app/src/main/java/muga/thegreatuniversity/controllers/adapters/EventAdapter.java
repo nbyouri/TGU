@@ -1,26 +1,17 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.models.Choice;
-import muga.thegreatuniversity.models.Professor;
-import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.utils.Logger;
 
 /**
  * Created on 18/04/17 .
@@ -52,7 +43,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         // Populate the data into the template view using the data object
         if (ev != null) {
             description.setText(ev.getMessage());
-            duration.setText("Duration: "+String.valueOf(ev.getDuration()));
+            duration.setText(getContext().getString(R.string.event_duration, ev.getDuration()));
         }
         // Return the completed view to render on screen
         return convertView;
