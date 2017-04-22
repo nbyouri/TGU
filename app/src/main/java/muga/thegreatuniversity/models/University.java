@@ -27,16 +27,16 @@ import muga.thegreatuniversity.utils.Logger;
 public class University implements SavableLoadableJSON {
 
     // Help Object
-    private FormulaUniversity formula;
+    private final FormulaUniversity formula;
 
     // Basic properties
-    private UniversityBasicData basicData;
+    private final UniversityBasicData basicData;
 
     private String name;
     private int week;
 
     // main objects
-    private ArrayList<Event> currentEvents;
+    private final ArrayList<Event> currentEvents;
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
@@ -175,7 +175,7 @@ public class University implements SavableLoadableJSON {
         this.name = name;
     }
 
-    public int getBasicPopularity() {
+    private int getBasicPopularity() {
         return basicData.getBasicPopularity();
     }
 
@@ -207,7 +207,7 @@ public class University implements SavableLoadableJSON {
         rooms.add(room);
     }
 
-    public ArrayList<Kot> getKots() {
+    private ArrayList<Kot> getKots() {
         return kots;
     }
 
@@ -227,7 +227,7 @@ public class University implements SavableLoadableJSON {
         return availableHires;
     }
 
-    public void reloadHires() {
+    private void reloadHires() {
         this.availableHires = Professor.genProfList();
     }
 
@@ -243,7 +243,7 @@ public class University implements SavableLoadableJSON {
         return week;
     }
 
-    public void addWeek() {
+    private void addWeek() {
         this.week++;
     }
 
@@ -326,12 +326,12 @@ public class University implements SavableLoadableJSON {
         }
     }
 
-    public void sortProfessors() {
+    private void sortProfessors() {
         Professor.sort(this.professors);
         Professor.sort(this.availableHires);
     }
 
-    public void updateCurrentEvents(){
+    private void updateCurrentEvents(){
         ArrayList<Event> toRemove = new ArrayList<>();
         for (Event ev: this.currentEvents) {
             if(ev.getCount()<ev.getDuration()){
@@ -371,7 +371,7 @@ public class University implements SavableLoadableJSON {
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
-        this.professors.add(new Professor (DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
+        this.professors.add(new Professor(DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);

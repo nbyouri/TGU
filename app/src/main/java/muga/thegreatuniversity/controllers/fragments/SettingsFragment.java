@@ -49,10 +49,6 @@ public class SettingsFragment extends ListFragment implements AdapterView.OnItem
         getListView().setOnItemClickListener(this);
     }
 
-    public void onStart(){
-        super.onStart();
-    }
-
     private void resetUniversity(){
         PopUp.resetUnivPopUp((MainActivity) getActivity());
     }

@@ -19,7 +19,7 @@ import muga.thegreatuniversity.models.Professor;
  * Muga Copyright
  */
 
-public class InventoryAdapter extends ArrayAdapter<Professor> {
+class InventoryAdapter extends ArrayAdapter<Professor> {
 
     public InventoryAdapter(Context context, List<Professor> objects) {
         super(context, 0, objects);

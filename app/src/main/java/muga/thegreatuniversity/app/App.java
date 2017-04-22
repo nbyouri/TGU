@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
@@ -28,13 +29,18 @@ import muga.thegreatuniversity.utils.TutorialManager;
 
 public class App extends Application {
 
-   // private static Context context;
+    private static Context context;
     public static boolean assetsLoaded;
 
     public void onCreate() {
         super.onCreate();
         assetsLoaded = false;
+        App.context = getApplicationContext();
         new loadAssets().execute();
+    }
+
+    public static Context getAppContext() {
+        return App.context;
     }
 
     private class loadAssets extends AsyncTask<Void, Integer, Integer> {

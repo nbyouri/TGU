@@ -10,9 +10,9 @@ import muga.thegreatuniversity.utils.Context;
 
 public class TutorialStep {
 
-    private String message;
+    private final String message;
     private int idView;
-    private boolean hasView;
+    private final boolean hasView;
 
     public TutorialStep(int message, int idView) {
         this.message = Context.getString(message);

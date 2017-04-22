@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 
 public class Events {
-    private ArrayList<Event> causal;
-    private ArrayList<Event> others;
+    private final ArrayList<Event> causal;
+    private final ArrayList<Event> others;
 
     public Events(ArrayList<Event> causal, ArrayList<Event> others) {
         this.causal = causal;

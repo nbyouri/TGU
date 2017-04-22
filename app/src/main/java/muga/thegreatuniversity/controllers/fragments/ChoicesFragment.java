@@ -56,11 +56,6 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
-    }
-
-    @Override
     public ImageView getButtonHelp() {
         return null;
     }
@@ -68,11 +63,6 @@ public class ChoicesFragment extends TutorialListFragment implements OnItemClick
     @Override
     public FragmentType getFragmentType() {
         return FragmentType.CHOICES;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
     }
 
     private void hireProf(){

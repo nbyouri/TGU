@@ -21,7 +21,7 @@ public class Entertainment implements SavableLoadableJSON {
 
     public  Entertainment() {}
 
-    public Entertainment(String name, int price, int moral, EntertainmentType type) {
+    private Entertainment(String name, int price, int moral, EntertainmentType type) {
         this.name = name;
         this.price = price;
         this.moral = moral;

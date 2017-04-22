@@ -8,7 +8,7 @@ import android.os.Bundle;
  * Muga Copyright
  */
 
-public interface CallbackActivity {
+interface CallbackActivity {
 
     void callback(Bundle bundle);
 

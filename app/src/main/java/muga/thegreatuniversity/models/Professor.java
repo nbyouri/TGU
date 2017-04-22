@@ -26,7 +26,7 @@ public class Professor implements SavableLoadableJSON {
     private int age;            // will he die soon
     private int price;          // Cost of hiring
 
-    public static final int NB_HIRES = 5; // amount of professors available to hire each turn
+    private static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
     public Professor(String name, ProfType type, int popularity, ArrayList<Course> courses, int age, int price) {
         this.name = name;
@@ -45,7 +45,7 @@ public class Professor implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -53,7 +53,7 @@ public class Professor implements SavableLoadableJSON {
         return popularity;
     }
 
-    public void setPopularity(int popularity) {
+    private void setPopularity(int popularity) {
         this.popularity = popularity;
     }
 
@@ -61,7 +61,7 @@ public class Professor implements SavableLoadableJSON {
         return courses;
     }
 
-    public void setCourses(ArrayList<Course> courses) {
+    private void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
 
@@ -69,7 +69,7 @@ public class Professor implements SavableLoadableJSON {
         return age;
     }
 
-    public void setAge(int age) {
+    private void setAge(int age) {
         this.age = age;
     }
 
@@ -77,7 +77,7 @@ public class Professor implements SavableLoadableJSON {
         return type;
     }
 
-    public void setType(ProfType type) {
+    private void setType(ProfType type) {
         this.type = type;
     }
 
@@ -85,7 +85,7 @@ public class Professor implements SavableLoadableJSON {
         return price;
     }
 
-    public void setPrice(int price) {
+    private void setPrice(int price) {
         this.price = price;
     }
 
@@ -127,7 +127,7 @@ public class Professor implements SavableLoadableJSON {
         this.price = jsonO.getInt("price");
     }
 
-    public static Professor generate_professor() {
+    private static Professor generate_professor() {
         Professor p = new Professor();
         p.setName(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
                 + Tools.Capitalize(Assets.getRandomAnimal()));
@@ -167,12 +167,12 @@ public class Professor implements SavableLoadableJSON {
 
         Professor professor = (Professor) o;
 
-        if (popularity != professor.popularity) return false;
-        if (age != professor.age) return false;
-        if (price != professor.price) return false;
-        if (name != null ? !name.equals(professor.name) : professor.name != null) return false;
-        return type == professor.type && (courses != null ? courses.equals(professor.courses) :
-                professor.courses == null);
+        return popularity == professor.popularity &&
+                age == professor.age && price == professor.price &&
+                (name != null ? name.equals(professor.name) :
+                        professor.name == null && type == professor.type &&
+                                (courses != null ? courses.equals(professor.courses) :
+                                        professor.courses == null));
 
     }
 

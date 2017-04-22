@@ -55,7 +55,7 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         // Populate the data into the template view using the data object
         hireName.setText(prof.getName());
         price.setText(String.valueOf(prof.getPrice()));
-        efficiency.setText(getContext().getString(R.string.prof_popularity_value));
+        efficiency.setText(getContext().getString(R.string.prof_popularity_value, prof.getPopularity()));
 
         // Return the completed view to render on screen
         return convertView;

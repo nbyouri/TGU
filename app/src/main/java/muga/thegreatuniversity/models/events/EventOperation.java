@@ -10,7 +10,7 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class EventOperation {
+class EventOperation {
     public static boolean smaller(int val1, int val2) {
         return val1 < val2;
     }

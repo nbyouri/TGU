@@ -15,7 +15,7 @@ import muga.thegreatuniversity.utils.Logger;
 
 public class EventResult {
 
-    private ArrayList<EventAction> actions;
+    private final ArrayList<EventAction> actions;
 
     EventResult(){
         actions = new ArrayList<>();

@@ -22,9 +22,9 @@ import muga.thegreatuniversity.utils.Logger;
  * Muga Copyright
  */
 
-public class TutorialCanvas extends Canvas {
+class TutorialCanvas extends Canvas {
 
-    private int widthScreen,sideTextMargin,topTextMargin;
+    private final int widthScreen,sideTextMargin,topTextMargin;
 
     public TutorialCanvas(Bitmap windowFrame, int widthScreen, int sideTextMargin, int topTextMargin){
         super(windowFrame);

@@ -90,12 +90,6 @@ public class StatFragment extends TutorialFragment {
         updateViews();
     }
 
-
-    @Override
-    public ImageView getButtonHelp() {
-        return null;
-    }
-
     @Override
     public FragmentType getFragmentType() {
         return FragmentType.STAT;

@@ -6,7 +6,7 @@ package muga.thegreatuniversity.models;
  * Muga Copyright
  */
 
-public class UniversityBasicData {
+class UniversityBasicData {
 
     private int basicPopularity;
     private int money;

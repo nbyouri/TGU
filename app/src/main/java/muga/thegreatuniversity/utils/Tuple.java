@@ -7,8 +7,8 @@ package muga.thegreatuniversity.utils;
  */
 
 public class Tuple<E1, E2> {
-    public E1 item1;
-    public E2 item2;
+    public final E1 item1;
+    public final E2 item2;
     public Tuple(E1 item1, E2 item2){
         this.item1 = item1;
         this.item2 = item2;

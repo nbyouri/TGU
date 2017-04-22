@@ -50,10 +50,6 @@ public class InventoryFragment extends TutorialListFragment implements OnItemCli
         getListView().setOnItemClickListener(this);
     }
 
-    public void onStart() {
-        super.onStart();
-    }
-
     @Override
     public View getButtonHelp() {
         return (getActivity().findViewById(R.id.inventory_help));

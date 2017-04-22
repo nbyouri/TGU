@@ -47,10 +47,6 @@ public class HireFragment extends TutorialListFragment implements OnItemClickLis
         getListView().setOnItemClickListener(this);
     }
 
-    public void onStart() {
-        super.onStart();
-    }
-
     @Override
     public View getButtonHelp() {
         return (getActivity().findViewById(R.id.hire_help_dialog));

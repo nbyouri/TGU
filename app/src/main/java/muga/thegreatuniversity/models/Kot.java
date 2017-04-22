@@ -23,7 +23,7 @@ public class Kot implements SavableLoadableJSON {
 
     public Kot() {}
 
-    public Kot(String name, int capacity, int income, int price, KotType type) {
+    private Kot(String name, int capacity, int income, int price, KotType type) {
         this.name = name;
         this.capacity = capacity;
         this.price = price;

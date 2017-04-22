@@ -21,8 +21,8 @@ import muga.thegreatuniversity.models.University;
 
 public class SaveManager {
 
-    public static String UNIVERSITY_FILE = "Save.json";
-    public static String SETTINGS_FILE = "Settings.json";
+    public static final String UNIVERSITY_FILE = "Save.json";
+    public static final String SETTINGS_FILE = "Settings.json";
 
     public static void saveUniversity(Context context) {
         String toWrite = "Impossible To save";
@@ -60,7 +60,7 @@ public class SaveManager {
         }
     }
 
-    public static boolean loadUniversity(Context context) throws Exception {
+    public static void loadUniversity(Context context) throws Exception {
         InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
         if (inputStream != null) {
@@ -76,9 +76,7 @@ public class SaveManager {
             inputStream.close();
             String save = stringBuilder.toString();
             University.get().loadJSON(new JSONObject(save));
-            return true;
         }
-        return false;
     }
 
     public static void saveSetting(Context context) throws Exception {
@@ -93,7 +91,7 @@ public class SaveManager {
         Logger.info("Save write Setting : " + toWrite);
     }
 
-    public static boolean loadSettings(Context context) throws Exception {
+    public static void loadSettings(Context context) throws Exception {
         InputStream inputStream = context.openFileInput(SETTINGS_FILE);
 
         if (inputStream != null) {
@@ -111,12 +109,10 @@ public class SaveManager {
                 String save = stringBuilder.toString();
                 TutorialManager.get().loadJSON(new JSONObject(save));
                 Logger.info("Save read Settings : " + save);
-                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        return false;
     }
 
 }

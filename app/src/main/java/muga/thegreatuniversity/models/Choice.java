@@ -9,8 +9,8 @@ import muga.thegreatuniversity.lists.enums.ChoiceType;
  */
 
 public class Choice {
-    private ChoiceType type;
-    private String name;
+    private final ChoiceType type;
+    private final String name;
 
     public Choice(ChoiceType type, String name){
         this.type = type;

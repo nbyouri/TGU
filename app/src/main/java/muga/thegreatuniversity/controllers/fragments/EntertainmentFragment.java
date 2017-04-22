@@ -47,12 +47,6 @@ public class EntertainmentFragment extends TutorialListFragment implements Adapt
 
     }
 
-
-    @Override
-    public void onStart(){
-        super.onStart();
-    }
-
     private void BuyEntertainemnt(Entertainment e){
         int n = University.get().getMoney() - e.getPrice();
         if(n < 0) {

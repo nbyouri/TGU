@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -45,23 +44,12 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
         return view;
     }
 
-
-    @Override
-    public void onStart(){
-        super.onStart();
-    }
-
-    @Override
-    public ImageView getButtonHelp() {
-        return null;
-    }
-
     @Override
     public FragmentType getFragmentType() {
         return FragmentType.STATISTICS;
     }
 
-    public void eventList(View view) {
+    private void eventList(View view) {
         ListView events = (ListView) view.findViewById(R.id.event_list);
         EventAdapter eventadapter = new EventAdapter(getActivity().getApplicationContext(),
                 University.get().getCurrentEvents());
@@ -69,7 +57,7 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
         eventadapter.notifyDataSetChanged();
     }
 
-    public void createTable(View view) {
+    private void createTable(View view) {
 
         int nbClass = 0, nbAudi = 0, nbAgro = 0, nbSci = 0, nbIT = 0;
         ArrayList<Room> l = University.get().getRooms();

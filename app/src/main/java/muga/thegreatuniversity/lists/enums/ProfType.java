@@ -29,7 +29,7 @@ public enum ProfType {
     private int id = 0;
     private static final Map<String, ProfType> lookup = new HashMap<>();
     // probablity per type
-    private static DistributedRandomGenerator<ProfType> rnd = new DistributedRandomGenerator<>();
+    private static final DistributedRandomGenerator<ProfType> rnd = new DistributedRandomGenerator<>();
 
     // popularity ranges
     private static final int common_max_popularity = 50;
@@ -71,7 +71,7 @@ public enum ProfType {
         return name;
     }
 
-    public int getId() { return id; }
+    private int getId() { return id; }
 
     ProfType(String name, int id) {
         this.name = name;

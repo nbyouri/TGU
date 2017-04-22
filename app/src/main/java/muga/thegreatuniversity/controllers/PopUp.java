@@ -55,7 +55,7 @@ public class PopUp {
         univDialog.show();
     }
 
-    static public void nameTestValidity(final MainActivity mainAct, final  String name) {
+    static private void nameTestValidity(final MainActivity mainAct, final  String name) {
         if (name.length() < 3 || name.length() > 100) {
 
             AlertDialog.Builder helpBuilder = new AlertDialog.Builder(mainAct);

@@ -55,11 +55,6 @@ public class TutorialLayout extends LinearLayout {
         return true;
     }
 
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-    }
-
     /**
      * DISABLE clickListener of children when tutorial is printing
      */
@@ -144,7 +139,7 @@ public class TutorialLayout extends LinearLayout {
 
     }
 
-    public void refreshLayout(TutorialStep step){
+    private void refreshLayout(TutorialStep step){
         if (step.hasView()){
             focusTutorial(step);
         } else {
@@ -210,7 +205,7 @@ public class TutorialLayout extends LinearLayout {
     /**
      * Clean the tutorial canvas
      */
-    public void cleanCanvas(){
+    private void cleanCanvas(){
         windowFrame = null;
     }
 }

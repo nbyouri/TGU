@@ -27,7 +27,7 @@ public enum AnsType {
         return lookup.get(type);
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 

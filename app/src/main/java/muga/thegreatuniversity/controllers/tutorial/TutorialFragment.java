@@ -1,10 +1,8 @@
 package muga.thegreatuniversity.controllers.tutorial;
 
 import android.app.Fragment;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;
@@ -20,8 +18,8 @@ import muga.thegreatuniversity.utils.Logger;
 
 public abstract class TutorialFragment extends Fragment {
 
-    boolean active;
-    TutorialLayout tutorialLayout;
+    private boolean active;
+    private TutorialLayout tutorialLayout;
 
     @Override
     public void onPause(){
@@ -37,16 +35,6 @@ public abstract class TutorialFragment extends Fragment {
 
         tutorialLayout = (TutorialLayout) getActivity().findViewById(R.id.layout_game);
         tutorialLayout.addCurrentFragment(getFragmentType());
-
-        ImageView help = this.getButtonHelp();
-        if (help !=null){
-            help.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    printHelp();
-                }
-            });
-        }
 
         if (getView() == null) {
             Logger.error("OnStart TutorialFragment : No View");
@@ -64,9 +52,7 @@ public abstract class TutorialFragment extends Fragment {
         });
     }
 
-    public abstract ImageView getButtonHelp();
-
-    public abstract FragmentType getFragmentType();
+    protected abstract FragmentType getFragmentType();
 
     private void printHelp(){
         switch (getFragmentType()) {

@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class DistributedRandomGenerator<K> {
 
-    private HashMap<K, Double> distribution;
+    private final HashMap<K, Double> distribution;
     private double distSum;
 
     public DistributedRandomGenerator() {

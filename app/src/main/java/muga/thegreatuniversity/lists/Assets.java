@@ -18,7 +18,7 @@ public class Assets {
     private ArrayList<String> MITcourses;
     private ArrayList<Event>  Events;
 
-    public Assets() {
+    private Assets() {
         this.wordListAdjectives = new ArrayList<>();
         this.wordListAnimals = new ArrayList<>();
         this.MITcourses = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Assets {
         return AssetsHolder.instance;
     }
 
-    public ArrayList<String> getWordListAdjectives() {
+    private ArrayList<String> getWordListAdjectives() {
         return wordListAdjectives;
     }
 
@@ -46,7 +46,7 @@ public class Assets {
         return get().getWordListAdjectives().get(randomAdjective);
     }
 
-    public ArrayList<String> getWordListAnimals() {
+    private ArrayList<String> getWordListAnimals() {
         return wordListAnimals;
     }
 
@@ -60,7 +60,7 @@ public class Assets {
         return get().getWordListAnimals().get(randomAnimal);
     }
 
-    public ArrayList<String> getMITcourses() {
+    private ArrayList<String> getMITcourses() {
         return MITcourses;
     }
 

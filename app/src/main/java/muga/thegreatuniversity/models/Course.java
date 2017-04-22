@@ -42,7 +42,7 @@ public class Course implements SavableLoadableJSON {
         this.courseType = CourseType.getEnum(jsonO.getString("courseType"));
     }
 
-    public static Course genCourse() {
+    private static Course genCourse() {
         /* TODO handle labs */
         return new Course(Assets.getRandomCourse(), CourseType.MAG);
     }

@@ -19,8 +19,8 @@ import muga.thegreatuniversity.utils.Logger;
 
 public abstract class TutorialListFragment extends ListFragment {
 
-    boolean active;
-    TutorialLayout tutorialLayout;
+    private boolean active;
+    private TutorialLayout tutorialLayout;
 
     @Override
     public void onPause(){
@@ -62,9 +62,9 @@ public abstract class TutorialListFragment extends ListFragment {
         });
     }
 
-    public abstract View getButtonHelp();
+    protected abstract View getButtonHelp();
 
-    public abstract FragmentType getFragmentType();
+    protected abstract FragmentType getFragmentType();
 
     private void printHelp(){
         switch (getFragmentType()) {

@@ -10,7 +10,7 @@ import muga.thegreatuniversity.utils.Tools;
 
 public class FormulaUniversity {
 
-    private University university;
+    private final University university;
 
     public FormulaUniversity(University university){
         this.university = university;

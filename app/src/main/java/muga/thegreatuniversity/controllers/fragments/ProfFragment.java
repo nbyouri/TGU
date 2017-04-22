@@ -167,9 +167,4 @@ public class ProfFragment extends Fragment {
     private void hireProf(Professor p){
         University.get().addProfessor(p);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 }

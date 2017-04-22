@@ -79,11 +79,6 @@ public class BuildFragment extends TutorialListFragment implements AdapterView.O
         }
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-    }
-
     private void BuildRoom(Room r){
         int n = University.get().getMoney() - r.getPrice();
         if(n < 0) {
