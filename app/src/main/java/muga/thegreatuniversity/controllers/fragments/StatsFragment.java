@@ -1,11 +1,16 @@
 package muga.thegreatuniversity.controllers.fragments;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,11 +25,13 @@ import java.util.Queue;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.adapters.EventAdapter;
 import muga.thegreatuniversity.controllers.tutorial.TutorialFragment;
+import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -33,7 +40,7 @@ import muga.thegreatuniversity.utils.Tuple;
  * Muga Copyright
  */
 
-public class StatsFragment extends TutorialFragment implements AdapterView.OnItemClickListener{
+public class StatsFragment extends TutorialFragment implements OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +62,7 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
                 University.get().getCurrentEvents());
         events.setAdapter(eventadapter);
         eventadapter.notifyDataSetChanged();
+        events.setOnItemClickListener(this);
     }
 
     private void createTable(View view) {
@@ -129,16 +137,26 @@ public class StatsFragment extends TutorialFragment implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         Event ev = ((Event) parent.getItemAtPosition(position));
-
         Bundle bundle = new Bundle();
-
-
+        Fragment frag = new EventFragment();
         try {
-            bundle.putString("event", String.valueOf(ev.getAsJSON())); //TODO
+            bundle.putString("event", String.valueOf(ev.getAsJSON()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        frag.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
+        Slide slEnter = new Slide();
+        slEnter.setSlideEdge(Gravity.END);
+        frag.setEnterTransition(slEnter);
+
+        transaction.replace(R.id.frame_main, frag);
+        transaction.addToBackStack(null);
+        transaction.hide(this);
+
+        transaction.commit();
     }
 }

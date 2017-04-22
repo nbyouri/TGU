@@ -37,6 +37,10 @@ public class Event {
         this.displayable = true;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public boolean isDisplayable() {
         return displayable;
     }

@@ -98,4 +98,5 @@
     <string name="layout_stat_moral">The student\'s morale impacts the population greatly!</string>
     <string name="layout_event_info">Info</string>
     <string name="layout_stats_events">Current Events</string>
+    <string name="event_description">Event Description: </string>
 </resources>
