@@ -1,12 +1,8 @@
 package muga.thegreatuniversity.lists.enums;
 
-import android.app.Fragment;
-
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
-
-import muga.thegreatuniversity.models.events.Entertainment;
 
 /**
  * Created by tristanmoers on 18/04/17.

@@ -1,4 +1,4 @@
-package muga.thegreatuniversity.models.events;
+package muga.thegreatuniversity.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -6,8 +6,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.enums.EntertainmentType;
-import muga.thegreatuniversity.lists.enums.RoomType;
-import muga.thegreatuniversity.models.SavableLoadableJSON;
 
 /**
  * Created by tristanmoers on 18/04/17.
@@ -18,6 +16,8 @@ public class Entertainment implements SavableLoadableJSON {
     private int price;
     private int moral;
     private EntertainmentType type;
+
+    public  Entertainment() {}
 
     public Entertainment(String name, int price, int moral, EntertainmentType type) {
         this.name = name;
@@ -52,9 +52,9 @@ public class Entertainment implements SavableLoadableJSON {
 
     public static ArrayList<Entertainment> getEntertainments() {
         ArrayList<Entertainment> entertainments = new ArrayList<>();
-        entertainments.add(new Entertainment("Sports facilities", 5000, 1, EntertainmentType.SPORTS_FACILITIES));
-        entertainments.add(new Entertainment("Library", 2500, 1, EntertainmentType.LIBRARY));
-        entertainments.add(new Entertainment("Student club", 10000, 1, EntertainmentType.STUDENT_CLUB));
+        entertainments.add(new Entertainment("Sports facilities", 150000, 1, EntertainmentType.SPORTS_FACILITIES));
+        entertainments.add(new Entertainment("Library", 50000, 1, EntertainmentType.LIBRARY));
+        entertainments.add(new Entertainment("Student club", 100000, 1, EntertainmentType.STUDENT_CLUB));
         return entertainments;
     }
 

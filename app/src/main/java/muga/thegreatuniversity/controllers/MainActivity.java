@@ -19,10 +19,11 @@ import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.fragments.BuildFragment;
 import muga.thegreatuniversity.controllers.fragments.ChoicesFragment;
+import muga.thegreatuniversity.controllers.fragments.EntertainmentFragment;
 import muga.thegreatuniversity.controllers.fragments.HireFragment;
 import muga.thegreatuniversity.controllers.fragments.InventoryFragment;
-import muga.thegreatuniversity.controllers.fragments.SettingsFragment;
 import muga.thegreatuniversity.controllers.fragments.ProfFragment;
+import muga.thegreatuniversity.controllers.fragments.SettingsFragment;
 import muga.thegreatuniversity.controllers.fragments.SplashFragment;
 import muga.thegreatuniversity.controllers.fragments.StatFragment;
 import muga.thegreatuniversity.controllers.fragments.StatsFragment;
@@ -157,6 +158,9 @@ public class MainActivity extends Activity implements CallbackActivity {
                 break;
             case PROF_DETAIL:
                 frag = new ProfFragment();
+                break;
+            case ENTERTAINMENT:
+                frag = new EntertainmentFragment();
         }
 
         commitFrag(frag);

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/item_list_side_padding"
+    android:paddingEnd="@dimen/item_list_side_padding"
+    android:gravity="center_vertical|start"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/icon_build_room"
+        android:layout_alignBottom="@+id/layout_detail"
+        android:layout_alignTop="@+id/layout_detail"
+        android:src="@mipmap/ic_build_room"
+        android:contentDescription="Build Icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_detail"
+        android:layout_margin="@dimen/choice_btn_margin"
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/icon_build_room"
+        android:layout_toStartOf="@+id/layout_money_room">
+
+        <TextView
+            android:id="@+id/txt_name_entertainment"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:textSize="@dimen/text_large"
+            android:text="@string/not_available" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/layout_detail"
+        android:layout_alignBottom="@id/layout_detail"
+        android:gravity="center"
+        android:id="@+id/layout_money_room">
+        <TextView
+            android:id="@+id/txt_price_entertainment"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:text="@string/not_available"
+            android:textSize="@dimen/text_medium"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icon_money_room"
+            android:layout_toEndOf="@+id/txt_price_room"
+            android:layout_alignBottom="@+id/txt_price_room"
+            android:layout_alignTop="@+id/txt_price_room"
+            android:src="@mipmap/ic_money"
+            android:contentDescription="@string/icon_desc_money" />
+    </RelativeLayout>
+
+</RelativeLayout>
