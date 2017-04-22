@@ -67,7 +67,7 @@ public class EntertainmentFragment extends TutorialListFragment implements Adapt
         if(n < 0) {
             PopUp.notMoney(getActivity());
         } else {
-            // University.get().addRoom(r);
+            University.get().addEntertainments(e);
             University.get().setMoney(n);
             ((MainActivity)getActivity()).passOneWeek();
         }

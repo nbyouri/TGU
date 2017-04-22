@@ -41,6 +41,7 @@ public class University implements SavableLoadableJSON {
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
     private ArrayList<Kot> kots;
+    private ArrayList<Entertainment> entertainments;
     private Events events;
 
     private static class UniversityHolder {
@@ -55,6 +56,7 @@ public class University implements SavableLoadableJSON {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
+        entertainments = new ArrayList<>();
         currentEvents = new ArrayList<>();
         formula = new FormulaUniversity(this);
         basicData = new UniversityBasicData();
@@ -96,6 +98,12 @@ public class University implements SavableLoadableJSON {
         }
         uni.put("kots", ko);
 
+        JSONArray en = new JSONArray();
+        for (Entertainment e : entertainments) {
+            en.put(e.getAsJSON());
+        }
+        uni.put("entertainments", ko);
+
         return uni;
     }
 
@@ -127,6 +135,13 @@ public class University implements SavableLoadableJSON {
             Kot k = new Kot();
             k.loadJSON(kArr.getJSONObject(i));
             this.kots.add(k);
+        }
+
+        JSONArray eArr = jsonO.getJSONArray("entertainments");
+        for (int i = 0; i < eArr.length(); i++) {
+            Entertainment e = new Entertainment();
+            e.loadJSON(eArr.getJSONObject(i));
+            this.entertainments.add(e);
         }
 
         this.sortProfessors();
@@ -185,6 +200,14 @@ public class University implements SavableLoadableJSON {
 
     public void addKot(Kot kot) {
         kots.add(kot);
+    }
+
+    public ArrayList<Entertainment> getEntertainments() {
+        return entertainments;
+    }
+
+    public void addEntertainments(Entertainment entertainment) {
+        entertainments.add(entertainment);
     }
 
     public ArrayList<Professor> getAvailableHires() {
@@ -326,6 +349,7 @@ public class University implements SavableLoadableJSON {
         this.rooms = new ArrayList<>();
         this.kots = new ArrayList<>();
         this.professors = new ArrayList<>();
+        this.entertainments = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
