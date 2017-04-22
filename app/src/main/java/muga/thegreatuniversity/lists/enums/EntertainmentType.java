@@ -11,7 +11,8 @@ import java.util.Map;
 public enum EntertainmentType {
     SPORTS_FACILITIES("sports_facilities"),
     LIBRARY("librairy"),
-    STUDENT_CLUB("student club");
+    STUDENT_CLUB("student club"),
+    STUDENT_PARTY("student party");
 
     private String name = "";
     private static final Map<String, EntertainmentType> lookup = new HashMap<>();

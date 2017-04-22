@@ -46,16 +46,6 @@ public class EntertainmentFragment extends TutorialListFragment implements Adapt
 
     }
 
-    private void BuildKot(Kot k){
-        int n = University.get().getMoney() - k.getPrice();
-        if(n < 0) {
-            PopUp.notMoney(getActivity());
-        } else {
-            University.get().addKot(k);
-            University.get().setMoney(n);
-            ((MainActivity)getActivity()).passOneWeek();
-        }
-    }
 
     @Override
     public void onStart(){
@@ -69,6 +59,7 @@ public class EntertainmentFragment extends TutorialListFragment implements Adapt
         } else {
             University.get().addEntertainments(e);
             University.get().setMoney(n);
+            University.get().addMoral(e.getMoral());
             ((MainActivity)getActivity()).passOneWeek();
         }
     }
