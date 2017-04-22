@@ -19,13 +19,7 @@ public class EventAction {
     private EventActionType actionType;
     private EventValueType valueType;
 
-    public EventAction() {}
-
-    public EventAction(EventActionType actionType, EventValueType valueType, double value) {
-        this.value = value;
-        this.actionType = actionType;
-        this.valueType = valueType;
-    }
+    EventAction() {}
 
     public double getValue() {
         return value;

@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import muga.thegreatuniversity.lists.Assets;
+import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.utils.Tools;
 
@@ -28,13 +29,15 @@ public class Professor implements SavableLoadableJSON {
 
     private static final int NB_HIRES = 5; // amount of professors available to hire each turn
 
-    public Professor(String name, ProfType type, int popularity, ArrayList<Course> courses, int age, int price) {
-        this.name = name;
-        this.type = type;
-        this.popularity = popularity;
-        this.courses = courses;
-        this.age = age;
-        this.price = price;
+    public static Professor genSnoop(ArrayList<Course> courses) {
+        Professor snoop = new Professor();
+        snoop.name = DefaultValues.NAME_FIRST_PROF;
+        snoop.type = ProfType.LEGENDARY;
+        snoop.popularity = 25;
+        snoop.courses = courses;
+        snoop.age = 20;
+        snoop.price = 0;
+        return snoop;
     }
 
     public Professor() {
@@ -89,10 +92,10 @@ public class Professor implements SavableLoadableJSON {
         this.price = price;
     }
 
-    public static ArrayList<Professor> genProfList() {
+    static ArrayList<Professor> genProfList() {
         ArrayList<Professor> profs = new ArrayList<>();
         for (int i = 0; i < NB_HIRES; i++)
-            profs.add(generate_professor());
+            profs.add(generateProfessor());
         return profs;
     }
 
@@ -127,7 +130,7 @@ public class Professor implements SavableLoadableJSON {
         this.price = jsonO.getInt("price");
     }
 
-    private static Professor generate_professor() {
+    private static Professor generateProfessor() {
         Professor p = new Professor();
         p.setName(Tools.Capitalize(Assets.getRandomAdjective()) + "  "
                 + Tools.Capitalize(Assets.getRandomAnimal()));
@@ -151,7 +154,7 @@ public class Professor implements SavableLoadableJSON {
     }
 
     /* Sort based on rarity */
-    public static void sort(ArrayList<Professor> list) {
+    static void sort(ArrayList<Professor> list) {
         Collections.sort(list, new Comparator<Professor>() {
             @Override
             public int compare(Professor o1, Professor o2) {

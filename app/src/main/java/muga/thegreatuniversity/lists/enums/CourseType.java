@@ -14,10 +14,11 @@ import muga.thegreatuniversity.utils.Context;
  */
 
 public enum CourseType {
-    MAG(Context.getString(R.string.courseType_magistral)),
-    LAB_SC(Context.getString(R.string.courseType_scienceLab)),
-    LAB_AG(Context.getString(R.string.courseType_agronomyLab)),
-    LAB_IT(Context.getString(R.string.courseType_ITLab));
+    MAG(Context.getString(R.string.courseType_magistral));
+
+    //LAB_SC(Context.getString(R.string.courseType_scienceLab)),
+    //LAB_AG(Context.getString(R.string.courseType_agronomyLab)),
+    //LAB_IT(Context.getString(R.string.courseType_ITLab));
 
     private String name = "";
     private static final Map<String, CourseType> lookup = new HashMap<>();
@@ -38,9 +39,4 @@ public enum CourseType {
     public String getName() {
         return name;
     }
-
-    public static CourseType get(String code) {
-        return lookup.get(code);
-    }
-
 }

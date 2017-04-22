@@ -20,9 +20,9 @@ public class TutorialStep {
         this.hasView = true;
     }
 
-    public TutorialStep(int message, boolean hasView){
+    public TutorialStep(int message){
         this.message = Context.getString(message);
-        this.hasView = hasView;
+        this.hasView = false;
     }
 
     public String getMessage() {

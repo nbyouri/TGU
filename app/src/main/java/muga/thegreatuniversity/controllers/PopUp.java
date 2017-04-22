@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;

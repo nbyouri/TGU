@@ -15,10 +15,10 @@ import muga.thegreatuniversity.utils.Context;
  */
 public enum RoomType {
     AUDIT (Context.getString(R.string.roomType_auditorium)),    // 100 people class
-    CLASS (Context.getString(R.string.roomType_class)),         // 20 people generic class
-    LAB_SC (Context.getString(R.string.courseType_scienceLab)), // needed for lab courses, 20 people max
-    LAB_AG (Context.getString(R.string.courseType_agronomyLab)),// needed for lab courses, 20 people max
-    LAB_IT (Context.getString(R.string.courseType_ITLab));      // needed for lab courses, 20 people max
+    CLASS (Context.getString(R.string.roomType_class));        // 20 people generic class
+//    LAB_SC (Context.getString(R.string.courseType_scienceLab)), // needed for lab courses, 20 people max
+//    LAB_AG (Context.getString(R.string.courseType_agronomyLab)),// needed for lab courses, 20 people max
+//    LAB_IT (Context.getString(R.string.courseType_ITLab));      // needed for lab courses, 20 people max
 
     private String name = "";
     private static final Map<String, RoomType> lookup = new HashMap<>();

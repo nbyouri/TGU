@@ -19,7 +19,7 @@ public class Entertainment implements SavableLoadableJSON {
     private int moral;
     private EntertainmentType type;
 
-    public  Entertainment() {}
+    Entertainment() {}
 
     private Entertainment(String name, int price, int moral, EntertainmentType type) {
         this.name = name;
@@ -32,25 +32,9 @@ public class Entertainment implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() { return price; }
 
-    public void setPrice(int price) { this.price = price;}
-
     public int getMoral() { return moral; }
-
-    public void setMoral(int moral) { this.moral = moral;}
-
-    public EntertainmentType getType() {
-        return type;
-    }
-
-    public void setType(EntertainmentType type) {
-        this.type = type;
-    }
 
     public static ArrayList<Entertainment> getEntertainments() {
         ArrayList<Entertainment> entertainments = new ArrayList<>();

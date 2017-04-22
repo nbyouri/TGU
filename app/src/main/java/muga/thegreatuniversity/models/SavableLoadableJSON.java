@@ -15,5 +15,4 @@ public interface SavableLoadableJSON {
     JSONObject getAsJSON() throws JSONException;
 
     void loadJSON(JSONObject jsonO) throws JSONException;
-
 }

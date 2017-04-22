@@ -21,10 +21,6 @@ public class EventResult {
         actions = new ArrayList<>();
     }
 
-    public void addAction(EventAction act){
-        actions.add(act);
-    }
-
     public ArrayList<EventAction> getActions(){
         return actions;
     }

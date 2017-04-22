@@ -19,8 +19,6 @@ public class Course implements SavableLoadableJSON {
     private String courseName;
     private CourseType courseType;
 
-    public static final int NB_COURSES = 5; // maximum courses a professor can teach;
-
     public Course() {}
 
     public Course(String courseName, CourseType courseType) {

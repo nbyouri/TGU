@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
-import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -171,10 +170,6 @@ public class University implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private int getBasicPopularity() {
         return basicData.getBasicPopularity();
     }
@@ -215,10 +210,6 @@ public class University implements SavableLoadableJSON {
         kots.add(kot);
     }
 
-    public ArrayList<Entertainment> getEntertainments() {
-        return entertainments;
-    }
-
     public void addEntertainments(Entertainment entertainment) {
         entertainments.add(entertainment);
     }
@@ -245,10 +236,6 @@ public class University implements SavableLoadableJSON {
 
     private void addWeek() {
         this.week++;
-    }
-
-    public void setWeek(int week) {
-        this.week = week;
     }
 
     public Events getEvents() {
@@ -377,7 +364,7 @@ public class University implements SavableLoadableJSON {
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
-        this.professors.add(new Professor(DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
+        this.professors.add(Professor.genSnoop(courses));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);

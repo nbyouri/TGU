@@ -36,7 +36,7 @@ public class TutorialManager implements SavableLoadableJSON {
 
         switch (fragmentType){
             case BUILD_ROOM:
-                steps.add(new TutorialStep(R.string.tutorial_room,false));
+                steps.add(new TutorialStep(R.string.tutorial_room));
                 steps.add(new TutorialStep(R.string.tutorial_roomsize,R.id.txt_size_room));
                 steps.add(new TutorialStep(R.string.tutorial_roomprice,R.id.txt_price_room));
                 break;
@@ -44,7 +44,7 @@ public class TutorialManager implements SavableLoadableJSON {
                 //steps.add(new TutorialStep("You can choose different actions",R.id.layout_choices));
                 break;
             case INVENTORY:
-                steps.add(new TutorialStep(R.string.tutorial_inventory,false));
+                steps.add(new TutorialStep(R.string.tutorial_inventory));
                 break;
             case OPTIONS:
 
@@ -53,9 +53,9 @@ public class TutorialManager implements SavableLoadableJSON {
 
                 break;
             case STAT:
-                steps.add(new TutorialStep(R.string.tutorial_welcome, false));
-                steps.add(new TutorialStep(R.string.tutorial_first_steps, false));
-                steps.add(new TutorialStep(R.string.tutorial_newturn, false));
+                steps.add(new TutorialStep(R.string.tutorial_welcome));
+                steps.add(new TutorialStep(R.string.tutorial_first_steps));
+                steps.add(new TutorialStep(R.string.tutorial_newturn));
                 steps.add(new TutorialStep(R.string.tutorial_money, R.id.layout_stat_cash));
                 steps.add(new TutorialStep(R.string.tutorial_popularity, R.id.layout_stat_popularity));
                 steps.add(new TutorialStep(R.string.layout_stat_moral, R.id.layout_stat_moral));
@@ -63,7 +63,7 @@ public class TutorialManager implements SavableLoadableJSON {
                 steps.add(new TutorialStep(R.string.tutorial_turn, R.id.layout_stat_turn));
                 break;
             case HIRE_PROF:
-                steps.add(new TutorialStep(R.string.tutorial_proflist, false));
+                steps.add(new TutorialStep(R.string.tutorial_proflist));
                 steps.add(new TutorialStep(R.string.tutorial_profdetail, R.id.layout_prof_item));
                 steps.add(new TutorialStep(R.string.tutorial_profpopularity, R.id.layout_prof_efficient));
                 steps.add(new TutorialStep(R.string.tutorial_profprice, R.id.layout_prof_price));

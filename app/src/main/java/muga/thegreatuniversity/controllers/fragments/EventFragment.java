@@ -76,5 +76,4 @@ public class EventFragment extends Fragment {
 
         return view;
     }
-
 }

@@ -6,24 +6,17 @@
     <string name="roomType_class">Class</string>
 
     <string name="courseType_magistral">Magistral</string> <!-- in english? -->
-    <string name="courseType_scienceLab">Science Lab</string>
-    <string name="courseType_agronomyLab">Agronomy Lab</string>
-    <string name="courseType_ITLab">IT Lab</string>
+    <!--<string name="courseType_scienceLab">Science Lab</string>-->
+    <!--<string name="courseType_agronomyLab">Agronomy Lab</string>-->
+    <!--<string name="courseType_ITLab">IT Lab</string>-->
     <string name="create_univ_button">Create University</string>
-    <string name="text_moral">moral</string>
-    <string name="text_create_teacher">Create Teacher</string>
-    <string name="text_create_course">Create Course</string>
 
     <string name="popUp_createUniv">Create university</string>
     <string name="popUp_enterName">Enter name of your University</string>
-    <string name="popUp_Verify">Are you sure to use the name</string>
     <string name="popUp_ok">Validate</string>
-    <string name="popUp_cancel">Cancel</string>
     <string name="popUp_error">The name is invalid</string>
     <string name="popUp_retry">Retry (3 character min, 100 character max)</string>
     <string name="popUp_money">You do not have money to buy this</string>
-    <string name="label_money">Money : </string>
-    <string name="label_week">Week : </string>
     <string name="separate_student_values"> / </string>
 
     <!-- Help dialog -->
@@ -54,7 +47,6 @@
     <string name="icon_desc_professor">Professor Icon</string>
     <string name="icon_desc_choice">Choice Icon</string>
     <string name="icon_desc_population">Population Icon</string>
-    <string name="per_week_money">Per week</string>
 
     <string name="popUp_Reset">Are you sur to delete your university ? All your data will be lost</string>
 
@@ -73,10 +65,6 @@
     <!-- Tutorial -->
     <string name="tutorial_welcome">Welcome to The Great University, a game where the goal is
     to become the greatest university!</string>
-    <string name="tutorial_first_launch">The Great University is a management game, the goal is become famous and rich. Each action pass a week and each week is possibly to encounter a event. Let begin the tutorial.</string>
-    <string name="tutorial_choice_hire">Go buy your first professor</string>
-    <string name="tutorial_list_hire">Click on this professor</string>
-    <string name="tutorial_more_info">You can click on this icon to get help and more details on game-play</string>
     <string name="tutorial_click_continue">Click to continue</string>
     <string name="tutorial_newturn">Click on Pass a week to get to the next week</string>
     <string name="tutorial_first_steps">We are going to review the different things you can do, are you ready?</string>

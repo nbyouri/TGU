@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements CallbackActivity {
         } else if (newTurn.resultTurn == 2 ){ // Lose the game
             SaveManager.deleteFile(getApplicationContext(), SaveManager.UNIVERSITY_FILE);
             PopUp.createUnivPopUp(this);
-            PopUp.simplePopUp(this, "YOU UNIVERSITY ARE BANKRUPT", false);
+            PopUp.simplePopUp(this, "YOU UNIVERSITY IS BANKRUPT, game over", false);
             return;
         }
 
@@ -186,7 +186,7 @@ public class MainActivity extends Activity implements CallbackActivity {
 
     }
 
-    private void commitFrag(Fragment frag){
+    private void commitFrag(Fragment frag) {
         if ((frag != null)){
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 

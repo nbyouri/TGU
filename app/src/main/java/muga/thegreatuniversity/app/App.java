@@ -78,7 +78,7 @@ public class App extends Application {
                 ass.setWordListAdjectives(loadTxtFile("Adjectives.txt", assets));
                 ass.setWordListAnimals(loadTxtFile("Animals.txt", assets));
                 ass.setMITcourses(loadTxtFile("MITcourses.txt", assets));
-                University.get().setEvents(loadJSON("Events.json", assets));
+                University.get().setEvents(loadJSON(assets));
             } catch (Exception e) {
                 Logger.error(e.getMessage());
             }
@@ -100,10 +100,10 @@ public class App extends Application {
             return arrayString;
         }
 
-        private Events loadJSON(String filename, AssetManager assets) throws Exception {
+        private Events loadJSON(AssetManager assets) throws Exception {
             ArrayList<Event> causal = new ArrayList<>();
             ArrayList<Event> others = new ArrayList<>();
-            InputStream is = assets.open(filename);
+            InputStream is = assets.open("Events.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             int read = is.read(buffer);

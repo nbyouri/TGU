@@ -3,9 +3,10 @@ package muga.thegreatuniversity.utils;
 import muga.thegreatuniversity.app.App;
 
 /**
- * Created by youri on 22/04/2017.
+ * Created on 21-03-17.
+ * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
+ * Muga Copyright
  */
-
 public class Context {
     public static String getString(int id) {
         return App.getAppContext().getString(id);
