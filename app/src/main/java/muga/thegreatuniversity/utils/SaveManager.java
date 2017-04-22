@@ -61,8 +61,7 @@ public class SaveManager {
         }
     }
 
-    public static boolean loadUniversity(Context context){
-        try {
+    public static boolean loadUniversity(Context context) throws Exception {
             InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
         if (inputStream != null) {
