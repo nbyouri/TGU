@@ -42,6 +42,14 @@ public class EventAction {
         return valueType;
     }
 
+    public JSONObject getAsJSON() throws JSONException {
+        JSONObject obj = new JSONObject();
+        obj.put("value", value);
+        obj.put("action_type", actionType.getName());
+        obj.put("value_type", valueType.getName());
+        return obj;
+    }
+
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.value = jsonO.getDouble("value");
         this.actionType = EventActionType.getEnum(jsonO.getString("action_type"));

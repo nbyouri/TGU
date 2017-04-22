@@ -98,6 +98,12 @@ public class University implements SavableLoadableJSON {
         }
         uni.put("kots", ko);
 
+        JSONArray ev = new JSONArray();
+        for (Event e : currentEvents) {
+            ev.put(e.getAsJSON());
+        }
+        uni.put("events", ev);
+
         JSONArray en = new JSONArray();
         for (Entertainment e : entertainments) {
             en.put(e.getAsJSON());
@@ -142,6 +148,13 @@ public class University implements SavableLoadableJSON {
             Entertainment e = new Entertainment();
             e.loadJSON(eArr.getJSONObject(i));
             this.entertainments.add(e);
+        }
+
+        JSONArray evArr = jsonO.getJSONArray("events");
+        for (int i = 0; i < evArr.length(); i++) {
+            Event ev = new Event();
+            ev.loadJSON(evArr.getJSONObject(i));
+            this.currentEvents.add(ev);
         }
 
         this.sortProfessors();

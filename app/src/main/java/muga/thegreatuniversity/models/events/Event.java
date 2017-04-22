@@ -126,14 +126,34 @@ public class Event {
         return conds;
     }
 
-    public void loadJSON(JSONObject jsonO) throws Exception {
+    public JSONObject getAsJSON() throws JSONException {
+        JSONObject obj = new JSONObject();
+        obj.put("messsgae", message);
+        obj.put("type", type.getName());
+        obj.put("duration", duration);
+        obj.put("firstChoice", firstChoice);
+        obj.put("secondChoice", secondChoice);
+        obj.put("description", description);
+        obj.put("yes_action", yesAction.getAsJson());
+        obj.put("no_action", noAction.getAsJson());
+        obj.put("conditions", conds.getAsJSON());
+        obj.put("causal", causal);
+
+        return obj;
+    }
+
+    public void loadJSON(JSONObject jsonO) throws JSONException {
         this.message = jsonO.getString("message");
         this.type = EventType.getEnum(jsonO.getString("type"));
         this.duration = jsonO.getInt("duration");
         this.firstChoice = jsonO.getString("first_choice");
         this.secondChoice = jsonO.getString("second_choice");
-        //this.description = jsonO.getString("description");
-
+        if(jsonO.has("description")) {
+            this.description = jsonO.getString("description");
+        }
+        else {
+            Logger.info(this.message+ "no description");
+        }
         this.yesAction = new EventResult();
         this.yesAction.loadJSON(jsonO.getJSONArray("yes_action"));
         if(jsonO.has("no_action")) {

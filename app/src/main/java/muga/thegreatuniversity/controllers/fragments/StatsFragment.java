@@ -1,15 +1,19 @@
 package muga.thegreatuniversity.controllers.fragments;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -22,6 +26,7 @@ import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -30,7 +35,7 @@ import muga.thegreatuniversity.utils.Tuple;
  * Muga Copyright
  */
 
-public class StatsFragment extends TutorialFragment {
+public class StatsFragment extends TutorialFragment implements AdapterView.OnItemClickListener{
     private EventAdapter eventadapter;
 
     @Override
@@ -133,5 +138,22 @@ public class StatsFragment extends TutorialFragment {
 
             table.addView(row);
         }
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Event ev = ((Event) parent.getItemAtPosition(position));
+        Fragment frag = new EventFragment();
+
+        Bundle bundle = new Bundle();
+
+
+        try {
+            bundle.putString("event", String.valueOf(ev.getAsJSON())); //TODO
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 [
   {
-    "message":"One of your teacher finished his thesis, you gain money and popularity",
+    "message":"Congratulations, one of your teacher finished his thesis",
+    "description":"One of your teacher finished his thesis, this event increase your popularity and money",
     "type":"determinist",
     "duration":0,
     "first_choice":"",
