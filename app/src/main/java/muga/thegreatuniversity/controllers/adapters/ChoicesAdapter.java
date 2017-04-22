@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import java.util.List;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
-import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 27-02-17.
@@ -27,8 +27,9 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Choice choice = getItem(position);
@@ -42,7 +43,8 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
         TextView choiceName = (TextView) convertView.findViewById(R.id.txt_name_choice);
 
         // Populate the data into the template view using the data object
-        icon.setImageResource(getIcon(choice.getType()));
+        if (choice.getType() != null)
+            icon.setImageResource(getIcon(choice.getType()));
 
         choiceName.setText(choice.getName());
 

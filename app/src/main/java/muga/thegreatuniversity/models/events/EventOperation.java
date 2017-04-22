@@ -59,10 +59,10 @@ public class EventOperation {
             Logger.error(e.getMessage());
         }
         catch (NoSuchMethodException e) {
-            Logger.error(e.getMessage());
+            Logger.error("No such method " + ops);
         }
         catch (IllegalArgumentException e) {
-            Logger.error(e.getMessage());
+            Logger.error("Illegal argument error");
         }
         catch (IllegalAccessException e) {
             Logger.error(e.getCause() + e.getMessage());

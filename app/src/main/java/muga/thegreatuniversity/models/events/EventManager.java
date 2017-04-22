@@ -1,16 +1,9 @@
 package muga.thegreatuniversity.models.events;
 
-import android.util.Log;
 
 import java.util.ArrayList;
 
-import muga.thegreatuniversity.lists.enums.EventActionType;
-import muga.thegreatuniversity.lists.enums.EventType;
-import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.utils.Logger;
-
-import static muga.thegreatuniversity.lists.enums.EventValueType.MONEY;
 
 /**
  * Created on 28/02/17 .

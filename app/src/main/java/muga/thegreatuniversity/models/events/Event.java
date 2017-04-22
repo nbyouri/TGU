@@ -1,12 +1,10 @@
 package muga.thegreatuniversity.models.events;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.enums.EventType;
-import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.utils.Logger;
 
 /**

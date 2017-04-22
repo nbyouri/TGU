@@ -171,8 +171,8 @@ public class Professor implements SavableLoadableJSON {
         if (age != professor.age) return false;
         if (price != professor.price) return false;
         if (name != null ? !name.equals(professor.name) : professor.name != null) return false;
-        if (type != professor.type) return false;
-        return courses != null ? courses.equals(professor.courses) : professor.courses == null;
+        return type == professor.type && (courses != null ? courses.equals(professor.courses) :
+                professor.courses == null);
 
     }
 

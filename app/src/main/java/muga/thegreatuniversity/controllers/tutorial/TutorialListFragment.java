@@ -4,7 +4,6 @@ import android.app.ListFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.PopUp;

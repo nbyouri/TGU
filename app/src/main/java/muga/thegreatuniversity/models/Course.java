@@ -3,12 +3,10 @@ package muga.thegreatuniversity.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.Assets;
 import muga.thegreatuniversity.lists.enums.CourseType;
-import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 20/02/2017.
@@ -64,9 +62,8 @@ public class Course implements SavableLoadableJSON {
 
         Course course = (Course) o;
 
-        if (courseName != null ? !courseName.equals(course.courseName) : course.courseName != null)
-            return false;
-        return courseType == course.courseType;
+        return courseName != null ? courseName.equals(course.courseName) :
+                course.courseName == null && courseType == course.courseType;
 
     }
 

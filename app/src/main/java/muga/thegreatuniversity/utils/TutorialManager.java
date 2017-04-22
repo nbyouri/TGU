@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.controllers.MainActivity;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.models.TutorialStep;

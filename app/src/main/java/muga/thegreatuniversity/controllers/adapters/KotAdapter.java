@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,9 @@ public class KotAdapter extends ArrayAdapter<Kot> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Kot k = getItem(position);
@@ -42,7 +43,8 @@ public class KotAdapter extends ArrayAdapter<Kot> {
 
 
         // Populate the data into the template view using the data object
-        kotName.setText(k.getName());
+        if (k.getName() != null)
+            kotName.setText(k.getName());
         kotPrice.setText(String.valueOf(k.getPrice()));
         kotSize.setText(getContext().getString(R.string.kot_capacity, k.getCapacity()));
         // Return the completed view to render on screen

@@ -1,15 +1,11 @@
 package muga.thegreatuniversity.controllers.fragments;
 
 import android.app.Fragment;
-import android.app.ListFragment;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -17,18 +13,13 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
-import java.util.Map;
-
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.controllers.MainActivity;
-import muga.thegreatuniversity.controllers.adapters.HireAdapter;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Course;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.Tools;
 
 /**
  * Created on 28/03/2017.

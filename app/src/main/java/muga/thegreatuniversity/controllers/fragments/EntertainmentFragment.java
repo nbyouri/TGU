@@ -15,7 +15,6 @@ import muga.thegreatuniversity.controllers.adapters.EntertainmentAdapter;
 import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Entertainment;
-import muga.thegreatuniversity.models.Kot;
 import muga.thegreatuniversity.models.University;
 
 /**

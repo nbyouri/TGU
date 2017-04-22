@@ -1,13 +1,10 @@
 package muga.thegreatuniversity.models.events;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
-import muga.thegreatuniversity.models.SavableLoadableJSON;
 import muga.thegreatuniversity.utils.Logger;
 
 /**

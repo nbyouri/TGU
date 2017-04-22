@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,9 @@ public class BuildAdapter extends ArrayAdapter<Room> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Room r = getItem(position);
@@ -42,7 +43,8 @@ public class BuildAdapter extends ArrayAdapter<Room> {
 
 
         // Populate the data into the template view using the data object
-        roomName.setText(r.getName());
+        if (r.getName() != null)
+            roomName.setText(r.getName());
         roomPrice.setText(String.valueOf(r.getPrice()));
         roomSize.setText(getContext().getString(R.string.rooms_cap, r.getCapacity()));
         // Return the completed view to render on screen

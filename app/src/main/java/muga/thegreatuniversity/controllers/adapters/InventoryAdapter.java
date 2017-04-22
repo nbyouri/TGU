@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,9 @@ public class InventoryAdapter extends ArrayAdapter<Professor> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Professor prof = getItem(position);
@@ -39,8 +40,10 @@ public class InventoryAdapter extends ArrayAdapter<Professor> {
         TextView hireName = (TextView) convertView.findViewById(R.id.txt_name_prof);
 
         // Populate the data into the template view using the data object
-        hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+String.valueOf(prof.getPopularity())
-                +"\nCourse: "+prof.getCourses().size()+"\nAge: "+prof.getAge());
+        if (prof.getName() != null)
+            hireName.setText("Nom: "+prof.getName()+"\nPopularity: "+
+                    String.valueOf(prof.getPopularity()) +"\nCourse: "+
+                    prof.getCourses().size()+"\nAge: "+prof.getAge());
 
         // Return the completed view to render on screen
         return convertView;

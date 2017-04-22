@@ -1,8 +1,6 @@
 package muga.thegreatuniversity.app;
 
-import android.app.ActivityManager;
 import android.app.Application;
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
@@ -30,18 +28,13 @@ import muga.thegreatuniversity.utils.TutorialManager;
 
 public class App extends Application {
 
-    private static Context context;
+   // private static Context context;
     public static boolean assetsLoaded;
 
     public void onCreate() {
         super.onCreate();
         assetsLoaded = false;
-        App.context = getApplicationContext();
         new loadAssets().execute();
-    }
-
-    public static Context getAppContext() {
-        return App.context;
     }
 
     private class loadAssets extends AsyncTask<Void, Integer, Integer> {
@@ -54,7 +47,7 @@ public class App extends Application {
                 try {
                     SaveManager.loadUniversity(getApplicationContext());
                 } catch (Exception e) {
-                    Tools.deleteAndRestart(context, "Failed to read save : ", e);
+                    Tools.deleteAndRestart(getBaseContext(), "Failed to read save : ", e);
                 }
             }
 
@@ -62,14 +55,14 @@ public class App extends Application {
                 try {
                     SaveManager.loadSettings(getApplicationContext());
                 } catch (Exception e) {
-                    Tools.deleteAndRestart(context, "Failed to read settings : ", e);
+                    Tools.deleteAndRestart(getBaseContext(), "Failed to read settings : ", e);
                 }
             } else {
                 TutorialManager.get().createAllTutorial();
                 try {
                     SaveManager.saveSetting(getApplicationContext());
                 } catch (Exception e) {
-                    Tools.deleteAndRestart(context, "Failed to save settings : ", e);
+                    Tools.deleteAndRestart(getBaseContext(), "Failed to save settings : ", e);
                 }
             }
 
@@ -107,7 +100,8 @@ public class App extends Application {
             InputStream is = assets.open(filename);
             int size = is.available();
             byte[] buffer = new byte[size];
-            is.read(buffer);
+            int read = is.read(buffer);
+            if (read == 0) { return null; }
             is.close();
             String bufferString = new String(buffer);
             JSONArray jsonArray = new JSONArray(bufferString);

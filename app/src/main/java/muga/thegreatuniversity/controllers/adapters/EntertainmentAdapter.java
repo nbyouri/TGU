@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import java.util.List;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.Entertainment;
-import muga.thegreatuniversity.models.Room;
 
 /**
  * Created on 06-03-17.
@@ -25,9 +25,9 @@ public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Entertainment e = getItem(position);
@@ -42,7 +42,8 @@ public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {
 
 
         // Populate the data into the template view using the data object
-        entertainmentName.setText(e.getName());
+        if (e.getName() != null)
+            entertainmentName.setText(e.getName());
         entertainnmentPrice.setText(String.valueOf(e.getPrice()));
         // Return the completed view to render on screen
         return convertView;

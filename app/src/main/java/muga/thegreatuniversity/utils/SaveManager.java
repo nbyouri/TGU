@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -67,7 +66,7 @@ public class SaveManager {
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String receiveString = "";
+            String receiveString;
             StringBuilder stringBuilder = new StringBuilder();
 
             while ((receiveString = bufferedReader.readLine()) != null) {
@@ -83,7 +82,7 @@ public class SaveManager {
     }
 
     public static void saveSetting(Context context) throws Exception {
-        String toWrite = "";
+        String toWrite;
         JSONObject uni = TutorialManager.get().getAsJSON();
         toWrite = uni.toString();
 
@@ -100,7 +99,7 @@ public class SaveManager {
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String receiveString = "";
+            String receiveString;
             StringBuilder stringBuilder = new StringBuilder();
 
             while ((receiveString = bufferedReader.readLine()) != null) {

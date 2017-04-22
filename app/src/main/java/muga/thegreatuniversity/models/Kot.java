@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.enums.KotType;
-import muga.thegreatuniversity.lists.enums.RoomType;
 
 
 /**

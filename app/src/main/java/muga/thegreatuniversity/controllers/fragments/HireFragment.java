@@ -10,10 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
-import java.util.Arrays;
 
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.MainActivity;

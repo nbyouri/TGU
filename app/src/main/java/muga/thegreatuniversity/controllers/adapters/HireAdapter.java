@@ -1,6 +1,7 @@
 package muga.thegreatuniversity.controllers.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,9 @@ public class HireAdapter extends ArrayAdapter<Professor> {
         super(context, 0, objects);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Get the data item for this position
         Professor prof = getItem(position);
@@ -45,7 +47,8 @@ public class HireAdapter extends ArrayAdapter<Professor> {
 
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon_prof);
 
-        Tools.colorFilter(icon, prof.getType().getColor());
+        if (prof.getType() != null)
+            Tools.colorFilter(icon, prof.getType().getColor());
 
         ageProf.setText(getContext().getString(R.string.prof_age_value, prof.getAge()));
         course.setText(getContext().getString(R.string.prof_cours, prof.getCourses().size()));

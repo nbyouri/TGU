@@ -111,7 +111,7 @@ public class TutorialCanvas extends Canvas {
     private List<String> slipPrintableText(String message, Paint paint){
         StringBuilder mesBuilder = new StringBuilder(message);
 
-        ArrayList<String> slipStrings = new ArrayList<String>();
+        ArrayList<String> slipStrings = new ArrayList<>();
         while (mesBuilder.length() > 0){
             StringBuilder temp = new StringBuilder(mesBuilder);
 

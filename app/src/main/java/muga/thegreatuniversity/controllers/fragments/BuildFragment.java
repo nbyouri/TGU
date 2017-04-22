@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ import muga.thegreatuniversity.models.Kot;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Logger;
-
-import static android.R.id.list;
 
 /**
  * Created on 20/02/2017.
