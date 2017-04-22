@@ -36,15 +36,16 @@ public class StatsFragment extends TutorialFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
+        createTable(view);
+        eventList(view);
+        return view;
     }
 
 
     @Override
     public void onStart(){
         super.onStart();
-        createTable();
-        eventList();
     }
 
     @Override
@@ -57,15 +58,15 @@ public class StatsFragment extends TutorialFragment {
         return FragmentType.STATISTICS;
     }
 
-    public void eventList() {
-        ListView events = (ListView) getActivity().findViewById(R.id.event_list);
+    public void eventList(View view) {
+        ListView events = (ListView) view.findViewById(R.id.event_list);
         eventadapter = new EventAdapter(getActivity().getApplicationContext(),
                 University.get().getCurrentEvents());
         events.setAdapter(eventadapter);
         eventadapter.notifyDataSetChanged();
     }
 
-    public void createTable() {
+    public void createTable(View view) {
 
         int nbClass = 0, nbAudi = 0, nbAgro = 0, nbSci = 0, nbIT = 0;
         ArrayList<Room> l = University.get().getRooms();
@@ -107,7 +108,7 @@ public class StatsFragment extends TutorialFragment {
         rowItems.add(new Tuple<>("New Student : ", rangeNewStudent[0] + " to " + rangeNewStudent[1]));
 
 
-        TableLayout table = (TableLayout) getActivity().findViewById(R.id.tableStats);
+        TableLayout table = (TableLayout) view.findViewById(R.id.tableStats);
        
 
         TableRow row;

@@ -71,18 +71,7 @@ public class ProfFragment extends Fragment {
 
         Logger.info("ProfFragment!!!");
 
-        return view;
-    }
-
-    private void hireProf(Professor p){
-        University.get().addProfessor(p);
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-
-        TableLayout table = (TableLayout) getActivity().findViewById(R.id.table_prof);
+        final TableLayout tl = (TableLayout) view.findViewById(R.id.table_prof);
         int column[] = {R.string.prof_name,
                 R.string.prof_type,
                 R.string.prof_popularity,
@@ -121,7 +110,7 @@ public class ProfFragment extends Fragment {
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
             row.addView(tv2);
-            table.addView(row);
+            tl.addView(row);
         }
 
         // Legend
@@ -133,7 +122,7 @@ public class ProfFragment extends Fragment {
                 new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
         row.addView(tv1);
-        table.addView(row);
+        tl.addView(row);
 
         for (String key : ProfType.getLookup().keySet()) {
             row = new TableRow(getActivity());
@@ -145,7 +134,18 @@ public class ProfFragment extends Fragment {
                     new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
             row.addView(tv1);
-            table.addView(row);
+            tl.addView(row);
         }
+
+        return view;
+    }
+
+    private void hireProf(Professor p){
+        University.get().addProfessor(p);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }
