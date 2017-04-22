@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
-import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.lists.enums.ProfType;
@@ -27,7 +26,7 @@ import muga.thegreatuniversity.utils.Tuple;
  * Muga Copyright
  */
 
-public class University implements SavableLoadableJSON {
+public class University {
 
     // Help Object
     private final FormulaUniversity formula;
@@ -66,7 +65,6 @@ public class University implements SavableLoadableJSON {
         kots = new ArrayList<>();
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException  {
         JSONObject uni = new JSONObject();
 
@@ -116,7 +114,6 @@ public class University implements SavableLoadableJSON {
         return uni;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         JSONArray pArr = jsonO.getJSONArray("profs");
         for (int i = 0; i < pArr.length(); i++) {
@@ -174,10 +171,6 @@ public class University implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private int getBasicPopularity() {
         return basicData.getBasicPopularity();
     }
@@ -218,10 +211,6 @@ public class University implements SavableLoadableJSON {
         kots.add(kot);
     }
 
-    public ArrayList<Entertainment> getEntertainments() {
-        return entertainments;
-    }
-
     public void addEntertainments(Entertainment entertainment) {
         entertainments.add(entertainment);
     }
@@ -244,14 +233,6 @@ public class University implements SavableLoadableJSON {
 
     public int getWeek() {
         return week;
-    }
-
-    private void addWeek() {
-        this.week++;
-    }
-
-    public void setWeek(int week) {
-        this.week = week;
     }
 
     public Events getEvents() {
@@ -381,8 +362,8 @@ public class University implements SavableLoadableJSON {
         this.entertainments = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
         ArrayList<Course> courses = new ArrayList<>();
-        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
-        this.professors.add(new Professor(DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
+        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE));
+        this.professors.add(Professor.genSnoop(courses));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);

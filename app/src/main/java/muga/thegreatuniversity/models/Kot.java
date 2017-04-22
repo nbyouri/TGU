@@ -14,14 +14,14 @@ import muga.thegreatuniversity.lists.enums.KotType;
  * Muga Copyright
  */
 
-public class Kot implements SavableLoadableJSON {
+public class Kot {
     private String name;
     private int capacity;
     private int income;
     private int price;
     private KotType type;
 
-    public Kot() {}
+    Kot() {}
 
     private Kot(String name, int capacity, int income, int price, KotType type) {
         this.name = name;
@@ -35,33 +35,11 @@ public class Kot implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     public int getPrice() { return price; }
-
-    public void setPrice(int price) { this.price = price;}
-
-    public int getIncome() { return income; }
-
-    public void setIncome(int income) { this.income = income;}
-
-    public KotType getType() {
-        return type;
-    }
-
-    public void setType(KotType type) {
-        this.type = type;
-    }
 
     public static ArrayList<Kot> getKot() {
         ArrayList<Kot> kots = new ArrayList<>();
@@ -70,8 +48,6 @@ public class Kot implements SavableLoadableJSON {
         return kots;
     }
 
-
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
@@ -84,7 +60,6 @@ public class Kot implements SavableLoadableJSON {
         return obj;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.capacity = jsonO.getInt("capacity");

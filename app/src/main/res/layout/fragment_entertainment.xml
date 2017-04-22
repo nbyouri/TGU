@@ -14,6 +14,24 @@
         android:padding="@dimen/help_padding"
         android:background="@color/light_black">
 
+        <TextView
+            android:id="@+id/txt_help_entertainment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img_help_room"
+            android:gravity="center"
+            android:text="@string/help_room"
+            android:textSize="@dimen/text_medium" />
+
+        <ImageView
+            android:id="@+id/img_help_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_help_entertainment"
+            android:layout_alignTop="@id/txt_help_entertainment"
+            android:src="@mipmap/ic_help"
+            android:contentDescription="@string/help_desc"
+            android:clickable="true"/>
     </RelativeLayout>
 
     <ListView

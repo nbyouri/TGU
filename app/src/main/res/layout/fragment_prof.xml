@@ -9,12 +9,6 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:id="@+id/table_prof">
-        <TableRow>
-            <TextView
-                android:id="@+id/txt_prof_name"
-                android:gravity="end"
-                android:padding="3dip" />
-        </TableRow>
     </TableLayout>
 
     <Button

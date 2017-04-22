@@ -15,20 +15,17 @@ import muga.thegreatuniversity.lists.enums.CourseType;
  */
 
 
-public class Course implements SavableLoadableJSON {
+public class Course {
     private String courseName;
     private CourseType courseType;
 
-    public static final int NB_COURSES = 5; // maximum courses a professor can teach;
+    Course() {}
 
-    public Course() {}
-
-    public Course(String courseName, CourseType courseType) {
+    Course(String courseName) {
         this.courseName = courseName;
-        this.courseType = courseType;
+        this.courseType = CourseType.MAG;
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject uni = new JSONObject();
         uni.put("courseName", courseName);
@@ -36,7 +33,6 @@ public class Course implements SavableLoadableJSON {
         return uni;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.courseName = jsonO.getString("courseName");
         this.courseType = CourseType.getEnum(jsonO.getString("courseType"));
@@ -44,10 +40,10 @@ public class Course implements SavableLoadableJSON {
 
     private static Course genCourse() {
         /* TODO handle labs */
-        return new Course(Assets.getRandomCourse(), CourseType.MAG);
+        return new Course(Assets.getRandomCourse());
     }
 
-    public static ArrayList<Course> genCourseList(int nb) {
+    static ArrayList<Course> genCourseList(int nb) {
         ArrayList<Course> courses = new ArrayList<>();
         for (int i = 0; i < nb; i++) {
             courses.add(genCourse());

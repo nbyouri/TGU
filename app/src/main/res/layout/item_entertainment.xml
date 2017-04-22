@@ -59,6 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/icon_money_room"
+            android:layout_toEndOf="@+id/txt_price_entertainment"
+            android:layout_alignBottom="@+id/txt_price_entertainment"
+            android:layout_alignTop="@+id/txt_price_entertainment"
             android:src="@mipmap/ic_money"
             android:contentDescription="@string/icon_desc_money" />
     </RelativeLayout>

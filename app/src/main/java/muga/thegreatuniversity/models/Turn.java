@@ -12,14 +12,14 @@ import muga.thegreatuniversity.models.events.Event;
 
 public class Turn {
 
-    public int week;
+    public final int week;
     public int newStudent;
     public double newMoral;
     public int newCash;
     public int resultTurn;
     public ArrayList<Event> events;
 
-    public Turn(int week) {
+    Turn(int week) {
         this.week = week;
         this.resultTurn = 0;
     }

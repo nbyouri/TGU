@@ -43,10 +43,11 @@ public class ChoicesAdapter extends ArrayAdapter<Choice> {
         TextView choiceName = (TextView) convertView.findViewById(R.id.txt_name_choice);
 
         // Populate the data into the template view using the data object
-        if (choice.getType() != null)
-            icon.setImageResource(getIcon(choice.getType()));
+        ChoiceType ch = choice != null ? choice.getType() : null;
+        if (ch != null)
+            icon.setImageResource(getIcon(ch));
 
-        choiceName.setText(choice.getName());
+        choiceName.setText(choice != null ? choice.getName() : null);
 
         // Return the completed view to render on screen
         return convertView;

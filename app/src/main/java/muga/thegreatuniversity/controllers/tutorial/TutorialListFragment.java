@@ -77,6 +77,9 @@ public abstract class TutorialListFragment extends ListFragment {
             case INVENTORY:
                 PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_inventory_more));
                 break;
+            case ENTERTAINMENT:
+                PopUp.helpPopUp(getActivity(), Context.getString(R.string.help_entertainment));
+                break;
         }
     }
 }

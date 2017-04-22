@@ -69,7 +69,7 @@ public class EntertainmentFragment extends TutorialListFragment implements Adapt
 
     @Override
     public View getButtonHelp() {
-        return (getActivity().findViewById(R.id.room_help));
+        return (getActivity().findViewById(R.id.entertainment_help));
     }
 
     @Override

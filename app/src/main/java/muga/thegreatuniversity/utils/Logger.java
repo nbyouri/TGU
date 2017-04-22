@@ -18,8 +18,4 @@ public class Logger {
     public static void error(String s) {
         Log.e(TAG, s);
     }
-
-    public static void wtf(String s) {
-        Log.wtf(TAG, s);
-    }
 }

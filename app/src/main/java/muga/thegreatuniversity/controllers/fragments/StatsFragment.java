@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -25,13 +24,11 @@ import java.util.Queue;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.adapters.EventAdapter;
 import muga.thegreatuniversity.controllers.tutorial.TutorialFragment;
-import muga.thegreatuniversity.controllers.tutorial.TutorialListFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Professor;
 import muga.thegreatuniversity.models.Room;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -74,18 +71,18 @@ public class StatsFragment extends TutorialFragment implements OnItemClickListen
                 case CLASS:
                     nbClass++;
                     break;
-                case AUDIT:
-                    nbAudi++;
-                    break;
-                case LAB_AG:
-                    nbAgro++;
-                    break;
-                case LAB_SC:
-                    nbIT++;
-                    break;
-                case LAB_IT:
-                    nbSci++;
-                    break;
+//                case AUDIT:
+//                    nbAudi++;
+//                    break;
+//                case LAB_AG:
+//                    nbAgro++;
+//                    break;
+//                case LAB_SC:
+//                    nbIT++;
+//                    break;
+//                case LAB_IT:
+//                    nbSci++;
+//                    break;
             }
         }
 

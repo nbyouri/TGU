@@ -13,13 +13,13 @@ import muga.thegreatuniversity.lists.enums.EntertainmentType;
  * Muga Copyright
  */
 
-public class Entertainment implements SavableLoadableJSON {
+public class Entertainment {
     private String name;
     private int price;
     private int moral;
     private EntertainmentType type;
 
-    public  Entertainment() {}
+    Entertainment() {}
 
     private Entertainment(String name, int price, int moral, EntertainmentType type) {
         this.name = name;
@@ -32,25 +32,9 @@ public class Entertainment implements SavableLoadableJSON {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() { return price; }
 
-    public void setPrice(int price) { this.price = price;}
-
     public int getMoral() { return moral; }
-
-    public void setMoral(int moral) { this.moral = moral;}
-
-    public EntertainmentType getType() {
-        return type;
-    }
-
-    public void setType(EntertainmentType type) {
-        this.type = type;
-    }
 
     public static ArrayList<Entertainment> getEntertainments() {
         ArrayList<Entertainment> entertainments = new ArrayList<>();
@@ -61,7 +45,6 @@ public class Entertainment implements SavableLoadableJSON {
         return entertainments;
     }
 
-    @Override
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("name", this.name);
@@ -72,7 +55,6 @@ public class Entertainment implements SavableLoadableJSON {
         return obj;
     }
 
-    @Override
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.name = jsonO.getString("name");
         this.type = EntertainmentType.getEnum(jsonO.getString("entertainmentType"));

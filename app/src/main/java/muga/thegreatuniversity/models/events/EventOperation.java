@@ -11,30 +11,36 @@ import muga.thegreatuniversity.utils.Logger;
  */
 
 class EventOperation {
+    @SuppressWarnings("unused")
     public static boolean smaller(int val1, int val2) {
         return val1 < val2;
     }
-
+    @SuppressWarnings("unused")
     public static boolean smaller_or_equal(int val1, int val2) {
         return val1 <= val2;
     }
 
+    @SuppressWarnings("unused")
     public static boolean greater(int val1, int val2) {
         return val1 > val2;
     }
 
+    @SuppressWarnings("unused")
     public static boolean greater_or_equal(int val1, int val2) {
         return val1 >= val2;
     }
 
+    @SuppressWarnings("unused")
     public static boolean equal(int val1, int val2) {
         return val1 == val2;
     }
 
+    @SuppressWarnings("unused")
     public static boolean not_equal(int val1, int val2) {
         return val1 != val2;
     }
 
+    @SuppressWarnings("unused")
     public static boolean modulo(int val1, int val2) {
         return val1%val2 == 0;
     }

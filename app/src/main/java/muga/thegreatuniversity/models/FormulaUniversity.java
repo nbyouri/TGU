@@ -12,11 +12,11 @@ public class FormulaUniversity {
 
     private final University university;
 
-    public FormulaUniversity(University university){
+    FormulaUniversity(University university){
         this.university = university;
     }
 
-    public int newStudent(){
+    int newStudent(){
         int[] range = rangeNewStudent();
         int nbNew = Math.round(Tools.randInt(range[0], range[1]));
         int maxPop = University.get().getMaxPopulation();
@@ -58,6 +58,21 @@ public class FormulaUniversity {
 
         return base;
     }
+
+//    public int newMoral() {
+//
+//        int moraldecrease = 0;
+//        int nbStudent = university.getStudentNb();
+//        int nbProf = university.getProfessors().size();
+//        int nbCourse = 0;
+//
+//        for(int i = 0;i<nbProf; i++) {
+//            nbCourse += university.getProfessors().get(i).getCourses().size();
+//        }
+//
+//
+//        return moraldecrease;
+//    }
 
 
 

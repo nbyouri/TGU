@@ -22,34 +22,6 @@ public class EventConditions {
 
     public EventConditions() {}
 
-    public EventConditions(String[] vars, String[] ops, int[] values) throws Exception {
-        if (vars.length != values.length) {
-            throw new Exception("Incorrect EventConditions usage");
-        }
-        this.vars = new EventValueType[vars.length];
-        for (int i = 0; i < vars.length; i++) {
-            this.vars[i] = EventValueType.getEnum(vars[i]);
-        }
-        this.ops = ops;
-        this.values = values;
-    }
-
-    public EventValueType[] getVars() {
-        return vars;
-    }
-
-    public void setVars(EventValueType[] vars) {
-        this.vars = vars;
-    }
-
-    public int[] getValues() {
-        return values;
-    }
-
-    public void setValues(int[] values) {
-        this.values = values;
-    }
-
     public boolean check() {
         boolean ok = true;
         for (int i = 0; i < vars.length; i++) {

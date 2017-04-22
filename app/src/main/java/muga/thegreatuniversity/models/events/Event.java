@@ -41,20 +41,8 @@ public class Event {
         return yesAction;
     }
 
-    public void setYesAction(EventResult yesAction) {
-        this.yesAction = yesAction;
-    }
-
     public EventResult getNoAction() {
         return noAction;
-    }
-
-    public void setNoAction(EventResult noAction) {
-        this.noAction = noAction;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getDescription() {
@@ -77,36 +65,16 @@ public class Event {
         return firstChoice;
     }
 
-    public void setSecondChoice(String secondChoice) {
-        this.secondChoice = secondChoice;
-    }
-
     public EventType getType() {
         return type;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setFirstChoice(String firstChoice) {
-        this.firstChoice = firstChoice;
     }
 
     public String getSecondChoice() {
         return secondChoice;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
-    }
-
     public int getDuration() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public void setCount0(){
@@ -132,16 +100,8 @@ public class Event {
         }
     }
 
-    public AnsType getAns() {
-        return ans;
-    }
-
     public void setAns(AnsType ans) {
         this.ans = ans;
-    }
-
-    public void setConds(EventConditions conds) {
-        this.conds = conds;
     }
 
     public EventConditions getConds() {

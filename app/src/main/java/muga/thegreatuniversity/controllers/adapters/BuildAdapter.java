@@ -43,10 +43,10 @@ public class BuildAdapter extends ArrayAdapter<Room> {
 
 
         // Populate the data into the template view using the data object
-        if (r.getName() != null)
-            roomName.setText(r.getName());
-        roomPrice.setText(String.valueOf(r.getPrice()));
-        roomSize.setText(getContext().getString(R.string.rooms_cap, r.getCapacity()));
+        String name = r != null ? r.getName() : null;
+        roomName.setText(name);
+        roomPrice.setText(String.valueOf(r != null ? r.getPrice() : 0));
+        roomSize.setText(getContext().getString(R.string.rooms_cap, r != null ? r.getCapacity() : 0));
         // Return the completed view to render on screen
         return convertView;
     }
