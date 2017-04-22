@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
-import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;

@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,6 @@ import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-
 /**
  * Created on 21/02/17.
  * Authors : Rime Antoine, Moers Tristan, Mouton Youri, Voet Rémy
@@ -29,8 +26,7 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class PopUp {
 
     static void turnSummmaryPopUp(Activity act, Turn turn){
-        LayoutInflater inflater = (LayoutInflater) act.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View dialogLayout = inflater.inflate(R.layout.layout_popup_summary, null);
+        View dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(act);
 
         Button validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
