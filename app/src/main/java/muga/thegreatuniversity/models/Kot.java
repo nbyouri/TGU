@@ -64,7 +64,7 @@ public class Kot implements SavableLoadableJSON {
 
     public static ArrayList<Kot> getKot() {
         ArrayList<Kot> kots = new ArrayList<>();
-        kots.add(new Kot("basic", 10, 10, 100, KotType.BASIC));
+        kots.add(new Kot("basic", 10, 10, 10000, KotType.BASIC));
         kots.add(new Kot("building",50, 50, 50000, KotType.BUILDING));
         return kots;
     }
