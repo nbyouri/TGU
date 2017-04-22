@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.models.University;
 
 /**
@@ -52,8 +51,19 @@ public class SaveManager {
         return !(file == null || !file.exists());
     }
 
-    public static boolean loadUniversity(Context context) throws Exception {
-        InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
+    public static void deleteFile(Context context, String fileName){
+        if (isFileExist(context, fileName)) {
+            File dir = context.getFilesDir();
+            File file = new File(dir, "my_filename");
+            if (!file.delete()){
+                Logger.error("Impossible to Delete de save File");
+            }
+        }
+    }
+
+    public static boolean loadUniversity(Context context){
+        try {
+            InputStream inputStream = context.openFileInput(UNIVERSITY_FILE);
 
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

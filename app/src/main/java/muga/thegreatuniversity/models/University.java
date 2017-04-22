@@ -7,7 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.enums.CourseType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -39,6 +41,7 @@ public class University implements SavableLoadableJSON {
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
     private ArrayList<Kot> kots;
+    private ArrayList<Entertainment> entertainments;
     private Events events;
 
     private static class UniversityHolder {
@@ -53,6 +56,7 @@ public class University implements SavableLoadableJSON {
         professors = new ArrayList<>();
         rooms = new ArrayList<>();
         availableHires = new ArrayList<>();
+        entertainments = new ArrayList<>();
         currentEvents = new ArrayList<>();
         formula = new FormulaUniversity(this);
         basicData = new UniversityBasicData();
@@ -94,6 +98,12 @@ public class University implements SavableLoadableJSON {
         }
         uni.put("kots", ko);
 
+        JSONArray en = new JSONArray();
+        for (Entertainment e : entertainments) {
+            en.put(e.getAsJSON());
+        }
+        uni.put("entertainments", ko);
+
         return uni;
     }
 
@@ -125,6 +135,13 @@ public class University implements SavableLoadableJSON {
             Kot k = new Kot();
             k.loadJSON(kArr.getJSONObject(i));
             this.kots.add(k);
+        }
+
+        JSONArray eArr = jsonO.getJSONArray("entertainments");
+        for (int i = 0; i < eArr.length(); i++) {
+            Entertainment e = new Entertainment();
+            e.loadJSON(eArr.getJSONObject(i));
+            this.entertainments.add(e);
         }
 
         this.sortProfessors();
@@ -183,6 +200,14 @@ public class University implements SavableLoadableJSON {
 
     public void addKot(Kot kot) {
         kots.add(kot);
+    }
+
+    public ArrayList<Entertainment> getEntertainments() {
+        return entertainments;
+    }
+
+    public void addEntertainments(Entertainment entertainment) {
+        entertainments.add(entertainment);
     }
 
     public ArrayList<Professor> getAvailableHires() {
@@ -260,14 +285,32 @@ public class University implements SavableLoadableJSON {
         return maxPopulation;
     }
 
-    public void newTurn(){
-        this.updateCurrentEvents();
+    public int newTurn() {
         this.addWeek(); // Increment the value of week
         this.newStudentNB(); // Popularity is the chance of increasing the student by 1 each week
         basicData.setMoney(basicData.getMoney() + this.getIncome());
-        this.reloadHires(); // Reload list of professors available for hire
+        this.updateCurrentEvents();
         this.currentEvents.addAll(EventManager.getEvents());
+        this.reloadHires(); // Reload list of professors available for hire
         this.sortProfessors();
+
+        if (basicData.getMoney() < 0){
+            return removeBestProfessor();
+        }
+        return 0;
+    }
+
+    private int removeBestProfessor() { // YOU LOSS IF YOU DON'T HAVE MONEY AND PROFESSOR
+        if (professors.size() == 1){
+            return 2; // MEAN LOSS
+        } else {
+            if (professors.get(0).getName().equals(DefaultValues.NAME_FIRST_PROF)){
+                professors.remove(1);
+            } else {
+                professors.remove(0);
+            }
+            return 1;
+        }
     }
 
     public void sortProfessors() {
@@ -294,11 +337,8 @@ public class University implements SavableLoadableJSON {
     }
 
     private void newStudentNB(){
-
         int maxPop = this.getMaxPopulation();
-
         int newStudentNb =  formula.newStudent();
-
         basicData.setStudentNb(basicData.getStudentNb()+newStudentNb, maxPop);
     }
 
@@ -309,7 +349,11 @@ public class University implements SavableLoadableJSON {
         this.rooms = new ArrayList<>();
         this.kots = new ArrayList<>();
         this.professors = new ArrayList<>();
+        this.entertainments = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(new Course(DefaultValues.NAME_FIRST_COURSE, CourseType.MAG));
+        this.professors.add(new Professor (DefaultValues.NAME_FIRST_PROF, ProfType.LEGENDARY, 25, courses, 20, 0));
         basicData.setMoney(DefaultValues.START_MONEY);
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);
