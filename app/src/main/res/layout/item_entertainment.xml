@@ -35,6 +35,16 @@
             android:textSize="@dimen/text_large"
             android:text="@string/not_available" />
 
+        <TextView
+            android:id="@+id/txt_moral_entertainment"
+            style="@style/QText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            android:text="@string/not_available"
+            android:textSize="@dimen/text_medium"/>
+
     </LinearLayout>
 
     <RelativeLayout

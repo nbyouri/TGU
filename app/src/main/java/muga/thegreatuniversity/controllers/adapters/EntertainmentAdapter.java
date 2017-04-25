@@ -39,6 +39,7 @@ public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {
         // Lookup view for data population
         TextView entertainmentName = (TextView) convertView.findViewById(R.id.txt_name_entertainment);
         TextView entertainnmentPrice = (TextView) convertView.findViewById(R.id.txt_price_entertainment);
+        TextView entertainnmentMoral = (TextView) convertView.findViewById(R.id.txt_moral_entertainment);
 
 
         // Populate the data into the template view using the data object
@@ -46,6 +47,7 @@ public class EntertainmentAdapter extends ArrayAdapter<Entertainment> {
         if (name != null)
             entertainmentName.setText(name);
         entertainnmentPrice.setText(String.valueOf(e != null ? e.getPrice() : 0));
+        entertainnmentMoral.setText(String.valueOf(e != null ? e.getMoral() : 0));
         // Return the completed view to render on screen
         return convertView;
     }
