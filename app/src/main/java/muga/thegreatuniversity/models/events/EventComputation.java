@@ -13,7 +13,7 @@ import muga.thegreatuniversity.utils.Tuple;
 
 public class EventComputation {
 
-    ArrayList<Tuple<EventValueType, Object>> newValues;
+    private final ArrayList<Tuple<EventValueType, Object>> newValues;
 
     public EventComputation(){
         newValues = new ArrayList<>();

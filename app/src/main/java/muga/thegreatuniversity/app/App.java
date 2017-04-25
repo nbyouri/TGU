@@ -7,6 +7,8 @@ import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -109,18 +111,29 @@ public class App extends Application {
             int size = is.available();
             byte[] buffer = new byte[size];
             int read = is.read(buffer);
-            if (read == 0) { return null; }
+            if (read == 0) {
+                throw new Exception("Empty json file");
+            }
             is.close();
-            String bufferString = new String(buffer);
-            JSONArray jsonArray = new JSONArray(bufferString);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                Event ev = new Event();
-                ev.loadJSON(jsonArray.getJSONObject(i));
-                if (ev.isCausal()) {
-                    causal.add(ev);
-                } else {
-                    others.add(ev);
+            try {
+                JSONArray jsonArray = new JSONArray(new String(buffer));
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Event ev = new Event();
+                    JSONObject obj = jsonArray.getJSONObject((i));
+                    if (obj == null) {
+                        Logger.error("Failed to get JSON objects : " + i);
+                        System.exit(0);
+                    }
+                    ev.loadJSON(obj);
+                    if (ev.isCausal()) {
+                        causal.add(ev);
+                    } else {
+                        others.add(ev);
+                    }
                 }
+            } catch (JSONException je) {
+                Logger.error("EVENTS JSON ERROR :" + je.getMessage());
+                System.exit(0);
             }
             return new Events(causal, others);
         }
