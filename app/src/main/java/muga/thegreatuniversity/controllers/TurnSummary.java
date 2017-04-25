@@ -1,8 +1,11 @@
 package muga.thegreatuniversity.controllers;
 
 import android.app.AlertDialog;
+import android.graphics.Rect;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +26,7 @@ public class TurnSummary {
     private Turn turn;
 
     private View dialogLayout;
-
+    private LinearLayout warningLayout;
 
     private ListView eventsList;
     private EventAdapter eventAdapter;
@@ -35,7 +38,8 @@ public class TurnSummary {
     private TextView textNewMorale;
 
     // FOR LOSE
-    //private
+    private TextView textWarning;
+
 
     final private AlertDialog dialog;
 
@@ -43,8 +47,18 @@ public class TurnSummary {
         this.act = act;
         this.turn = turn;
 
+        // retrieve display dimensions
+        Rect displayRectangle = new Rect();
+        Window window = act.getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+
+
         dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
+        dialogLayout.setMinimumWidth((int)(displayRectangle.width() * 0.8f));
+        dialogLayout.setMinimumHeight((int)(displayRectangle.height() * 0.5f));
+        AlertDialog.Builder builder = new AlertDialog.Builder(act);
+
+        warningLayout = (LinearLayout) dialogLayout.findViewById(R.id.popup_layout_warning);
 
         eventsList = (ListView) dialogLayout.findViewById(R.id.popup_list_event);
 
@@ -53,8 +67,9 @@ public class TurnSummary {
         textNewStudent = (TextView) dialogLayout.findViewById(R.id.popup_txt_nb_student);
         textNewTurn = (TextView) dialogLayout.findViewById(R.id.popup_txt_turn);
         textNewMorale = (TextView) dialogLayout.findViewById(R.id.popup_txt_moral);
+        textWarning = (TextView)  dialogLayout.findViewById(R.id.popup_txt_warning);
 
-        eventAdapter = new EventAdapter(act.getApplicationContext(),turn.events);
+        eventAdapter = new EventAdapter(act.getApplicationContext(),turn.events, true);
         eventsList.setAdapter(eventAdapter);
 
         dialog = builder.create();
@@ -82,6 +97,15 @@ public class TurnSummary {
         textNewStudent.setText(String.valueOf(turn.newStudent));
         textNewTurn.setText(String.valueOf(turn.week));
         textNewMorale.setText(String.valueOf(turn.newMoral));
+
+        if (turn.resultTurn == 1) {
+            warningLayout.setVisibility(View.VISIBLE);
+            textWarning.setText(act.getApplicationContext().getString(R.string.lose_best_prof));
+        } else if (turn.resultTurn == 2) {
+            warningLayout.setVisibility(View.VISIBLE);
+            textWarning.setText(act.getApplicationContext().getString(R.string.game_over));
+        }
+
         eventAdapter.notifyDataSetChanged();
     }
 

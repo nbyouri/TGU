@@ -26,9 +26,18 @@ import muga.thegreatuniversity.models.events.Event;
 
 public class EventAdapter extends ArrayAdapter<Event>  {
 
+    private boolean inPopup;
+
     public EventAdapter(Context context, List<Event> objects) {
         super(context, 0, objects);
+        inPopup = false;
     }
+
+    public EventAdapter(Context context, List<Event> objects, boolean inPopup) {
+        super(context, 0, objects);
+        this.inPopup = inPopup;
+    }
+
 
     @NonNull
     @Override
@@ -36,49 +45,64 @@ public class EventAdapter extends ArrayAdapter<Event>  {
 
         // Get the data item for this position
         final Event ev = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_event, parent, false);
         }
+
+        if (ev == null) return convertView;
 
         RadioButton rbYes = (RadioButton) convertView.findViewById(R.id.event_cb_choice_one);
         RadioButton rbNo = (RadioButton) convertView.findViewById(R.id.event_cb_choice_two);
 
         RadioGroup group = (RadioGroup) convertView.findViewById(R.id.event_rg);
 
-
-
-
-        // Lookup view for data population
         TextView description = (TextView) convertView.findViewById(R.id.event_txt_description);
         TextView duration = (TextView) convertView.findViewById(R.id.event_txt_duration);
 
-        // Populate the data into the template view using the data object
-        if (ev != null) {
-            rbYes.setText(ev.getFirstChoice());
-            if (ev.getType()== EventType.TWO_CHOICES) {
-                rbNo.setText(ev.getSecondChoice());
-            } else {
-                rbNo.setVisibility(View.GONE);
-            }
-            ev.setAns(AnsType.YES);
+        rbYes.setText(ev.getFirstChoice());
+        if (ev.getType()== EventType.TWO_CHOICES) {
+            rbNo.setText(ev.getSecondChoice());
+        } else {
+            rbNo.setVisibility(View.GONE);
+        }
 
+        description.setText(ev.getMessage());
+        duration.setText(getContext().getString(R.string.event_duration, ev.getDurationMax() - ev.getCount()));
+
+        if (inPopup && ev.getDurationMax() - ev.getCount() == ev.getDurationMax()) {
+            // POPUP NEED TO CHOOSE
+            ev.setAns(AnsType.YES);
             group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                     if (checkedId == R.id.event_cb_choice_one){
                         ev.setAns(AnsType.YES);
-                    } else if (checkedId == R.id.event_cb_choice_one){
+                    } else if (checkedId == R.id.event_cb_choice_two){
                         ev.setAns(AnsType.NO);
                     }
                 }
             });
 
-            description.setText(ev.getMessage());
-            duration.setText(getContext().getString(R.string.event_duration, ev.getDurationMax() - ev.getCount()));
+        } else {
+            // DISABLE RADIO BUTTON
+            for (int i = 0; i < group.getChildCount(); i++) {
+                group.getChildAt(i).setEnabled(false);
+            }
+
+            // SHOW ONLY CHOOSE
+            if (ev.getType()== EventType.TWO_CHOICES) {
+                if (ev.getAns() == AnsType.YES){
+                    rbNo.setVisibility(View.GONE);
+                } else {
+                    rbYes.setVisibility(View.GONE);
+                }
+            }
+
         }
+
         // Return the completed view to render on screen
         return convertView;
     }
-
 }

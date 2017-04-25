@@ -33,6 +33,22 @@ class UniversityBasicData {
         this.money = money;
     }
 
+    public void addMoney(int money){
+        setMoney(this.money + money);
+    }
+
+    public void addMoral(double moral){
+        setMoral(this.moral + moral);
+    }
+
+    public void addStudentNb(int studentNb, int maxPop){
+        setStudentNb(this.studentNb + studentNb, maxPop);
+    }
+
+    public void addBasicPopularity(int basicPopularity){
+        setBasicPopularity(this.basicPopularity = basicPopularity);
+    }
+
     public double getMoral() {
         return moral;
     }

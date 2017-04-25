@@ -305,16 +305,16 @@ public class University {
         turn.events = University.get().getCurrentEvents();
 
         // TODO WHEN APPLY
-        if (basicData.getMoney() < 0){
+        if (basicData.getMoney()+getIncome() < 0){
             turn.resultTurn = removeBestProfessor();
         }
         return turn;
     }
 
     public void applyTurn(Turn turn){
-        basicData.setMoney(basicData.getMoney() + turn.newCash);
-        basicData.setStudentNb(basicData.getStudentNb() + turn.newStudent, getMaxPopulation());
-        basicData.setMoral(basicData.getMoral() + turn.newMoral);
+        basicData.addMoney(turn.newCash);
+        basicData.addStudentNb(turn.newStudent, getMaxPopulation());
+        basicData.addMoral(turn.newMoral);
         week = turn.week;
         EventComputation compute;
         for(Event ev: turn.events) {
@@ -322,16 +322,16 @@ public class University {
             for(Tuple ac: compute.getNewValues()) {
                 switch((EventValueType)ac.item1) {
                     case MONEY:
-                        basicData.setMoney((int) ac.item2);
+                        basicData.addMoney((int) ac.item2);
                         break;
                     case POPULARITY:
-                        basicData.setBasicPopularity((int) ac.item2);
+                        basicData.addBasicPopularity((int) ac.item2);
                         break;
                     case MORAL:
-                        basicData.setMoral((double) ac.item2);
+                        basicData.addMoral((double) ac.item2);
                         break;
                     case STUDENT:
-                        basicData.setStudentNb((int) ac.item2, this.getMaxPopulation());
+                        basicData.addStudentNb((int) ac.item2, this.getMaxPopulation());
                         break;
 
                 }

@@ -104,6 +104,10 @@ public class Event {
         this.ans = ans;
     }
 
+    public AnsType getAns() {
+        return ans;
+    }
+
     public EventConditions getConds() {
         return conds;
     }

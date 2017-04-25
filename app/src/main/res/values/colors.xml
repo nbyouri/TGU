@@ -11,5 +11,6 @@
     <color name="prof_rare">#4169E1</color>
     <color name="prof_very_rare">#800080</color>
     <color name="prof_legendary">#FFA500</color>
+    <color name="warning_background">#FFA500</color>
 
 </resources>

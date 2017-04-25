@@ -89,7 +89,6 @@ public class MainActivity extends Activity {
         active = false;
     }
 
-//    @Override
     public void callback(Bundle bundle) {
         if (bundle.containsKey("Type")){
             String type = bundle.getString("Type");
@@ -124,6 +123,7 @@ public class MainActivity extends Activity {
 
         TurnSummary summary = new TurnSummary(newTurn, this);
 
+        /*
         if (newTurn.resultTurn == 1 ){ // Lose the best prof
             PopUp.simplePopUp(this, "You lose your best professor");
         } else if (newTurn.resultTurn == 2 ){ // Lose the game
@@ -131,15 +131,20 @@ public class MainActivity extends Activity {
             PopUp.createUnivPopUp(this);
             PopUp.simplePopUp(this, "YOU UNIVERSITY IS BANKRUPT, game over");
             return;
-        }
+        } */
 
         summary.update(newTurn);
         summary.display();
     }
 
     public void applyTurn( Turn newTurn ){
-        University.get().applyTurn(newTurn);
+        if (newTurn.resultTurn == 2 ){ // Lose the game
+            SaveManager.deleteFile(getApplicationContext());
+            PopUp.createUnivPopUp(this);
+            return;
+        }
 
+        University.get().applyTurn(newTurn);
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }

@@ -6,24 +6,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/popup_layout_loss_prof"
+        android:id="@+id/popup_layout_warning"
+        android:orientation="vertical"
         android:visibility="gone"
+        android:background="@color/warning_background"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:padding="@dimen/activity_horizontal_margin">
-        <TextView
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:background="@color/dark_grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/not_available"
-            android:id="@+id/popup_txt_loss_prof"
+            android:src="@mipmap/ic_warning"
+            android:contentDescription="@string/icon_desc_population" />
+        <TextView
+            android:background="@color/dark_grey"
+            android:layout_width="match_parent"
             android:textAlignment="center"
-            android:textSize="@dimen/text_large"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/popup_txt_warning"
+            android:text="@string/not_available"
+            style="@style/QText"/>
+
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent" android:gravity="center"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@color/light_black"
         android:id="@+id/popup_layout_summary"
         style="@style/QText">
 
@@ -40,7 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/resume_layout"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/padding_large"
+            android:padding="@dimen/padding_medium"
             android:background="@color/dark_grey">
 
             <RelativeLayout
@@ -53,7 +63,7 @@
                     android:id="@+id/popup_txt_turn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_medium"
+                    android:textSize="@dimen/text_large"
                     android:text="@string/not_available"/>
 
                 <ImageView
@@ -73,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/popup_layout_turn"
-                android:layout_alignParentEnd="true">
+                android:layout_centerHorizontal="true">
 
                 <TextView
                     android:id="@+id/popup_txt_cash"
@@ -99,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/popup_layout_cash"
-                android:layout_alignParentEnd="true">
+                android:layout_centerHorizontal="true">
 
                 <TextView
                     android:id="@+id/popup_txt_nb_student"
@@ -124,9 +134,8 @@
                 android:id="@+id/popup_layout_moral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
                 android:layout_below="@+id/popup_layout_student"
-                android:layout_alignParentEnd="true">
+                android:layout_centerHorizontal="true">
 
                 <TextView
                     android:id="@+id/popup_txt_moral"
@@ -154,21 +163,9 @@
             android:id="@+id/popup_validate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/not_available" />
+            android:text="@string/popup_validate_btn" />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/popup_layout_bankrupt"
-        android:orientation="horizontal"
-        android:visibility="gone">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/popup_txt_game_over"
-            android:text="@string/you_don_t_have_any_professor_and_money_your_university_is_bankrupt_game_over"/>
 
-    </LinearLayout>
 
 </LinearLayout>
