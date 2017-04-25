@@ -2,7 +2,6 @@ package muga.thegreatuniversity.controllers;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -11,8 +10,7 @@ import android.widget.TextView;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.controllers.adapters.EventAdapter;
 import muga.thegreatuniversity.models.Turn;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import muga.thegreatuniversity.utils.Context;
 
 /**
  * Created on 22-04-17.
@@ -36,8 +34,7 @@ public class TurnSummary {
     final AlertDialog dialog;
 
     public TurnSummary(Turn turn,Activity act){
-        LayoutInflater inflater = (LayoutInflater) act.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        dialogLayout = inflater.inflate(R.layout.layout_popup_summary, null);
+        dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(act);
 
         eventsList = (ListView) dialogLayout.findViewById(R.id.popup_list_event);

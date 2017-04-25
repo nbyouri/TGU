@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import java.util.ArrayList;
-
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.fragments.BuildFragment;
@@ -30,7 +28,6 @@ import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Turn;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 

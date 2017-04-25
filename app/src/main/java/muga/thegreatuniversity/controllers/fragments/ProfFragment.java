@@ -14,6 +14,7 @@ import android.widget.TextView;
 import org.json.JSONObject;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.controllers.PopUp;
 import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.models.Course;
 import muga.thegreatuniversity.models.Professor;
@@ -165,6 +166,9 @@ public class ProfFragment extends Fragment {
     }
 
     private void hireProf(Professor p){
-        University.get().addProfessor(p);
+        if (University.get().getMoney() >= p.getPrice())
+            University.get().addProfessor(p);
+        else
+            PopUp.notMoney(getActivity());
     }
 }

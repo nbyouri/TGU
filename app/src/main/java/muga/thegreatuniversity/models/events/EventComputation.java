@@ -20,7 +20,7 @@ public class EventComputation {
     }
 
     public void add(EventValueType type, Object value){
-        newValues.add(new Tuple<EventValueType, Object>(type, value));
+        newValues.add(new Tuple<>(type, value));
     }
 
     public ArrayList<Tuple<EventValueType, Object>> getNewValues(){

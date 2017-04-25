@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.EventActionType;
-import muga.thegreatuniversity.lists.enums.EventValueType;
-import muga.thegreatuniversity.lists.enums.ProfType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -18,7 +16,6 @@ import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
-import muga.thegreatuniversity.utils.Tuple;
 
 /**
  * Created on 20/02/2017.

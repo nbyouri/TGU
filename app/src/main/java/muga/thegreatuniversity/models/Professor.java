@@ -143,17 +143,6 @@ public class Professor {
         return p;
     }
 
-    @Override
-    public String toString() {
-        return "Professor{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", popularity=" + popularity +
-                ", age=" + age +
-                ", price=" + price +
-                '}';
-    }
-
     /* Sort based on rarity */
     static void sort(ArrayList<Professor> list) {
         Collections.sort(list, new Comparator<Professor>() {
