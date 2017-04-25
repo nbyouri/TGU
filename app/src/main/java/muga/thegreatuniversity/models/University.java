@@ -328,7 +328,7 @@ public class University {
                         basicData.setBasicPopularity((int) ac.item2);
                         break;
                     case MORAL:
-                        basicData.setMoral((int) ac.item2);
+                        basicData.setMoral((double) ac.item2);
                         break;
                     case STUDENT:
                         basicData.setStudentNb((int) ac.item2, this.getMaxPopulation());
