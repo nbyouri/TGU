@@ -20,18 +20,18 @@ import muga.thegreatuniversity.utils.Context;
 
 public class TurnSummary {
 
-    View dialogLayout;
+    private View dialogLayout;
 
-    ListView eventsList;
-    EventAdapter eventAdapter;
+    private ListView eventsList;
+    private EventAdapter eventAdapter;
 
-    Button validate;
-    TextView textNewCash;
-    TextView textNewStudent;
-    TextView textNewTurn;
-    TextView textNewMorale;
+    private  Button validate;
+    private TextView textNewCash;
+    private TextView textNewStudent;
+    private TextView textNewTurn;
+    private TextView textNewMorale;
 
-    final AlertDialog dialog;
+    final private AlertDialog dialog;
 
     public TurnSummary(Turn turn,Activity act){
         dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
