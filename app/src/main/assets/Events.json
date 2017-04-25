@@ -310,5 +310,138 @@
       ]
     },
     "causal":"true"
+  },
+  {
+    "message":"New discovery !",
+    "description":"Your religion research department discovered a new religion coming from Central Africa",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":5,
+        "action_type":"add",
+        "value_type":"popularity"
+      },
+      {
+        "value":500,
+        "action_type":"add",
+        "value_type":"money"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"New discovery !",
+    "description":"Your astronomy research department discovered a new breed of extraterrestrial coming from XR-98",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":5,
+        "action_type":"add",
+        "value_type":"popularity"
+      },
+      {
+        "value":1000,
+        "action_type":"add",
+        "value_type":"money"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"Feminist Demonstration !",
+    "description":"Feminists challenge sexism in your university and cause damage",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":0.9,
+        "action_type":"mul",
+        "value_type":"money"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"Civil War !",
+    "description":"The war erupted between students from the top and bottom of the city, causing student death",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 6,
+    "yes_action":[
+      {
+        "value":0.95,
+        "action_type":"mul",
+        "value_type":"student"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"End of academic year",
+    "description":"The next year starts and you earn money by new listings",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":1000,
+        "action_type":"add",
+        "value_type":"money"
+      }
+    ],
+    "no_action":[
+      {
+        "value":0,
+        "action_type":"",
+        "value_type":""
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week"
+      ],
+      "ops":[
+        "%"
+      ],
+      "values":[
+        60
+      ]
+    },
+    "causal":"true"
   }
 ]
