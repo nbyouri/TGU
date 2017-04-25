@@ -45,8 +45,8 @@ public class Kot {
 
     public static ArrayList<Kot> getKot() {
         ArrayList<Kot> kots = new ArrayList<>();
-        kots.add(new Kot("residence", 20, 10, 1000, KotType.BASIC));
-        kots.add(new Kot("building", 50, 50, 5000, KotType.BUILDING));
+        kots.add(new Kot("residence", 20, 200, 1000, KotType.BASIC));
+        kots.add(new Kot("building", 50, 500, 5000, KotType.BUILDING));
         return kots;
     }
 

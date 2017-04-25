@@ -99,4 +99,8 @@
     <string name="tutorial_entertainment">Increase student morale by organizing a party / building a building</string>
     <string name="tutorial_entertainment_price">Overall cost is the amount of entertainemnt</string>
     <string name="tutorial_entertainment_moral">The moral will be add with this value</string>
+
+    <string name="tutorial_kot">You can increase too the university population by buyng kots, They report their capacity multiplied by 10</string>
+    <string name="tutorial_kotsize">The capacity is the amount of students it can contain</string>
+    <string name="tutorial_kotprice">Overall cost of buyng the kot</string>
 </resources>

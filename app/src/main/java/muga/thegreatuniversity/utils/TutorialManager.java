@@ -38,6 +38,9 @@ public class TutorialManager {
                 steps.add(new TutorialStep(R.string.tutorial_room));
                 steps.add(new TutorialStep(R.string.tutorial_roomsize,R.id.txt_size_room));
                 steps.add(new TutorialStep(R.string.tutorial_roomprice,R.id.txt_price_room));
+                steps.add(new TutorialStep(R.string.tutorial_kot));
+                steps.add(new TutorialStep(R.string.tutorial_kotsize,R.id.txt_size_kot));
+                steps.add(new TutorialStep(R.string.tutorial_kotprice,R.id.txt_price_kot));
                 break;
             case CHOICES:
                 //steps.add(new TutorialStep("You can choose different actions",R.id.layout_choices));
