@@ -28,7 +28,7 @@
     <string name="rooms">Rooms</string>
     <string name="kots">Kots</string>
     <string name="rooms_cap">Capacity: %d</string>
-    <string name="event_duration">Duration: %d</string>
+    <string name="event_duration">%d</string>
     <string name="prof_age_value">Age: %d</string>
     <string name="prof_cours">Courses: %d</string>
     <string name="prof_popularity_value">%d%%</string>
