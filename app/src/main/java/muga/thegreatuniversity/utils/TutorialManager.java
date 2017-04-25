@@ -72,6 +72,11 @@ public class TutorialManager {
             case PROF_DETAIL:
 
                 break;
+            case ENTERTAINMENT:
+                steps.add(new TutorialStep(R.string.tutorial_entertainment));
+                steps.add(new TutorialStep(R.string.tutorial_entertainment_moral,R.id.txt_moral_entertainment));
+                steps.add(new TutorialStep(R.string.tutorial_entertainment_price,R.id.txt_price_entertainment));
+                break;
         }
 
         return steps;

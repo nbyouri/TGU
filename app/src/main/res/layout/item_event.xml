@@ -7,28 +7,40 @@
     android:paddingStart="@dimen/item_list_side_padding"
     android:paddingEnd="@dimen/item_list_side_padding">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:id="@+id/event_detail"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_toStartOf="@+id/layout_event_info">
         <TextView
             android:layout_width="wrap_content"
             style="@style/QText"
             android:layout_height="wrap_content"
-            android:id="@+id/event_description"
+            android:id="@+id/event_txt_description"
             android:text="@string/not_available"
-            android:textSize="@dimen/text_medium"/>
+            android:textSize="@dimen/text_small"/>
         <TextView
             android:layout_width="wrap_content"
+            android:layout_below="@id/event_txt_description"
             style="@style/QText"
             android:layout_height="wrap_content"
-            android:id="@+id/event_duration"
+            android:id="@+id/event_txt_duration"
             android:text="@string/not_available"
-            android:textSize="@dimen/text_medium" />
+            android:textSize="@dimen/text_small" />
+        <ImageView
+            android:layout_alignBottom="@id/event_txt_duration"
+            android:layout_alignTop="@id/event_txt_duration"
+            android:layout_toEndOf="@id/event_txt_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_week"
+            android:layout_marginEnd="@dimen/separate_side_margin"
+            android:contentDescription="@string/icon_desc_population" />
 
-    </LinearLayout>
-     <LinearLayout
+    </RelativeLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -36,14 +48,60 @@
         android:layout_alignBottom="@+id/event_detail"
         android:layout_alignTop="@+id/event_detail"
         android:gravity="end|center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/event_info"
-                style="@style/QText"
-                android:text="@string/layout_event_info"
-                android:textSize="@dimen/text_medium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_info"
+            style="@style/QText"
+            android:text="@string/layout_event_info"
+            android:textSize="@dimen/text_medium"/>
 
     </LinearLayout>
+    <RadioGroup
+        android:id="@+id/event_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_event_info">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            android:id="@+id/event_cb_choice_one"
+            android:textIsSelectable="true"
+            android:checked="true"
+            style="@style/QText"
+            android:textSize="@dimen/text_medium"
+            android:padding="3dp"
+            android:focusable="true"/>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:stretchColumns="0"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_table_choice_one"
+            android:divider="?android:listDivider"
+            android:dividerPadding="5dp"
+            android:showDividers="beginning"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            android:id="@+id/event_cb_choice_two"
+            android:textIsSelectable="true"
+            style="@style/QText"
+            android:textSize="@dimen/text_medium"
+            android:padding="3dp"
+            android:focusable="true"/>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:stretchColumns="0"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_table_choice_two"
+            android:divider="?android:listDivider"
+            android:dividerPadding="5dp"
+            android:showDividers="beginning">
+        </TableLayout>
+    </RadioGroup>
 
 </RelativeLayout>

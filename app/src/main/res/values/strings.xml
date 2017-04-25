@@ -95,4 +95,8 @@
     <string name="event_of">\s of \s</string>
     <string name="event_newline">\n</string>
     <string name="action">action</string>
+
+    <string name="tutorial_entertainment">Increase student morale by organizing a party / building a building</string>
+    <string name="tutorial_entertainment_price">Overall cost is the amount of entertainemnt</string>
+    <string name="tutorial_entertainment_moral">The moral will be add with this value</string>
 </resources>
