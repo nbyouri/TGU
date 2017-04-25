@@ -135,13 +135,13 @@ public class Professor {
         Professor p = new Professor();
         String name = "";
         while (name.isEmpty()) {
-            name = Assets.getRandomAdjective();
+            name = Tools.Capitalize(Assets.getRandomAdjective());
         }
         String surname = "";
         while (surname.isEmpty()) {
-            surname = Assets.getRandomAnimal();
+            surname = Tools.Capitalize(Assets.getRandomAnimal());
         }
-        p.setName(Tools.Capitalize(Tools.Capitalize(name) + "  " + Tools.Capitalize(surname)));
+        p.setName(Tools.Capitalize(name + "  " + Tools.Capitalize(surname)));
         p.setType(ProfType.getType());
         p.setPopularity(p.getType().getPopularity());
         p.setCourses(Course.genCourseList(p.getType().ranking()));
