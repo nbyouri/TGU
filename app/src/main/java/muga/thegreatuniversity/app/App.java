@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.app;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -29,6 +30,7 @@ import muga.thegreatuniversity.utils.TutorialManager;
 
 public class App extends Application {
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     public static boolean assetsLoaded;
 
