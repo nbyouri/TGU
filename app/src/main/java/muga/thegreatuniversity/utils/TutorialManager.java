@@ -105,7 +105,7 @@ public class TutorialManager {
                 try {
                     SaveManager.saveSetting(context);
                 } catch (Exception e) {
-                    Tools.deleteAndRestart(context, "Failed to save settings : ", e);
+                    Logger.error("Failed to save settings.");
                 }
             }
         }

@@ -58,7 +58,7 @@ public class SettingsFragment extends ListFragment implements AdapterView.OnItem
         try {
             SaveManager.saveSetting(getActivity().getApplicationContext());
         } catch (Exception e) {
-            Tools.deleteAndRestart(getActivity().getApplicationContext(), "Failed to save settings : ", e);
+            Logger.error("Failed to save settings");
         }
         getFragmentManager().popBackStackImmediate();
     }
