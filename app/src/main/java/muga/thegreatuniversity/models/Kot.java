@@ -41,10 +41,12 @@ public class Kot {
 
     public int getPrice() { return price; }
 
+    public int getIncome() { return income; }
+
     public static ArrayList<Kot> getKot() {
         ArrayList<Kot> kots = new ArrayList<>();
-        kots.add(new Kot("basic", 10, 10, 10000, KotType.BASIC));
-        kots.add(new Kot("building",50, 50, 50000, KotType.BUILDING));
+        kots.add(new Kot("residence", 20, 10, 1000, KotType.BASIC));
+        kots.add(new Kot("building", 50, 50, 5000, KotType.BUILDING));
         return kots;
     }
 

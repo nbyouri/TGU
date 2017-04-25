@@ -252,8 +252,16 @@ public class University {
         for (Professor p : professors){
             income -= p.getPrice();
         }
-
+        income += getIncomeKots();
         return income;
+    }
+
+    public int getIncomeKots() {
+        int incomeKot = 0;
+        for (Kot k : kots) {
+            incomeKot += k.getIncome();
+        }
+        return incomeKot;
     }
 
     public int getPopularity(){
