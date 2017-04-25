@@ -353,7 +353,7 @@ public class University {
     private void updateCurrentEvents(){
         ArrayList<Event> toRemove = new ArrayList<>();
         for (Event ev: this.currentEvents) {
-            if(ev.getCount()<ev.getDuration()){
+            if(ev.getCount()<ev.getDurationMax()){
                 ev.incrementCount();
             }
             else{

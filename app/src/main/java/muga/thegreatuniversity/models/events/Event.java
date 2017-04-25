@@ -18,7 +18,7 @@ public class Event {
     private String firstChoice;
     private String secondChoice;
     private EventType type;
-    private int duration;
+    private int durationMax;
     private int count;
 
     private EventResult yesAction;
@@ -33,7 +33,7 @@ public class Event {
 
     public Event() {
         this.count = 0;
-        this.duration = 1;
+        this.durationMax = 1;
         this.displayable = true;
     }
 
@@ -73,8 +73,8 @@ public class Event {
         return secondChoice;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDurationMax() {
+        return durationMax;
     }
 
     public void setCount0(){
@@ -112,7 +112,7 @@ public class Event {
         JSONObject obj = new JSONObject();
         obj.put("message", message);
         obj.put("type", type.getName());
-        obj.put("duration", duration);
+        obj.put("duration", durationMax);
         obj.put("first_choice", firstChoice);
         obj.put("second_choice", secondChoice);
         obj.put("description", description);
@@ -130,7 +130,7 @@ public class Event {
     public void loadJSON(JSONObject jsonO) throws JSONException {
         this.message = jsonO.getString("message");
         this.type = EventType.getEnum(jsonO.getString("type"));
-        this.duration = jsonO.getInt("duration");
+        this.durationMax = jsonO.getInt("duration");
         this.firstChoice = jsonO.getString("first_choice");
         this.secondChoice = jsonO.getString("second_choice");
         if (jsonO.has("description")) {

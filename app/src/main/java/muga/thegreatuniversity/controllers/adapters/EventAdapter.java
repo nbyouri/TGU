@@ -75,7 +75,7 @@ public class EventAdapter extends ArrayAdapter<Event>  {
             });
 
             description.setText(ev.getMessage());
-            duration.setText(getContext().getString(R.string.event_duration, ev.getDuration()));
+            duration.setText(getContext().getString(R.string.event_duration, ev.getDurationMax() - ev.getCount()));
         }
         // Return the completed view to render on screen
         return convertView;

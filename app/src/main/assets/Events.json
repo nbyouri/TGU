@@ -34,45 +34,6 @@
     "causal" : "false"
   },
   {
-    "message":"Causal event!!!!",
-    "type":"determinist",
-    "first_choice":"",
-    "second_choice":"",
-    "duration":0,
-    "yes_action":[
-      {
-        "value":1.2,
-        "action_type":"mul",
-        "value_type":"popularity"
-      },
-      {
-        "value":1.3,
-        "action_type":"mul",
-        "value_type":"money"
-      }
-    ],
-    "no_action":[
-      {
-        "value":0.0,
-        "action_type":"",
-        "value_type":""
-      }
-    ],
-    "conditions":
-    {
-      "vars":[
-        "money"
-      ],
-      "ops":[
-        "<="
-      ],
-      "values":[
-        -105000
-      ]
-    },
-    "causal" : "true"
-  },
-  {
     "message":"Do you want to organize the 24h velo",
     "description": "24 velo happen every 20 week, you can either organize it to gain moral or cancel it. Student will not like it tho",
     "type":"two_choices",
@@ -126,8 +87,8 @@
     "duration":0,
     "yes_action":[
       {
-        "value":0.7,
-        "action_type":"mul",
+        "value":-100,
+        "action_type":"add",
         "value_type":"money"
       }
     ],
@@ -195,8 +156,8 @@
         "value_type":"student"
       },
       {
-        "value":1.1,
-        "action_type":"mul",
+        "value":20,
+        "action_type":"add",
         "value_type":"popularity"
       },
       {
