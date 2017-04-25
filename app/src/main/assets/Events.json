@@ -366,8 +366,8 @@
     "causal":"false"
   },
   {
-    "message":"Feminist Demonstration !",
-    "description":"Feminists challenge sexism in your university and cause damage",
+    "message":"Feminazi Demonstration !",
+    "description":"Feminazi challenge sexism in your university and cause damage",
     "type":"determinist",
     "first_choice":"",
     "second_choice":"",
@@ -440,6 +440,56 @@
       ],
       "values":[
         60
+      ]
+    },
+    "causal":"true"
+  }
+  {
+    "message":"Do you want to organize the Welcome Spring Festival",
+    "description": "Welcome Spring Festival happen every 20 week, you can either organize it to gain moral or cancel it. Student will not like it tho",
+    "type":"two_choices",
+    "first_choice":"Yes",
+    "second_choice":"No",
+    "duration":0,
+    "yes_action":[
+      {
+        "value":-3000,
+        "action_type":"add",
+        "value_type":"money"
+      },
+      {
+        "value":8,
+        "action_type":"add",
+        "value_type":"popularity"
+      },
+      {
+        "value":8,
+        "action_type":"add",
+        "value_type":"moral"
+      }
+    ],
+    "no_action":[
+      {
+        "value":-2,
+        "action_type":"add",
+        "value_type":"popularity"
+      },
+      {
+        "value":-2,
+        "action_type":"add",
+        "value_type":"moral"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week"
+      ],
+      "ops":[
+        "%"
+      ],
+      "values":[
+        "30"
       ]
     },
     "causal":"true"
