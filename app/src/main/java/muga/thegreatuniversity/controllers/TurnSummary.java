@@ -1,6 +1,5 @@
 package muga.thegreatuniversity.controllers;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,11 @@ import muga.thegreatuniversity.utils.Context;
 
 public class TurnSummary {
 
+    private MainActivity act;
+    private Turn turn;
+
     private View dialogLayout;
+
 
     private ListView eventsList;
     private EventAdapter eventAdapter;
@@ -31,9 +34,15 @@ public class TurnSummary {
     private TextView textNewTurn;
     private TextView textNewMorale;
 
+    // FOR LOSE
+    //private
+
     final private AlertDialog dialog;
 
-    public TurnSummary(Turn turn,Activity act){
+    public TurnSummary(Turn turn, MainActivity act){
+        this.act = act;
+        this.turn = turn;
+
         dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(act);
 
@@ -62,6 +71,7 @@ public class TurnSummary {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                act.applyTurn(turn);
                 dialog.dismiss();
             }
         });
@@ -72,6 +82,9 @@ public class TurnSummary {
         textNewStudent.setText(String.valueOf(turn.newStudent));
         textNewTurn.setText(String.valueOf(turn.week));
         textNewMorale.setText(String.valueOf(turn.newMoral));
+        eventAdapter.notifyDataSetChanged();
     }
+
+
 
 }

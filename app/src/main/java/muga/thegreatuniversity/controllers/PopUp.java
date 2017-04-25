@@ -25,34 +25,6 @@ import muga.thegreatuniversity.utils.Context;
 
 public class PopUp {
 
-    static void turnSummmaryPopUp(Activity act, Turn turn){
-        View dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
-
-        Button validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
-        TextView textNewCash = (TextView) dialogLayout.findViewById(R.id.popup_txt_cash);
-        TextView textNewStudent = (TextView) dialogLayout.findViewById(R.id.popup_txt_nb_student);
-        TextView textNewTurn = (TextView) dialogLayout.findViewById(R.id.popup_txt_turn);
-        TextView textNewMorale = (TextView) dialogLayout.findViewById(R.id.popup_txt_moral);
-
-        textNewCash.setText(String.valueOf(turn.newCash));
-        textNewStudent.setText(String.valueOf(turn.newStudent));
-        textNewTurn.setText(String.valueOf(turn.week));
-        textNewMorale.setText(String.valueOf(turn.newMoral));
-
-        final AlertDialog dialog = builder.create();
-
-        dialog.setView(dialogLayout);
-        dialog.show();
-
-        validate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-    }
-
     public static void helpPopUp(Activity act, String helpMessage){
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(act);
         helpBuilder.setTitle(helpMessage);
