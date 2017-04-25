@@ -2,6 +2,7 @@ Template for objet event in json:
 
 {
     "message":null,
+    "description":null,
     "type":null,
     "first_choice":null,
     "second_choice":null,

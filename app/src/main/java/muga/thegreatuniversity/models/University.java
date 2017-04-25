@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
@@ -16,6 +17,7 @@ import muga.thegreatuniversity.models.events.EventManager;
 import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.models.events.Events;
 import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.Tuple;
 
 /**
  * Created on 20/02/2017.
@@ -306,6 +308,28 @@ public class University {
         basicData.setStudentNb(basicData.getStudentNb() + turn.newStudent, getMaxPopulation());
         basicData.setMoral(basicData.getMoral() + turn.newMoral);
         week = turn.week;
+        EventComputation compute;
+        for(Event ev: turn.events) {
+            compute = this.eventAction(ev);
+            for(Tuple ac: compute.getNewValues()) {
+                switch((EventValueType)ac.item1) {
+                    case MONEY:
+                        basicData.setMoney((int) ac.item2);
+                        break;
+                    case POPULARITY:
+                        basicData.setBasicPopularity((int) ac.item2);
+                        break;
+                    case MORAL:
+                        basicData.setMoral((int) ac.item2);
+                        break;
+                    case STUDENT:
+                        basicData.setStudentNb((int) ac.item2, this.getMaxPopulation());
+                        break;
+
+                }
+            }
+        }
+
     }
 
     private int removeBestProfessor() { // YOU LOSS IF YOU DON'T HAVE MONEY AND PROFESSOR
@@ -374,10 +398,10 @@ public class University {
             Object value;
             switch (act.getValueType()) {
                 case MONEY:
-                    value = computation(act.getActionType(), this.getMoney(), act.getValue());
+                    value = computation(act.getActionType(), basicData.getMoney(), act.getValue());
                     break;
                 case POPULARITY:
-                    value = computation(act.getActionType(), this.getBasicPopularity(), act.getValue());
+                    value = computation(act.getActionType(), basicData.getBasicPopularity(), act.getValue());
                     break;
                 case MORAL:
                     value = computation(act.getActionType(), basicData.getMoral(), act.getValue());

@@ -5,9 +5,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
+import muga.thegreatuniversity.lists.enums.AnsType;
+import muga.thegreatuniversity.models.Turn;
+import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
 /**
@@ -18,33 +25,33 @@ import muga.thegreatuniversity.utils.Context;
 
 public class PopUp {
 
-//    static void turnSummmaryPopUp(Activity act, Turn turn){
-//        View dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
-//
-//        Button validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
-//        TextView textNewCash = (TextView) dialogLayout.findViewById(R.id.popup_txt_cash);
-//        TextView textNewStudent = (TextView) dialogLayout.findViewById(R.id.popup_txt_nb_student);
-//        TextView textNewTurn = (TextView) dialogLayout.findViewById(R.id.popup_txt_turn);
-//        TextView textNewMorale = (TextView) dialogLayout.findViewById(R.id.popup_txt_moral);
-//
-//        textNewCash.setText(String.valueOf(turn.newCash));
-//        textNewStudent.setText(String.valueOf(turn.newStudent));
-//        textNewTurn.setText(String.valueOf(turn.week));
-//        textNewMorale.setText(String.valueOf(turn.newMoral));
-//
-//        final AlertDialog dialog = builder.create();
-//
-//        dialog.setView(dialogLayout);
-//        dialog.show();
-//
-//        validate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//    }
+    static void turnSummmaryPopUp(Activity act, Turn turn){
+        View dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
+
+        Button validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
+        TextView textNewCash = (TextView) dialogLayout.findViewById(R.id.popup_txt_cash);
+        TextView textNewStudent = (TextView) dialogLayout.findViewById(R.id.popup_txt_nb_student);
+        TextView textNewTurn = (TextView) dialogLayout.findViewById(R.id.popup_txt_turn);
+        TextView textNewMorale = (TextView) dialogLayout.findViewById(R.id.popup_txt_moral);
+
+        textNewCash.setText(String.valueOf(turn.newCash));
+        textNewStudent.setText(String.valueOf(turn.newStudent));
+        textNewTurn.setText(String.valueOf(turn.week));
+        textNewMorale.setText(String.valueOf(turn.newMoral));
+
+        final AlertDialog dialog = builder.create();
+
+        dialog.setView(dialogLayout);
+        dialog.show();
+
+        validate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
 
     public static void helpPopUp(Activity act, String helpMessage){
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(act);
@@ -104,41 +111,41 @@ public class PopUp {
         }
     }
 
-//    static void alertNewEvent(final MainActivity mainAct, final Event event) {
-//        AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
-//        eventBuilder.setCancelable(false);
-//        switch (event.getType()) {
-//            case DETERMINIST:
-//                eventBuilder.setTitle(event.getMessage());
-//                eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        event.setAns(AnsType.NONE);
-//                        University.get().eventAction(event);
-//                        mainAct.updateView();
-//                    }
-//                });
-//                break;
-//            case TWO_CHOICES:
-//                eventBuilder.setTitle(event.getMessage());
-//                eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        event.setAns(AnsType.YES);
-//                        University.get().eventAction(event);
-//                        mainAct.updateView();
-//                    }
-//                });
-//                eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        event.setAns(AnsType.NO);
-//                        University.get().eventAction(event);
-//                        mainAct.updateView();
-//                    }
-//                });
-//                break;
-//        }
-//        AlertDialog eventDialog = eventBuilder.create();
-//        eventDialog.show();
-//    }
+    static void alertNewEvent(final MainActivity mainAct, final Event event, final Turn newTurn) {
+        AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
+        eventBuilder.setCancelable(false);
+        switch (event.getType()) {
+            case DETERMINIST:
+                eventBuilder.setTitle(event.getMessage());
+                eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.YES);
+                        University.get().applyTurn(newTurn);
+                        mainAct.updateView();
+                    }
+                });
+                break;
+            case TWO_CHOICES:
+                eventBuilder.setTitle(event.getMessage());
+                eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.YES);
+                        University.get().applyTurn(newTurn);
+                        mainAct.updateView();
+                    }
+                });
+                eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        event.setAns(AnsType.NO);
+                        University.get().applyTurn(newTurn);
+                        mainAct.updateView();
+                    }
+                });
+                break;
+        }
+        AlertDialog eventDialog = eventBuilder.create();
+        eventDialog.show();
+    }
 
     static public void notMoney(final Activity mainAct) {
 

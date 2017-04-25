@@ -81,21 +81,26 @@
     "duration":0,
     "yes_action":[
       {
-        "value":0.6,
-        "action_type":"mul",
+        "value":6000,
+        "action_type":"add",
         "value_type":"money"
       },
       {
-        "value":1.2,
-        "action_type":"mul",
+        "value":10,
+        "action_type":"add",
+        "value_type":"moral"
+      },
+      {
+        "value":10,
+        "action_type":"add",
         "value_type":"popularity"
       }
     ],
     "no_action":[
       {
-        "value":0.6,
-        "action_type":"mul",
-        "value_type":"popularity"
+        "value":-2,
+        "action_type":"add",
+        "value_type":"moral "
       }
     ],
     "conditions":
@@ -107,7 +112,7 @@
         "%"
       ],
       "values":[
-        "20"
+        "60"
       ]
     },
     "causal":"true"
@@ -285,7 +290,7 @@
     "duration": 4,
     "yes_action":[
       {
-        "value":-1,
+        "value":-3,
         "action_type":"add",
         "value_type":"moral"
       }
@@ -306,7 +311,47 @@
         "%"
       ],
       "values":[
-        12
+        20
+      ]
+    },
+    "causal":"true"
+  },
+  {
+    "message":"The sorority ask for a financement for the next 10 weeks",
+    "description":"This event last for 10 weeks so you have to be carefull, if you accept it will cost you a lot of money but in exchange the moral will increase greatly",
+    "type":"two_choices",
+    "first_choice":"Accept",
+    "second_choice":"Refuse",
+    "duration": 10,
+    "yes_action":[
+      {
+        "value":-200,
+        "action_type":"add",
+        "value_type":"money"
+      },
+      {
+        "value":2,
+        "action_type":"add",
+        "value_type":"moral"
+      }
+    ],
+    "no_action":[
+      {
+        "value":0,
+        "action_type":"",
+        "value_type":""
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week"
+      ],
+      "ops":[
+        "%"
+      ],
+      "values":[
+        30
       ]
     },
     "causal":"true"

@@ -28,6 +28,7 @@ import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Turn;
 import muga.thegreatuniversity.models.University;
+import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 
@@ -120,6 +121,7 @@ public class MainActivity extends Activity {
     public void passOneWeek(){
 
         Turn newTurn = University.get().newTurn();
+
         TurnSummary summary = new TurnSummary(newTurn, this);
 
 
@@ -132,19 +134,20 @@ public class MainActivity extends Activity {
             return;
         }
 
-        /*
-        for (Event ev : events) {
+        if (newTurn.events.isEmpty()) { //TODO CHANGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            University.get().applyTurn(newTurn);
+        }
+        for (Event ev : newTurn.events) {
             if (ev != null && ev.isDisplayable()) {
-                PopUp.alertNewEvent(this, ev);
+                PopUp.alertNewEvent(this, ev, newTurn);
                 ev.setDisplayable(false);
             }
-        } */
+        }
 
 
         summary.update(newTurn);
         summary.display();
 
-        University.get().applyTurn(newTurn);
         updateView();
         SaveManager.saveUniversity(this.getApplicationContext()); // TODO : SAVE CURRENT EVENT AND AFTER
     }
