@@ -39,7 +39,7 @@ public class University {
     private int week;
 
     // main objects
-    private final ArrayList<Event> currentEvents;
+    private ArrayList<Event> currentEvents;
     private ArrayList<Professor> professors;
     private ArrayList<Room> rooms;
     private ArrayList<Professor> availableHires;
@@ -426,6 +426,7 @@ public class University {
         reloadHires();
         this.rooms = new ArrayList<>();
         this.kots = new ArrayList<>();
+        this.currentEvents = new ArrayList<>();
         this.professors = new ArrayList<>();
         this.entertainments = new ArrayList<>();
         this.addRoom(new Room("Classroom",20, RoomType.CLASS,500));
