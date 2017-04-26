@@ -16,6 +16,7 @@ import muga.thegreatuniversity.utils.Logger;
 public class EventResult {
 
     private final ArrayList<EventAction> actions;
+    private EventComputation computation;
 
     EventResult(){
         actions = new ArrayList<>();
@@ -49,5 +50,13 @@ public class EventResult {
         return "EventResult{" +
                 "actions=" + actions +
                 '}';
+    }
+
+    public EventComputation getComputation() {
+        return computation;
+    }
+
+    public void setComputation(EventComputation computation) {
+        this.computation = computation;
     }
 }

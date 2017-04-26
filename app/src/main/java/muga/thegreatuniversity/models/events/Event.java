@@ -90,6 +90,21 @@ public class Event {
     }
 
     public EventResult getResult(){
+        if (ans == null) {
+            Logger.error("No Answer WTF");
+            return yesAction;
+        }
+        switch (ans) {
+            case YES:
+                return yesAction;
+            case NO:
+                return noAction;
+            default:
+                return yesAction;
+        }
+    }
+
+    public EventResult getResult(AnsType ans){
         switch (ans) {
             case YES:
                 return yesAction;
@@ -171,4 +186,5 @@ public class Event {
     public boolean isCausal() {
         return causal;
     }
+
 }

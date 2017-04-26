@@ -7,7 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import muga.thegreatuniversity.lists.DefaultValues;
+import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.enums.EventActionType;
+import muga.thegreatuniversity.lists.enums.EventType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.lists.enums.RoomType;
 import muga.thegreatuniversity.models.events.Event;
@@ -304,6 +306,13 @@ public class University {
         turn.newMoral = 0;
         turn.events = University.get().getCurrentEvents();
 
+        for (Event event : turn.events){
+            event.getResult(AnsType.YES).setComputation(eventComputation(event, AnsType.YES));
+            if (event.getType() == EventType.TWO_CHOICES){
+                event.getResult(AnsType.NO).setComputation(eventComputation(event, AnsType.NO));
+            }
+        }
+
         // TODO WHEN APPLY
         if (basicData.getMoney()+getIncome() < 0){
             turn.resultTurn = removeBestProfessor();
@@ -316,9 +325,8 @@ public class University {
         basicData.addStudentNb(turn.newStudent, getMaxPopulation());
         basicData.addMoral(turn.newMoral);
         week = turn.week;
-        EventComputation compute;
         for(Event ev: turn.events) {
-            compute = this.eventAction(ev);
+            EventComputation compute = ev.getResult().getComputation();
             for(Tuple ac: compute.getNewValues()) {
                 switch((EventValueType)ac.item1) {
                     case MONEY:
@@ -337,7 +345,36 @@ public class University {
                 }
             }
         }
+    }
 
+    private EventComputation eventComputation(Event event,AnsType ans){
+        EventResult result = event.getResult(ans);
+        EventComputation computations = new EventComputation();
+
+        for (EventAction act : result.getActions()) {
+            Object value;
+            switch (act.getValueType()) {
+                case MONEY:
+                    value = computation(act.getActionType(), basicData.getMoney(), act.getValue());
+                    break;
+                case POPULARITY:
+                    value = computation(act.getActionType(), basicData.getBasicPopularity(), act.getValue());
+                    break;
+                case MORAL:
+                    value = computation(act.getActionType(), basicData.getMoral(), act.getValue());
+                    break;
+                case STUDENT:
+                    value = computation(act.getActionType(), basicData.getStudentNb(), act.getValue());
+                    break;
+                case PROF: // TODO Review
+                    value = computation(act.getActionType(), 0, act.getValue());
+                    break;
+                default:
+                    value = "N/A";
+            }
+            computations.add(act.getValueType(), value);
+        }
+        return computations;
     }
 
     private int removeBestProfessor() { // YOU LOSS IF YOU DON'T HAVE MONEY AND PROFESSOR
@@ -377,8 +414,7 @@ public class University {
     }
 
     public void addMoral(int m) {
-        double moral = basicData.getMoral() + m;
-        basicData.setMoral(moral);
+        basicData.addMoral((double)m);
     }
 
     public void createNewUniversity(String name){
@@ -397,35 +433,6 @@ public class University {
         basicData.setStudentNb(DefaultValues.START_STUDENT_NB, getMaxPopulation());
         basicData.setMoral(DefaultValues.START_MORAL);
         basicData.setBasicPopularity(DefaultValues.START_POPULARITY);
-    }
-
-    public EventComputation eventAction(Event event){
-        EventResult result = event.getResult();
-        EventComputation computations = new EventComputation();
-        for (EventAction act : result.getActions()) {
-            Object value;
-            switch (act.getValueType()) {
-                case MONEY:
-                    value = computation(act.getActionType(), basicData.getMoney(), act.getValue());
-                    break;
-                case POPULARITY:
-                    value = computation(act.getActionType(), basicData.getBasicPopularity(), act.getValue());
-                    break;
-                case MORAL:
-                    value = computation(act.getActionType(), basicData.getMoral(), act.getValue());
-                    break;
-                case STUDENT:
-                    value = computation(act.getActionType(), basicData.getStudentNb(), act.getValue());
-                    break;
-                case PROF: // TODO Review
-                    value = computation(act.getActionType(), 0, act.getValue());
-                    break;
-                default:
-                    value = "N/A";
-            }
-            computations.add(act.getValueType(), value);
-        }
-        return computations;
     }
 
     private Integer computation(EventActionType type, int prevValue, double value){

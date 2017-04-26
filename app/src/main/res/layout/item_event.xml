@@ -5,7 +5,14 @@
     android:gravity="start|center_vertical"
     android:orientation="horizontal"
     android:paddingStart="@dimen/item_list_side_padding"
-    android:paddingEnd="@dimen/item_list_side_padding">
+    android:paddingEnd="@dimen/item_list_side_padding"
+    android:background="@color/light_black">
+
+    <View android:background="#ffffff"
+        android:layout_width = "match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/event_separator_view"
+        android:layout_margin="@dimen/padding_small" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +20,8 @@
         android:gravity="center_vertical"
         android:id="@+id/event_detail"
         android:orientation="horizontal"
-        android:layout_toStartOf="@+id/layout_event_info">
+        android:layout_toStartOf="@+id/layout_event_info"
+        android:layout_below="@id/event_separator_view">
         <TextView
             android:layout_width="wrap_content"
             style="@style/QText"
@@ -59,12 +67,13 @@
     </LinearLayout>
     <RadioGroup
         android:id="@+id/event_rg"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_event_info">
+        android:layout_below="@+id/event_detail">
 
         <RadioButton
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_available"
             android:id="@+id/event_cb_choice_one"
@@ -74,14 +83,12 @@
             android:textSize="@dimen/text_medium"
             android:padding="3dp"
             android:focusable="true"/>
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:stretchColumns="0"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/event_table_choice_one"
-            android:divider="?android:listDivider"
-            android:dividerPadding="5dp"
-            android:showDividers="beginning"/>
+            android:id="@+id/event_layout_choice_one"
+            android:orientation="horizontal">
+        </LinearLayout>
 
         <RadioButton
             android:layout_width="match_parent"
@@ -93,15 +100,28 @@
             android:textSize="@dimen/text_medium"
             android:padding="3dp"
             android:focusable="true"/>
-        <TableLayout
-            android:layout_width="wrap_content"
+        <!-- <TableLayout
+            android:layout_width="match_parent"
             android:stretchColumns="0"
             android:layout_height="wrap_content"
             android:id="@+id/event_table_choice_two"
             android:divider="?android:listDivider"
             android:dividerPadding="5dp"
-            android:showDividers="beginning">
-        </TableLayout>
+            android:showDividers="middle">
+        </TableLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_layout_choice_two"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
     </RadioGroup>
 
+    <View android:background="#ffffff"
+        android:layout_width = "match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/padding_small"
+        android:layout_below="@id/event_rg"/>
 </RelativeLayout>

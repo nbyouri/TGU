@@ -123,16 +123,6 @@ public class MainActivity extends Activity {
 
         TurnSummary summary = new TurnSummary(newTurn, this);
 
-        /*
-        if (newTurn.resultTurn == 1 ){ // Lose the best prof
-            PopUp.simplePopUp(this, "You lose your best professor");
-        } else if (newTurn.resultTurn == 2 ){ // Lose the game
-            SaveManager.deleteFile(getApplicationContext());
-            PopUp.createUnivPopUp(this);
-            PopUp.simplePopUp(this, "YOU UNIVERSITY IS BANKRUPT, game over");
-            return;
-        } */
-
         summary.update(newTurn);
         summary.display();
     }
