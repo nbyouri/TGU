@@ -58,10 +58,12 @@ public class EventItem {
     }
 
     public void create(){
-        rbYes.setText(ev.getFirstChoice());
+
         if (ev.getType()== EventType.TWO_CHOICES) {
+            rbYes.setText(ev.getFirstChoice());
             rbNo.setText(ev.getSecondChoice());
         } else {
+            rbYes.setVisibility(View.GONE);
             rbNo.setVisibility(View.GONE);
         }
 
@@ -70,6 +72,42 @@ public class EventItem {
 
         if (inPopup){
             infoLayout.setVisibility(View.GONE);
+        }
+
+        if (isNotChoose()){
+            ev.setAns(AnsType.YES);
+            if (ev.getType()== EventType.TWO_CHOICES) {
+                group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                        if (checkedId == R.id.event_cb_choice_one) {
+                            ev.setAns(AnsType.YES);
+                        } else if (checkedId == R.id.event_cb_choice_two) {
+                            ev.setAns(AnsType.NO);
+                        }
+                    }
+                });
+            }
+            //createTable(ev, convertView, AnsType.YES);
+            if (ev.getType() == EventType.TWO_CHOICES) {
+                //createTable(ev, convertView, AnsType.NO);
+            }
+        } else {
+            // DISABLE RADIO BUTTON
+            for (int i = 0; i < group.getChildCount(); i++) {
+                group.getChildAt(i).setEnabled(false);
+            }
+
+            // SHOW ONLY CHOOSE
+            if (ev.getAns() == AnsType.YES){
+                rbNo.setVisibility(View.GONE);
+                //createTable(ev, convertView, AnsType.YES);
+            } else {
+                rbYes.setVisibility(View.GONE);
+                rbNo.toggle();
+                //createTable(ev, convertView, AnsType.NO);
+            }
+
         }
 
         /*
@@ -107,6 +145,10 @@ public class EventItem {
                 }
             }
         } */
+    }
+
+    private boolean isNotChoose(){
+        return (inPopup && (ev.getDurationMax() - ev.getCount() == ev.getDurationMax()));
     }
 
     private void createTable(Event ev, View convertView, AnsType ans){

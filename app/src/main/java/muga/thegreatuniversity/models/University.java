@@ -353,6 +353,9 @@ public class University {
 
         for (EventAction act : result.getActions()) {
             Object value;
+            if (act.getValueType() == null){
+                Logger.error("Null computation : " + event.getMessage() + "  | EventAction " + result.getActions());
+            }
             switch (act.getValueType()) {
                 case MONEY:
                     value = computation(act.getActionType(), basicData.getMoney(), act.getValue());
