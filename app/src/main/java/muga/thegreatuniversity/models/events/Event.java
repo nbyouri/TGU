@@ -132,7 +132,8 @@ public class Event {
     public JSONObject getAsJSON() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("message", message);
-        obj.put("type", type.getName());
+        if (type != null)
+            obj.put("type", type.getName());
         obj.put("duration", durationMax);
         obj.put("first_choice", firstChoice);
         obj.put("second_choice", secondChoice);
