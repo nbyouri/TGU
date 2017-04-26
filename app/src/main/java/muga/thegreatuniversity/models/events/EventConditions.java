@@ -15,12 +15,12 @@ import muga.thegreatuniversity.models.University;
  * Muga Copyright
  */
 
-public class EventConditions {
+class EventConditions {
     private EventValueType[] vars;
     private String[] ops;
     private int[] values;
 
-    public EventConditions() {}
+    EventConditions() {}
 
     public boolean check() {
         boolean ok = true;
