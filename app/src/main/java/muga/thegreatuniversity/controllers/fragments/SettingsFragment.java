@@ -17,7 +17,6 @@ import muga.thegreatuniversity.lists.enums.ChoiceType;
 import muga.thegreatuniversity.models.Choice;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
-import muga.thegreatuniversity.utils.Tools;
 import muga.thegreatuniversity.utils.TutorialManager;
 
 /**

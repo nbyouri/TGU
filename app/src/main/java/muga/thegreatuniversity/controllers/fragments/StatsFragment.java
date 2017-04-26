@@ -56,7 +56,7 @@ public class StatsFragment extends TutorialFragment implements OnItemClickListen
     private void eventList(View view) {
         ListView events = (ListView) view.findViewById(R.id.event_list);
         EventAdapter eventadapter = new EventAdapter(getActivity().getApplicationContext(),
-                University.get().getCurrentEvents());
+                University.get().getCurrentEvents(), false);
         events.setAdapter(eventadapter);
         eventadapter.notifyDataSetChanged();
         events.setOnItemClickListener(this);

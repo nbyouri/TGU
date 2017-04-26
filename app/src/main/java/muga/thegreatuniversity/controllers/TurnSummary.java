@@ -20,30 +20,28 @@ import muga.thegreatuniversity.utils.Context;
  * Muga Copyright
  */
 
-public class TurnSummary {
+class TurnSummary {
 
-    private MainActivity act;
-    private Turn turn;
+    private final MainActivity act;
+    private final Turn turn;
 
-    private View dialogLayout;
-    private LinearLayout warningLayout;
+    private final LinearLayout warningLayout;
 
-    private ListView eventsList;
-    private EventAdapter eventAdapter;
+    private final EventAdapter eventAdapter;
 
-    private  Button validate;
-    private TextView textNewCash;
-    private TextView textNewStudent;
-    private TextView textNewTurn;
-    private TextView textNewMorale;
+    private final Button validate;
+    private final TextView textNewCash;
+    private final TextView textNewStudent;
+    private final TextView textNewTurn;
+    private final TextView textNewMorale;
 
     // FOR LOSE
-    private TextView textWarning;
+    private final TextView textWarning;
 
 
     final private AlertDialog dialog;
 
-    public TurnSummary(Turn turn, MainActivity act){
+    TurnSummary(Turn turn, MainActivity act){
         this.act = act;
         this.turn = turn;
 
@@ -53,14 +51,14 @@ public class TurnSummary {
         window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
 
 
-        dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
+        View dialogLayout = View.inflate(Context.getContext(), R.layout.layout_popup_summary, null);
         dialogLayout.setMinimumWidth((int)(displayRectangle.width() * 0.8f));
         dialogLayout.setMinimumHeight((int)(displayRectangle.height() * 0.5f));
         AlertDialog.Builder builder = new AlertDialog.Builder(act);
 
         warningLayout = (LinearLayout) dialogLayout.findViewById(R.id.popup_layout_warning);
 
-        eventsList = (ListView) dialogLayout.findViewById(R.id.popup_list_event);
+        ListView eventsList = (ListView) dialogLayout.findViewById(R.id.popup_list_event);
 
         validate = (Button) dialogLayout.findViewById(R.id.popup_validate);
         textNewCash = (TextView) dialogLayout.findViewById(R.id.popup_txt_cash);
@@ -78,7 +76,7 @@ public class TurnSummary {
         update(turn);
     }
 
-    public void display(){
+    void display(){
         dialog.show();
 
         eventAdapter.notifyDataSetChanged();
@@ -92,7 +90,7 @@ public class TurnSummary {
         });
     }
 
-    public void update(Turn turn){
+    void update(Turn turn){
         textNewCash.setText(String.valueOf(turn.newCash));
         textNewStudent.setText(String.valueOf(turn.newStudent));
         textNewTurn.setText(String.valueOf(turn.week));

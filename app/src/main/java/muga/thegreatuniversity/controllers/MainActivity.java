@@ -28,7 +28,6 @@ import muga.thegreatuniversity.controllers.fragments.StatsFragment;
 import muga.thegreatuniversity.lists.enums.FragmentType;
 import muga.thegreatuniversity.models.Turn;
 import muga.thegreatuniversity.models.University;
-import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.utils.Logger;
 import muga.thegreatuniversity.utils.SaveManager;
 

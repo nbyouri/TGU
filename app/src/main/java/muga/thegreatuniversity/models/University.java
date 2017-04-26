@@ -172,9 +172,11 @@ public class University {
         return name;
     }
 
-    private int getBasicPopularity() {
-        return basicData.getBasicPopularity();
-    }
+// --Commented out by Inspection START (27/04/2017, 00:35):
+//    private int getBasicPopularity() {
+//        return basicData.getBasicPopularity();
+//    }
+// --Commented out by Inspection STOP (27/04/2017, 00:35)
 
     public int getMoney() {
         return basicData.getMoney();
@@ -258,7 +260,7 @@ public class University {
         return income;
     }
 
-    public int getIncomeKots() {
+    private int getIncomeKots() {
         int incomeKot = 0;
         for (Kot k : kots) {
             incomeKot += k.getIncome();
@@ -411,7 +413,7 @@ public class University {
         }
         for (Event ev: toRemove)
         {
-            ev.setDisplayable(true);
+            //ev.setDisplayable();
             this.currentEvents.remove(ev);
         }
     }

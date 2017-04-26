@@ -5,16 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import muga.thegreatuniversity.R;
-import muga.thegreatuniversity.lists.enums.AnsType;
-import muga.thegreatuniversity.models.Turn;
-import muga.thegreatuniversity.models.events.Event;
-import muga.thegreatuniversity.models.University;
 import muga.thegreatuniversity.utils.Context;
 
 /**
@@ -83,41 +76,43 @@ public class PopUp {
         }
     }
 
-    static void alertNewEvent(final MainActivity mainAct, final Event event, final Turn newTurn) {
-        AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
-        eventBuilder.setCancelable(false);
-        switch (event.getType()) {
-            case DETERMINIST:
-                eventBuilder.setTitle(event.getMessage());
-                eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        event.setAns(AnsType.YES);
-                        University.get().applyTurn(newTurn);
-                        mainAct.updateView();
-                    }
-                });
-                break;
-            case TWO_CHOICES:
-                eventBuilder.setTitle(event.getMessage());
-                eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        event.setAns(AnsType.YES);
-                        University.get().applyTurn(newTurn);
-                        mainAct.updateView();
-                    }
-                });
-                eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        event.setAns(AnsType.NO);
-                        University.get().applyTurn(newTurn);
-                        mainAct.updateView();
-                    }
-                });
-                break;
-        }
-        AlertDialog eventDialog = eventBuilder.create();
-        eventDialog.show();
-    }
+// --Commented out by Inspection START (27/04/2017, 00:35):
+//    static void alertNewEvent(final MainActivity mainAct, final Event event, final Turn newTurn) {
+//        AlertDialog.Builder eventBuilder = new AlertDialog.Builder(mainAct);
+//        eventBuilder.setCancelable(false);
+//        switch (event.getType()) {
+//            case DETERMINIST:
+//                eventBuilder.setTitle(event.getMessage());
+//                eventBuilder.setPositiveButton(Context.getString(R.string.popUp_ok), new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        event.setAns(AnsType.YES);
+//                        University.get().applyTurn(newTurn);
+//                        mainAct.updateView();
+//                    }
+//                });
+//                break;
+//            case TWO_CHOICES:
+//                eventBuilder.setTitle(event.getMessage());
+//                eventBuilder.setPositiveButton(event.getFirstChoice(), new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        event.setAns(AnsType.YES);
+//                        University.get().applyTurn(newTurn);
+//                        mainAct.updateView();
+//                    }
+//                });
+//                eventBuilder.setNegativeButton(event.getSecondChoice(), new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        event.setAns(AnsType.NO);
+//                        University.get().applyTurn(newTurn);
+//                        mainAct.updateView();
+//                    }
+//                });
+//                break;
+//        }
+//        AlertDialog eventDialog = eventBuilder.create();
+//        eventDialog.show();
+//    }
+// --Commented out by Inspection STOP (27/04/2017, 00:35)
 
     static public void notMoney(final Activity mainAct) {
 
@@ -134,20 +129,22 @@ public class PopUp {
         univDialog.show();
     }
 
-    static void simplePopUp(final Activity mainAct, String message){
-        AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
-        builderDialog.setMessage(message);
-        builderDialog.setCancelable(false);
-        builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-        // Remember, create doesn't show the dialog
-        AlertDialog univDialog = builderDialog.create();
-        univDialog.show();
-    }
+// --Commented out by Inspection START (27/04/2017, 00:36):
+//    static void simplePopUp(final Activity mainAct, String message){
+//        AlertDialog.Builder builderDialog = new AlertDialog.Builder(mainAct);
+//        builderDialog.setMessage(message);
+//        builderDialog.setCancelable(false);
+//        builderDialog.setPositiveButton(Context.getString(R.string.popUp_ok),
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                    }
+//                });
+//
+//        // Remember, create doesn't show the dialog
+//        AlertDialog univDialog = builderDialog.create();
+//        univDialog.show();
+//    }
+// --Commented out by Inspection STOP (27/04/2017, 00:36)
 
     static public void resetUnivPopUp(final MainActivity mainAct) {
 

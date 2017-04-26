@@ -8,6 +8,5 @@ package muga.thegreatuniversity.lists.enums;
 
 public enum AnsType {
     YES,
-    NO,
-    NONE
+    NO
 }

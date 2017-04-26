@@ -2,10 +2,8 @@ package muga.thegreatuniversity.controllers;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -30,20 +28,20 @@ import muga.thegreatuniversity.utils.Tuple;
 
 public class EventItem {
 
-    private RadioButton rbYes;
-    private RadioButton rbNo;
+    private final RadioButton rbYes;
+    private final RadioButton rbNo;
 
-    private RadioGroup group;
+    private final RadioGroup group;
 
-    private TextView description;
-    private TextView duration;
-    private LinearLayout infoLayout;
+    private final TextView description;
+    private final TextView duration;
+    private final LinearLayout infoLayout;
 
-    private Event ev;
-    private View convertView;
-    private boolean inPopup;
+    private final Event ev;
+    private final View convertView;
+    private final boolean inPopup;
 
-    public EventItem(View convertView, @NonNull ViewGroup parent, Event ev, boolean inPopup){
+    public EventItem(View convertView, Event ev, boolean inPopup){
 
         this.convertView = convertView;
         this.ev = ev;

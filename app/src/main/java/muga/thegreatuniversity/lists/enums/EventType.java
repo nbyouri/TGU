@@ -11,7 +11,7 @@ import java.util.Map;
  */
 
 public enum EventType {
-    DETERMINIST("determinist"), //Determinist event
+    // --Commented out by Inspection (27/04/2017, 00:36):DETERMINIST("determinist"), //Determinist event
     TWO_CHOICES("two_choices"); //Not determinist event
 
     private String name = "";

@@ -29,12 +29,12 @@ public class Event {
     private String description;
 
     private boolean causal;
-    private boolean displayable;
+    // --Commented out by Inspection (27/04/2017, 00:40):private boolean displayable;
 
     public Event() {
         this.count = 0;
         this.durationMax = 1;
-        this.displayable = true;
+        //this.displayable = true;
     }
 
     public EventResult getYesAction() {
@@ -49,13 +49,15 @@ public class Event {
         return description;
     }
 
-    public boolean isDisplayable() {
-        return displayable;
-    }
+// --Commented out by Inspection START (27/04/2017, 00:35):
+//    public boolean isDisplayable() {
+//        return displayable;
+//    }
+// --Commented out by Inspection STOP (27/04/2017, 00:35)
 
-    public void setDisplayable(boolean displayable) {
-        this.displayable = displayable;
-    }
+//    public void setDisplayable() {
+//        this.displayable = true;
+//    }
 
     public String getMessage() {
         return message;
@@ -123,7 +125,7 @@ public class Event {
         return ans;
     }
 
-    public EventConditions getConds() {
+    EventConditions getConds() {
         return conds;
     }
 
