@@ -423,7 +423,8 @@ public class University {
     public void createNewUniversity(String name){
         this.name = name;
         this.week = (DefaultValues.START_WEEK);
-        reloadHires();
+        this.reloadHires();
+        this.sortProfessors();
         this.rooms = new ArrayList<>();
         this.kots = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
