@@ -100,15 +100,6 @@
             android:textSize="@dimen/text_medium"
             android:padding="3dp"
             android:focusable="true"/>
-        <!-- <TableLayout
-            android:layout_width="match_parent"
-            android:stretchColumns="0"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_table_choice_two"
-            android:divider="?android:listDivider"
-            android:dividerPadding="5dp"
-            android:showDividers="middle">
-        </TableLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

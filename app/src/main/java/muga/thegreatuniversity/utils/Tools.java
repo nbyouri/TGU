@@ -3,7 +3,7 @@ package muga.thegreatuniversity.utils;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Intent;
+import android.content.*;
 import android.graphics.PorterDuff;
 //import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +31,11 @@ public class Tools {
         Random rand = new Random();
 
         return rand.nextInt((max - min) + 1) + min;
+    }
+
+    public static float pixelsToSp(android.content.Context context, float px) {
+        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        return px/scaledDensity;
     }
 
 //    public static double randDouble (double min, double max){

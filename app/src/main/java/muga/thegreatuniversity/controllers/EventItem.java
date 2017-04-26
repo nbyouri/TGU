@@ -1,5 +1,6 @@
 package muga.thegreatuniversity.controllers;
 
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
@@ -17,6 +18,8 @@ import muga.thegreatuniversity.lists.enums.AnsType;
 import muga.thegreatuniversity.lists.enums.EventType;
 import muga.thegreatuniversity.lists.enums.EventValueType;
 import muga.thegreatuniversity.models.events.Event;
+import muga.thegreatuniversity.utils.Logger;
+import muga.thegreatuniversity.utils.Tools;
 import muga.thegreatuniversity.utils.Tuple;
 
 /**
@@ -88,42 +91,6 @@ public class EventItem {
                     }
                 });
             }
-            //createTable(ev, convertView, AnsType.YES);
-            if (ev.getType() == EventType.TWO_CHOICES) {
-                //createTable(ev, convertView, AnsType.NO);
-            }
-        } else {
-            // DISABLE RADIO BUTTON
-            for (int i = 0; i < group.getChildCount(); i++) {
-                group.getChildAt(i).setEnabled(false);
-            }
-
-            // SHOW ONLY CHOOSE
-            if (ev.getAns() == AnsType.YES){
-                rbNo.setVisibility(View.GONE);
-                //createTable(ev, convertView, AnsType.YES);
-            } else {
-                rbYes.setVisibility(View.GONE);
-                rbNo.toggle();
-                //createTable(ev, convertView, AnsType.NO);
-            }
-
-        }
-
-        /*
-        if (inPopup && ev.getDurationMax() - ev.getCount() == ev.getDurationMax()) {
-            // POPUP NEED TO CHOOSE
-            ev.setAns(AnsType.YES);
-            group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    if (checkedId == R.id.event_cb_choice_one){
-                        ev.setAns(AnsType.YES);
-                    } else if (checkedId == R.id.event_cb_choice_two){
-                        ev.setAns(AnsType.NO);
-                    }
-                }
-            });
             createTable(ev, convertView, AnsType.YES);
             if (ev.getType() == EventType.TWO_CHOICES) {
                 createTable(ev, convertView, AnsType.NO);
@@ -135,20 +102,20 @@ public class EventItem {
             }
 
             // SHOW ONLY CHOOSE
-            if (ev.getType()== EventType.TWO_CHOICES) {
-                if (ev.getAns() == AnsType.YES){
-                    rbNo.setVisibility(View.GONE);
-                    createTable(ev, convertView, AnsType.YES);
-                } else {
-                    rbYes.setVisibility(View.GONE);
-                    createTable(ev, convertView, AnsType.NO);
-                }
+            if (ev.getAns() == AnsType.YES) {
+                rbNo.setVisibility(View.GONE);
+                createTable(ev, convertView, AnsType.YES);
+            } else if (ev.getAns() == AnsType.NO) {
+                rbYes.setVisibility(View.GONE);
+                rbNo.toggle();
+                createTable(ev, convertView, AnsType.NO);
             }
-        } */
+
+        }
     }
 
     private boolean isNotChoose(){
-        return (inPopup && (ev.getDurationMax() - ev.getCount() == ev.getDurationMax()));
+        return (inPopup && ev.getAns()==null);
     }
 
     private void createTable(Event ev, View convertView, AnsType ans){
@@ -159,15 +126,17 @@ public class EventItem {
         } else {
             choiceLayout = (LinearLayout) convertView.findViewById(R.id.event_layout_choice_two);
         }
-
+        Logger.info("TABLE : " + ans);
         for (Tuple<EventValueType, Object> computation : ev.getResult(ans).getComputation().getNewValues()) {
+            Logger.info("TABLE computation : " + computation.item1 + " | " + String.valueOf(computation.item2));
             RelativeLayout layout = new RelativeLayout(convertView.getContext());
             TextView text = new TextView(convertView.getContext());
             ImageView icon = new ImageView(convertView.getContext());
 
             int idText = View.generateViewId();
             text.setId(idText);
-
+            Context cont = convertView.getContext();
+            text.setTextSize(Tools.pixelsToSp(cont,cont.getResources().getDimension(R.dimen.text_medium)));
             text.setText(String.valueOf(computation.item2));
             text.setGravity(Gravity.START);
 

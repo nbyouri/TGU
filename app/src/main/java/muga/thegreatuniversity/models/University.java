@@ -444,7 +444,7 @@ public class University {
             case ADD:
                 return (int) value;
             case MULTIPLICATION:
-                return (int)((prevValue * value)-value);
+                return (int)((prevValue * value)-prevValue);
             case FIRE: // TODO Review
                 for(int i = 0; i < value; i++) {
                     professors.remove(i);
@@ -461,7 +461,7 @@ public class University {
             case ADD:
                 return value;
             case MULTIPLICATION:
-                return (prevValue * value)-value;
+                return (prevValue * value)-prevValue;
             case FIRE: // TODO Review
                 for(int i = 0; i < value; i++) {
                     professors.remove(i);

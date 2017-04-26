@@ -54,16 +54,14 @@ public class EventAdapter extends ArrayAdapter<Event>  {
         // Get the data item for this position
         final Event ev = getItem(position);
 
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_event, parent, false);
+            if (ev == null) return convertView;
+            EventItem eventItem = new EventItem(convertView,parent,ev,inPopup);
+            eventItem.create();
         }
-
-        if (ev == null) return convertView;
-
-        EventItem eventItem = new EventItem(convertView,parent,ev,inPopup);
-        eventItem.create();
-
 
         // Return the completed view to render on screen
         return convertView;
