@@ -499,5 +499,125 @@
       ]
     },
     "causal":"true"
+  },
+  {
+    "message":"New students !",
+    "description":"One university in the region has gone bankrupt, the students are enrolling in your",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 0,
+    "yes_action":[
+      {
+        "value":1.2,
+        "action_type":"mul",
+        "value_type":"student"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"Increase in popularity !",
+    "description":"Your university is elected 'the most cute' of the week",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 0,
+    "yes_action":[
+      {
+        "value":1.2,
+        "action_type":"mul",
+        "value_type":"popularity"
+      }
+    ],
+    "conditions":
+    {
+      "vars":[],
+      "ops":[],
+      "values":[]
+    },
+    "causal":"false"
+  },
+  {
+    "message":"End of Year Objective Achieved",
+    "description":"The morale of your students is positive you gain in popularity",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":100,
+        "action_type":"add",
+        "value_type":"popularity"
+      }
+    ],
+    "no_action":[
+      {
+        "value":0,
+        "action_type":"",
+        "value_type":""
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week",
+        "moral"
+      ],
+      "ops":[
+        "%",
+        ">"
+      ],
+      "values":[
+        60,
+        50
+      ]
+    },
+    "causal":"true"
+  },
+  {
+    "message":"End of Year Objective Not Achieved",
+    "description":"The morale of your students is negative you lose in popularity",
+    "type":"determinist",
+    "first_choice":"",
+    "second_choice":"",
+    "duration": 1,
+    "yes_action":[
+      {
+        "value":-100,
+        "action_type":"add",
+        "value_type":"popularity"
+      }
+    ],
+    "no_action":[
+      {
+        "value":0,
+        "action_type":"",
+        "value_type":""
+      }
+    ],
+    "conditions":
+    {
+      "vars":[
+        "week",
+        "moral"
+      ],
+      "ops":[
+        "%",
+        "<"
+      ],
+      "values":[
+        60,
+        50
+      ]
+    },
+    "causal":"true"
   }
 ]
