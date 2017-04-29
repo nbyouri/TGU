@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.models.events.Event;
 import muga.thegreatuniversity.models.events.EventAction;
+import muga.thegreatuniversity.models.events.EventResult;
 import muga.thegreatuniversity.utils.Logger;
 
 /**
@@ -46,14 +47,19 @@ public class EventFragment extends Fragment {
 
         TextView textView_yes_action = (TextView) view.findViewById(R.id.layout_event_description_yesactionDescription);
         textView_yes_action.setText(R.string.event_action_does);
-        for(EventAction event: ev.getYesAction().getActions()) {
-            textView_yes_action.append(getString(R.string.event_a));
-            textView_yes_action.append(event.getActionType().getName());
-            textView_yes_action.append(getString(R.string.event_on));
-            textView_yes_action.append(event.getValueType().getName());
-            textView_yes_action.append(getString(R.string.event_of));
-            textView_yes_action.append(String.valueOf(event.getValue()));
-            textView_yes_action.append(getString(R.string.event_newline));
+        EventResult yesActions = ev.getYesAction();
+        if (yesActions == null) {
+            textView_yes_action.append(getString(R.string.event_nothing));
+        } else {
+            for (EventAction event : yesActions.getActions()) {
+                textView_yes_action.append(getString(R.string.event_a));
+                textView_yes_action.append(event.getActionType().getName());
+                textView_yes_action.append(getString(R.string.event_on));
+                textView_yes_action.append(event.getValueType().getName());
+                textView_yes_action.append(getString(R.string.event_of));
+                textView_yes_action.append(String.valueOf(event.getValue()));
+                textView_yes_action.append(getString(R.string.event_newline));
+            }
         }
 
         if(ev.getNoAction() != null) {
