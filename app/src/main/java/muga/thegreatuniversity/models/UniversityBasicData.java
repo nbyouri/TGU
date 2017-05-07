@@ -46,7 +46,7 @@ class UniversityBasicData {
     }
 
     public void addBasicPopularity(int basicPopularity){
-        setBasicPopularity(this.basicPopularity = basicPopularity);
+        setBasicPopularity(this.basicPopularity + basicPopularity);
     }
 
     public double getMoral() {

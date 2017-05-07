@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
 import muga.thegreatuniversity.R;
 import muga.thegreatuniversity.app.App;
 import muga.thegreatuniversity.controllers.fragments.BuildFragment;
@@ -50,6 +53,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         loadFragment();
     }
